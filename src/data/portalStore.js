@@ -49,6 +49,7 @@ import {
   RECORD_MEDIA_LINKS,
   getVerifiedMediaForEvent
 } from './verified-event-media.js';
+import { parseDateRange, formatDateDDMMYYYY } from '../lib/ui/dateUtils.js';
 
 // -------------------------------------------------------------
 // Storage Keys & Security Core (v3 Production Clean)
@@ -2109,9 +2110,29 @@ export function searchStudents(query) {
 // -------------------------------------------------------------
 // 4. Student Achievements (Full Evidence Lifecycle)
 // -------------------------------------------------------------
+export function normalizeAchievementDates(item) {
+  if (!item) return item;
+  const rawDate = item.eventDate || item.date || item.achievementDate;
+  if (!rawDate) return item;
+
+  const parsed = parseDateRange(rawDate);
+  const startDate = item.startDate || parsed.startDate;
+  const endDate = item.endDate || parsed.endDate || parsed.lastDate;
+  const eventDate = parsed.lastDate || rawDate;
+
+  return {
+    ...item,
+    startDate,
+    endDate,
+    eventDate,
+    achievementDate: eventDate
+  };
+}
+
 export function getStudentAchievements(includeDeleted = false) {
   const items = loadStore(STORAGE_KEYS.STUDENT_ACHIEVEMENTS, INITIAL_STUDENT_ACHIEVEMENTS);
-  return includeDeleted ? items : (Array.isArray(items) ? items.filter(i => !i.isDeleted) : []);
+  const normalized = Array.isArray(items) ? items.map(normalizeAchievementDates) : [];
+  return includeDeleted ? normalized : normalized.filter(i => !i.isDeleted);
 }
 
 export function saveStudentAchievement(item, user) {
@@ -2120,11 +2141,13 @@ export function saveStudentAchievement(item, user) {
   const deptCode = item.department || item.branch || 'CSE';
   const yearCode = (item.academicYear || '2025-26').slice(0, 4);
 
+  const normalizedInput = normalizeAchievementDates(item);
+
   if (index >= 0) {
     const existing = items[index];
     const updated = {
       ...existing,
-      ...item,
+      ...normalizedInput,
       updatedAt: new Date().toISOString(),
       updatedBy: user?.name || 'Super Admin'
     };
@@ -2139,7 +2162,7 @@ export function saveStudentAchievement(item, user) {
     const autoNumber = `ACH-${deptCode}-${yearCode}-${seq}`;
 
     const newItem = {
-      ...item,
+      ...normalizedInput,
       id: item.id || 'ach_' + Date.now(),
       achievementNumber: item.achievementNumber || autoNumber,
       workflowStatus: item.workflowStatus || 'DRAFT',

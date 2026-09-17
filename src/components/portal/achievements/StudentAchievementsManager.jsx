@@ -415,7 +415,7 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
                 <th style={{ padding: '0.85rem 1rem' }}>Achievement & Event</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Category & Level</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Prize / Award</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Date</th>
+                <th style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>Date</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Status</th>
                 <th style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>Actions</th>
               </tr>
@@ -498,10 +498,18 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
                       </td>
 
                       {/* Event Date */}
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <span style={{ fontSize: '0.76rem', color: '#334155' }}>
-                          {formatDateDDMMYYYY(item.eventDate || item.date) || '—'}
-                        </span>
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '0.78rem', color: '#0F172A', fontWeight: 700 }}>
+                          {formatDateDDMMYYYY(item.endDate || item.eventDate || item.date) || '—'}
+                        </div>
+                        {item.startDate && item.endDate && item.startDate !== item.endDate && (
+                          <div
+                            style={{ fontSize: '0.67rem', color: '#64748B', marginTop: '1px' }}
+                            title={`Event Duration: ${formatDateDDMMYYYY(item.startDate)} to ${formatDateDDMMYYYY(item.endDate)}`}
+                          >
+                            From {formatDateDDMMYYYY(item.startDate)}
+                          </div>
+                        )}
                       </td>
 
                       {/* Status */}
@@ -631,7 +639,14 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
                 </div>
                 <div>
                   <div style={{ fontSize: '0.72rem', color: '#64748B' }}>Achievement Date</div>
-                  <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#0F172A' }}>{dossierModalItem.achievementDate || dossierModalItem.eventDate}</div>
+                  <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#0F172A' }}>
+                    {formatDateDDMMYYYY(dossierModalItem.endDate || dossierModalItem.eventDate || dossierModalItem.achievementDate)}
+                    {dossierModalItem.startDate && dossierModalItem.endDate && dossierModalItem.startDate !== dossierModalItem.endDate && (
+                      <span style={{ fontSize: '0.74rem', color: '#64748B', fontWeight: 500, marginLeft: '0.4rem' }}>
+                        ({formatDateDDMMYYYY(dossierModalItem.startDate)} to {formatDateDDMMYYYY(dossierModalItem.endDate)})
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
 

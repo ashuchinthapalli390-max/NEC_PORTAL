@@ -1646,7 +1646,9 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "eventDate": "2026-06-15",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-15",
+    "endDate": "2026-06-15"
   },
   {
     "id": "ach_002",
@@ -1660,10 +1662,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "TCS",
     "organizingInstitute": "TCS",
-    "eventDate": "11-18-JUN-2026",
+    "eventDate": "2026-06-18",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-11",
+    "endDate": "2026-06-18"
   },
   {
     "id": "ach_003",
@@ -1681,7 +1685,9 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "sourceDateSerial": 46027,
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-01-05",
+    "endDate": "2026-01-05"
   },
   {
     "id": "ach_004",
@@ -1695,10 +1701,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "HACK BOATS (NEC)",
     "organizingInstitute": "HACK BOATS (NEC)",
-    "eventDate": "29/6 to 4/7/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_005",
@@ -1712,10 +1720,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "HACK BOATS (NEC)",
     "organizingInstitute": "HACK BOATS (NEC)",
-    "eventDate": "29/6 to 4/7/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_006",
@@ -1729,10 +1739,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "HACK BOATS (NEC)",
     "organizingInstitute": "HACK BOATS (NEC)",
-    "eventDate": "29/6 to 4/7/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_007",
@@ -1746,10 +1758,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "HACK BOATS (NEC)",
     "organizingInstitute": "HACK BOATS (NEC)",
-    "eventDate": "29/6 to 4/7/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_008",
@@ -1766,7 +1780,9 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "eventDate": "2026-06-20",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-20",
+    "endDate": "2026-06-20"
   },
   {
     "id": "ach_009",
@@ -1783,7 +1799,9 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "eventDate": "2026-06-21",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-21",
+    "endDate": "2026-06-21"
   },
   {
     "id": "ach_010",
@@ -1800,7 +1818,9 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "eventDate": "2026-06-22",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-22",
+    "endDate": "2026-06-22"
   },
   {
     "id": "ach_011",
@@ -1817,7 +1837,9 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "eventDate": "2026-06-23",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-23",
+    "endDate": "2026-06-23"
   },
   {
     "id": "ach_012",
@@ -1834,7 +1856,9 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "eventDate": "2026-06-24",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-24",
+    "endDate": "2026-06-24"
   },
   {
     "id": "ach_013",
@@ -1851,7 +1875,9 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "eventDate": "2026-06-15",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-15",
+    "endDate": "2026-06-15"
   },
   {
     "id": "ach_014",
@@ -1868,7 +1894,9 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "eventDate": "2026-06-15",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-15",
+    "endDate": "2026-06-15"
   },
   {
     "id": "ach_015",
@@ -1882,10 +1910,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "HACK BOATS (NEC)",
     "organizingInstitute": "HACK BOATS (NEC)",
-    "eventDate": "29/6 to 4/7/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_016",
@@ -1904,7 +1934,9 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "sourceDateSerial": 46087,
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-03-06",
+    "endDate": "2026-03-06"
   },
   {
     "id": "ach_017",
@@ -1924,7 +1956,9 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
     "isDeleted": false,
-    "enrichmentNote": "Merged/enriched 2nd prize entry for roll 23471A4308"
+    "enrichmentNote": "Merged/enriched 2nd prize entry for roll 23471A4308",
+    "startDate": "2026-05-07",
+    "endDate": "2026-05-07"
   },
   {
     "id": "ach_018",
@@ -1941,7 +1975,9 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "eventDate": "2026-07-21",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-07-21",
+    "endDate": "2026-07-21"
   },
   {
     "id": "ach_019",
@@ -1955,10 +1991,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "HACK BOATS (NEC)",
     "organizingInstitute": "HACK BOATS (NEC)",
-    "eventDate": "29/6 to 4/7/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_020",
@@ -1972,10 +2010,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "HACK BOATS (NEC)",
     "organizingInstitute": "HACK BOATS (NEC)",
-    "eventDate": "29/6 to 4/7/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_021",
@@ -1989,10 +2029,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "HACK BOATS (NEC)",
     "organizingInstitute": "HACK BOATS (NEC)",
-    "eventDate": "29/6 to 4/7/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_022",
@@ -2006,10 +2048,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "HACK BOATS (NEC)",
     "organizingInstitute": "HACK BOATS (NEC)",
-    "eventDate": "29/6 to 4/7/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_023",
@@ -2023,10 +2067,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "HACK BOATS (NEC)",
     "organizingInstitute": "HACK BOATS (NEC)",
-    "eventDate": "29/6 to 4/7/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_024",
@@ -2040,10 +2086,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "HACK BOATS (NEC)",
     "organizingInstitute": "HACK BOATS (NEC)",
-    "eventDate": "29/6 to 4/7/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_025",
@@ -2057,10 +2105,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "HACK BOATS (NEC)",
     "organizingInstitute": "HACK BOATS (NEC)",
-    "eventDate": "29/6 to 4/7/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_026",
@@ -2074,10 +2124,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_027",
@@ -2091,10 +2143,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_028",
@@ -2108,10 +2162,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_029",
@@ -2125,10 +2181,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_030",
@@ -2142,10 +2200,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_031",
@@ -2159,10 +2219,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_032",
@@ -2176,10 +2238,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_033",
@@ -2193,10 +2257,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_034",
@@ -2210,10 +2276,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_035",
@@ -2227,10 +2295,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_036",
@@ -2244,10 +2314,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_037",
@@ -2261,10 +2333,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_038",
@@ -2278,10 +2352,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_039",
@@ -2295,10 +2371,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_040",
@@ -2312,10 +2390,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_041",
@@ -2329,10 +2409,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_042",
@@ -2346,10 +2428,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_043",
@@ -2363,10 +2447,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_044",
@@ -2380,10 +2466,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_045",
@@ -2397,10 +2485,12 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "category": "Academic",
     "organizer": "FYNITY INNOVATIONS LLP",
     "organizingInstitute": "FYNITY INNOVATIONS LLP",
-    "eventDate": "6/29 TO 7/4/2026",
+    "eventDate": "2026-07-04",
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
-    "isDeleted": false
+    "isDeleted": false,
+    "startDate": "2026-06-29",
+    "endDate": "2026-07-04"
   },
   {
     "id": "ach_046",
@@ -2419,7 +2509,9 @@ export const INITIAL_STUDENT_ACHIEVEMENTS = [
     "academicYear": "2026-27",
     "workflowStatus": "APPROVED",
     "isDeleted": false,
-    "enrichmentNote": "Raw participation entry for roll 23471A4308"
+    "enrichmentNote": "Raw participation entry for roll 23471A4308",
+    "startDate": "2026-05-07",
+    "endDate": "2026-05-07"
   }
 ];
 export const INITIAL_INTERNSHIPS = [];

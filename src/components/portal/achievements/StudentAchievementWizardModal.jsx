@@ -29,6 +29,7 @@ import {
 } from '../../../data/portalStore.js';
 import FormField from '../../ui/form/FormField.jsx';
 import { Input, DateInput, Select, Textarea } from '../../ui/form/FormControls.jsx';
+import { parseDateRange } from '../../../lib/ui/dateUtils.js';
 
 const ACHIEVEMENT_CATEGORIES = [
   'Academic',
@@ -91,13 +92,21 @@ export default function StudentAchievementWizardModal({
   // Form State
   const [formData, setFormData] = useState(() => {
     if (initialData) {
+      const parsed = parseDateRange(initialData.eventDate || initialData.achievementDate || initialData.date);
+      const sDate = initialData.startDate || parsed.startDate;
+      const eDate = initialData.endDate || parsed.endDate || parsed.lastDate;
       return {
         ...initialData,
+        startDate: sDate,
+        endDate: eDate,
+        achievementDate: eDate || initialData.achievementDate,
+        eventDate: eDate || initialData.eventDate,
         documents: initialData.documents || []
       };
     }
 
     const defaultDept = currentUser?.role === 'HOD' ? (currentUser.dept || 'CSE') : 'CSE';
+    const today = new Date().toISOString().split('T')[0];
 
     return {
       rollNumber: '',
@@ -114,7 +123,10 @@ export default function StudentAchievementWizardModal({
       eventName: '',
       organizedBy: '',
       venue: '',
-      achievementDate: new Date().toISOString().split('T')[0],
+      startDate: today,
+      endDate: today,
+      achievementDate: today,
+      eventDate: today,
       level: 'National',
       participationType: 'Individual',
       teamName: '',
@@ -600,11 +612,36 @@ export default function StudentAchievementWizardModal({
                   </FormField>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-                  <FormField label="ACHIEVEMENT DATE *" error={errors.achievementDate}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1.2fr 1fr', gap: '1rem' }}>
+                  <FormField label="START DATE" error={errors.startDate}>
                     <DateInput
-                      value={formData.achievementDate}
-                      onChange={(e) => setFormData({ ...formData, achievementDate: e.target.value })}
+                      value={formData.startDate || formData.achievementDate}
+                      onChange={(e) => {
+                        const s = e.target.value;
+                        setFormData({
+                          ...formData,
+                          startDate: s,
+                          endDate: (!formData.endDate || formData.endDate === formData.startDate) ? s : formData.endDate,
+                          achievementDate: formData.endDate || s,
+                          eventDate: formData.endDate || s
+                        });
+                      }}
+                      error={!!errors.startDate}
+                    />
+                  </FormField>
+
+                  <FormField label="END DATE (DEFAULT) *" error={errors.achievementDate}>
+                    <DateInput
+                      value={formData.endDate || formData.achievementDate}
+                      onChange={(e) => {
+                        const ed = e.target.value;
+                        setFormData({
+                          ...formData,
+                          endDate: ed,
+                          achievementDate: ed,
+                          eventDate: ed
+                        });
+                      }}
                       error={!!errors.achievementDate}
                     />
                   </FormField>

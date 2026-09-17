@@ -2021,7 +2021,9 @@
       "eventDate": "2026-06-15",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-15",
+      "endDate": "2026-06-15"
     },
     {
       "id": "ach_002",
@@ -2035,10 +2037,12 @@
       "category": "Academic",
       "organizer": "TCS",
       "organizingInstitute": "TCS",
-      "eventDate": "11-18-JUN-2026",
+      "eventDate": "2026-06-18",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-11",
+      "endDate": "2026-06-18"
     },
     {
       "id": "ach_003",
@@ -2056,7 +2060,9 @@
       "sourceDateSerial": 46027,
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-01-05",
+      "endDate": "2026-01-05"
     },
     {
       "id": "ach_004",
@@ -2070,10 +2076,12 @@
       "category": "Academic",
       "organizer": "HACK BOATS (NEC)",
       "organizingInstitute": "HACK BOATS (NEC)",
-      "eventDate": "29/6 to 4/7/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_005",
@@ -2087,10 +2095,12 @@
       "category": "Academic",
       "organizer": "HACK BOATS (NEC)",
       "organizingInstitute": "HACK BOATS (NEC)",
-      "eventDate": "29/6 to 4/7/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_006",
@@ -2104,10 +2114,12 @@
       "category": "Academic",
       "organizer": "HACK BOATS (NEC)",
       "organizingInstitute": "HACK BOATS (NEC)",
-      "eventDate": "29/6 to 4/7/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_007",
@@ -2121,10 +2133,12 @@
       "category": "Academic",
       "organizer": "HACK BOATS (NEC)",
       "organizingInstitute": "HACK BOATS (NEC)",
-      "eventDate": "29/6 to 4/7/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_008",
@@ -2141,7 +2155,9 @@
       "eventDate": "2026-06-20",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-20",
+      "endDate": "2026-06-20"
     },
     {
       "id": "ach_009",
@@ -2158,7 +2174,9 @@
       "eventDate": "2026-06-21",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-21",
+      "endDate": "2026-06-21"
     },
     {
       "id": "ach_010",
@@ -2175,7 +2193,9 @@
       "eventDate": "2026-06-22",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-22",
+      "endDate": "2026-06-22"
     },
     {
       "id": "ach_011",
@@ -2192,7 +2212,9 @@
       "eventDate": "2026-06-23",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-23",
+      "endDate": "2026-06-23"
     },
     {
       "id": "ach_012",
@@ -2209,7 +2231,9 @@
       "eventDate": "2026-06-24",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-24",
+      "endDate": "2026-06-24"
     },
     {
       "id": "ach_013",
@@ -2226,7 +2250,9 @@
       "eventDate": "2026-06-15",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-15",
+      "endDate": "2026-06-15"
     },
     {
       "id": "ach_014",
@@ -2243,7 +2269,9 @@
       "eventDate": "2026-06-15",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-15",
+      "endDate": "2026-06-15"
     },
     {
       "id": "ach_015",
@@ -2257,10 +2285,12 @@
       "category": "Academic",
       "organizer": "HACK BOATS (NEC)",
       "organizingInstitute": "HACK BOATS (NEC)",
-      "eventDate": "29/6 to 4/7/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_016",
@@ -2279,7 +2309,9 @@
       "sourceDateSerial": 46087,
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-03-06",
+      "endDate": "2026-03-06"
     },
     {
       "id": "ach_017",
@@ -2299,7 +2331,9 @@
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
       "isDeleted": false,
-      "enrichmentNote": "Merged/enriched 2nd prize entry for roll 23471A4308"
+      "enrichmentNote": "Merged/enriched 2nd prize entry for roll 23471A4308",
+      "startDate": "2026-05-07",
+      "endDate": "2026-05-07"
     },
     {
       "id": "ach_018",
@@ -2316,7 +2350,9 @@
       "eventDate": "2026-07-21",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-07-21",
+      "endDate": "2026-07-21"
     },
     {
       "id": "ach_019",
@@ -2330,10 +2366,12 @@
       "category": "Academic",
       "organizer": "HACK BOATS (NEC)",
       "organizingInstitute": "HACK BOATS (NEC)",
-      "eventDate": "29/6 to 4/7/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_020",
@@ -2347,10 +2385,12 @@
       "category": "Academic",
       "organizer": "HACK BOATS (NEC)",
       "organizingInstitute": "HACK BOATS (NEC)",
-      "eventDate": "29/6 to 4/7/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_021",
@@ -2364,10 +2404,12 @@
       "category": "Academic",
       "organizer": "HACK BOATS (NEC)",
       "organizingInstitute": "HACK BOATS (NEC)",
-      "eventDate": "29/6 to 4/7/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_022",
@@ -2381,10 +2423,12 @@
       "category": "Academic",
       "organizer": "HACK BOATS (NEC)",
       "organizingInstitute": "HACK BOATS (NEC)",
-      "eventDate": "29/6 to 4/7/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_023",
@@ -2398,10 +2442,12 @@
       "category": "Academic",
       "organizer": "HACK BOATS (NEC)",
       "organizingInstitute": "HACK BOATS (NEC)",
-      "eventDate": "29/6 to 4/7/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_024",
@@ -2415,10 +2461,12 @@
       "category": "Academic",
       "organizer": "HACK BOATS (NEC)",
       "organizingInstitute": "HACK BOATS (NEC)",
-      "eventDate": "29/6 to 4/7/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_025",
@@ -2432,10 +2480,12 @@
       "category": "Academic",
       "organizer": "HACK BOATS (NEC)",
       "organizingInstitute": "HACK BOATS (NEC)",
-      "eventDate": "29/6 to 4/7/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_026",
@@ -2449,10 +2499,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_027",
@@ -2466,10 +2518,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_028",
@@ -2483,10 +2537,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_029",
@@ -2500,10 +2556,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_030",
@@ -2517,10 +2575,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_031",
@@ -2534,10 +2594,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_032",
@@ -2551,10 +2613,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_033",
@@ -2568,10 +2632,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_034",
@@ -2585,10 +2651,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_035",
@@ -2602,10 +2670,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_036",
@@ -2619,10 +2689,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_037",
@@ -2636,10 +2708,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_038",
@@ -2653,10 +2727,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_039",
@@ -2670,10 +2746,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_040",
@@ -2687,10 +2765,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_041",
@@ -2704,10 +2784,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_042",
@@ -2721,10 +2803,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_043",
@@ -2738,10 +2822,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_044",
@@ -2755,10 +2841,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_045",
@@ -2772,10 +2860,12 @@
       "category": "Academic",
       "organizer": "FYNITY INNOVATIONS LLP",
       "organizingInstitute": "FYNITY INNOVATIONS LLP",
-      "eventDate": "6/29 TO 7/4/2026",
+      "eventDate": "2026-07-04",
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
-      "isDeleted": false
+      "isDeleted": false,
+      "startDate": "2026-06-29",
+      "endDate": "2026-07-04"
     },
     {
       "id": "ach_046",
@@ -2794,7 +2884,9 @@
       "academicYear": "2026-27",
       "workflowStatus": "APPROVED",
       "isDeleted": false,
-      "enrichmentNote": "Raw participation entry for roll 23471A4308"
+      "enrichmentNote": "Raw participation entry for roll 23471A4308",
+      "startDate": "2026-05-07",
+      "endDate": "2026-05-07"
     }
   ],
   "events": [
