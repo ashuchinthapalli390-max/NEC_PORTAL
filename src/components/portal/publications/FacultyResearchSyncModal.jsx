@@ -28,8 +28,6 @@ import {
 import { FACULTY_DATA } from '../../../data/masterData.js';
 import { runResearchSyncJob } from '../../../lib/research/researchSyncEngine.js';
 import { isValidOrcid, ORCID_CONFIG, isOrcidConfigured, getOrcidOAuthUrl } from '../../../lib/research/orcidService.js';
-import { isValidScopusAuthorId } from '../../../lib/research/scopusService.js';
-import { isValidWosResearcherId } from '../../../lib/research/wosService.js';
 import { 
   importPublicationsBatch, 
   getFacultyResearchProfile, 
@@ -46,11 +44,9 @@ export default function FacultyResearchSyncModal({
   const [selectedFacultyId, setSelectedFacultyId] = useState(initialFacultyId);
   const facultyRecord = FACULTY_DATA.find(f => f.id === selectedFacultyId) || FACULTY_DATA[0];
 
-  // Identifiers state — loaded strictly per faculty ID from portalStore
+  // Identifiers state — strictly manages ORCID for research synchronization
   const [identifiers, setIdentifiers] = useState({
     orcid: '',
-    scopusAuthorId: '',
-    wosResearcherId: '',
     googleScholarId: '',
     vidwanId: ''
   });
@@ -72,8 +68,6 @@ export default function FacultyResearchSyncModal({
       const stored = getFacultyResearchProfile(selectedFacultyId);
       setIdentifiers({
         orcid: stored.orcid || '',
-        scopusAuthorId: stored.scopusAuthorId || '',
-        wosResearcherId: stored.wosResearcherId || '',
         googleScholarId: stored.googleScholarId || '',
         vidwanId: stored.vidwanId || ''
       });
@@ -87,7 +81,7 @@ export default function FacultyResearchSyncModal({
 
   const handleSaveIdentifiers = () => {
     saveFacultyResearchProfile(selectedFacultyId, identifiers, currentUser);
-    setIdSavedMessage('Identifiers saved to institutional profile.');
+    setIdSavedMessage('ORCID iD saved to institutional profile.');
     setTimeout(() => setIdSavedMessage(''), 3500);
   };
 
@@ -95,9 +89,13 @@ export default function FacultyResearchSyncModal({
   const [syncModalToast, setSyncModalToast] = useState('');
 
   const handleStartSync = async () => {
-    const hasAtLeastOne = identifiers.orcid || identifiers.scopusAuthorId || identifiers.wosResearcherId;
-    if (!hasAtLeastOne) {
-      setSyncModalError('Please enter at least one research identifier (ORCID, Scopus Author ID, or WoS ResearcherID).');
+    if (!identifiers.orcid || !identifiers.orcid.trim()) {
+      setSyncModalError('Please enter a valid 16-digit ORCID iD (e.g. 0000-0002-1825-0097).');
+      return;
+    }
+
+    if (!isValidOrcid(identifiers.orcid)) {
+      setSyncModalError('Invalid ORCID format. Must be 16 digits formatted like 0000-0002-1825-0097.');
       return;
     }
 
@@ -249,10 +247,10 @@ export default function FacultyResearchSyncModal({
             </div>
             <div>
               <h2 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0, color: '#FFFFFF', fontFamily: 'Cinzel, Georgia, serif' }}>
-                Official Research Auto-Sync Engine
+                Official ORCID Publications Auto-Sync
               </h2>
               <div style={{ fontSize: '0.74rem', color: '#D4AF37', fontWeight: 600 }}>
-                Live Crossref, ORCID Public API v3.0, Scopus & Web of Science Registry Sync
+                Live ORCID Public API v3.0 & Crossref Metadata Integration
               </div>
             </div>
           </div>
@@ -280,7 +278,7 @@ export default function FacultyResearchSyncModal({
               <span>{syncModalToast}</span>
             </div>
           )}
-          {/* Faculty Selector & Real Identifier Inputs */}
+          {/* Faculty Selector & ORCID Input */}
           <div style={{ background: '#F8FAFC', borderRadius: '14px', border: '1px solid #E2E8F0', padding: '1.25rem' }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
               <div>
@@ -303,10 +301,10 @@ export default function FacultyResearchSyncModal({
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
                   <label style={{ fontSize: '0.75rem', fontWeight: 800, color: '#0F172A', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                    ORCID iD (16-Digit)
+                    ORCID iD (16-Digit with Checksum) *
                     {isOrcidConfigured() && (
                       <span style={{ fontSize: '0.66rem', color: '#059669', background: '#ECFDF5', padding: '0.1rem 0.4rem', borderRadius: '4px', border: '1px solid #A7F3D0', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
-                        <CheckCircle2 size={10} /> Connected (APP-8JDS...)
+                        <CheckCircle2 size={10} /> ORCID API Active (APP-8JDS...)
                       </span>
                     )}
                   </label>
@@ -322,35 +320,9 @@ export default function FacultyResearchSyncModal({
                 </div>
                 <input
                   type="text"
-                  placeholder="e.g. 0000-0002-5550-9651"
+                  placeholder="e.g. 0000-0002-1825-0097"
                   value={identifiers.orcid}
                   onChange={(e) => setIdentifiers({ ...identifiers, orcid: e.target.value })}
-                  style={{ width: '100%', padding: '0.55rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.82rem', boxSizing: 'border-box' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ fontSize: '0.75rem', fontWeight: 800, color: '#0F172A', display: 'block', marginBottom: '0.35rem' }}>
-                  SCOPUS AUTHOR ID (10-11 Digits)
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. 57215069303"
-                  value={identifiers.scopusAuthorId}
-                  onChange={(e) => setIdentifiers({ ...identifiers, scopusAuthorId: e.target.value })}
-                  style={{ width: '100%', padding: '0.55rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.82rem', boxSizing: 'border-box' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ fontSize: '0.75rem', fontWeight: 800, color: '#0F172A', display: 'block', marginBottom: '0.35rem' }}>
-                  WEB OF SCIENCE RESEARCHERID
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. HJZ-2915-2023"
-                  value={identifiers.wosResearcherId}
-                  onChange={(e) => setIdentifiers({ ...identifiers, wosResearcherId: e.target.value })}
                   style={{ width: '100%', padding: '0.55rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.82rem', boxSizing: 'border-box' }}
                 />
               </div>
@@ -374,7 +346,7 @@ export default function FacultyResearchSyncModal({
 
               <button
                 type="button"
-                disabled={syncing || (!identifiers.orcid && !identifiers.scopusAuthorId && !identifiers.wosResearcherId)}
+                disabled={syncing || !identifiers.orcid}
                 onClick={handleStartSync}
                 style={{
                   display: 'inline-flex',
@@ -392,7 +364,7 @@ export default function FacultyResearchSyncModal({
                 }}
               >
                 <RefreshCw size={14} className={syncing ? 'animate-spin' : ''} />
-                {syncing ? 'Querying Registries...' : 'Sync Research Data'}
+                {syncing ? 'Fetching from ORCID...' : 'Sync ORCID Publications'}
               </button>
             </div>
           </div>
@@ -545,16 +517,10 @@ export default function FacultyResearchSyncModal({
 
                           <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', alignItems: 'center' }}>
                             {c.sources?.map((s, si) => (
-                              <span key={si} style={{ fontSize: '0.65rem', fontWeight: 800, padding: '0.1rem 0.4rem', borderRadius: '4px', background: s === 'ORCID' ? '#A6CE39' : (s === 'SCOPUS' ? '#FF6C00' : '#2563EB'), color: '#FFFFFF' }}>
+                              <span key={si} style={{ fontSize: '0.65rem', fontWeight: 800, padding: '0.1rem 0.4rem', borderRadius: '4px', background: s === 'ORCID' ? '#A6CE39' : '#2563EB', color: '#FFFFFF' }}>
                                 {s}
                               </span>
                             ))}
-
-                            {c.scopusCitations && (
-                              <span style={{ fontSize: '0.68rem', color: '#64748B', fontWeight: 700 }}>
-                                Citations: {c.scopusCitations}
-                              </span>
-                            )}
 
                             <button
                               type="button"

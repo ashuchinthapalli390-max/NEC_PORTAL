@@ -251,7 +251,7 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
               cursor: 'pointer'
             }}
           >
-            <RefreshCw size={14} /> Auto-Sync (ORCID / Scopus)
+            <RefreshCw size={14} /> Auto-Sync (ORCID)
           </button>
         ) : null}
         primaryAction={canCreate ? {
