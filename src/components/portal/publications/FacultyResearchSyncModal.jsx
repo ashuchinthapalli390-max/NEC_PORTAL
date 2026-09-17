@@ -27,7 +27,7 @@ import {
 } from 'lucide-react';
 import { FACULTY_DATA } from '../../../data/masterData.js';
 import { runResearchSyncJob } from '../../../lib/research/researchSyncEngine.js';
-import { isValidOrcid } from '../../../lib/research/orcidService.js';
+import { isValidOrcid, ORCID_CONFIG, isOrcidConfigured, getOrcidOAuthUrl } from '../../../lib/research/orcidService.js';
 import { isValidScopusAuthorId } from '../../../lib/research/scopusService.js';
 import { isValidWosResearcherId } from '../../../lib/research/wosService.js';
 import { 
@@ -301,9 +301,25 @@ export default function FacultyResearchSyncModal({
               </div>
 
               <div>
-                <label style={{ fontSize: '0.75rem', fontWeight: 800, color: '#0F172A', display: 'block', marginBottom: '0.35rem' }}>
-                  ORCID iD (16-Digit with Checksum)
-                </label>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                  <label style={{ fontSize: '0.75rem', fontWeight: 800, color: '#0F172A', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    ORCID iD (16-Digit)
+                    {isOrcidConfigured() && (
+                      <span style={{ fontSize: '0.66rem', color: '#059669', background: '#ECFDF5', padding: '0.1rem 0.4rem', borderRadius: '4px', border: '1px solid #A7F3D0', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+                        <CheckCircle2 size={10} /> Connected (APP-8JDS...)
+                      </span>
+                    )}
+                  </label>
+                  <a
+                    href={getOrcidOAuthUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Connect or Authorize using your official ORCID account"
+                    style={{ fontSize: '0.7rem', color: '#2563EB', textDecoration: 'none', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}
+                  >
+                    <ExternalLink size={11} /> Connect ORCID
+                  </a>
+                </div>
                 <input
                   type="text"
                   placeholder="e.g. 0000-0002-5550-9651"

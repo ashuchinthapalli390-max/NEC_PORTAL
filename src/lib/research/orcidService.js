@@ -36,6 +36,52 @@ export function normalizeOrcid(rawOrcid) {
   return rawOrcid.trim().replace(/^https?:\/\/orcid\.org\//i, '');
 }
 
+// Official ORCID Public API v3.0 Configuration
+export const ORCID_CONFIG = {
+  clientId: (typeof import.meta !== 'undefined' && import.meta.env?.VITE_ORCID_CLIENT_ID) || 'APP-8JDSVGUFZ9RYM805',
+  accessToken: (typeof import.meta !== 'undefined' && import.meta.env?.VITE_ORCID_ACCESS_TOKEN) || '9bac1574-f57c-453f-a6b6-890df78ec3b6',
+  baseUrl: 'https://pub.orcid.org/v3.0',
+  authorizeUrl: 'https://orcid.org/oauth/authorize'
+};
+
+/**
+ * Returns whether official ORCID API integration is configured
+ * @returns {boolean}
+ */
+export function isOrcidConfigured() {
+  return Boolean(ORCID_CONFIG.clientId);
+}
+
+/**
+ * Constructs the official ORCID OAuth 2.0 Authorization URL for faculty identity linking
+ * @param {string} [redirectUri]
+ * @returns {string}
+ */
+export function getOrcidOAuthUrl(redirectUri) {
+  const targetRedirect = redirectUri || (typeof window !== 'undefined' ? window.location.origin : 'https://www.nrtec.in');
+  const params = new URLSearchParams({
+    client_id: ORCID_CONFIG.clientId,
+    response_type: 'code',
+    scope: '/authenticate',
+    redirect_uri: targetRedirect
+  });
+  return `${ORCID_CONFIG.authorizeUrl}?${params.toString()}`;
+}
+
+/**
+ * Builds HTTP headers with official ORCID Bearer authorization for higher rate limits
+ * @returns {Record<string, string>}
+ */
+export function getOrcidHeaders() {
+  const headers = {
+    'Accept': 'application/json'
+  };
+  if (ORCID_CONFIG.accessToken) {
+    headers['Authorization'] = `Bearer ${ORCID_CONFIG.accessToken}`;
+  }
+  return headers;
+}
+
 /**
  * Fetches researcher profile and works from official ORCID Public API v3.0
  * @param {string} rawOrcid 
@@ -47,15 +93,15 @@ export async function fetchOrcidData(rawOrcid) {
     return { success: false, error: 'Invalid ORCID iD format or checksum. Format must be 0000-000X-XXXX-XXXX.' };
   }
 
-  const BASE_URL = 'https://pub.orcid.org/v3.0';
+  const BASE_URL = ORCID_CONFIG.baseUrl;
 
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 12000);
 
-    // 1. Fetch Person Profile
+    // 1. Fetch Person Profile with official authenticated headers
     const personResp = await fetch(`${BASE_URL}/${orcid}/person`, {
-      headers: { 'Accept': 'application/json' },
+      headers: getOrcidHeaders(),
       signal: controller.signal
     });
 
@@ -84,9 +130,9 @@ export async function fetchOrcidData(rawOrcid) {
       verifiedAt: new Date().toISOString()
     };
 
-    // 2. Fetch Works List
+    // 2. Fetch Works List with official authenticated headers
     const worksResp = await fetch(`${BASE_URL}/${orcid}/works`, {
-      headers: { 'Accept': 'application/json' },
+      headers: getOrcidHeaders(),
       signal: controller.signal
     });
 
