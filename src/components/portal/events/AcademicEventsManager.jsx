@@ -32,6 +32,7 @@ import {
   UploadCloud
 } from 'lucide-react';
 import { ET_DEPARTMENTS, normalizeDepartment } from '../../../data/masterData.js';
+import { formatDateDDMMYYYY, isDateInRange } from '../../../lib/ui/dateUtils.js';
 import { 
   getAcademicEvents, 
   reviewAcademicEvent, 
@@ -198,6 +199,8 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
   const [selectedWorkflowStatus, setSelectedWorkflowStatus] = useState('ALL');
   const [selectedMode, setSelectedMode] = useState('ALL');
   const [selectedLevel, setSelectedLevel] = useState('ALL');
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
 
   useEffect(() => {
     setSelectedTypeTab(initialTypeFilter);
@@ -283,10 +286,11 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
       const matchWorkflow = selectedWorkflowStatus === 'ALL' || item.workflowStatus === selectedWorkflowStatus;
       const matchMode = selectedMode === 'ALL' || item.mode === selectedMode;
       const matchLevel = selectedLevel === 'ALL' || item.level === selectedLevel;
+      const matchDate = isDateInRange(item.startDate || item.eventDate || item.date, fromDate, toDate);
 
-      return matchSearch && matchDept && matchSection && matchAy && matchType && matchStatus && matchWorkflow && matchMode && matchLevel;
+      return matchSearch && matchDept && matchSection && matchAy && matchType && matchStatus && matchWorkflow && matchMode && matchLevel && matchDate;
     });
-  }, [expandedOfferings, searchQuery, selectedDept, selectedSection, selectedAy, selectedTypeTab, selectedEventStatus, selectedWorkflowStatus, selectedMode, selectedLevel]);
+  }, [expandedOfferings, searchQuery, selectedDept, selectedSection, selectedAy, selectedTypeTab, selectedEventStatus, selectedWorkflowStatus, selectedMode, selectedLevel, fromDate, toDate]);
 
   // Permissions
   const canCreate = currentUser?.role === 'SUPER_ADMIN' || currentUser?.role === 'ADMIN' || currentUser?.role === 'HOD' || currentUser?.role === 'FACULTY';
@@ -361,8 +365,8 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
       'Department Code': item.department,
       'Section': item.section,
       'Academic Year': item.academicYear || '—',
-      'Start Date': item.startDate || item.date || '—',
-      'End Date': item.endDate || '—',
+      'Start Date': formatDateDDMMYYYY(item.startDate || item.date),
+      'End Date': formatDateDDMMYYYY(item.endDate),
       'Mode': item.mode || 'Offline',
       'Venue': item.venue || '—',
       'Coordinator': item.coordinators?.[0]?.name || item.coordinator || '—',
@@ -384,8 +388,8 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
       'Department Code': item.department,
       'Section': item.section,
       'Academic Year': item.academicYear || '—',
-      'Start Date': item.startDate || item.date || '—',
-      'End Date': item.endDate || '—',
+      'Start Date': formatDateDDMMYYYY(item.startDate || item.date),
+      'End Date': formatDateDDMMYYYY(item.endDate),
       'Mode': item.mode || 'Offline',
       'Venue': item.venue || '—',
       'Coordinator': item.coordinators?.[0]?.name || item.coordinator || '—',
@@ -405,7 +409,7 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
       item.eventType || 'Workshop',
       item.departmentName,
       `Sec ${item.section}`,
-      item.startDate || '—',
+      formatDateDDMMYYYY(item.startDate),
       item.eventStatus || 'COMPLETED'
     ]);
     exportToPDF('ET Academic Events & Workshops Report', ['Event No.', 'Title', 'Type', 'Department', 'Section', 'Date', 'Status'], rows, `ET_Events_${selectedDept}_${selectedSection}`);
@@ -611,7 +615,29 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
               <option value="DRAFT">Draft</option>
             </select>
 
-            {(searchQuery || selectedTypeTab !== 'ALL' || selectedDept !== 'ALL' || selectedSection !== 'ALL' || selectedAy !== 'ALL' || selectedEventStatus !== 'ALL' || selectedWorkflowStatus !== 'ALL') && (
+            {/* From Date */}
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: '#475569', fontWeight: 600 }}>
+              From:
+              <input
+                type="date"
+                value={fromDate}
+                onChange={(e) => setFromDate(e.target.value)}
+                style={{ padding: '0.45rem 0.65rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', outline: 'none' }}
+              />
+            </label>
+
+            {/* To Date */}
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: '#475569', fontWeight: 600 }}>
+              To:
+              <input
+                type="date"
+                value={toDate}
+                onChange={(e) => setToDate(e.target.value)}
+                style={{ padding: '0.45rem 0.65rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', outline: 'none' }}
+              />
+            </label>
+
+            {(searchQuery || selectedTypeTab !== 'ALL' || selectedDept !== 'ALL' || selectedSection !== 'ALL' || selectedAy !== 'ALL' || selectedEventStatus !== 'ALL' || selectedWorkflowStatus !== 'ALL' || fromDate || toDate) && (
               <button
                 type="button"
                 onClick={() => {
@@ -622,6 +648,8 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
                   setSelectedAy('ALL');
                   setSelectedEventStatus('ALL');
                   setSelectedWorkflowStatus('ALL');
+                  setFromDate('');
+                  setToDate('');
                 }}
                 style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', background: '#F8FAFC', color: '#64748B', fontSize: '0.76rem', fontWeight: 700, cursor: 'pointer' }}
               >
@@ -745,7 +773,7 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
 
                       <td style={{ padding: '0.85rem 1rem' }}>
                         <div style={{ fontSize: '0.76rem', color: '#0F172A', fontWeight: 700 }}>
-                          {item.startDate}
+                          {formatDateDDMMYYYY(item.startDate)}
                         </div>
                         <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
                           {item.mode} • {item.venue || 'Online'}
@@ -946,7 +974,7 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
                     </div>
                     <div>
                       <div style={{ fontSize: '0.72rem', color: '#64748B' }}>Date & Mode</div>
-                      <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#0F172A' }}>{dossierModalItem.startDate} to {dossierModalItem.endDate} ({dossierModalItem.mode})</div>
+                      <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#0F172A' }}>{formatDateDDMMYYYY(dossierModalItem.startDate)} to {formatDateDDMMYYYY(dossierModalItem.endDate)} ({dossierModalItem.mode})</div>
                       <div style={{ fontSize: '0.74rem', color: '#64748B' }}>{dossierModalItem.venue || dossierModalItem.platformName}</div>
                     </div>
                     <div>

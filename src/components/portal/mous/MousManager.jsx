@@ -47,6 +47,7 @@ import {
 } from '../../../lib/ui/statusBadges.jsx';
 import MouWizardModal from './MouWizardModal.jsx';
 import ConfirmDeleteDialog from '../common/ConfirmDeleteDialog.jsx';
+import { formatDateDDMMYYYY, isDateInRange } from '../../../lib/ui/dateUtils.js';
 
 import { 
   MotionPage, 
@@ -78,6 +79,8 @@ export default function MousManager({ currentUser, onDataChange }) {
   const [selectedPartnerType, setSelectedPartnerType] = useState('ALL');
   const [selectedStatus, setSelectedStatus] = useState('ALL');
   const [selectedWorkflowStatus, setSelectedWorkflowStatus] = useState('ALL');
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
 
   const showToast = (msg) => {
     setToastMessage(msg);
@@ -143,9 +146,11 @@ export default function MousManager({ currentUser, onDataChange }) {
       const wfVal = item.workflowStatus || 'APPROVED';
       const matchWorkflow = selectedWorkflowStatus === 'ALL' || wfVal === selectedWorkflowStatus;
 
-      return matchSearch && matchDept && matchPartner && matchStatus && matchWorkflow;
+      const matchDate = isDateInRange(item.signedDate || item.effectiveDate || item.date || item.createdAt, fromDate, toDate);
+
+      return matchSearch && matchDept && matchPartner && matchStatus && matchWorkflow && matchDate;
     });
-  }, [mous, searchQuery, selectedDept, selectedPartnerType, selectedStatus, selectedWorkflowStatus]);
+  }, [mous, searchQuery, selectedDept, selectedPartnerType, selectedStatus, selectedWorkflowStatus, fromDate, toDate]);
 
   // Aggregate Stats
   const stats = useMemo(() => {
@@ -200,8 +205,8 @@ export default function MousManager({ currentUser, onDataChange }) {
       'Department': m.department || 'All Departments',
       'Partner Type': m.collaboratorType || m.partnerType || 'Industry',
       'Coordinator': m.primaryCoordinator || '—',
-      'Signed Date': m.signedDate || '—',
-      'Expiry Date': m.expiryDate || 'Ongoing',
+      'Signed Date': formatDateDDMMYYYY(m.signedDate || m.effectiveDate),
+      'Expiry Date': formatDateDDMMYYYY(m.expiryDate) || 'Ongoing',
       'Status': m.mouStatus || m.status || 'ACTIVE',
       'Workflow Status': m.workflowStatus || 'APPROVED'
     }));
@@ -216,8 +221,8 @@ export default function MousManager({ currentUser, onDataChange }) {
       'Department': m.department || 'All Departments',
       'Partner Type': m.collaboratorType || m.partnerType || 'Industry',
       'Coordinator': m.primaryCoordinator || '—',
-      'Signed Date': m.signedDate || '—',
-      'Expiry Date': m.expiryDate || 'Ongoing',
+      'Signed Date': formatDateDDMMYYYY(m.signedDate || m.effectiveDate),
+      'Expiry Date': formatDateDDMMYYYY(m.expiryDate) || 'Ongoing',
       'Status': m.mouStatus || m.status || 'ACTIVE',
       'Workflow Status': m.workflowStatus || 'APPROVED'
     }));
@@ -231,7 +236,7 @@ export default function MousManager({ currentUser, onDataChange }) {
       'Partner': m.organization || m.partnerOrganization || m.collaboratingAgency || m.industryName,
       'Dept': m.department || 'All',
       'Type': m.collaboratorType || m.partnerType || 'Industry',
-      'Expiry': m.expiryDate || 'Ongoing',
+      'Expiry': formatDateDDMMYYYY(m.expiryDate) || 'Ongoing',
       'Status': m.mouStatus || m.status || 'ACTIVE'
     }));
     exportToPDF('ET_MoUs_Report', ['MoU Code', 'Partner', 'Dept', 'Type', 'Expiry', 'Status'], rows, 'Industry MoUs & Collaborations');
@@ -368,7 +373,26 @@ export default function MousManager({ currentUser, onDataChange }) {
               <option value="DRAFT">Draft</option>
             </select>
 
-            {(searchQuery || selectedDept !== 'ALL' || selectedPartnerType !== 'ALL' || selectedStatus !== 'ALL' || selectedWorkflowStatus !== 'ALL') && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <span style={{ fontSize: '0.72rem', color: '#64748B', fontWeight: 600 }}>From:</span>
+              <input
+                type="date"
+                value={fromDate}
+                onChange={(e) => setFromDate(e.target.value)}
+                style={{ padding: '0.45rem 0.6rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.76rem', background: '#FFFFFF', color: '#0F172A' }}
+              />
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <span style={{ fontSize: '0.72rem', color: '#64748B', fontWeight: 600 }}>To:</span>
+              <input
+                type="date"
+                value={toDate}
+                onChange={(e) => setToDate(e.target.value)}
+                style={{ padding: '0.45rem 0.6rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.76rem', background: '#FFFFFF', color: '#0F172A' }}
+              />
+            </div>
+
+            {(searchQuery || selectedDept !== 'ALL' || selectedPartnerType !== 'ALL' || selectedStatus !== 'ALL' || selectedWorkflowStatus !== 'ALL' || fromDate || toDate) && (
               <button
                 type="button"
                 onClick={() => {
@@ -377,6 +401,8 @@ export default function MousManager({ currentUser, onDataChange }) {
                   setSelectedPartnerType('ALL');
                   setSelectedStatus('ALL');
                   setSelectedWorkflowStatus('ALL');
+                  setFromDate('');
+                  setToDate('');
                 }}
                 style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', background: '#F8FAFC', color: '#64748B', fontSize: '0.76rem', fontWeight: 700, cursor: 'pointer' }}
               >
@@ -466,10 +492,10 @@ export default function MousManager({ currentUser, onDataChange }) {
 
                       <td style={{ padding: '0.85rem 1rem' }}>
                         <div style={{ fontSize: '0.78rem', color: '#0F172A', fontWeight: 700 }}>
-                          Until: {item.expiryDate || 'Ongoing'}
+                          Until: {formatDateDDMMYYYY(item.expiryDate) || 'Ongoing'}
                         </div>
                         <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
-                          Signed: {item.signedDate || 'N/A'} ({item.validityType || '3 Years'})
+                          Signed: {formatDateDDMMYYYY(item.signedDate || item.effectiveDate) || 'N/A'} ({item.validityType || '3 Years'})
                         </div>
                       </td>
 
@@ -679,7 +705,7 @@ export default function MousManager({ currentUser, onDataChange }) {
                     </div>
                     <div>
                       <div style={{ fontSize: '0.72rem', color: '#64748B' }}>Validity & Expiry</div>
-                      <div style={{ fontSize: '0.84rem', fontWeight: 700, color: '#0F172A' }}>{dossierModalItem.validityType || '3 Years'} (Expires: {dossierModalItem.expiryDate || 'Ongoing'})</div>
+                      <div style={{ fontSize: '0.84rem', fontWeight: 700, color: '#0F172A' }}>{dossierModalItem.validityType || '3 Years'} (Expires: {formatDateDDMMYYYY(dossierModalItem.expiryDate) || 'Ongoing'})</div>
                     </div>
                   </div>
 

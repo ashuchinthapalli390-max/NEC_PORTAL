@@ -15,6 +15,7 @@ import {
   FileCheck
 } from 'lucide-react';
 import { getCirculars, saveCircular } from '../../../data/portalStore.js';
+import { formatDateDDMMYYYY, isDateInRange } from '../../../lib/ui/dateUtils.js';
 import { 
   AnimatedActionButton, 
   AnimatedIconButton, 
@@ -27,6 +28,8 @@ export default function CircularsManager({ currentUser }) {
   const [circulars, setCirculars] = useState([]);
   const [search, setSearch] = useState('');
   const [filterType, setFilterType] = useState('ALL');
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
@@ -84,7 +87,8 @@ export default function CircularsManager({ currentUser }) {
     const q = search.toLowerCase();
     const matchQ = !q || (c.title && c.title.toLowerCase().includes(q)) || (c.id && c.id.toLowerCase().includes(q)) || (c.referenceNumber && c.referenceNumber.toLowerCase().includes(q));
     const matchType = filterType === 'ALL' || c.category === filterType;
-    return matchQ && matchType;
+    const matchDate = isDateInRange(c.date, fromDate, toDate);
+    return matchQ && matchType && matchDate;
   });
 
   return (
@@ -141,6 +145,38 @@ export default function CircularsManager({ currentUser }) {
           <option value="Academic Circular">Academic Circulars</option>
           <option value="Administrative Order">Administrative Orders</option>
         </select>
+
+        {/* From Date */}
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: '#475569', fontWeight: 600 }}>
+          From:
+          <input
+            type="date"
+            value={fromDate}
+            onChange={(e) => setFromDate(e.target.value)}
+            style={{ padding: '0.45rem 0.65rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', outline: 'none' }}
+          />
+        </label>
+
+        {/* To Date */}
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: '#475569', fontWeight: 600 }}>
+          To:
+          <input
+            type="date"
+            value={toDate}
+            onChange={(e) => setToDate(e.target.value)}
+            style={{ padding: '0.45rem 0.65rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', outline: 'none' }}
+          />
+        </label>
+
+        {(search || filterType !== 'ALL' || fromDate || toDate) && (
+          <button
+            type="button"
+            onClick={() => { setSearch(''); setFilterType('ALL'); setFromDate(''); setToDate(''); }}
+            style={{ padding: '0.45rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', background: '#F8FAFC', color: '#64748B', fontSize: '0.76rem', fontWeight: 700, cursor: 'pointer' }}
+          >
+            Reset
+          </button>
+        )}
       </div>
 
       {/* Circulars Table or Clean Empty State */}
@@ -204,7 +240,7 @@ export default function CircularsManager({ currentUser }) {
                 <tr key={c.id} style={{ borderBottom: '1px solid #F1F5F9' }}>
                   <td style={{ padding: '0.85rem 1rem' }}>
                     <div style={{ fontWeight: 800, color: '#0F172A' }}>{c.referenceNumber || c.id}</div>
-                    <div style={{ fontSize: '0.7rem', color: '#64748B' }}>{c.date}</div>
+                    <div style={{ fontSize: '0.7rem', color: '#64748B' }}>{formatDateDDMMYYYY(c.date)}</div>
                   </td>
                   <td style={{ padding: '0.85rem 1rem', maxWidth: '380px' }}>
                     <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.84rem' }}>{c.title}</div>

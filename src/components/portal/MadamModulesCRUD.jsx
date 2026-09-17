@@ -38,6 +38,14 @@ import { DEPARTMENTS, FACULTY_DATA } from '../../data/masterData.js';
 import ConfirmDeleteDialog from './common/ConfirmDeleteDialog.jsx';
 
 export default function MadamModulesCRUD({ activeModule, currentUser, onDataChange }) {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedDeptFilter, setSelectedDeptFilter] = useState('All');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [editingItem, setEditingItem] = useState(null);
+  const [formData, setFormData] = useState({});
+  const [toastMessage, setToastMessage] = useState(null);
+  const [deleteConfirmItem, setDeleteConfirmItem] = useState(null);
+
   // Safety guard: Dedicated workflows must never render in generic CRUD
   if ([
     'bos', 
@@ -72,15 +80,6 @@ export default function MadamModulesCRUD({ activeModule, currentUser, onDataChan
   ].includes(activeModule)) {
     return null;
   }
-
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedDeptFilter, setSelectedDeptFilter] = useState('All');
-  const [modalOpen, setModalOpen] = useState(false);
-  const [editingItem, setEditingItem] = useState(null);
-
-  // Form State
-  const [formData, setFormData] = useState({});
-  const [toastMessage, setToastMessage] = useState(null);
 
   // Fetch current module records
   let items = [];
@@ -210,8 +209,6 @@ export default function MadamModulesCRUD({ activeModule, currentUser, onDataChan
     setFormData({ ...item });
     setModalOpen(true);
   };
-
-  const [deleteConfirmItem, setDeleteConfirmItem] = useState(null);
 
   const handleDelete = (id) => {
     setDeleteConfirmItem(id);

@@ -2,7 +2,6 @@ import {
   TrendingUp, 
   BarChart3, 
   Bell, 
-  Activity, 
   Users, 
   UserCheck, 
   FileText, 
@@ -16,7 +15,6 @@ import {
   Handshake, 
   Mail, 
   Megaphone, 
-  Image as ImageIcon, 
   Download, 
   FileSpreadsheet, 
   Sliders, 
@@ -54,8 +52,7 @@ export const NAVIGATION_CATEGORIES = [
     items: [
       { id: 'overview', label: 'Executive Dashboard', icon: TrendingUp },
       { id: 'analytics', label: 'Quick Analytics', icon: BarChart3 },
-      { id: 'alerts', label: 'Alerts & Notices', icon: Bell, dynamicBadgeKey: 'alerts' },
-      { id: 'activity', label: 'Recent Activity', icon: Activity }
+      { id: 'alerts', label: 'Alerts & Notices', icon: Bell, dynamicBadgeKey: 'alerts' }
     ]
   },
   {
@@ -94,7 +91,7 @@ export const NAVIGATION_CATEGORIES = [
     items: [
       { id: 'bos-meetings', label: 'Board of Studies (BoS)', icon: BookOpen },
       { id: 'academic-council', label: 'Academic Council', icon: Award },
-      { id: 'regulations-hub', label: 'Curriculum & Regulations', icon: FileText }
+      { id: 'regulations-hub', label: 'Governance Body', icon: FileText, badge: 'Pending' }
     ]
   },
   {
@@ -104,7 +101,6 @@ export const NAVIGATION_CATEGORIES = [
     items: [
       { id: 'events', label: 'Workshops & Events', icon: Megaphone },
       { id: 'mous-collaborations', label: 'Industry MoUs & Tie-Ups', icon: Handshake },
-      { id: 'gallery-media', label: 'Media & Campus Gallery', icon: ImageIcon },
       { id: 'circulars-notices', label: 'Official Circulars', icon: Mail }
     ]
   },

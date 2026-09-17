@@ -1,254 +1,235 @@
-import React, { useState } from 'react';
-import { 
-  BookOpen, 
-  FileText, 
-  Download, 
-  ChevronRight, 
-  Layers, 
-  CheckCircle2,
-  Plus,
-  X,
-  Eye
-} from 'lucide-react';
-import NECDocumentViewer from '../shared/NECDocumentViewer.jsx';
+import React from 'react';
+import { ShieldCheck, Clock, BookOpen, CheckCircle2 } from 'lucide-react';
+import { MotionPage } from '../../motion/index.js';
+
+/**
+ * Governance Body Manager
+ *
+ * Module is currently under institutional preparation.
+ * The original Curriculum & Regulations data is preserved internally
+ * and will be surfaced once the Governance Body workflow is ready.
+ */
+
+// Internal data preserved for when module is fully activated
+const _PRESERVED_REGULATIONS_DATA = [
+  { code: 'R24', title: 'Autonomous Academic Regulations R24 (CBCS & NEP-2020 Aligned)', effectiveBatch: '2024-2028 Onwards', programs: 'B.Tech (Emerging Technologies: CYS, DS, AI, AIML)', credits: 160, status: 'Active (Current)', pdf: 'NEC_R24_Academic_Regulations.pdf' },
+  { code: 'R20', title: 'Autonomous Academic Regulations R20 (Outcome Based Education)', effectiveBatch: '2020-2024 Batches', programs: 'B.Tech (Emerging Technologies: CYS, DS, AI, AIML)', credits: 160, status: 'Active (Graduating)', pdf: 'NEC_R20_Academic_Regulations.pdf' },
+  { code: 'R19', title: 'Autonomous Academic Regulations R19', effectiveBatch: '2019-2023 Batches', programs: 'B.Tech (Emerging Technologies)', credits: 160, status: 'Archived', pdf: 'NEC_R19_Academic_Regulations.pdf' }
+];
+
+const ROADMAP_ITEMS = [
+  { label: 'Academic Governance Policies', desc: 'Upload and version-control Autonomous Regulations (R19, R20, R24)' },
+  { label: 'BoS Curriculum Workflows', desc: 'Integrated Board of Studies approval and minutes tracking' },
+  { label: 'Governing Body Meeting Records', desc: 'Official minutes, resolutions and attendance sheets' },
+  { label: 'Academic Calendar Management', desc: 'Term-wise academic event planning and holiday schedules' },
+  { label: 'Statutory Committee Register', desc: 'Faculty Induction Program, IQAC, Anti-Ragging Committee records' }
+];
 
 export default function RegulationsHubManager({ currentUser }) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [activePreviewDoc, setActivePreviewDoc] = useState(null);
-  const [toastMessage, setToastMessage] = useState(null);
-
-  const [regulations, setRegulations] = useState([
-    { code: 'R24', title: 'Autonomous Academic Regulations R24 (CBCS & NEP-2020 Aligned)', effectiveBatch: '2024-2028 Onwards', programs: 'B.Tech (Emerging Technologies: CYS, DS, AI, AIML)', credits: 160, status: 'Active (Current)', pdf: 'NEC_R24_Academic_Regulations.pdf' },
-    { code: 'R20', title: 'Autonomous Academic Regulations R20 (Outcome Based Education)', effectiveBatch: '2020-2024 Batches', programs: 'B.Tech (Emerging Technologies: CYS, DS, AI, AIML)', credits: 160, status: 'Active (Graduating)', pdf: 'NEC_R20_Academic_Regulations.pdf' },
-    { code: 'R19', title: 'Autonomous Academic Regulations R19', effectiveBatch: '2019-2023 Batches', programs: 'B.Tech (Emerging Technologies)', credits: 160, status: 'Archived', pdf: 'NEC_R19_Academic_Regulations.pdf' }
-  ]);
-
-  const [newReg, setNewReg] = useState({
-    code: '',
-    title: '',
-    effectiveBatch: '',
-    programs: 'B.Tech (Emerging Technologies: CYS, DS, AI, AIML)',
-    credits: 160,
-    status: 'Active (Current)'
-  });
-
-  const showToast = (msg) => {
-    setToastMessage(msg);
-    setTimeout(() => setToastMessage(null), 3000);
-  };
-
-  const handleDownloadRegulation = (r) => {
-    const textBlob = new Blob([
-      `NARASARAOPETA ENGINEERING COLLEGE (AUTONOMOUS)\n` +
-      `DEPARTMENT OF EMERGING TECHNOLOGIES\n\n` +
-      `ACADEMIC REGULATIONS & COURSE SCHEME - ${r.code}\n` +
-      `============================================================\n` +
-      `Title: ${r.title}\n` +
-      `Applicability: ${r.effectiveBatch}\n` +
-      `Programs: ${r.programs}\n` +
-      `Total Graduation Credits: ${r.credits} Credits\n` +
-      `Status: ${r.status}\n\n` +
-      `Document Reference: ${r.pdf}\n` +
-      `Certified Official Copy • Autonomous Academic Council Approved\n`
-    ], { type: 'text/plain;charset=utf-8' });
-
-    const url = URL.createObjectURL(textBlob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = r.pdf.replace(/\.pdf$/, '.txt') || `NEC_${r.code}_Regulations.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    showToast(`Downloaded official regulations documentation for ${r.code}.`);
-  };
-
-  const handleUpload = (e) => {
-    e.preventDefault();
-    if (!newReg.code || !newReg.title) return;
-
-    setRegulations([{
-      ...newReg,
-      pdf: `NEC_${newReg.code}_Regulations.pdf`
-    }, ...regulations]);
-    setModalOpen(false);
-    showToast(`Regulations document ${newReg.code} uploaded successfully!`);
-    setNewReg({
-      code: '',
-      title: '',
-      effectiveBatch: '',
-      programs: 'B.Tech (Emerging Technologies: CYS, DS, AI, AIML)',
-      credits: 160,
-      status: 'Active (Current)'
-    });
-  };
-
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.35rem', width: '100%' }}>
-      {/* Toast Notification */}
-      {toastMessage && (
-        <div style={{
-          position: 'fixed',
-          top: '24px',
-          right: '24px',
-          background: '#0B192C',
-          color: '#FFFFFF',
-          padding: '0.75rem 1.4rem',
-          borderRadius: '10px',
-          border: '1px solid #D4AF37',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-          zIndex: 7000,
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.6rem',
-          fontSize: '0.86rem',
-          fontWeight: 600
+    <MotionPage style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%' }}>
+      {/* Breadcrumb */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.74rem', color: '#64748B' }}>
+        <span>Dashboard</span>
+        <span style={{ color: '#CBD5E1' }}>›</span>
+        <span>Academic Governance</span>
+        <span style={{ color: '#CBD5E1' }}>›</span>
+        <span style={{ color: '#0F172A', fontWeight: 700 }}>Governance Body</span>
+        <span style={{
+          marginLeft: '0.5rem',
+          padding: '0.1rem 0.5rem',
+          borderRadius: '9999px',
+          background: 'rgba(212, 175, 55, 0.15)',
+          color: '#D4AF37',
+          border: '1px solid rgba(212, 175, 55, 0.4)',
+          fontSize: '0.62rem',
+          fontWeight: 800,
+          textTransform: 'uppercase',
+          letterSpacing: '0.04em'
         }}>
-          <CheckCircle2 size={18} style={{ color: '#10B981' }} />
-          <span>{toastMessage}</span>
-        </div>
-      )}
-
-      {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.74rem', color: '#64748B', marginBottom: '0.25rem' }}>
-            <span>Dashboard</span>
-            <ChevronRight size={12} />
-            <span>Academic Governance</span>
-            <ChevronRight size={12} />
-            <span style={{ color: '#0F172A', fontWeight: 700 }}>Curriculum & Regulations</span>
-          </div>
-
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#0F172A', margin: '0 0 0.25rem 0', fontFamily: 'Cinzel, Georgia, serif' }}>
-            Autonomous Academic Regulations & Course Schemes
-          </h1>
-          <p style={{ fontSize: '0.82rem', color: '#64748B', margin: 0 }}>
-            Institutional credit framework, evaluation guidelines, minor/honors degrees, and curriculum structures.
-          </p>
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setModalOpen(true)}
-          style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', background: 'linear-gradient(135deg, #F1C40F 0%, #D4AF37 100%)', color: '#070F1E', padding: '0.55rem 1.05rem', borderRadius: '8px', fontWeight: 800, fontSize: '0.8rem', border: 'none', cursor: 'pointer' }}
-        >
-          <Plus size={15} /> Upload Regulation Document
-        </button>
+          Pending
+        </span>
       </div>
 
-      {/* Regulations List */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        {regulations.map(r => (
-          <div key={r.code} style={{ background: '#FFFFFF', borderRadius: '14px', border: '1px solid #E2E8F0', padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-            <div style={{ maxWidth: '650px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.35rem' }}>
-                <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0F172A', fontFamily: 'Cinzel, serif' }}>{r.title}</span>
-                <span style={{ background: r.status.includes('Active') ? '#ECFDF5' : '#F1F5F9', color: r.status.includes('Active') ? '#047857' : '#64748B', border: `1px solid ${r.status.includes('Active') ? '#A7F3D0' : '#CBD5E1'}`, padding: '0.15rem 0.55rem', borderRadius: '9999px', fontSize: '0.68rem', fontWeight: 800 }}>
-                  {r.status}
-                </span>
-              </div>
-              <div style={{ fontSize: '0.78rem', color: '#64748B', lineHeight: 1.4 }}>
-                Applicability: <strong>{r.effectiveBatch}</strong> • Applicable Programs: <strong>{r.programs}</strong> • Total Graduation Credits: <strong>{r.credits} Credits</strong>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <button
-                type="button"
-                onClick={() => handleDownloadRegulation(r)}
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.55rem 1rem', background: '#070F1E', color: '#F1C40F', border: 'none', borderRadius: '8px', fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer' }}
-              >
-                <Download size={14} /> Download {r.code} Document
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Upload Regulation Modal */}
-      {modalOpen && (
+      {/* Main Pending State Card */}
+      <div style={{
+        background: '#FFFFFF',
+        borderRadius: '18px',
+        border: '1px solid #E2E8F0',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+        overflow: 'hidden'
+      }}>
+        {/* Dark Header Banner */}
         <div style={{
-          position: 'fixed',
-          inset: 0,
-          background: 'rgba(7, 15, 30, 0.85)',
-          backdropFilter: 'blur(10px)',
+          background: 'linear-gradient(135deg, #070F1E 0%, #0B192C 70%, #122846 100%)',
+          padding: '2.5rem 2rem',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 6000,
-          padding: '1rem'
+          gap: '1.5rem',
+          flexWrap: 'wrap',
+          position: 'relative',
+          overflow: 'hidden'
         }}>
+          {/* Decorative glow */}
           <div style={{
-            background: '#FFFFFF',
-            borderRadius: '16px',
-            maxWidth: '560px',
-            width: '100%',
-            overflow: 'hidden',
-            boxShadow: '0 25px 60px rgba(0,0,0,0.4)',
-            border: '1px solid #E2E8F0'
+            position: 'absolute',
+            right: '-40px',
+            top: '-40px',
+            width: '220px',
+            height: '220px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%)',
+            pointerEvents: 'none'
+          }} />
+
+          <div style={{
+            width: '64px',
+            height: '64px',
+            borderRadius: '14px',
+            background: 'rgba(212, 175, 55, 0.15)',
+            border: '1px solid rgba(212, 175, 55, 0.3)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0
           }}>
-            <div style={{ padding: '1.2rem 1.5rem', background: '#0B192C', color: '#FFFFFF', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 800, margin: 0, color: '#FFFFFF' }}>Upload Academic Regulation Document</h3>
-              <button onClick={() => setModalOpen(false)} style={{ background: 'transparent', border: 'none', color: '#FFFFFF', cursor: 'pointer' }}><X size={18} /></button>
+            <BookOpen size={30} style={{ color: '#D4AF37' }} />
+          </div>
+
+          <div style={{ zIndex: 2 }}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              padding: '0.2rem 0.65rem',
+              background: 'rgba(212, 175, 55, 0.15)',
+              border: '1px solid rgba(212, 175, 55, 0.35)',
+              borderRadius: '9999px',
+              color: '#D4AF37',
+              fontSize: '0.7rem',
+              fontWeight: 800,
+              textTransform: 'uppercase',
+              letterSpacing: '0.04em',
+              marginBottom: '0.5rem'
+            }}>
+              <Clock size={11} /> Module Under Preparation
             </div>
 
-            <form onSubmit={handleUpload} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div>
-                <label style={{ fontSize: '0.75rem', fontWeight: 700, color: '#334155', display: 'block', marginBottom: '0.3rem' }}>Regulation Code *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. R25"
-                  value={newReg.code}
-                  onChange={(e) => setNewReg({ ...newReg, code: e.target.value })}
-                  style={{ width: '100%', padding: '0.55rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.84rem', boxSizing: 'border-box' }}
-                />
-              </div>
+            <h1 style={{
+              color: '#FFFFFF',
+              fontSize: 'clamp(1.3rem, 2.5vw, 1.75rem)',
+              fontWeight: 800,
+              margin: '0 0 0.35rem 0',
+              fontFamily: 'Cinzel, Georgia, serif',
+              letterSpacing: '0.02em'
+            }}>
+              Governance Body
+            </h1>
 
-              <div>
-                <label style={{ fontSize: '0.75rem', fontWeight: 700, color: '#334155', display: 'block', marginBottom: '0.3rem' }}>Regulation Title *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Autonomous Academic Regulations R25"
-                  value={newReg.title}
-                  onChange={(e) => setNewReg({ ...newReg, title: e.target.value })}
-                  style={{ width: '100%', padding: '0.55rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.84rem', boxSizing: 'border-box' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ fontSize: '0.75rem', fontWeight: 700, color: '#334155', display: 'block', marginBottom: '0.3rem' }}>Effective Batches *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. 2025-2029 Onwards"
-                  value={newReg.effectiveBatch}
-                  onChange={(e) => setNewReg({ ...newReg, effectiveBatch: e.target.value })}
-                  style={{ width: '100%', padding: '0.55rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.84rem', boxSizing: 'border-box' }}
-                />
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.6rem', marginTop: '0.5rem', borderTop: '1px solid #E2E8F0', paddingTop: '1rem' }}>
-                <button
-                  type="button"
-                  onClick={() => setModalOpen(false)}
-                  style={{ padding: '0.55rem 1.1rem', borderRadius: '8px', border: '1px solid #CBD5E1', background: '#FFFFFF', fontSize: '0.82rem', fontWeight: 600, cursor: 'pointer' }}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  style={{ padding: '0.55rem 1.3rem', borderRadius: '8px', border: 'none', background: 'linear-gradient(135deg, #F1C40F 0%, #D4AF37 100%)', color: '#070F1E', fontSize: '0.82rem', fontWeight: 800, cursor: 'pointer' }}
-                >
-                  Save Regulation
-                </button>
-              </div>
-            </form>
+            <p style={{
+              color: '#94A3B8',
+              fontSize: '0.85rem',
+              margin: 0,
+              maxWidth: '560px',
+              lineHeight: 1.55
+            }}>
+              The Governance Body module — covering academic regulations, curriculum governance, governing body records, and statutory committee management — is currently being structured for NEC's Autonomous academic framework.
+            </p>
           </div>
         </div>
-      )}
-    </div>
+
+        {/* Content Section */}
+        <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
+          {/* Info Banner */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '0.85rem',
+            padding: '1rem 1.25rem',
+            background: '#FEFCE8',
+            borderRadius: '10px',
+            border: '1px solid #FEF08A'
+          }}>
+            <ShieldCheck size={20} style={{ color: '#CA8A04', flexShrink: 0, marginTop: '1px' }} />
+            <div>
+              <div style={{ fontWeight: 700, color: '#713F12', fontSize: '0.85rem', marginBottom: '0.2rem' }}>
+                Institutional Configuration In Progress
+              </div>
+              <div style={{ fontSize: '0.78rem', color: '#92400E', lineHeight: 1.55 }}>
+                Academic regulation documents (R24, R20, R19), BoS meeting workflows, and governing body committee records are preserved internally and will be surfaced through this interface once the Governance Body module is formally activated by the Academic Council.
+              </div>
+            </div>
+          </div>
+
+          {/* Roadmap */}
+          <div>
+            <h3 style={{ fontSize: '0.92rem', fontWeight: 800, color: '#0F172A', margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <CheckCircle2 size={16} style={{ color: '#D4AF37' }} />
+              Planned Feature Areas
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+              {ROADMAP_ITEMS.map((item, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '0.75rem',
+                    padding: '0.85rem 1rem',
+                    background: '#F8FAFC',
+                    borderRadius: '10px',
+                    border: '1px solid #E2E8F0'
+                  }}
+                >
+                  <div style={{
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '6px',
+                    background: 'rgba(212, 175, 55, 0.12)',
+                    border: '1px solid rgba(212, 175, 55, 0.25)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    fontSize: '0.68rem',
+                    fontWeight: 800,
+                    color: '#D4AF37'
+                  }}>
+                    {idx + 1}
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem', marginBottom: '0.15rem' }}>
+                      {item.label}
+                    </div>
+                    <div style={{ fontSize: '0.74rem', color: '#64748B', lineHeight: 1.4 }}>
+                      {item.desc}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Access Note */}
+          <div style={{
+            padding: '0.75rem 1rem',
+            background: 'rgba(212, 175, 55, 0.06)',
+            borderRadius: '8px',
+            border: '1px dashed rgba(212, 175, 55, 0.35)',
+            fontSize: '0.74rem',
+            color: '#64748B',
+            lineHeight: 1.5,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem'
+          }}>
+            <BookOpen size={14} style={{ color: '#D4AF37', flexShrink: 0 }} />
+            <span>
+              For existing Academic Regulations and BoS documents, please refer to the <strong style={{ color: '#0F172A' }}>Board of Studies (BoS)</strong> module in the Academic Governance section.
+            </span>
+          </div>
+        </div>
+      </div>
+    </MotionPage>
   );
 }

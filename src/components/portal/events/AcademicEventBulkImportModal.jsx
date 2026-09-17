@@ -28,6 +28,7 @@ import {
   downloadIssuesReport 
 } from '../../../lib/events/bulkImportEngine.js';
 import { validateFileMetadata } from '../../../lib/security/fileValidator.js';
+import { formatDateDDMMYYYY } from '../../../lib/ui/dateUtils.js';
 
 export default function AcademicEventBulkImportModal({ isOpen, onClose, currentUser, onImportComplete }) {
   // Wizard Step: 1 = Upload, 2 = Parsing, 3 = Resolution/Preview, 4 = Success
@@ -644,7 +645,7 @@ export default function AcademicEventBulkImportModal({ isOpen, onClose, currentU
                 <div style={{ background: '#FFFBEB', border: '1px solid #FDE68A', color: '#92400E', padding: '0.85rem 1rem', borderRadius: '10px', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                   <AlertTriangle size={18} color="#D97706" />
                   <span>
-                    <strong>Identical File Hash Detected:</strong> An import with this exact file (SHA-256 match) was previously processed on {new Date(jobSummary.previousJobDate).toLocaleDateString()}. Proceed carefully to avoid duplicate events.
+                    <strong>Identical File Hash Detected:</strong> An import with this exact file (SHA-256 match) was previously processed on {formatDateDDMMYYYY(jobSummary.previousJobDate)}. Proceed carefully to avoid duplicate events.
                   </span>
                 </div>
               )}

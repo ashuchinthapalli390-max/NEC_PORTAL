@@ -34,14 +34,8 @@ import {
   MotionModal
 } from '../../motion/index.js';
 import { ET_DEPARTMENTS } from '../../../data/masterData.js';
-import { 
-  getCampusPlacements, 
-  saveCampusPlacement, 
-  deleteCampusPlacement,
-  getStudents,
-  exportToCSV,
-  exportToPDF
-} from '../../../data/portalStore.js';
+import { getCampusPlacements, saveCampusPlacement, deleteCampusPlacement, getStudents, exportToCSV, exportToPDF } from '../../../data/portalStore.js';
+import { formatDateDDMMYYYY, isDateInRange } from '../../../lib/ui/dateUtils.js';
 import ConfirmDeleteDialog from '../common/ConfirmDeleteDialog.jsx';
 
 export default function CampusPlacementsManager({ currentUser, onDataChange }) {
@@ -53,6 +47,8 @@ export default function CampusPlacementsManager({ currentUser, onDataChange }) {
   );
   const [selectedOfferType, setSelectedOfferType] = useState('ALL');
   const [selectedStatus, setSelectedStatus] = useState('ALL');
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
 
   // Modal states
   const [wizardOpen, setWizardOpen] = useState(false);
@@ -90,10 +86,11 @@ export default function CampusPlacementsManager({ currentUser, onDataChange }) {
       const matchesDept = selectedDept === 'ALL' || itemDept === selectedDept || itemDept.includes(selectedDept);
       const matchesOfferType = selectedOfferType === 'ALL' || p.offerType === selectedOfferType || p.campusType === selectedOfferType;
       const matchesStatus = selectedStatus === 'ALL' || p.status === selectedStatus;
+      const matchesDate = isDateInRange(p.placementDate || p.driveDate || p.offerDate, fromDate, toDate);
 
-      return matchesSearch && matchesAy && matchesDept && matchesOfferType && matchesStatus;
+      return matchesSearch && matchesAy && matchesDept && matchesOfferType && matchesStatus && matchesDate;
     });
-  }, [placementsList, searchQuery, selectedAy, selectedDept, selectedOfferType, selectedStatus]);
+  }, [placementsList, searchQuery, selectedAy, selectedDept, selectedOfferType, selectedStatus, fromDate, toDate]);
 
   // Real KPIs (strictly calculated from real canonical data)
   const stats = useMemo(() => {
@@ -454,7 +451,29 @@ export default function CampusPlacementsManager({ currentUser, onDataChange }) {
               <option value="NEEDS_REVIEW">Needs Review</option>
             </select>
 
-            {(searchQuery || selectedDept !== 'ALL' || selectedAy !== 'ALL' || selectedOfferType !== 'ALL' || selectedStatus !== 'ALL') && (
+            {/* From Date */}
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: '#475569', fontWeight: 600 }}>
+              From:
+              <input
+                type="date"
+                value={fromDate}
+                onChange={(e) => setFromDate(e.target.value)}
+                style={{ padding: '0.45rem 0.65rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', outline: 'none' }}
+              />
+            </label>
+
+            {/* To Date */}
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: '#475569', fontWeight: 600 }}>
+              To:
+              <input
+                type="date"
+                value={toDate}
+                onChange={(e) => setToDate(e.target.value)}
+                style={{ padding: '0.45rem 0.65rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', outline: 'none' }}
+              />
+            </label>
+
+            {(searchQuery || selectedDept !== 'ALL' || selectedAy !== 'ALL' || selectedOfferType !== 'ALL' || selectedStatus !== 'ALL' || fromDate || toDate) && (
               <button
                 type="button"
                 onClick={() => {
@@ -463,6 +482,8 @@ export default function CampusPlacementsManager({ currentUser, onDataChange }) {
                   setSelectedAy('ALL');
                   setSelectedOfferType('ALL');
                   setSelectedStatus('ALL');
+                  setFromDate('');
+                  setToDate('');
                 }}
                 style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', background: '#F8FAFC', color: '#64748B', fontSize: '0.76rem', fontWeight: 700, cursor: 'pointer' }}
               >

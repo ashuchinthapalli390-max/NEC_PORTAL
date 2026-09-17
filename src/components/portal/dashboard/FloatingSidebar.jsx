@@ -412,6 +412,24 @@ export default function FloatingSidebar({
                                 {badgeCount}
                               </span>
                             )}
+
+                            {isExpandedView && item.badge && !badgeCount && (
+                              <span style={{
+                                fontSize: '0.58rem',
+                                fontWeight: 800,
+                                padding: '0.1rem 0.4rem',
+                                borderRadius: '9999px',
+                                background: 'rgba(212, 175, 55, 0.2)',
+                                color: '#D4AF37',
+                                border: '1px solid rgba(212, 175, 55, 0.4)',
+                                marginLeft: '0.4rem',
+                                flexShrink: 0,
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.03em'
+                              }}>
+                                {item.badge}
+                              </span>
+                            )}
                           </motion.button>
                         );
                       })}

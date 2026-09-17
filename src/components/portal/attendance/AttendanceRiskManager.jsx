@@ -52,6 +52,7 @@ import {
   clearCurrentAttendance
 } from '../../../data/portalStore.js';
 import { ET_DEPARTMENTS } from '../../../data/masterData.js';
+import { formatDateDDMMYYYY } from '../../../lib/ui/dateUtils.js';
 
 export default function AttendanceRiskManager({ currentUser, onDataChange }) {
   // Navigation tabs
@@ -751,7 +752,7 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
                         {getStatusBadge(alert.status)}
                         {alert.lastContactedAt && (
                           <div style={{ fontSize: '0.68rem', color: '#94A3B8', marginTop: '0.2rem' }}>
-                            {new Date(alert.lastContactedAt).toLocaleDateString()}
+                            {formatDateDDMMYYYY(alert.lastContactedAt)}
                           </div>
                         )}
                       </td>
@@ -1155,7 +1156,7 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
                   contactsLedger.map((log) => (
                     <tr key={log.id} style={{ borderBottom: '1px solid #F1F5F9' }}>
                       <td style={{ padding: '0.75rem 0.9rem', color: '#64748B' }}>
-                        {new Date(log.contactedAt).toLocaleString()}
+                        {formatDateDDMMYYYY(log.contactedAt)}
                       </td>
                       <td style={{ padding: '0.75rem 0.9rem', fontWeight: 700, color: '#0F172A' }}>
                         <span style={{ fontFamily: 'monospace', color: '#D4AF37' }}>{log.rollNumber}</span>
@@ -1284,7 +1285,7 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
                   importHistory.map((job) => (
                     <tr key={job.id} style={{ borderBottom: '1px solid #F1F5F9' }}>
                       <td style={{ padding: '0.75rem 0.9rem', color: '#64748B' }}>
-                        {new Date(job.createdAt).toLocaleString()}
+                        {formatDateDDMMYYYY(job.createdAt)}
                       </td>
                       <td style={{ padding: '0.75rem 0.9rem', fontWeight: 700, color: '#0F172A' }}>
                         {job.originalFilename}
@@ -1535,7 +1536,7 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
                     <div key={log.id} style={{ background: '#F8FAFC', border: '1px solid #E2E8F0', padding: '0.75rem', borderRadius: '8px', fontSize: '0.76rem' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.2rem' }}>
                         <span style={{ fontWeight: 800, color: '#0F172A' }}>{log.contactMethod} • {getStatusBadge(log.contactStatus)}</span>
-                        <span style={{ color: '#64748B', fontSize: '0.7rem' }}>{new Date(log.contactedAt).toLocaleDateString()}</span>
+                        <span style={{ color: '#64748B', fontSize: '0.7rem' }}>{formatDateDDMMYYYY(log.contactedAt)}</span>
                       </div>
                       <div style={{ color: '#334155' }}>{log.notes}</div>
                       <div style={{ color: '#64748B', fontSize: '0.7rem', marginTop: '0.25rem' }}>Logged by: {log.contactedBy}</div>

@@ -9,18 +9,12 @@ import {
   Calendar, 
   CheckCircle2, 
   AlertTriangle, 
-  Clock, 
   ArrowUpRight, 
   Plus, 
   RefreshCw, 
   ShieldCheck, 
-  Download, 
   TrendingUp, 
-  Activity, 
-  ChevronRight,
-  ExternalLink,
-  Sparkles,
-  Building2,
+  Activity,
   GraduationCap,
   Award,
   BookOpen
@@ -315,35 +309,6 @@ export default function DashboardOverviewView({
 
   const kpiCards = getScopedKpiCards();
 
-  // Scoped Recent Activity Feed
-  const getScopedActivities = () => {
-    if (userRole === 'FACULTY') {
-      return [
-        { id: 1, user: displayName, action: 'Updated Scopus indexed publication record', time: '2 hours ago', type: 'Research' },
-        { id: 2, user: displayName, action: 'Added Elite NPTEL Course Certificate', time: '1 day ago', type: 'Cert' },
-        { id: 3, user: 'HoD Review Cell', action: 'Approved annual research appraisal submission', time: '3 days ago', type: 'Appraisal' }
-      ];
-    }
-
-    if (userRole === 'HOD') {
-      return [
-        { id: 1, user: displayName, action: `Approved BoS Curriculum for R24 Regulation (${userDept})`, time: '18 mins ago', type: 'BoS' },
-        { id: 2, user: 'Department Coordinator', action: 'Uploaded IEEE Student Hackathon winners evidence', time: '2 hours ago', type: 'Student' },
-        { id: 3, user: 'Research Committee', action: 'Validated 4 new Scopus papers for faculty members', time: '5 hours ago', type: 'Research' }
-      ];
-    }
-
-    return [
-      { id: 1, user: 'Dr. S. Venkateswarlu', action: 'Approved Board of Studies (BoS) Curriculum for R24 Regulation', time: '18 mins ago', type: 'BoS' },
-      { id: 2, user: 'Administrative Desk', action: 'Provisioned institutional credentials for Faculty Members', time: '1 hour ago', type: 'IAM' },
-      { id: 3, user: 'Dr. M. Sreenivasa Kumar', action: 'Indexed new Scopus journal publication on Deep Learning', time: '3 hours ago', type: 'Research' },
-      { id: 4, user: 'Dr. B. Venkata Siva', action: 'Published patent "IoT-enabled Smart Agricultural Monitoring"', time: '5 hours ago', type: 'Patent' },
-      { id: 5, user: 'Placement Officer', action: 'Updated Tier-1 Campus Placement Drives roster (TCS, Infosys)', time: 'Yesterday', type: 'Placement' }
-    ];
-  };
-
-  const recentActivities = getScopedActivities();
-
   return (
     <MotionPage style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
       {/* 1. Dynamic Welcome & Role-Scoped Header Banner */}
@@ -529,115 +494,6 @@ export default function DashboardOverviewView({
         </AnimatedKpiGrid>
       </div>
 
-      {/* 3. Operational Activity & Audit Section */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.25rem' }}>
-        {/* Recent Governance & Research Feed */}
-        <div style={{
-          background: '#FFFFFF',
-          borderRadius: '16px',
-          padding: '1.25rem',
-          border: '1px solid #E2E8F0',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between'
-        }}>
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-              <h3 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#0F172A', margin: 0, display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                <Clock size={16} style={{ color: '#3B82F6' }} /> Recent Activity Stream
-              </h3>
-              <button
-                type="button"
-                onClick={() => onNavigate('activity')}
-                style={{ fontSize: '0.74rem', color: '#D4AF37', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer' }}
-              >
-                View Full Log &rarr;
-              </button>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-              {recentActivities.map((act) => (
-                <div key={act.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', paddingBottom: '0.75rem', borderBottom: '1px solid #F1F5F9' }}>
-                  <div style={{
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    background: '#10B981',
-                    marginTop: '6px',
-                    flexShrink: 0
-                  }} />
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: '0.8rem', color: '#1E293B', fontWeight: 600, lineHeight: 1.4 }}>
-                      <span style={{ fontWeight: 700, color: '#0F172A' }}>{act.user}</span>: {act.action}
-                    </div>
-                    <div style={{ fontSize: '0.7rem', color: '#94A3B8', marginTop: '2px' }}>
-                      {act.time}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Quick Resource & Accreditation Links */}
-        <div style={{
-          background: '#FFFFFF',
-          borderRadius: '16px',
-          padding: '1.25rem',
-          border: '1px solid #E2E8F0',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between'
-        }}>
-          <div>
-            <h3 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#0F172A', margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <Sparkles size={16} style={{ color: '#D4AF37' }} /> Institutional Portals & Documentation
-            </h3>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem' }}>
-              {[
-                { label: 'NAAC SSR Portal', mod: 'naac-portal', desc: 'Cycle-2 A+ Grade' },
-                { label: 'NBA Tier-1', mod: 'nba-tier1', desc: 'Accreditation Records' },
-                { label: 'NIRF Data Hub', mod: 'nirf-data', desc: 'Institutional Ranking' },
-                { label: 'NPTEL MOOCs', mod: 'nptel-certifications', desc: 'Faculty & Student' }
-              ].map((res, i) => (
-                <div
-                  key={i}
-                  onClick={() => onNavigate(res.mod)}
-                  style={{
-                    padding: '0.85rem',
-                    borderRadius: '10px',
-                    background: '#F8FAFC',
-                    border: '1px solid #E2E8F0',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s'
-                  }}
-                  className="hover:bg-slate-100 hover:border-slate-300"
-                >
-                  <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#0F172A' }}>{res.label}</div>
-                  <div style={{ fontSize: '0.68rem', color: '#64748B' }}>{res.desc}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div style={{ marginTop: '1rem', padding: '0.75rem', background: 'rgba(212, 175, 55, 0.08)', borderRadius: '8px', border: '1px dashed rgba(212, 175, 55, 0.35)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ fontSize: '0.74rem', color: '#070F1E', fontWeight: 600 }}>
-              Autonomous Autonomous Regulations • Academic Year 2026-27
-            </div>
-            <button
-              type="button"
-              onClick={() => onNavigate('export-hub')}
-              style={{ fontSize: '0.74rem', color: '#B45309', fontWeight: 800, background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.2rem' }}
-            >
-              Export <Download size={12} />
-            </button>
-          </div>
-        </div>
-      </div>
     </MotionPage>
   );
 }

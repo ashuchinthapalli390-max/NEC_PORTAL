@@ -43,6 +43,8 @@ import {
   MotionModal
 } from '../../motion/index.js';
 import { ET_DEPARTMENTS } from '../../../data/masterData.js';
+import { parseMidExamWorkbook } from '../../../lib/importer/midExamTemplateParser.js';
+import { formatDateDDMMYYYY } from '../../../lib/ui/dateUtils.js';
 import { 
   getMidExamAnalyses, 
   getMidExamAnalysisById, 
@@ -269,64 +271,113 @@ export default function MidExamAnalysis({ currentUser }) {
   const [importFileName, setImportFileName] = useState('');
   const [importDetectedType, setImportDetectedType] = useState('FULL_WORKBOOK');
   const [importPreviewData, setImportPreviewData] = useState(null);
+  const [importParseResult, setImportParseResult] = useState(null); // real parsed output
 
-  const handleSimulateUpload = (e) => {
+  const handleFileUpload = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
     setImportFileName(file.name);
     setWizardStep(2);
+    setImportParseResult(null);
+    setImportPreviewData(null);
 
-    const nameLower = file.name.toLowerCase();
-    let detected = 'FULL_WORKBOOK';
-    if (nameLower.includes('remedial') || nameLower.includes('attendance')) {
-      detected = 'REMEDIAL_ATTENDANCE';
-    } else if (nameLower.includes('advanced') && nameLower.includes('activit')) {
-      detected = 'ADVANCED_ACTIVITIES';
-    } else if (nameLower.includes('weak') && nameLower.includes('topic')) {
-      detected = 'WEAK_TOPICS';
-    } else if (nameLower.includes('improvement') || nameLower.includes('improved')) {
-      detected = 'IMPROVEMENT_REMARKS';
-    }
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const result = parseMidExamWorkbook(arrayBuffer, []);
+      setImportParseResult(result);
 
-    setImportDetectedType(detected);
+      const detected = result.status === 'ERROR' ? 'ERROR' : 'FULL_WORKBOOK';
+      setImportDetectedType(detected);
 
-    setTimeout(() => {
-      if (detected === 'REMEDIAL_ATTENDANCE') {
-        setImportPreviewData({
-          typeTitle: 'Completed Remedial Attendance Sheet',
-          rowsDetected: 4,
-          matchedStudents: 4,
-          sessionsDetected: 6,
-          notes: 'Matched 4 weak students for Cyber Crime & Digital Forensics (R23CY3201). Attendance will be updated in Remedial & Follow-up ledger.'
-        });
-      } else {
-        setImportPreviewData({
-          typeTitle: 'Comprehensive Mid Analysis Workbook',
-          sheetsDetected: 12,
-          rawSheets: ['ASSIGNMENT-1', 'MID-1', 'MID-2 (Partial exam marks)'],
-          derivedSheets: ['ANALYSIS-1', 'ANALYSIS -2', 'WEAK STUDENTS', 'ADVANCED LEARNERS', 'IMPROVED'],
-          formulaErrorsFound: 4,
-          conflictWarning: 'Mid-II sheet header contains semester template reference; canonical metadata aligned to III Year II Semester.',
-          calculatedAdvanced: 12,
-          calculatedWeak: 4,
-          studentsCount: 60
-        });
-      }
+      setImportPreviewData({
+        typeTitle: result.status === 'ERROR'
+          ? 'File Could Not Be Parsed'
+          : result.warnings.length > 0
+            ? 'Mid Analysis Workbook — Imported with Warnings'
+            : 'Mid Analysis Workbook — Successfully Parsed',
+        status: result.status,
+        errors: result.errors,
+        warnings: result.warnings,
+        sheetsFound: result.sheetsFound,
+        studentsCount: result.stats.total,
+        matchedStudents: result.stats.matched,
+        unmatchedStudents: result.stats.unmatched,
+        calculatedAdvanced: result.stats.advanced,
+        calculatedWeak: result.stats.weak,
+        metadata: result.metadata,
+        stableKey: result.stableKey
+      });
+    } catch (err) {
+      setImportDetectedType('ERROR');
+      setImportPreviewData({
+        typeTitle: 'File Processing Error',
+        status: 'ERROR',
+        errors: [`Unexpected error: ${err.message}`],
+        warnings: [],
+        studentsCount: 0
+      });
+    } finally {
       setWizardStep(3);
-    }, 600);
+    }
   };
 
   const handleCommitImport = () => {
-    if (importDetectedType === 'REMEDIAL_ATTENDANCE') {
-      showToast('Successfully ingested completed Remedial Attendance sheet.');
-    } else {
-      showToast(`Successfully committed Mid Analysis import for ${currentAnalysis?.subjectName || 'CCDF'}.`);
+    if (!importParseResult || importParseResult.status === 'ERROR') {
+      showToast('Cannot commit: file has parse errors. Please fix the source file and re-import.');
+      return;
     }
+    const meta = importParseResult.metadata || {};
+    const updated = {
+      ...(currentAnalysis || {}),
+      department: meta.departmentCode || meta.department || currentAnalysis?.department,
+      academicYear: meta.academicYear || currentAnalysis?.academicYear,
+      year: meta.year || currentAnalysis?.year,
+      semester: meta.semester || currentAnalysis?.semester,
+      subjectName: meta.subjectName || currentAnalysis?.subjectName,
+      subjectCode: meta.subjectCode || currentAnalysis?.subjectCode,
+      regulation: meta.regulation || currentAnalysis?.regulation,
+      batch: meta.batch || currentAnalysis?.batch,
+      students: importParseResult.students,
+      studentsCount: importParseResult.stats.total,
+      mid1Average: importParseResult.students.length > 0
+        ? parseFloat(
+            (importParseResult.students.reduce((sum, s) => sum + (s.mid1Total || 0), 0) /
+              importParseResult.students.length).toFixed(2)
+          )
+        : 0,
+      mid1Percentage: importParseResult.students.length > 0
+        ? parseFloat(
+            (importParseResult.students.reduce((sum, s) => sum + (s.mid1Percentage || 0), 0) /
+              importParseResult.students.length).toFixed(2)
+          )
+        : 0,
+      importHistory: [
+        ...(currentAnalysis?.importHistory || []),
+        {
+          id: `imp_${Date.now()}`,
+          originalFilename: importFileName,
+          uploadedAt: new Date().toISOString(),
+          sheetsDetected: Object.values(importParseResult.sheetsFound || {}).filter(Boolean).length,
+          rawSheetsImported: [
+            importParseResult.sheetsFound?.assignment1 ? 'ASSIGNMENT-1' : null,
+            importParseResult.sheetsFound?.mid1 ? 'MID-1' : null,
+            importParseResult.sheetsFound?.assignment2 ? 'ASSIGNMENT-2' : null,
+            importParseResult.sheetsFound?.mid2 ? 'MID-2' : null,
+          ].filter(Boolean),
+          derivedSheetsRegenerated: ['Analysis Summary', 'Advanced Learners', 'Weak Learners'],
+          status: importParseResult.status,
+          warnings: importParseResult.warnings
+        }
+      ]
+    };
+    saveMidExamAnalysis(updated);
     setImportWizardOpen(false);
     setWizardStep(1);
     setImportFileName('');
     setImportPreviewData(null);
+    setImportParseResult(null);
     setDataVersion(v => v + 1);
+    showToast(`Successfully imported ${importParseResult.stats.total} student records from "${importFileName}".`);
   };
 
   return (
@@ -1384,7 +1435,7 @@ export default function MidExamAnalysis({ currentUser }) {
                         {(job.derivedSheetsRegenerated || []).join(', ')}
                       </td>
                       <td style={{ padding: '0.75rem 1rem', color: '#64748B' }}>
-                        {new Date(job.uploadedAt).toLocaleDateString()}
+                        {formatDateDDMMYYYY(job.uploadedAt)}
                       </td>
                       <td style={{ padding: '0.75rem 1rem' }}>
                         <span style={{ padding: '0.15rem 0.5rem', borderRadius: '9999px', fontSize: '0.68rem', fontWeight: 800, background: '#ECFDF5', color: '#059669', border: '1px solid #A7F3D0' }}>
@@ -1802,8 +1853,8 @@ export default function MidExamAnalysis({ currentUser }) {
                   </div>
                   <input
                     type="file"
-                    accept=".xlsx, .xls, .csv"
-                    onChange={handleSimulateUpload}
+                    accept=".xlsx, .xls"
+                    onChange={handleFileUpload}
                     style={{ fontSize: '0.78rem' }}
                   />
                 </div>
@@ -1818,63 +1869,111 @@ export default function MidExamAnalysis({ currentUser }) {
 
               {wizardStep === 3 && importPreviewData && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <div style={{ padding: '0.75rem 1rem', background: '#EFF6FF', borderRadius: '8px', border: '1px solid #BFDBFE' }}>
-                    <div style={{ fontSize: '0.72rem', color: '#1E40AF', fontWeight: 800, textTransform: 'uppercase' }}>Detected File Classification</div>
-                    <div style={{ fontSize: '1rem', fontWeight: 900, color: '#1D4ED8', marginTop: '0.15rem' }}>
+                  {/* Status Banner */}
+                  <div style={{
+                    padding: '0.75rem 1rem',
+                    background: importPreviewData.status === 'ERROR' ? '#FEF2F2' : importPreviewData.status === 'WARNING' ? '#FEFCE8' : '#ECFDF5',
+                    borderRadius: '8px',
+                    border: `1px solid ${importPreviewData.status === 'ERROR' ? '#FECACA' : importPreviewData.status === 'WARNING' ? '#FEF08A' : '#A7F3D0'}`
+                  }}>
+                    <div style={{ fontSize: '0.72rem', color: importPreviewData.status === 'ERROR' ? '#DC2626' : importPreviewData.status === 'WARNING' ? '#CA8A04' : '#059669', fontWeight: 800, textTransform: 'uppercase' }}>
+                      {importPreviewData.status === 'ERROR' ? '⚠ Parse Failed' : importPreviewData.status === 'WARNING' ? '⚡ Imported with Warnings' : '✓ File Parsed Successfully'}
+                    </div>
+                    <div style={{ fontSize: '0.88rem', fontWeight: 900, color: '#0F172A', marginTop: '0.15rem' }}>
                       {importPreviewData.typeTitle}
+                    </div>
+                    <div style={{ fontSize: '0.72rem', color: '#64748B', marginTop: '0.2rem' }}>
+                      File: <strong>{importFileName}</strong>
                     </div>
                   </div>
 
-                  {importDetectedType === 'REMEDIAL_ATTENDANCE' ? (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-                        <div style={{ padding: '0.75rem', background: '#ECFDF5', borderRadius: '8px', border: '1px solid #A7F3D0' }}>
-                          <div style={{ fontSize: '0.7rem', color: '#047857' }}>Weak Students Matched</div>
-                          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#059669' }}>4 Students</div>
+                  {/* Errors */}
+                  {importPreviewData.errors && importPreviewData.errors.length > 0 && (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                      {importPreviewData.errors.map((err, i) => (
+                        <div key={i} style={{ padding: '0.6rem 0.85rem', background: '#FEF2F2', borderRadius: '6px', border: '1px solid #FECACA', fontSize: '0.75rem', color: '#DC2626' }}>
+                          ✗ {err}
                         </div>
-                        <div style={{ padding: '0.75rem', background: '#F8FAFC', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
-                          <div style={{ fontSize: '0.7rem', color: '#475569' }}>Sessions Detected</div>
-                          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0F172A' }}>6 Sessions</div>
-                        </div>
-                      </div>
-                      <div style={{ padding: '0.75rem', background: '#F8FAFC', borderRadius: '8px', border: '1px solid #E2E8F0', fontSize: '0.75rem', color: '#475569' }}>
-                        {importPreviewData.notes}
-                      </div>
+                      ))}
                     </div>
-                  ) : (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-                        <div style={{ padding: '0.75rem', background: '#ECFDF5', borderRadius: '8px', border: '1px solid #A7F3D0' }}>
-                          <div style={{ fontSize: '0.7rem', color: '#047857' }}>Authoritative Raw Sheets</div>
-                          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#059669' }}>3 Sheets Ingested</div>
+                  )}
+
+                  {/* Warnings */}
+                  {importPreviewData.warnings && importPreviewData.warnings.length > 0 && (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                      {importPreviewData.warnings.map((w, i) => (
+                        <div key={i} style={{ padding: '0.5rem 0.75rem', background: '#FEFCE8', borderRadius: '6px', border: '1px solid #FEF08A', fontSize: '0.74rem', color: '#92400E' }}>
+                          ⚡ {w}
                         </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Stats Grid */}
+                  {importPreviewData.status !== 'ERROR' && (
+                    <>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.65rem' }}>
                         <div style={{ padding: '0.75rem', background: '#EFF6FF', borderRadius: '8px', border: '1px solid #BFDBFE' }}>
-                          <div style={{ fontSize: '0.7rem', color: '#1E40AF' }}>Calculated Advanced Cohort</div>
-                          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1D4ED8' }}>12 Students (≥80%)</div>
+                          <div style={{ fontSize: '0.7rem', color: '#1E40AF' }}>Students Detected</div>
+                          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1D4ED8' }}>{importPreviewData.studentsCount}</div>
+                        </div>
+                        <div style={{ padding: '0.75rem', background: '#ECFDF5', borderRadius: '8px', border: '1px solid #A7F3D0' }}>
+                          <div style={{ fontSize: '0.7rem', color: '#047857' }}>Matched to Master</div>
+                          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#059669' }}>{importPreviewData.matchedStudents}</div>
+                        </div>
+                        <div style={{ padding: '0.75rem', background: '#FEFCE8', borderRadius: '8px', border: '1px solid #FEF08A' }}>
+                          <div style={{ fontSize: '0.7rem', color: '#A16207' }}>Advanced (≥80%)</div>
+                          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#D97706' }}>{importPreviewData.calculatedAdvanced}</div>
                         </div>
                       </div>
 
-                      <div style={{ padding: '0.75rem', background: '#FEFCE8', borderRadius: '8px', border: '1px solid #FEF08A', fontSize: '0.75rem', color: '#854D0E' }}>
-                        <strong>Formula Error Protection:</strong> 4 derived sheets with broken spreadsheet formulas were safely bypassed; ET Portal generated clean canonical analysis from raw marks.
-                      </div>
-                    </div>
+                      {/* Sheets found */}
+                      {importPreviewData.sheetsFound && (
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                          {Object.entries(importPreviewData.sheetsFound).map(([key, found]) => (
+                            <span key={key} style={{
+                              padding: '0.2rem 0.5rem',
+                              borderRadius: '6px',
+                              fontSize: '0.68rem',
+                              fontWeight: 700,
+                              background: found ? '#ECFDF5' : '#F8FAFC',
+                              color: found ? '#047857' : '#94A3B8',
+                              border: `1px solid ${found ? '#A7F3D0' : '#E2E8F0'}`
+                            }}>
+                              {found ? '✓' : '—'} {key.toUpperCase().replace(/_/g, '-')}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Metadata */}
+                      {importPreviewData.metadata && Object.keys(importPreviewData.metadata).length > 0 && (
+                        <div style={{ padding: '0.75rem', background: '#F8FAFC', borderRadius: '8px', border: '1px solid #E2E8F0', fontSize: '0.73rem', color: '#475569', display: 'flex', flexWrap: 'wrap', gap: '0.5rem 1.25rem' }}>
+                          {Object.entries(importPreviewData.metadata).filter(([, v]) => v).map(([k, v]) => (
+                            <span key={k}><strong style={{ color: '#334155' }}>{k}:</strong> {v}</span>
+                          ))}
+                        </div>
+                      )}
+                    </>
                   )}
 
                   <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem', marginTop: '0.5rem' }}>
                     <button
                       type="button"
-                      onClick={() => setImportWizardOpen(false)}
+                      onClick={() => { setImportWizardOpen(false); setWizardStep(1); setImportPreviewData(null); setImportParseResult(null); }}
                       style={{ padding: '0.5rem 1rem', borderRadius: '6px', border: '1px solid #CBD5E1', background: '#FFFFFF', fontSize: '0.78rem', cursor: 'pointer' }}
                     >
                       Cancel
                     </button>
-                    <button
-                      type="button"
-                      onClick={handleCommitImport}
-                      style={{ padding: '0.5rem 1.25rem', borderRadius: '6px', border: 'none', background: 'linear-gradient(135deg, #059669 0%, #047857 100%)', color: '#FFFFFF', fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer' }}
-                    >
-                      Commit Data to Portal
-                    </button>
+                    {importPreviewData.status !== 'ERROR' && (
+                      <button
+                        type="button"
+                        onClick={handleCommitImport}
+                        style={{ padding: '0.5rem 1.25rem', borderRadius: '6px', border: 'none', background: 'linear-gradient(135deg, #059669 0%, #047857 100%)', color: '#FFFFFF', fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer' }}
+                      >
+                        Commit Data to Portal
+                      </button>
+                    )}
                   </div>
                 </div>
               )}

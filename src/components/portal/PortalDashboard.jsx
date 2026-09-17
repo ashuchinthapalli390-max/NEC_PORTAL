@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { routeVariants } from '../../lib/motion/variants.js';
+import { formatDateDDMMYYYY } from '../../lib/ui/dateUtils.js';
 import { 
   Building2, 
   Users, 
@@ -114,8 +115,6 @@ import CompaniesVisitedManager from './placements/CompaniesVisitedManager.jsx';
 // Dedicated Governance, Intelligence & Compliance Suites
 import AnalyticsView from './dashboard/AnalyticsView.jsx';
 import AlertsCenterView from './dashboard/AlertsCenterView.jsx';
-import ActivityFeedView from './dashboard/ActivityFeedView.jsx';
-import MediaGalleryManager from './governance/MediaGalleryManager.jsx';
 import CircularsManager from './governance/CircularsManager.jsx';
 import StaffProfilesManager from './governance/StaffProfilesManager.jsx';
 import AcademicCouncilManager from './governance/AcademicCouncilManager.jsx';
@@ -729,7 +728,7 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
                           </span>
                         </td>
                         <td style={{ padding: '0.85rem 1rem', fontSize: '0.74rem', color: '#64748B' }}>
-                          {u.lastLogin ? new Date(u.lastLogin).toLocaleDateString() : 'Never'}
+                          {u.lastLogin ? formatDateDDMMYYYY(u.lastLogin) : 'Never'}
                         </td>
                         <td style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>
                           {u.role !== 'SUPER_ADMIN' && (
@@ -883,15 +882,12 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
             <AlertsCenterView currentUser={currentUser} onNavigate={(mod) => setActiveModule(mod)} />
           )}
 
-          {activeModule === 'activity' && (
-            <ActivityFeedView currentUser={currentUser} />
-          )}
-
-          {/* ────────────────────────────────────────────────────────── */}
-          {/* VIEW 17: OUTREACH & GOVERNANCE SUITES */}
-          {/* ────────────────────────────────────────────────────────── */}
           {activeModule === 'gallery-media' && (
-            <MediaGalleryManager currentUser={currentUser} />
+            <PortalModuleFallback
+              moduleId="gallery-media"
+              moduleLabel="Media & Campus Gallery"
+              message="Media & Campus Gallery has been moved to the public website. Use the Public Site navigation to access the gallery."
+            />
           )}
 
           {activeModule === 'circulars-notices' && (

@@ -24,6 +24,7 @@ import {
   X
 } from 'lucide-react';
 import { ET_DEPARTMENTS } from '../../../data/masterData.js';
+import { formatDateDDMMYYYY, isDateInRange } from '../../../lib/ui/dateUtils.js';
 import { 
   getStudentAchievements, 
   reviewStudentAchievement, 
@@ -73,6 +74,8 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
   const [selectedLevel, setSelectedLevel] = useState('ALL');
   const [selectedPrize, setSelectedPrize] = useState('ALL');
   const [selectedStatus, setSelectedStatus] = useState('ALL');
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
 
   const refresh = () => {
     setDataVersion(v => v + 1);
@@ -107,10 +110,11 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
       
       const itemStatus = item.workflowStatus || (item.status === 'Approved' ? 'APPROVED' : 'DRAFT');
       const matchStatus = selectedStatus === 'ALL' || itemStatus === selectedStatus;
+      const matchDate = isDateInRange(item.eventDate || item.date, fromDate, toDate);
 
-      return matchSearch && matchDept && matchAy && matchCategory && matchLevel && matchPrize && matchStatus;
+      return matchSearch && matchDept && matchAy && matchCategory && matchLevel && matchPrize && matchStatus && matchDate;
     });
-  }, [achievements, searchQuery, selectedDept, selectedAy, selectedCategory, selectedLevel, selectedPrize, selectedStatus]);
+  }, [achievements, searchQuery, selectedDept, selectedAy, selectedCategory, selectedLevel, selectedPrize, selectedStatus, fromDate, toDate]);
 
   // KPIs
   const stats = useMemo(() => {
@@ -349,7 +353,29 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
               <option value="DRAFT">Draft</option>
             </select>
 
-            {(searchQuery || selectedDept !== 'ALL' || selectedAy !== 'ALL' || selectedCategory !== 'ALL' || selectedLevel !== 'ALL' || selectedStatus !== 'ALL') && (
+            {/* From Date */}
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: '#475569', fontWeight: 600 }}>
+              From:
+              <input
+                type="date"
+                value={fromDate}
+                onChange={(e) => setFromDate(e.target.value)}
+                style={{ padding: '0.45rem 0.65rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', outline: 'none' }}
+              />
+            </label>
+
+            {/* To Date */}
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: '#475569', fontWeight: 600 }}>
+              To:
+              <input
+                type="date"
+                value={toDate}
+                onChange={(e) => setToDate(e.target.value)}
+                style={{ padding: '0.45rem 0.65rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', outline: 'none' }}
+              />
+            </label>
+
+            {(searchQuery || selectedDept !== 'ALL' || selectedAy !== 'ALL' || selectedCategory !== 'ALL' || selectedLevel !== 'ALL' || selectedStatus !== 'ALL' || fromDate || toDate) && (
               <button
                 type="button"
                 onClick={() => {
@@ -360,6 +386,8 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
                   setSelectedLevel('ALL');
                   setSelectedPrize('ALL');
                   setSelectedStatus('ALL');
+                  setFromDate('');
+                  setToDate('');
                 }}
                 style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', background: '#F8FAFC', color: '#64748B', fontSize: '0.76rem', fontWeight: 700, cursor: 'pointer' }}
               >
@@ -472,7 +500,7 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
                       {/* Event Date */}
                       <td style={{ padding: '0.85rem 1rem' }}>
                         <span style={{ fontSize: '0.76rem', color: '#334155' }}>
-                          {item.eventDate || item.date || '—'}
+                          {formatDateDDMMYYYY(item.eventDate || item.date) || '—'}
                         </span>
                       </td>
 
