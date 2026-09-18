@@ -1,54 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useMemo } from 'react';
 import { 
   Search, 
-  Sparkles, 
   CheckCircle2, 
-  AlertTriangle, 
+  AlertCircle, 
   ExternalLink, 
-  Layers, 
-  UserCheck, 
-  UserX, 
-  BookOpen, 
-  Award, 
-  Globe, 
-  CheckSquare, 
-  Square, 
   Download, 
   RefreshCw, 
   X, 
-  Info,
-  Database,
-  Filter,
-  Eye,
-  Unlink,
+  Copy, 
   Check,
-  Building2,
-  Calendar,
-  ShieldCheck
+  PlusCircle
 } from 'lucide-react';
 import { FACULTY_DATA } from '../../../data/masterData.js';
-import { matchResearcherProfiles } from '../../../lib/research/matchingEngine.js';
-import { runLocalResearchDiscovery } from '../../../lib/research/localDiscoveryEngine.js';
 import { 
-  getFacultyResearchProfile, 
-  linkFacultyResearcher, 
-  unlinkFacultyResearcher, 
-  importPublicationsBatch 
+  fetchOrcidData, 
+  isValidOrcid, 
+  normalizeOrcid, 
+  ORCID_CONFIG 
+} from '../../../lib/research/orcidService.js';
+import { 
+  importPublicationsBatch,
+  getFacultyList,
+  getPublications 
 } from '../../../data/portalStore.js';
 
-export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
-  const initialFacultyId = currentUser?.facultyId || (currentUser?.role === 'FACULTY' ? currentUser.facultyId : FACULTY_DATA[0]?.id) || 'NEC-PER-0284';
-  const [selectedFacultyId, setSelectedFacultyId] = useState(initialFacultyId);
-  const facultyRecord = FACULTY_DATA.find(f => f.id === selectedFacultyId) || FACULTY_DATA[0];
+export default function ResearchDiscoveryView({ currentUser }) {
+  // Institutional Faculty Directory (used for automatic faculty ID/department linkage)
+  const facultyList = useMemo(() => {
+    const list = getFacultyList();
+    if (list && list.length > 0) return list;
+    if (FACULTY_DATA && FACULTY_DATA.length > 0) return FACULTY_DATA;
+    return [];
+  }, []);
 
-  // Current Research Profile State
-  const [currentProfile, setCurrentProfile] = useState(null);
-
-  // Discovery / Matching State
-  const [searching, setSearching] = useState(false);
-  const [matchingProgress, setMatchingProgress] = useState({ stage: 'IDLE', message: '', percent: 0 });
-  const [matchResult, setMatchResult] = useState(null);
+  // Direct ORCID iD Input & Live Profile State
+  const [orcidInput, setOrcidInput] = useState('');
+  const [orcidProfile, setOrcidProfile] = useState(null);
 
   // Publication Extraction State
   const [extractingWorks, setExtractingWorks] = useState(false);
@@ -61,87 +48,27 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
   const [importNotice, setImportNotice] = useState('');
   const [discoveryError, setDiscoveryError] = useState('');
   const [discoveryToast, setDiscoveryToast] = useState('');
-  const [unlinkConfirmOpen, setUnlinkConfirmOpen] = useState(false);
+  const [copiedId, setCopiedId] = useState('');
 
   const showToast = (msg) => {
     setDiscoveryToast(msg);
     setTimeout(() => setDiscoveryToast(''), 3500);
   };
 
-  // Load faculty's current stored profile when faculty changes
-  useEffect(() => {
-    if (selectedFacultyId) {
-      const stored = getFacultyResearchProfile(selectedFacultyId);
-      setCurrentProfile(stored);
-      // Reset discovery & selection state
-      setMatchResult(null);
-      setDiscoveredCandidates(null);
-      setSelectedCandidateKeys({});
-      setImportNotice('');
-      setDiscoveryError('');
-      setMatchingProgress({ stage: 'IDLE', message: '', percent: 0 });
-      setExtractProgress({ stage: 'IDLE', message: '', percent: 0 });
-    }
-  }, [selectedFacultyId]);
-
-  // Handle "Discover Research Profile"
-  const handleDiscoverProfile = async () => {
-    setSearching(true);
-    setMatchResult(null);
-    setDiscoveredCandidates(null);
-    setImportNotice('');
-    setDiscoveryError('');
-
-    setMatchingProgress({ stage: 'SEARCHING', message: 'Preparing faculty identity & normalized tokens...', percent: 25 });
-    await new Promise(r => setTimeout(r, 250));
-
-    setMatchingProgress({ stage: 'MATCHING', message: 'Scanning local OpenAlex index for Narasaraopeta Engineering College researchers...', percent: 55 });
-    await new Promise(r => setTimeout(r, 300));
-
-    setMatchingProgress({ stage: 'RESOLVING', message: 'Evaluating deterministic multi-tier evidence (ORCID, name variants, affiliation)...', percent: 85 });
-    await new Promise(r => setTimeout(r, 250));
-
-    const result = matchResearcherProfiles(facultyRecord);
-    setSearching(false);
-    setMatchResult(result);
-    setMatchingProgress({ stage: 'COMPLETE', message: 'Candidate researcher matching complete.', percent: 100 });
+  const handleCopy = (text, label) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(text);
+    showToast(`Copied ${label} to clipboard.`);
+    setTimeout(() => setCopiedId(''), 2500);
   };
 
-  // Handle Human Confirmation of Candidate
-  const handleConfirmCandidate = async (candidate) => {
-    const updated = linkFacultyResearcher(selectedFacultyId, candidate, currentUser);
-    setCurrentProfile(updated);
-    setMatchResult(null);
-    showToast(`Linked OpenAlex profile (${candidate.openAlexAuthorId}) for ${facultyRecord.name}.`);
+  // 1. Direct Fetch Works from Official ORCID Public API
+  const handleFetchOrcidWorks = async (forcedOrcid = null) => {
+    const rawTarget = forcedOrcid || orcidInput;
+    const targetOrcid = normalizeOrcid(rawTarget);
 
-    // Auto-trigger publication extraction from local dataset for confirmed researcher
-    handleDiscoverWorks(candidate);
-  };
-
-  // Handle Unlinking Researcher Profile
-  const handleUnlinkProfile = () => {
-    setUnlinkConfirmOpen(true);
-  };
-
-  const handleConfirmUnlink = () => {
-    unlinkFacultyResearcher(selectedFacultyId, currentUser);
-    setCurrentProfile(getFacultyResearchProfile(selectedFacultyId));
-    setDiscoveredCandidates(null);
-    setSelectedCandidateKeys({});
-    setUnlinkConfirmOpen(false);
-    showToast(`Unlinked research profile for ${facultyRecord.name}.`);
-  };
-
-  // Handle Discovering Works for Confirmed Researcher
-  const handleDiscoverWorks = async (confirmedCandidate = null) => {
-    const candidateToQuery = confirmedCandidate || {
-      openAlexAuthorId: currentProfile?.openAlexAuthorId,
-      canonicalName: facultyRecord.name,
-      orcid: currentProfile?.orcid || facultyRecord.orcid
-    };
-
-    if (!candidateToQuery.openAlexAuthorId) {
-      setDiscoveryError('No confirmed OpenAlex researcher ID linked to this faculty member.');
+    if (!targetOrcid || !isValidOrcid(targetOrcid)) {
+      setDiscoveryError('Please enter a valid 16-digit ORCID iD (e.g., 0000-0002-8262-9894).');
       return;
     }
 
@@ -150,25 +77,93 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
     setDiscoveredCandidates(null);
     setSelectedCandidateKeys({});
 
-    const result = await runLocalResearchDiscovery(candidateToQuery, (prog) => {
-      setExtractProgress(prog);
-    });
+    setExtractProgress({ stage: 'CONNECTING', message: `Connecting to ORCID Public API v3.0 for ${targetOrcid}...`, percent: 25 });
+    await new Promise(r => setTimeout(r, 200));
+
+    setExtractProgress({ stage: 'FETCHING', message: `Fetching person profile & publication summaries...`, percent: 60 });
+
+    const result = await fetchOrcidData(targetOrcid);
+
+    setExtractProgress({ stage: 'CROSS_REF', message: `Evaluating institutional deduplication & Crossref DOIs...`, percent: 85 });
+    await new Promise(r => setTimeout(r, 200));
 
     setExtractingWorks(false);
 
     if (result.success) {
-      setDiscoveredCandidates(result);
-      // Auto-select all NEW candidates
-      const initialSelection = {};
-      result.candidates.forEach(c => {
+      setOrcidProfile(result.profile);
+      const portalPubs = getPublications();
+      const rawWorks = result.works || [];
+
+      // Categorize works as NEW vs EXACT_DUPLICATE
+      const candidates = rawWorks.map((w, idx) => {
+        const rawDoi = (w.doi || '').trim().toLowerCase();
+        const rawEid = (w.scopusEid || '').trim();
+        const rawUid = (w.wosUid || '').trim();
+        const cleanTitle = (w.title || '').toLowerCase().trim();
+
+        const isDuplicate = portalPubs.some(p => !p.isDeleted && (
+          (rawDoi && (p.doi || '').trim().toLowerCase() === rawDoi) ||
+          (rawEid && p.scopusEid === rawEid) ||
+          (rawUid && p.wosUid === rawUid) ||
+          (cleanTitle && p.title && p.title.toLowerCase().trim() === cleanTitle)
+        ));
+
+        return {
+          ...w,
+          candidateId: w.id || `ORCID-${w.putCode || idx + 1}`,
+          classification: isDuplicate ? 'EXACT_DUPLICATE' : 'NEW'
+        };
+      });
+
+      const newCount = candidates.filter(c => c.classification === 'NEW').length;
+      const dupCount = candidates.filter(c => c.classification === 'EXACT_DUPLICATE').length;
+      const doiCount = candidates.filter(c => c.doi).length;
+
+      setDiscoveredCandidates({
+        summary: {
+          totalDiscovered: candidates.length,
+          newRecords: newCount,
+          duplicates: dupCount,
+          crossSourceEnriched: doiCount
+        },
+        candidates
+      });
+
+      // Auto-select all new candidates by default for quick 1-click import
+      const initialKeys = {};
+      candidates.forEach((c, idx) => {
         if (c.classification === 'NEW') {
-          initialSelection[c.candidateId] = true;
+          initialKeys[c.candidateId || idx] = true;
         }
       });
-      setSelectedCandidateKeys(initialSelection);
+      setSelectedCandidateKeys(initialKeys);
+
+      setExtractProgress({ stage: 'COMPLETE', message: `Extracted ${candidates.length} work(s) from ORCID.`, percent: 100 });
+      showToast(`Fetched ${candidates.length} works from ORCID for ${result.profile?.fullName || targetOrcid}.`);
     } else {
-      setDiscoveryError(result.error || 'Failed to extract publications from local index.');
+      setDiscoveryError(result.error || 'Failed to fetch works from ORCID Public API.');
+      setExtractProgress({ stage: 'ERROR', message: 'Extraction failed.', percent: 0 });
     }
+  };
+
+  // 2. Direct Submission by ORCID iD
+  const handleFetchByOrcidId = async (e) => {
+    if (e) e.preventDefault();
+    const raw = orcidInput.trim();
+    if (!raw) {
+      setDiscoveryError('Please enter a 16-digit ORCID iD (e.g. 0000-0002-8262-9894).');
+      return;
+    }
+
+    const cleaned = normalizeOrcid(raw);
+    if (!isValidOrcid(cleaned)) {
+      setDiscoveryError('Invalid ORCID iD format or checksum. Format must be 0000-000X-XXXX-XXXX (16 digits).');
+      return;
+    }
+
+    setDiscoveryError('');
+    setOrcidInput(cleaned);
+    await handleFetchOrcidWorks(cleaned);
   };
 
   const toggleSelectCandidate = (id) => {
@@ -191,36 +186,55 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
     setSelectedCandidateKeys(updated);
   };
 
-  // Import Selected / Add All New
-  const handleImportCandidates = (onlyNew = false) => {
+  // 6. Bulk Import Publications (Import All / Import All New / Import Selected)
+  const handleImportCandidates = (importMode = 'SELECTED') => {
     if (!discoveredCandidates) return;
     let toImport = [];
-    if (onlyNew) {
+
+    if (importMode === 'ALL') {
+      toImport = discoveredCandidates.candidates;
+    } else if (importMode === 'ALL_NEW') {
       toImport = discoveredCandidates.candidates.filter(c => c.classification === 'NEW');
     } else {
       toImport = discoveredCandidates.candidates.filter(c => selectedCandidateKeys[c.candidateId]);
     }
 
     if (toImport.length === 0) {
-      setDiscoveryError(onlyNew ? 'No NEW publications ready to import.' : 'Please select at least one publication to import.');
+      setDiscoveryError(importMode === 'ALL_NEW' ? 'No NEW publications ready to import.' : 'Please select at least one publication to import.');
       return;
     }
 
     setDiscoveryError('');
     setImporting(true);
+
+    const targetOrcid = normalizeOrcid(orcidInput);
+    const matchedFaculty = facultyList.find(f => 
+      (f.orcid && normalizeOrcid(f.orcid) === targetOrcid) ||
+      (orcidProfile?.fullName && f.name.toLowerCase().includes(orcidProfile.fullName.toLowerCase()))
+    );
+
+    const scholarName = orcidProfile?.fullName || matchedFaculty?.name || 'ORCID Researcher';
+    const scholarDept = matchedFaculty?.department || currentUser?.department || 'R&D';
+    const scholarId = matchedFaculty?.id || currentUser?.facultyId || 'ORCID-SCHOLAR';
+
     const preparedCandidates = toImport.map(c => ({
       ...c,
-      department: facultyRecord.department,
-      facultyId: facultyRecord.id,
-      facultyName: facultyRecord.name,
-      academicYear: '2025-26',
+      department: scholarDept,
+      departmentCode: scholarDept,
+      facultyId: scholarId,
+      facultyName: scholarName,
+      academicYear: `${c.publicationYear || 2025}-${String((c.publicationYear || 2025) + 1).slice(-2)}`,
+      source: 'ORCID',
+      sources: ['ORCID'],
+      workflowStatus: 'IMPORTED_PENDING_REVIEW',
+      matchStatus: 'VERIFIED_NEC_MATCH',
       authors: c.authors?.length ? c.authors : [
         {
           authorOrder: 1,
           authorType: 'INTERNAL_FACULTY',
-          facultyId: facultyRecord.id,
-          name: facultyRecord.name,
-          department: facultyRecord.department,
+          facultyId: scholarId,
+          name: scholarName,
+          department: scholarDept,
           affiliation: 'Narasaraopeta Engineering College',
           isFirstAuthor: true,
           isCorresponding: true
@@ -228,12 +242,37 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
       ]
     }));
 
-    importPublicationsBatch(preparedCandidates, currentUser);
+    importPublicationsBatch(preparedCandidates, currentUser, 'ORCID');
 
     setImporting(false);
     setSelectedCandidateKeys({});
-    showToast(`Successfully imported ${toImport.length} publication(s) into review queue.`);
-    setImportNotice(`Successfully imported ${toImport.length} publication(s) into review queue.`);
+    showToast(`Successfully imported ${toImport.length} publication(s) into the review queue.`);
+    setImportNotice(`Successfully imported ${toImport.length} publication(s) from ORCID into the review queue.`);
+
+    // Refresh classifications so newly imported items now show as duplicates
+    const portalPubs = getPublications();
+    const updatedCandidates = discoveredCandidates.candidates.map(w => {
+      const rawDoi = (w.doi || '').trim().toLowerCase();
+      const cleanTitle = (w.title || '').toLowerCase().trim();
+      const isDuplicate = portalPubs.some(p => !p.isDeleted && (
+        (rawDoi && (p.doi || '').trim().toLowerCase() === rawDoi) ||
+        (cleanTitle && p.title && p.title.toLowerCase().trim() === cleanTitle)
+      ));
+      return {
+        ...w,
+        classification: isDuplicate ? 'EXACT_DUPLICATE' : 'NEW'
+      };
+    });
+
+    setDiscoveredCandidates(prev => ({
+      ...prev,
+      summary: {
+        ...prev.summary,
+        newRecords: updatedCandidates.filter(c => c.classification === 'NEW').length,
+        duplicates: updatedCandidates.filter(c => c.classification === 'EXACT_DUPLICATE').length
+      },
+      candidates: updatedCandidates
+    }));
   };
 
   const filteredCandidates = discoveredCandidates?.candidates.filter(c => {
@@ -242,22 +281,23 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
   }) || [];
 
   const selectedCount = Object.values(selectedCandidateKeys).filter(Boolean).length;
-  const isProfileLinked = currentProfile?.openAlexAuthorId && currentProfile?.openAlexMatchStatus === 'MANUALLY_CONFIRMED';
 
   return (
     <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', position: 'relative' }}>
+      {/* Toast Notifications */}
       {discoveryToast && (
-        <div style={{ background: '#ECFDF5', border: '1px solid #A7F3D0', color: '#047857', padding: '0.75rem 1rem', borderRadius: '8px', fontSize: '0.84rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div style={{ background: '#ECFDF5', border: '1px solid #A7F3D0', color: '#047857', padding: '0.75rem 1rem', borderRadius: '8px', fontSize: '0.84rem', display: 'flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }}>
           <CheckCircle2 size={16} />
           <span>{discoveryToast}</span>
         </div>
       )}
       {discoveryError && (
-        <div style={{ background: '#FEF2F2', border: '1px solid #FCA5A5', color: '#DC2626', padding: '0.75rem 1rem', borderRadius: '8px', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div style={{ background: '#FEF2F2', border: '1px solid #FCA5A5', color: '#DC2626', padding: '0.75rem 1rem', borderRadius: '8px', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }}>
           <AlertCircle size={16} />
           <span>{discoveryError}</span>
         </div>
       )}
+
       {/* 1. Header Banner */}
       <div style={{
         background: 'linear-gradient(135deg, #070F1E 0%, #0B192C 60%, #122846 100%)',
@@ -274,282 +314,189 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <div style={{
-            width: '46px',
-            height: '46px',
+            width: '48px',
+            height: '48px',
             borderRadius: '12px',
-            background: 'rgba(212, 175, 55, 0.15)',
-            border: '1px solid rgba(212, 175, 55, 0.3)',
+            background: 'rgba(166, 206, 57, 0.15)',
+            border: '1.5px solid #A6CE39',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#F1C40F'
+            color: '#A6CE39'
           }}>
-            <Sparkles size={24} />
+            {/* Official ORCID iD Glyph */}
+            <span style={{ fontWeight: 900, fontSize: '1.25rem', fontFamily: 'sans-serif' }}>iD</span>
           </div>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.25rem', flexWrap: 'wrap' }}>
               <h1 style={{ fontSize: '1.35rem', fontWeight: 800, margin: 0, color: '#FFFFFF', fontFamily: 'Cinzel, Georgia, serif' }}>
-                NEC Research Discovery & Local Scholarly Index
+                NEC Research Discovery & ORCID Scholar Registry
               </h1>
-              <span style={{ fontSize: '0.68rem', padding: '0.15rem 0.5rem', borderRadius: '4px', background: '#059669', color: '#FFFFFF', fontWeight: 800 }}>
-                ZERO RUNTIME APIS • 100% LOCAL
+              <span style={{ fontSize: '0.68rem', padding: '0.15rem 0.55rem', borderRadius: '4px', background: '#A6CE39', color: '#070F1E', fontWeight: 900, letterSpacing: '0.5px' }}>
+                OFFICIAL ORCID PUBLIC API v3.0
               </span>
             </div>
             <p style={{ fontSize: '0.8rem', color: '#CBD5E1', margin: 0 }}>
-              Deterministic OpenAlex Parquet snapshot matching, Crossref DOI enrichment, and institutional deduplication.
+              Live ORCID Public API registry search, verified profile identity binding, Crossref DOI enrichment, and 1-click publication ingestion.
             </p>
           </div>
         </div>
 
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
           <div style={{ textAlign: 'right', fontSize: '0.72rem', color: '#94A3B8' }}>
-            <div>Dataset: <strong>OpenAlex June 2026</strong></div>
-            <div>Crossref: <strong>March 2026</strong> • ORCID: <strong>2025</strong></div>
+            <div>Registry: <strong style={{ color: '#A6CE39' }}>ORCID v3.0 Public API</strong></div>
+            <div>Enrichment: <strong>Crossref DOIs</strong> • Client ID: <strong>{ORCID_CONFIG.clientId ? 'Active' : 'Standby'}</strong></div>
           </div>
         </div>
       </div>
 
-      {/* 2. Faculty Researcher Selector & Identity Status */}
-      <div style={{ background: '#FFFFFF', borderRadius: '14px', border: '1px solid #E2E8F0', padding: '1.25rem 1.5rem', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', alignItems: 'center' }}>
-          <div>
-            <label style={{ fontSize: '0.75rem', fontWeight: 800, color: '#0F172A', display: 'block', marginBottom: '0.35rem' }}>
-              FACULTY RESEARCHER *
-            </label>
-            <select
-              value={selectedFacultyId}
-              onChange={(e) => setSelectedFacultyId(e.target.value)}
-              style={{ width: '100%', padding: '0.6rem 0.85rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.85rem', background: '#F8FAFC', fontWeight: 700, color: '#0F172A' }}
-            >
-              {FACULTY_DATA.map(f => (
-                <option key={f.id} value={f.id}>
-                  {f.name} ({f.department} - {f.designation})
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div style={{ background: '#F8FAFC', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid #E2E8F0' }}>
-            <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#64748B', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
-              Research Identity Binding
-            </div>
-            {isProfileLinked ? (
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div>
-                  <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#059669', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                    <CheckCircle2 size={15} /> Confirmed: {currentProfile.openAlexAuthorId.replace('https://openalex.org/', '')}
-                  </div>
-                  <div style={{ fontSize: '0.72rem', color: '#64748B' }}>
-                    Works: {currentProfile.openAlexWorksCount || 0} • Citations: {currentProfile.openAlexCitedByCount || 0} • h-index: {currentProfile.openAlexHIndex || 0}
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={handleUnlinkProfile}
-                  title="Unlink this OpenAlex author profile"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', padding: '0.35rem 0.65rem', background: '#FEE2E2', border: '1px solid #FECACA', borderRadius: '6px', fontSize: '0.7rem', color: '#DC2626', fontWeight: 700, cursor: 'pointer' }}
-                >
-                  <Unlink size={12} /> Unlink
-                </button>
-              </div>
-            ) : (
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.78rem', color: '#94A3B8', fontWeight: 600 }}>
-                  No OpenAlex profile connected yet.
-                </span>
-                <span style={{ fontSize: '0.68rem', padding: '0.1rem 0.4rem', borderRadius: '4px', background: '#FEF3C7', color: '#92400E', fontWeight: 800 }}>
-                  UNLINKED
-                </span>
-              </div>
-            )}
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' }}>
-            {!isProfileLinked ? (
-              <button
-                type="button"
-                disabled={searching}
-                onClick={handleDiscoverProfile}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                  padding: '0.65rem 1.25rem',
-                  borderRadius: '8px',
-                  border: 'none',
-                  background: 'linear-gradient(135deg, #F1C40F 0%, #D4AF37 100%)',
-                  color: '#070F1E',
-                  fontWeight: 800,
-                  fontSize: '0.82rem',
-                  cursor: searching ? 'not-allowed' : 'pointer',
-                  boxShadow: '0 2px 8px rgba(212, 175, 55, 0.3)'
-                }}
-              >
-                <Search size={14} className={searching ? 'animate-spin' : ''} />
-                {searching ? 'Searching Local Index...' : 'Discover Research Profile'}
-              </button>
-            ) : (
-              <button
-                type="button"
-                disabled={extractingWorks}
-                onClick={() => handleDiscoverWorks()}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                  padding: '0.65rem 1.25rem',
-                  borderRadius: '8px',
-                  border: 'none',
-                  background: 'linear-gradient(135deg, #070F1E 0%, #0B192C 100%)',
-                  color: '#F1C40F',
-                  fontWeight: 800,
-                  fontSize: '0.82rem',
-                  cursor: extractingWorks ? 'not-allowed' : 'pointer',
-                  boxShadow: '0 2px 8px rgba(7, 15, 30, 0.25)'
-                }}
-              >
-                <RefreshCw size={14} className={extractingWorks ? 'animate-spin' : ''} />
-                {extractingWorks ? 'Extracting Works...' : 'Discover Publications'}
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* 3. Real Step Progress Banner */}
-      {(searching || extractingWorks) && (
+      {/* 2. Real Progress Indicator */}
+      {extractingWorks && (
         <div style={{ background: '#EFF6FF', borderRadius: '12px', border: '1px solid #BFDBFE', padding: '1rem 1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
             <span style={{ fontSize: '0.82rem', fontWeight: 800, color: '#1E40AF' }}>
-              {searching ? matchingProgress.message : extractProgress.message}
+              {extractProgress.message}
             </span>
             <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#2563EB' }}>
-              {searching ? matchingProgress.percent : extractProgress.percent}%
+              {extractProgress.percent}%
             </span>
           </div>
           <div style={{ height: '6px', background: '#DBEAFE', borderRadius: '9999px', overflow: 'hidden' }}>
-            <div style={{ width: `${searching ? matchingProgress.percent : extractProgress.percent}%`, height: '100%', background: '#2563EB', transition: 'width 0.3s ease' }} />
+            <div style={{ width: `${extractProgress.percent}%`, height: '100%', background: '#2563EB', transition: 'width 0.3s ease' }} />
           </div>
         </div>
       )}
 
-      {/* 4. Candidate Researcher Profiles (Confirmation Gate) */}
-      {matchResult && !isProfileLinked && (
-        <div style={{ background: '#FFFFFF', borderRadius: '14px', border: '1px solid #E2E8F0', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div>
-              <h3 style={{ fontSize: '1rem', fontWeight: 800, color: '#0F172A', margin: '0 0 0.2rem' }}>
-                Possible Researcher Profiles in Local Scholarly Index
-              </h3>
-              <p style={{ fontSize: '0.78rem', color: '#64748B', margin: 0 }}>
-                Please verify researcher identity before binding to prevent cross-author attribution errors.
-              </p>
+      {/* 3. Enter ORCID iD & Fetch Publications Card */}
+      <div id="orcid-search-section" style={{ background: '#FFFFFF', borderRadius: '14px', border: '1px solid #E2E8F0', padding: '1.5rem', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+        <div style={{ marginBottom: '1.1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.25rem' }}>
+            <span style={{
+              width: '26px',
+              height: '26px',
+              borderRadius: '7px',
+              background: 'rgba(166, 206, 57, 0.2)',
+              border: '1.5px solid #A6CE39',
+              color: '#658C12',
+              fontWeight: 900,
+              fontSize: '0.9rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontFamily: 'sans-serif'
+            }}>iD</span>
+            <h2 style={{ fontSize: '1.08rem', fontWeight: 800, color: '#0F172A', margin: 0 }}>
+              Enter ORCID iD & Fetch Publications
+            </h2>
+          </div>
+          <p style={{ fontSize: '0.78rem', color: '#64748B', margin: 0 }}>
+            Enter the researcher's 16-digit ORCID identifier (e.g., <strong>0000-0002-8262-9894</strong> or full profile link) to query the official ORCID Public API v3.0, retrieve verified works, and import into the review queue.
+          </p>
+        </div>
+
+        <form onSubmit={handleFetchByOrcidId} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ flex: 1, minWidth: '320px', position: 'relative' }}>
+            <div style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', display: 'flex', alignItems: 'center', pointerEvents: 'none' }}>
+              <span style={{ color: '#A6CE39', fontWeight: 900, fontSize: '0.95rem' }}>iD</span>
             </div>
-            <span style={{ fontSize: '0.72rem', padding: '0.2rem 0.55rem', borderRadius: '9999px', background: '#F1F5F9', fontWeight: 800, color: '#334155' }}>
-              {matchResult.candidates.length} Candidate(s) Found
-            </span>
+            <input
+              id="orcid-id-input"
+              type="text"
+              value={orcidInput}
+              onChange={(e) => setOrcidInput(e.target.value)}
+              placeholder="Enter 16-digit ORCID iD (e.g. 0000-0002-8262-9894 or https://orcid.org/...)"
+              style={{
+                width: '100%',
+                padding: '0.72rem 0.85rem 0.72rem 2.6rem',
+                borderRadius: '8px',
+                border: '1.5px solid #CBD5E1',
+                fontSize: '0.9rem',
+                outline: 'none',
+                fontWeight: 700,
+                fontFamily: 'monospace',
+                color: '#0F172A',
+                boxSizing: 'border-box',
+                background: '#F8FAFC'
+              }}
+            />
           </div>
 
-          {matchResult.candidates.length === 0 ? (
-            <div style={{ padding: '2.5rem', textAlign: 'center', background: '#F8FAFC', borderRadius: '10px', color: '#64748B', fontSize: '0.84rem' }}>
-              No matching researcher records found in the local OpenAlex/ORCID index for <strong>{facultyRecord.name}</strong>.
-            </div>
-          ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1rem' }}>
-              {matchResult.candidates.map(candidate => (
-                <div
-                  key={candidate.id}
-                  style={{
-                    background: '#FAFBFF',
-                    borderRadius: '12px',
-                    border: '1.5px solid #CBD5E1',
-                    padding: '1.25rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    gap: '0.85rem'
-                  }}
-                >
-                  <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.4rem' }}>
-                      <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#0F172A', margin: 0 }}>
-                        {candidate.canonicalName}
-                      </h4>
-                      <span style={{
-                        fontSize: '0.68rem',
-                        fontWeight: 800,
-                        padding: '0.15rem 0.45rem',
-                        borderRadius: '4px',
-                        background: candidate.classification === 'EXACT_MATCH' ? '#ECFDF5' : (candidate.classification === 'HIGH_CONFIDENCE' ? '#EFF6FF' : '#FEF3C7'),
-                        color: candidate.classification === 'EXACT_MATCH' ? '#047857' : (candidate.classification === 'HIGH_CONFIDENCE' ? '#1E40AF' : '#92400E'),
-                        border: `1px solid ${candidate.classification === 'EXACT_MATCH' ? '#A7F3D0' : (candidate.classification === 'HIGH_CONFIDENCE' ? '#BFDBFE' : '#FDE68A')}`
-                      }}>
-                        {candidate.classification.replace('_', ' ')} ({candidate.matchScore} pts)
-                      </span>
-                    </div>
+          <button
+            type="submit"
+            disabled={extractingWorks}
+            style={{
+              padding: '0.72rem 1.6rem',
+              borderRadius: '8px',
+              border: 'none',
+              background: 'linear-gradient(135deg, #070F1E 0%, #0B192C 100%)',
+              color: '#F1C40F',
+              fontWeight: 800,
+              fontSize: '0.85rem',
+              cursor: extractingWorks ? 'not-allowed' : 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              boxShadow: '0 3px 10px rgba(7, 15, 30, 0.25)'
+            }}
+          >
+            <RefreshCw size={15} className={extractingWorks ? 'animate-spin' : ''} />
+            {extractingWorks ? 'Fetching Works...' : 'Fetch ORCID Publications'}
+          </button>
 
-                    <div style={{ fontSize: '0.74rem', color: '#475569', marginBottom: '0.5rem' }}>
-                      <strong>Institution:</strong> {candidate.primaryAffiliation}
-                    </div>
-
-                    <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', fontSize: '0.72rem', color: '#64748B', marginBottom: '0.65rem' }}>
-                      <span><strong>Works:</strong> {candidate.worksCount}</span>
-                      <span><strong>Citations:</strong> {candidate.citedByCount}</span>
-                      <span><strong>h-index:</strong> {candidate.hIndex}</span>
-                      {candidate.orcid && <span><strong>ORCID:</strong> {candidate.orcid}</span>}
-                    </div>
-
-                    <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'wrap', marginBottom: '0.65rem' }}>
-                      {candidate.topics?.map((t, idx) => (
-                        <span key={idx} style={{ fontSize: '0.64rem', padding: '0.1rem 0.35rem', borderRadius: '4px', background: '#F1F5F9', color: '#334155', fontWeight: 600 }}>
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div style={{ fontSize: '0.7rem', color: '#059669', background: '#ECFDF5', padding: '0.4rem 0.6rem', borderRadius: '6px' }}>
-                      {candidate.evidence.map((ev, evi) => (
-                        <div key={evi}>✓ {ev}</div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '0.5rem', borderTop: '1px solid #E2E8F0', paddingTop: '0.75rem' }}>
-                    <button
-                      type="button"
-                      onClick={() => handleConfirmCandidate(candidate)}
-                      style={{
-                        flex: 1,
-                        padding: '0.5rem',
-                        borderRadius: '6px',
-                        border: 'none',
-                        background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
-                        color: '#FFFFFF',
-                        fontWeight: 800,
-                        fontSize: '0.76rem',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '0.35rem'
-                      }}
-                    >
-                      <UserCheck size={14} /> This Is The Correct Researcher
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setMatchResult(null)}
-                      style={{ padding: '0.5rem 0.75rem', borderRadius: '6px', border: '1px solid #CBD5E1', background: '#FFFFFF', fontSize: '0.76rem', fontWeight: 700, color: '#64748B', cursor: 'pointer' }}
-                    >
-                      Dismiss
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+          {orcidInput && (
+            <button
+              type="button"
+              onClick={() => setOrcidInput('')}
+              style={{
+                padding: '0.72rem 1rem',
+                borderRadius: '8px',
+                border: '1px solid #CBD5E1',
+                background: '#FFFFFF',
+                color: '#64748B',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                cursor: 'pointer'
+              }}
+            >
+              Clear
+            </button>
           )}
-        </div>
-      )}
+        </form>
+
+        {/* Verified ORCID Scholar Details */}
+        {orcidProfile && (
+          <div style={{ marginTop: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.85rem', color: '#065F46', background: '#ECFDF5', border: '1.5px solid #A7F3D0', padding: '0.75rem 1.1rem', borderRadius: '10px', flexWrap: 'wrap', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+              <CheckCircle2 size={18} style={{ color: '#059669' }} />
+              <div>
+                <div style={{ fontWeight: 800, color: '#064E3B' }}>
+                  {orcidProfile.fullName || `${orcidProfile.givenName || ''} ${orcidProfile.familyName || ''}`.trim()}
+                </div>
+                <div style={{ fontSize: '0.74rem', color: '#047857', fontFamily: 'monospace' }}>
+                  ORCID iD: {orcidProfile.orcid}
+                </div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <button
+                type="button"
+                onClick={() => handleCopy(`https://orcid.org/${orcidProfile.orcid}`, 'ORCID URL')}
+                style={{ background: '#FFFFFF', border: '1px solid #CBD5E1', borderRadius: '6px', padding: '0.35rem 0.6rem', color: '#475569', cursor: 'pointer', fontSize: '0.72rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
+              >
+                {copiedId === `https://orcid.org/${orcidProfile.orcid}` ? <Check size={12} style={{ color: '#059669' }} /> : <Copy size={12} />} {copiedId === `https://orcid.org/${orcidProfile.orcid}` ? 'Copied' : 'Copy'}
+              </button>
+              <a
+                href={`https://orcid.org/${orcidProfile.orcid}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: '#2563EB', display: 'inline-flex', alignItems: 'center', gap: '0.25rem', textDecoration: 'none', fontWeight: 700, fontSize: '0.78rem' }}
+              >
+                View on ORCID.org <ExternalLink size={13} />
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* 5. Import Success Notice */}
       {importNotice && (
@@ -561,16 +508,16 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
         </div>
       )}
 
-      {/* 6. Discovered Publications List */}
+      {/* 6. Discovered ORCID Publications List & Batch Import */}
       {discoveredCandidates && (
-        <div style={{ background: '#FFFFFF', borderRadius: '14px', border: '1px solid #E2E8F0', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div style={{ background: '#FFFFFF', borderRadius: '14px', border: '1px solid #E2E8F0', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
           {/* Summary KPIs */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '0.75rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '0.75rem' }}>
             {[
-              { label: 'Total Discovered', value: discoveredCandidates.summary.totalDiscovered, color: '#0F172A', bg: '#F8FAFC' },
+              { label: 'Total in ORCID Record', value: discoveredCandidates.summary.totalDiscovered, color: '#0F172A', bg: '#F8FAFC' },
               { label: 'New Ready to Import', value: discoveredCandidates.summary.newRecords, color: '#059669', bg: '#ECFDF5' },
-              { label: 'Duplicates in Portal', value: discoveredCandidates.summary.duplicates, color: '#D97706', bg: '#FEFCE8' },
-              { label: 'Cross-Source Enriched', value: discoveredCandidates.summary.crossSourceEnriched, color: '#2563EB', bg: '#EFF6FF' }
+              { label: 'Already in Portal', value: discoveredCandidates.summary.duplicates, color: '#D97706', bg: '#FEFCE8' },
+              { label: 'With Verified DOI', value: discoveredCandidates.summary.crossSourceEnriched, color: '#2563EB', bg: '#EFF6FF' }
             ].map((k, idx) => (
               <div key={idx} style={{ background: k.bg, padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid #E2E8F0' }}>
                 <div style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 600 }}>{k.label}</div>
@@ -579,26 +526,27 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
             ))}
           </div>
 
-          {/* Candidate Tabs & Action Bar */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', borderBottom: '1px solid #E2E8F0', paddingBottom: '0.75rem' }}>
+          {/* Action Header & Bulk Import Controls */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', borderBottom: '1px solid #E2E8F0', paddingBottom: '0.85rem' }}>
+            {/* Filter Tabs */}
             <div style={{ display: 'flex', gap: '0.4rem' }}>
               {[
                 { id: 'NEW', label: `New (${discoveredCandidates.summary.newRecords})` },
-                { id: 'ALL', label: `All Discovered (${discoveredCandidates.candidates.length})` },
-                { id: 'EXACT_DUPLICATE', label: `Duplicates (${discoveredCandidates.summary.duplicates})` }
+                { id: 'ALL', label: `All Works (${discoveredCandidates.candidates.length})` },
+                { id: 'EXACT_DUPLICATE', label: `Already in Portal (${discoveredCandidates.summary.duplicates})` }
               ].map(tab => (
                 <button
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id)}
                   style={{
-                    padding: '0.35rem 0.75rem',
+                    padding: '0.4rem 0.85rem',
                     borderRadius: '6px',
                     border: 'none',
                     background: activeTab === tab.id ? '#070F1E' : '#F1F5F9',
                     color: activeTab === tab.id ? '#F1C40F' : '#475569',
-                    fontSize: '0.75rem',
-                    fontWeight: 700,
+                    fontSize: '0.76rem',
+                    fontWeight: 800,
                     cursor: 'pointer'
                   }}
                 >
@@ -607,11 +555,12 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
               ))}
             </div>
 
-            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            {/* Bulk Action Buttons */}
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
               <button
                 type="button"
                 onClick={() => handleSelectAll(true)}
-                style={{ fontSize: '0.72rem', color: '#2563EB', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer' }}
+                style={{ fontSize: '0.74rem', color: '#2563EB', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer' }}
               >
                 Select All
               </button>
@@ -619,35 +568,66 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
               <button
                 type="button"
                 onClick={() => handleSelectAll(false)}
-                style={{ fontSize: '0.72rem', color: '#64748B', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer' }}
+                style={{ fontSize: '0.74rem', color: '#64748B', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer' }}
               >
                 Deselect All
               </button>
               <span style={{ color: '#CBD5E1' }}>•</span>
+
+              {/* 1-Click Import All New */}
               <button
                 type="button"
                 disabled={importing || discoveredCandidates.summary.newRecords === 0}
-                onClick={() => handleImportCandidates(true)}
+                onClick={() => handleImportCandidates('ALL_NEW')}
                 style={{
-                  padding: '0.35rem 0.85rem',
+                  padding: '0.45rem 1rem',
                   borderRadius: '6px',
                   border: 'none',
-                  background: '#059669',
-                  color: '#FFFFFF',
-                  fontSize: '0.75rem',
+                  background: discoveredCandidates.summary.newRecords === 0 ? '#E2E8F0' : '#059669',
+                  color: discoveredCandidates.summary.newRecords === 0 ? '#94A3B8' : '#FFFFFF',
+                  fontSize: '0.76rem',
                   fontWeight: 800,
-                  cursor: discoveredCandidates.summary.newRecords === 0 ? 'not-allowed' : 'pointer'
+                  cursor: discoveredCandidates.summary.newRecords === 0 ? 'not-allowed' : 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  boxShadow: discoveredCandidates.summary.newRecords === 0 ? 'none' : '0 2px 6px rgba(5, 150, 105, 0.25)'
                 }}
               >
-                Add All New ({discoveredCandidates.summary.newRecords})
+                <PlusCircle size={14} />
+                Import All New ({discoveredCandidates.summary.newRecords})
+              </button>
+
+              {/* 1-Click Import ALL Publications */}
+              <button
+                type="button"
+                disabled={importing || discoveredCandidates.candidates.length === 0}
+                onClick={() => handleImportCandidates('ALL')}
+                style={{
+                  padding: '0.45rem 1rem',
+                  borderRadius: '6px',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #070F1E 0%, #0B192C 100%)',
+                  color: '#F1C40F',
+                  fontSize: '0.76rem',
+                  fontWeight: 800,
+                  cursor: discoveredCandidates.candidates.length === 0 ? 'not-allowed' : 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  boxShadow: '0 2px 6px rgba(7, 15, 30, 0.25)'
+                }}
+              >
+                <Download size={14} />
+                Import All Publications ({discoveredCandidates.candidates.length})
               </button>
             </div>
           </div>
 
           {/* Cards List */}
           {filteredCandidates.length === 0 ? (
-            <div style={{ padding: '2.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.82rem' }}>
-              No candidate publications found for the selected tab filter.
+            <div style={{ padding: '2.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.84rem' }}>
+              No candidate publications found for the selected tab.
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -665,7 +645,8 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
                       padding: '1rem 1.25rem',
                       display: 'flex',
                       alignItems: 'flex-start',
-                      gap: '0.85rem'
+                      gap: '0.85rem',
+                      transition: 'border-color 0.2s ease'
                     }}
                   >
                     <input
@@ -677,11 +658,11 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
 
                     <div style={{ flex: 1 }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.25rem' }}>
-                        <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.88rem' }}>
+                        <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.9rem' }}>
                           {c.title}
                         </div>
                         <span style={{
-                          padding: '0.15rem 0.5rem',
+                          padding: '0.15rem 0.55rem',
                           borderRadius: '9999px',
                           fontSize: '0.66rem',
                           fontWeight: 800,
@@ -690,24 +671,26 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
                           border: `1px solid ${isNew ? '#A7F3D0' : '#FDE68A'}`,
                           whiteSpace: 'nowrap'
                         }}>
-                          {c.classification.replace('_', ' ')}
+                          {isNew ? 'NEW TO PORTAL' : 'ALREADY IN PORTAL'}
                         </span>
                       </div>
 
-                      <div style={{ fontSize: '0.74rem', color: '#64748B', marginBottom: '0.45rem' }}>
-                        {c.journalName ? `${c.journalName} • ` : ''}Year: {c.publicationYear} {c.doi ? `• DOI: ${c.doi}` : ''}
+                      <div style={{ fontSize: '0.76rem', color: '#64748B', marginBottom: '0.45rem' }}>
+                        {c.journalName ? <strong style={{ color: '#334155' }}>{c.journalName}</strong> : <span>Scholarly Work</span>}
+                        <span> • Year: {c.publicationYear}</span>
+                        {c.doi && (
+                          <span> • DOI: <a href={`https://doi.org/${c.doi}`} target="_blank" rel="noopener noreferrer" style={{ color: '#2563EB', textDecoration: 'none' }}>{c.doi}</a></span>
+                        )}
+                        <span> • Type: {c.publicationType}</span>
                       </div>
 
                       <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', alignItems: 'center' }}>
-                        {c.sources?.map((s, si) => (
-                          <span key={si} style={{ fontSize: '0.65rem', fontWeight: 800, padding: '0.1rem 0.4rem', borderRadius: '4px', background: s === 'OPENALEX' ? '#0F172A' : (s === 'CROSSREF' ? '#D97706' : '#2563EB'), color: '#FFFFFF' }}>
-                            {s}
-                          </span>
-                        ))}
-
-                        {c.openAlexCitations !== undefined && (
-                          <span style={{ fontSize: '0.68rem', color: '#64748B', fontWeight: 700 }}>
-                            OpenAlex Citations: {c.openAlexCitations}
+                        <span style={{ fontSize: '0.65rem', fontWeight: 800, padding: '0.1rem 0.45rem', borderRadius: '4px', background: '#A6CE39', color: '#070F1E' }}>
+                          ORCID
+                        </span>
+                        {c.doi && (
+                          <span style={{ fontSize: '0.65rem', fontWeight: 800, padding: '0.1rem 0.45rem', borderRadius: '4px', background: '#D97706', color: '#FFFFFF' }}>
+                            CROSSREF DOI
                           </span>
                         )}
 
@@ -716,7 +699,7 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
                           onClick={() => setComparisonCandidate(c)}
                           style={{ marginLeft: 'auto', background: 'none', border: 'none', color: '#2563EB', fontSize: '0.72rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
                         >
-                          Compare Sources <ExternalLink size={11} />
+                          View Metadata <ExternalLink size={11} />
                         </button>
                       </div>
                     </div>
@@ -726,102 +709,61 @@ export default function ResearchDiscoveryView({ currentUser, onNavigate }) {
             </div>
           )}
 
-          {/* Bottom Import Selected Action */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #E2E8F0', paddingTop: '1rem' }}>
-            <div style={{ fontSize: '0.78rem', color: '#64748B' }}>
+          {/* Bottom Import Selected Action Bar */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #E2E8F0', paddingTop: '1rem', flexWrap: 'wrap', gap: '0.75rem' }}>
+            <div style={{ fontSize: '0.8rem', color: '#64748B' }}>
               <strong>{selectedCount}</strong> publication(s) selected for import.
             </div>
 
-            <button
-              type="button"
-              disabled={importing || selectedCount === 0}
-              onClick={() => handleImportCandidates(false)}
-              style={{
-                padding: '0.55rem 1.4rem',
-                borderRadius: '8px',
-                border: 'none',
-                background: selectedCount === 0 ? '#CBD5E1' : 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
-                color: '#FFFFFF',
-                fontSize: '0.82rem',
-                fontWeight: 800,
-                cursor: selectedCount === 0 ? 'not-allowed' : 'pointer',
-                boxShadow: selectedCount === 0 ? 'none' : '0 2px 10px rgba(16, 185, 129, 0.3)'
-              }}
-            >
-              {importing ? 'Importing Selected...' : `Import Selected (${selectedCount})`}
-            </button>
+            <div style={{ display: 'flex', gap: '0.6rem' }}>
+              <button
+                type="button"
+                disabled={importing || selectedCount === 0}
+                onClick={() => handleImportCandidates('SELECTED')}
+                style={{
+                  padding: '0.55rem 1.4rem',
+                  borderRadius: '8px',
+                  border: 'none',
+                  background: selectedCount === 0 ? '#CBD5E1' : 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+                  color: '#FFFFFF',
+                  fontSize: '0.82rem',
+                  fontWeight: 800,
+                  cursor: selectedCount === 0 ? 'not-allowed' : 'pointer',
+                  boxShadow: selectedCount === 0 ? 'none' : '0 2px 10px rgba(16, 185, 129, 0.3)'
+                }}
+              >
+                {importing ? 'Importing Selected...' : `Import Selected (${selectedCount})`}
+              </button>
+            </div>
           </div>
         </div>
       )}
 
-      {/* 7. Compare Sources Dialog */}
+      {/* 7. Compare Discovered Metadata Modal */}
       {comparisonCandidate && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(7, 15, 30, 0.8)', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1300, padding: '1rem' }}>
-          <div style={{ background: '#FFFFFF', borderRadius: '16px', maxWidth: '650px', width: '100%', border: '1px solid #D4AF37', overflow: 'hidden' }}>
+          <div style={{ background: '#FFFFFF', borderRadius: '16px', maxWidth: '650px', width: '100%', border: '1px solid #D4AF37', overflow: 'hidden', boxShadow: '0 25px 60px rgba(0,0,0,0.4)' }}>
             <div style={{ background: '#070F1E', padding: '1rem 1.25rem', color: '#FFFFFF', borderBottom: '2px solid #D4AF37', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h3 style={{ fontSize: '1rem', fontWeight: 800, margin: 0, color: '#FFFFFF' }}>Compare Discovered Metadata</h3>
+              <h3 style={{ fontSize: '1rem', fontWeight: 800, margin: 0, color: '#FFFFFF' }}>Discovered ORCID Publication Metadata</h3>
               <button type="button" onClick={() => setComparisonCandidate(null)} style={{ background: 'transparent', border: 'none', color: '#94A3B8', cursor: 'pointer' }}><X size={16} /></button>
             </div>
-            <div style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.8rem' }}>
+            <div style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.82rem' }}>
               <div><strong>Title:</strong> {comparisonCandidate.title}</div>
-              <div><strong>DOI:</strong> {comparisonCandidate.doi || '—'}</div>
-              <div><strong>Journal:</strong> {comparisonCandidate.journalName || '—'}</div>
-              <div><strong>Publisher:</strong> {comparisonCandidate.publisher || '—'}</div>
-              <div><strong>OpenAlex Citations:</strong> {comparisonCandidate.openAlexCitations}</div>
-              <div><strong>Sources Supplying Metadata:</strong> {comparisonCandidate.sources?.join(', ')}</div>
+              <div><strong>Publication Type:</strong> {comparisonCandidate.publicationType}</div>
+              <div><strong>Journal / Container:</strong> {comparisonCandidate.journalName || '—'}</div>
+              <div><strong>Publication Year:</strong> {comparisonCandidate.publicationYear}</div>
+              <div><strong>Date:</strong> {comparisonCandidate.publicationDate || '—'}</div>
+              <div><strong>DOI:</strong> {comparisonCandidate.doi ? <a href={`https://doi.org/${comparisonCandidate.doi}`} target="_blank" rel="noopener noreferrer" style={{ color: '#2563EB' }}>{comparisonCandidate.doi}</a> : '—'}</div>
+              <div><strong>ORCID Put-Code:</strong> <code>{comparisonCandidate.putCode || '—'}</code></div>
+              <div><strong>Provenance Source:</strong> <span style={{ color: '#059669', fontWeight: 700 }}>Official ORCID Public API v3.0</span></div>
             </div>
             <div style={{ padding: '0.75rem 1.25rem', background: '#F8FAFC', borderTop: '1px solid #E2E8F0', display: 'flex', justifyContent: 'flex-end' }}>
-              <button type="button" onClick={() => setComparisonCandidate(null)} style={{ padding: '0.4rem 0.85rem', background: '#070F1E', color: '#F1C40F', border: 'none', borderRadius: '6px', fontSize: '0.76rem', fontWeight: 700, cursor: 'pointer' }}>Close</button>
+              <button type="button" onClick={() => setComparisonCandidate(null)} style={{ padding: '0.4rem 0.95rem', background: '#070F1E', color: '#F1C40F', border: 'none', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer' }}>Close</button>
             </div>
           </div>
         </div>
       )}
-      {/* 8. Unlink Profile Confirmation Modal */}
-      {unlinkConfirmOpen && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          background: 'rgba(7, 15, 30, 0.85)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '1.5rem',
-          zIndex: 7000
-        }}>
-          <div style={{
-            background: '#FFFFFF',
-            borderRadius: '16px',
-            padding: '1.8rem',
-            maxWidth: '400px',
-            textAlign: 'center',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.4)'
-          }}>
-            <AlertCircle size={36} style={{ color: '#DC2626', margin: '0 auto 0.6rem' }} />
-            <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0F172A', margin: '0 0 0.4rem 0' }}>
-              Unlink Research Profile?
-            </h3>
-            <p style={{ fontSize: '0.84rem', color: '#64748B', marginBottom: '1.4rem', lineHeight: 1.5 }}>
-              Are you sure you want to unlink the research profile for <strong>{facultyRecord.name}</strong>?
-            </p>
-            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
-              <button
-                type="button"
-                onClick={() => setUnlinkConfirmOpen(false)}
-                style={{ padding: '0.6rem 1.25rem', borderRadius: '8px', border: '1px solid #CBD5E1', background: '#FFFFFF', fontSize: '0.82rem', fontWeight: 600, cursor: 'pointer' }}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={handleConfirmUnlink}
-                style={{ padding: '0.6rem 1.4rem', borderRadius: '8px', border: 'none', background: '#DC2626', color: '#FFFFFF', fontSize: '0.82rem', fontWeight: 700, cursor: 'pointer' }}
-              >
-                Unlink Profile
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+
     </div>
   );
 }

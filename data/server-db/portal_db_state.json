@@ -4070,6 +4070,45 @@
       "uniqueAchievementStudents": 41,
       "academicEvents": 15,
       "bosMeetings": 6
+    },
+    "lastUpdatedAt": "2026-09-18T04:44:59.283Z"
+  },
+  "auditLogs": [
+    {
+      "id": "AUD-1789706699275-156",
+      "timestamp": "2026-09-18T04:44:59.275Z",
+      "userName": "Dr. S. Venkateswarlu",
+      "userRole": "ADMIN",
+      "action": "RESEARCH_PROFILE_LINKED",
+      "module": "Publications",
+      "details": "Linked faculty ID NEC-PER-0012 to ORCID: 0000-0002-8262-9894 (S. Maheswari)"
+    },
+    {
+      "id": "AUD-1789706699275-336",
+      "timestamp": "2026-09-18T04:44:59.275Z",
+      "userName": "Dr. S. Venkateswarlu",
+      "userRole": "ADMIN",
+      "action": "UPDATE_RESEARCH_PROFILE",
+      "module": "Publications",
+      "details": "Updated research profile for faculty ID: NEC-PER-0012"
+    },
+    {
+      "id": "AUD-001",
+      "timestamp": "2026-08-23T10:00:00.000Z",
+      "userName": "Sri Mittapalli Ramesh Babu",
+      "userRole": "SUPER_ADMIN",
+      "action": "INIT_IAM",
+      "module": "Auth & Access",
+      "details": "Enterprise Identity & Access Management initialized with 2-step OTP enforcement."
+    },
+    {
+      "id": "AUD-002",
+      "timestamp": "2026-08-23T10:05:00.000Z",
+      "userName": "Dr. S. Venkateswarlu",
+      "userRole": "ADMIN",
+      "action": "SYNC_VERIFY",
+      "module": "Research Hub",
+      "details": "125+ SCI/Scopus indexed research publications verified."
     }
-  }
+  ]
 }

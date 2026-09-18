@@ -129,7 +129,13 @@ import PortalModuleFallback from './common/PortalModuleFallback.jsx';
 import ModuleErrorBoundary from '../common/ModuleErrorBoundary.jsx';
 
 export default function PortalDashboard({ currentUser, onNavigatePublic, onLogout, onExitPortal }) {
-  const [activeModule, setActiveModule] = useState('overview');
+  const [activeModule, setActiveModule] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('module') || 'overview';
+    }
+    return 'overview';
+  });
   const [selectedBulkModule, setSelectedBulkModule] = useState(null);
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
   const [isMobileDrawer, setIsMobileDrawer] = useState(false);

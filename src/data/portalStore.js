@@ -1651,15 +1651,16 @@ export function saveFacultyResearchProfile(facultyId, profileData, user) {
 export function linkFacultyResearcher(facultyId, candidate, user) {
   if (!facultyId || !candidate) return;
   const profileData = {
-    openAlexAuthorId: candidate.openAlexAuthorId || candidate.openAlexShortId || '',
     orcid: candidate.orcid || '',
-    openAlexMatchStatus: 'MANUALLY_CONFIRMED',
+    orcidVerified: true,
     worksCount: candidate.worksCount || 0,
+    openAlexAuthorId: candidate.openAlexAuthorId || candidate.openAlexShortId || '',
+    openAlexMatchStatus: 'MANUALLY_CONFIRMED',
     citedByCount: candidate.citedByCount || 0,
     hIndex: candidate.hIndex || 0
   };
   const res = saveFacultyResearchProfile(facultyId, profileData, user);
-  addAuditLog('RESEARCH_PROFILE_LINKED', 'Publications', `Linked faculty ID ${facultyId} to OpenAlex Author: ${candidate.canonicalName} (${candidate.openAlexShortId || candidate.openAlexAuthorId})`, user);
+  addAuditLog('RESEARCH_PROFILE_LINKED', 'Publications', `Linked faculty ID ${facultyId} to ORCID: ${candidate.orcid || ''} (${candidate.fullName || candidate.canonicalName || ''})`, user);
   return res;
 }
 
@@ -1668,6 +1669,8 @@ export function unlinkFacultyResearcher(facultyId, user) {
   const profiles = loadStore(STORAGE_KEYS.FACULTY_RESEARCH_PROFILES, INITIAL_FACULTY_RESEARCH_PROFILES);
   const idx = profiles.findIndex(p => p.facultyId === facultyId);
   if (idx >= 0) {
+    profiles[idx].orcid = '';
+    profiles[idx].orcidVerified = false;
     profiles[idx].openAlexAuthorId = '';
     profiles[idx].openAlexMatchStatus = 'NOT_DISCOVERED';
     profiles[idx].updatedAt = new Date().toISOString();
