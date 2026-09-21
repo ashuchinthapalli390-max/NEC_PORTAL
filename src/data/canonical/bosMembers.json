@@ -1,0 +1,272 @@
+[
+  {
+    "id": "BOS_MEM_AIML_1",
+    "name": "Dr.K.V.D.Kiran",
+    "role": "External Academic Auditor",
+    "department": "AIML",
+    "type": "Academic Auditor",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_AIML_2",
+    "name": "Dr.C.Krishna Mohan",
+    "role": "External BoS Member 1",
+    "department": "AIML",
+    "type": "External BoS Member",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_AIML_3",
+    "name": "Dr.K.Karteeka Pavana",
+    "role": "External BoS Member 2",
+    "department": "AIML",
+    "type": "External BoS Member",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_AIML_4",
+    "name": "Dr.K.V.D.Kiran KLU",
+    "role": "External Academic Auditor (Proposed)",
+    "department": "AIML",
+    "type": "Academic Auditor",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_AIML_5",
+    "name": "Dr.C.Krishna Mohan IIIT Hyderabad",
+    "role": "External BoS Member 1 (Proposed)",
+    "department": "AIML",
+    "type": "External BoS Member",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_AIML_6",
+    "name": "Dr.K.Karteeka Pavana RVR JC College of Engineering",
+    "role": "External BoS Member 2 (Proposed)",
+    "department": "AIML",
+    "type": "External BoS Member",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(AIML)_7",
+    "name": "Dr.K.V.D.Kiran",
+    "role": "External Academic Auditor",
+    "department": "CSE(AIML)",
+    "type": "Academic Auditor",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(AIML)_8",
+    "name": "Dr.C.Krishna Mohan",
+    "role": "External BoS Member 1",
+    "department": "CSE(AIML)",
+    "type": "External BoS Member",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(AIML)_9",
+    "name": "Dr.K.Karteeka Pavana",
+    "role": "External BoS Member 2",
+    "department": "CSE(AIML)",
+    "type": "External BoS Member",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(AIML)_10",
+    "name": "Dr.K.V.D.Kiran KLU",
+    "role": "External Academic Auditor (Proposed)",
+    "department": "CSE(AIML)",
+    "type": "Academic Auditor",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(AIML)_11",
+    "name": "Dr.N.Satya Krishna SRM University, AP",
+    "role": "External BoS Member 1 (Proposed)",
+    "department": "CSE(AIML)",
+    "type": "External BoS Member",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(AIML)_12",
+    "name": "Dr S.Chittaranjan Dept of CSE, ABV-IIITM, Gwalior",
+    "role": "External BoS Member 2 (Proposed)",
+    "department": "CSE(AIML)",
+    "type": "External BoS Member",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(CS)_13",
+    "name": "Dr.K.V.D.Kiran",
+    "role": "External Academic Auditor",
+    "department": "CSE(CS)",
+    "type": "Academic Auditor",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(CS)_14",
+    "name": "Dr.T.Bheemarjuna Reddy",
+    "role": "External BoS Member 1",
+    "department": "CSE(CS)",
+    "type": "External BoS Member",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(CS)_15",
+    "name": "Dr.K.V.D.Kiran",
+    "role": "External BoS Member 2",
+    "department": "CSE(CS)",
+    "type": "External BoS Member",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(CS)_16",
+    "name": "Dr.K.V.D.Kiran KLU",
+    "role": "External Academic Auditor (Proposed)",
+    "department": "CSE(CS)",
+    "type": "Academic Auditor",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(CS)_17",
+    "name": "Dr.Sriramulu Bojjagani SRM University",
+    "role": "External BoS Member 1 (Proposed)",
+    "department": "CSE(CS)",
+    "type": "External BoS Member",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(CS)_18",
+    "name": "Dr Chilukamari Rajesh Dept of CSE, NIT  Kurukshetra",
+    "role": "External BoS Member 2 (Proposed)",
+    "department": "CSE(CS)",
+    "type": "External BoS Member",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(DS)_19",
+    "name": "Dr.K.V.D.Kiran",
+    "role": "External Academic Auditor",
+    "department": "CSE(DS)",
+    "type": "Academic Auditor",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(DS)_20",
+    "name": "Dr.C.Krishna Mohan IIIT Hyderabad",
+    "role": "External BoS Member 1",
+    "department": "CSE(DS)",
+    "type": "External BoS Member",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(DS)_21",
+    "name": "Dr.S.Sagar Imambi",
+    "role": "External BoS Member 2",
+    "department": "CSE(DS)",
+    "type": "External BoS Member",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(DS)_22",
+    "name": "Dr.K.V.D.Kiran KLU",
+    "role": "External Academic Auditor (Proposed)",
+    "department": "CSE(DS)",
+    "type": "Academic Auditor",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(DS)_23",
+    "name": "Dr R Praneetha Sree NIT Raipur",
+    "role": "External BoS Member 1 (Proposed)",
+    "department": "CSE(DS)",
+    "type": "External BoS Member",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(DS)_24",
+    "name": "Dr V Ramanjaneyulu Yannam Dept of CSE, ABV-IIITM, Gwalior",
+    "role": "External BoS Member 2 (Proposed)",
+    "department": "CSE(DS)",
+    "type": "External BoS Member",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(AI)_25",
+    "name": "Dr.D.Nagamalleswari",
+    "role": "External Academic Auditor",
+    "department": "CSE(AI)",
+    "type": "Academic Auditor",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(AI)_26",
+    "name": "Dr.R B V Subramanyan",
+    "role": "External BoS Member 1",
+    "department": "CSE(AI)",
+    "type": "External BoS Member",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(AI)_27",
+    "name": "Dr.V.Valli Kumari",
+    "role": "External BoS Member 2",
+    "department": "CSE(AI)",
+    "type": "External BoS Member",
+    "status": "Active",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(AI)_28",
+    "name": "Dr.K.V.D.Kiran KLU",
+    "role": "External Academic Auditor (Proposed)",
+    "department": "CSE(AI)",
+    "type": "Academic Auditor",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(AI)_29",
+    "name": "Dr. K. Sathya Babu, Ph.D. (NIT Rourkela) Professor in CSE, IIITDM Kurnool",
+    "role": "External BoS Member 1 (Proposed)",
+    "department": "CSE(AI)",
+    "type": "External BoS Member",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  },
+  {
+    "id": "BOS_MEM_CSE(AI)_30",
+    "name": "Dr Hemanth Kumar Kalluri SRM University",
+    "role": "External BoS Member 2 (Proposed)",
+    "department": "CSE(AI)",
+    "type": "External BoS Member",
+    "status": "Proposed",
+    "sourceFile": "BoS members updated list.xlsx"
+  }
+]

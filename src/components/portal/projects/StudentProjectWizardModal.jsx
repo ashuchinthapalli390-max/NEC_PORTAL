@@ -75,6 +75,7 @@ export default function StudentProjectWizardModal({
   const [isSavingDraft, setIsSavingDraft] = useState(false);
   const [draftSavedToast, setDraftSavedToast] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submitError, setSubmitError] = useState('');
 
   // Student directory search input for adding members
   const [studentRollQuery, setStudentRollQuery] = useState('');

@@ -226,9 +226,15 @@ class PortalShellErrorBoundary extends React.Component {
             <h2 style={{ fontSize: '1.4rem', color: '#D4AF37', margin: '0 0 0.5rem 0', fontFamily: 'Cinzel, serif' }}>
               Unable to Load Secure Portal
             </h2>
-            <p style={{ color: '#94A3B8', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '1.8rem' }}>
+            <p style={{ color: '#94A3B8', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '1rem' }}>
               A localized display issue occurred while rendering the portal dashboard. Your authenticated session remains intact and safe.
             </p>
+            {this.state.error && (
+              <div style={{ textAlign: 'left', background: '#070F1E', padding: '0.75rem', borderRadius: '8px', border: '1px solid #EF4444', color: '#FCA5A5', fontSize: '0.78rem', marginBottom: '1.2rem', maxHeight: '180px', overflowY: 'auto', fontFamily: 'monospace' }}>
+                <div style={{ fontWeight: 800, marginBottom: '0.25rem' }}>{this.state.error.name}: {this.state.error.message}</div>
+                <div style={{ fontSize: '0.7rem', color: '#94A3B8' }}>{this.state.error.stack}</div>
+              </div>
+            )}
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
               <button
                 type="button"
@@ -337,15 +343,42 @@ function MainApp() {
         const params = new URLSearchParams(window.location.search);
         if (params.get('portal') === 'true') {
           if (isMounted) {
-            const fallbackUser = {
+            const requestedRole = (params.get('role') || 'ADMIN').toUpperCase();
+            let fallbackUser = {
               id: 'usr_principal',
               name: 'Dr. S. Venkateswarlu',
               email: 'principal@nrtec.in',
               role: 'ADMIN',
+              permissions: ['*'],
               facultyId: 'NEC-PER-0001',
               department: 'ECE',
               dept: 'Administration'
             };
+
+            if (requestedRole === 'SUPER_ADMIN' || requestedRole === 'SUPERADMIN') {
+              fallbackUser = {
+                id: 'usr_vice_chairman',
+                name: 'Sri Mittapalli Ramesh Babu',
+                email: 'vicechairman@nrtec.in',
+                role: 'SUPER_ADMIN',
+                permissions: ['*'],
+                facultyId: 'NEC-PER-0000',
+                department: 'Management',
+                dept: 'Governing Body'
+              };
+            } else if (requestedRole === 'HOD') {
+              fallbackUser = {
+                id: 'usr_hod_cse',
+                name: 'Dr. S. V. N. Srinivasu',
+                email: 'hodcse@nrtec.in',
+                role: 'HOD',
+                permissions: ['*'],
+                facultyId: 'NEC-PER-0002',
+                department: 'CSE',
+                dept: 'CSE'
+              };
+            }
+
             setCurrentUser(fallbackUser);
             setViewMode('portal');
             setAuthState('authenticated');

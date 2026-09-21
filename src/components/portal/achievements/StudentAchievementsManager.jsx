@@ -77,6 +77,10 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
 
+  // Client-Side Pagination for High-Performance Rendering
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(50);
+
   const refresh = () => {
     setDataVersion(v => v + 1);
     if (onDataChange) onDataChange();
@@ -115,6 +119,19 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
       return matchSearch && matchDept && matchAy && matchCategory && matchLevel && matchPrize && matchStatus && matchDate;
     });
   }, [achievements, searchQuery, selectedDept, selectedAy, selectedCategory, selectedLevel, selectedPrize, selectedStatus, fromDate, toDate]);
+
+  // Reset page when filters change
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedDept, selectedAy, selectedCategory, selectedLevel, selectedPrize, selectedStatus, fromDate, toDate, pageSize]);
+
+  const totalPages = pageSize === 'ALL' ? 1 : Math.max(1, Math.ceil(filteredAchievements.length / Number(pageSize)));
+  const paginatedAchievements = useMemo(() => {
+    if (pageSize === 'ALL') return filteredAchievements;
+    const numSize = Number(pageSize);
+    const start = (currentPage - 1) * numSize;
+    return filteredAchievements.slice(start, start + numSize);
+  }, [filteredAchievements, currentPage, pageSize]);
 
   // KPIs
   const stats = useMemo(() => {
@@ -276,7 +293,7 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
               onChange={(e) => setSelectedDept(e.target.value)}
               style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', background: '#FFFFFF', color: '#0F172A', fontWeight: 600 }}
             >
-              <option value="ALL">All ET Departments</option>
+              <option value="ALL">All</option>
               <option value="CYS">Cyber Security</option>
               <option value="DS">Data Science</option>
               <option value="AI">Artificial Intelligence</option>
@@ -421,14 +438,14 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
               </tr>
             </thead>
             <tbody>
-              {filteredAchievements.length === 0 ? (
+              {paginatedAchievements.length === 0 ? (
                 <tr>
                   <td colSpan={8} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
                     No student achievement records found matching current criteria.
                   </td>
                 </tr>
               ) : (
-                filteredAchievements.map((item, idx) => {
+                paginatedAchievements.map((item, idx) => {
                   const statusKey = item.workflowStatus || (item.status === 'Approved' ? 'APPROVED' : 'DRAFT');
                   const badge = getWorkflowBadge(statusKey);
                   const BadgeIcon = badge.icon;
@@ -570,6 +587,133 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Pagination Toolbar */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '0.85rem 1.25rem',
+          borderTop: '1px solid #E2E8F0',
+          background: '#F8FAFC',
+          fontSize: '0.78rem',
+          color: '#64748B',
+          flexWrap: 'wrap',
+          gap: '0.75rem'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <span>
+              Showing{' '}
+              <strong style={{ color: '#0F172A' }}>
+                {filteredAchievements.length === 0 ? 0 : (currentPage - 1) * (pageSize === 'ALL' ? filteredAchievements.length : Number(pageSize)) + 1}
+              </strong>{' '}
+              to{' '}
+              <strong style={{ color: '#0F172A' }}>
+                {pageSize === 'ALL' ? filteredAchievements.length : Math.min(currentPage * Number(pageSize), filteredAchievements.length)}
+              </strong>{' '}
+              of <strong style={{ color: '#0F172A' }}>{filteredAchievements.length.toLocaleString('en-IN')}</strong> records
+            </span>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', marginLeft: '0.5rem' }}>
+              <span>Per page:</span>
+              <select
+                value={pageSize}
+                onChange={(e) => setPageSize(e.target.value === 'ALL' ? 'ALL' : Number(e.target.value))}
+                style={{
+                  padding: '0.25rem 0.5rem',
+                  borderRadius: '6px',
+                  border: '1px solid #CBD5E1',
+                  background: '#FFFFFF',
+                  fontSize: '0.76rem',
+                  fontWeight: 600,
+                  color: '#0F172A'
+                }}
+              >
+                <option value={25}>25</option>
+                <option value={50}>50</option>
+                <option value={100}>100</option>
+                <option value={200}>200</option>
+                <option value="ALL">All ({filteredAchievements.length})</option>
+              </select>
+            </div>
+          </div>
+
+          {pageSize !== 'ALL' && totalPages > 1 && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <button
+                type="button"
+                disabled={currentPage <= 1}
+                onClick={() => setCurrentPage(1)}
+                style={{
+                  padding: '0.3rem 0.6rem',
+                  borderRadius: '6px',
+                  border: '1px solid #CBD5E1',
+                  background: currentPage <= 1 ? '#F1F5F9' : '#FFFFFF',
+                  color: currentPage <= 1 ? '#94A3B8' : '#0F172A',
+                  cursor: currentPage <= 1 ? 'not-allowed' : 'pointer',
+                  fontWeight: 600,
+                  fontSize: '0.74rem'
+                }}
+              >
+                « First
+              </button>
+              <button
+                type="button"
+                disabled={currentPage <= 1}
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                style={{
+                  padding: '0.3rem 0.6rem',
+                  borderRadius: '6px',
+                  border: '1px solid #CBD5E1',
+                  background: currentPage <= 1 ? '#F1F5F9' : '#FFFFFF',
+                  color: currentPage <= 1 ? '#94A3B8' : '#0F172A',
+                  cursor: currentPage <= 1 ? 'not-allowed' : 'pointer',
+                  fontWeight: 600,
+                  fontSize: '0.74rem'
+                }}
+              >
+                ‹ Prev
+              </button>
+              <span style={{ padding: '0 0.5rem', fontWeight: 700, color: '#0F172A', fontSize: '0.76rem' }}>
+                Page {currentPage} of {totalPages}
+              </span>
+              <button
+                type="button"
+                disabled={currentPage >= totalPages}
+                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                style={{
+                  padding: '0.3rem 0.6rem',
+                  borderRadius: '6px',
+                  border: '1px solid #CBD5E1',
+                  background: currentPage >= totalPages ? '#F1F5F9' : '#FFFFFF',
+                  color: currentPage >= totalPages ? '#94A3B8' : '#0F172A',
+                  cursor: currentPage >= totalPages ? 'not-allowed' : 'pointer',
+                  fontWeight: 600,
+                  fontSize: '0.74rem'
+                }}
+              >
+                Next ›
+              </button>
+              <button
+                type="button"
+                disabled={currentPage >= totalPages}
+                onClick={() => setCurrentPage(totalPages)}
+                style={{
+                  padding: '0.3rem 0.6rem',
+                  borderRadius: '6px',
+                  border: '1px solid #CBD5E1',
+                  background: currentPage >= totalPages ? '#F1F5F9' : '#FFFFFF',
+                  color: currentPage >= totalPages ? '#94A3B8' : '#0F172A',
+                  cursor: currentPage >= totalPages ? 'not-allowed' : 'pointer',
+                  fontWeight: 600,
+                  fontSize: '0.74rem'
+                }}
+              >
+                Last »
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

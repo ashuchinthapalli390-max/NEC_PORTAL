@@ -16,7 +16,7 @@ import {
   X,
   AlertCircle
 } from 'lucide-react';
-import { ET_DEPARTMENTS } from '../../../data/masterData.js';
+import { DEPARTMENTS, ET_DEPARTMENTS } from '../../../data/masterData.js';
 
 export default function FundedProjectsManager({ currentUser }) {
   const [search, setSearch] = useState('');
@@ -150,7 +150,7 @@ export default function FundedProjectsManager({ currentUser }) {
           onChange={(e) => setDeptFilter(e.target.value)}
           style={{ padding: '0.5rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.82rem' }}
         >
-          <option value="ALL">All ET Departments</option>
+          <option value="ALL">All</option>
           {ET_DEPARTMENTS.map(d => <option key={d.code} value={d.code}>{d.name} ({d.code})</option>)}
         </select>
       </div>

@@ -9,29 +9,29 @@ import {
   GOVERNING_BODY, 
   ACADEMIC_COUNCIL, 
   AICTE_IDEA_LAB_TEAM, 
-  FACULTY_DATA,
+  FACULTY_DATA as MASTER_FACULTY_DATA,
   CAMPUS_VIDEOS,
   CAMPUS_PHOTOS,
   BRANDING_LOGOS,
-  INITIAL_PUBLICATIONS,
-  INITIAL_PATENTS,
+  INITIAL_PUBLICATIONS as MASTER_PUBLICATIONS,
+  INITIAL_PATENTS as MASTER_PATENTS,
   INITIAL_FACULTY_RESEARCH_PROFILES,
-  INITIAL_BOS,
-  INITIAL_STUDENT_ACHIEVEMENTS,
-  INITIAL_INTERNSHIPS,
-  INITIAL_PROJECTS,
-  INITIAL_FDPS,
-  INITIAL_FACULTY_ACHIEVEMENTS,
+  INITIAL_BOS as MASTER_BOS,
+  INITIAL_STUDENT_ACHIEVEMENTS as MASTER_STUDENT_ACHIEVEMENTS,
+  INITIAL_INTERNSHIPS as MASTER_INTERNSHIPS,
+  INITIAL_PROJECTS as MASTER_PROJECTS,
+  INITIAL_FDPS as MASTER_FDPS,
+  INITIAL_FACULTY_ACHIEVEMENTS as MASTER_FACULTY_ACHIEVEMENTS,
   INITIAL_EVENTS,
   INITIAL_MEMBERSHIPS,
-  INITIAL_MOUS,
-  INITIAL_NPTEL,
+  INITIAL_MOUS as MASTER_MOUS,
+  INITIAL_NPTEL as MASTER_NPTEL,
   INITIAL_PLACEMENT_STATS,
-  INITIAL_PLACEMENT_RECORDS,
-  INITIAL_PLACEMENTS,
+  INITIAL_PLACEMENT_RECORDS as MASTER_PLACEMENT_RECORDS,
+  INITIAL_PLACEMENTS as MASTER_PLACEMENTS,
   INITIAL_EXAM_NOTIFICATIONS,
   INITIAL_NEWS,
-  INITIAL_STUDENTS,
+  INITIAL_STUDENTS as MASTER_STUDENTS,
   INITIAL_STUDENT_GUARDIANS,
   INITIAL_ATTENDANCE_SNAPSHOTS,
   INITIAL_ATTENDANCE_ALERTS,
@@ -50,6 +50,70 @@ import {
   getVerifiedMediaForEvent
 } from './verified-event-media.js';
 import { parseDateRange, formatDateDDMMYYYY } from '../lib/ui/dateUtils.js';
+import {
+  MODULE_EXPORT_TEMPLATES,
+  detectModuleFromFilenameOrData,
+  formatRowsForOfficialTemplate,
+  formatPdfForOfficialTemplate
+} from '../lib/exports/exportTemplateRegistry.js';
+import {
+  departments as CANONICAL_DEPARTMENTS,
+  faculty as CANONICAL_FACULTY,
+  students as CANONICAL_STUDENTS,
+  publications as CANONICAL_PUBLICATIONS,
+  patents as CANONICAL_PATENTS,
+  bosMeetings as CANONICAL_BOS_MEETINGS,
+  bosMembers as CANONICAL_BOS_MEMBERS,
+  governingBody as CANONICAL_GOVERNING_BODY,
+  academicCouncil as CANONICAL_ACADEMIC_COUNCIL,
+  cspProjects as CANONICAL_CSP_PROJECTS,
+  internships as CANONICAL_INTERNSHIPS,
+  studentNptel as CANONICAL_STUDENT_NPTEL,
+  studentAchievements as CANONICAL_STUDENT_ACHIEVEMENTS,
+  miniProjects as CANONICAL_MINI_PROJECTS,
+  placements as CANONICAL_PLACEMENTS,
+  placementDrives as CANONICAL_PLACEMENT_DRIVES,
+  mous as CANONICAL_MOUS,
+  events as CANONICAL_EVENTS,
+  facultyDevelopment as CANONICAL_FACULTY_DEV,
+  documentEvidence as CANONICAL_DOCUMENT_EVIDENCE,
+  dataQualityReport as CANONICAL_DATA_QUALITY_REPORT
+} from './canonical/index.js';
+
+// Canonical Ingested Combiners (Source file content > summary > seed)
+export const FACULTY_DATA = CANONICAL_FACULTY && CANONICAL_FACULTY.length > 0 ? CANONICAL_FACULTY : MASTER_FACULTY_DATA;
+export const INITIAL_PUBLICATIONS = CANONICAL_PUBLICATIONS && CANONICAL_PUBLICATIONS.length > 0 ? CANONICAL_PUBLICATIONS : MASTER_PUBLICATIONS;
+export const INITIAL_PATENTS = CANONICAL_PATENTS && CANONICAL_PATENTS.length > 0 ? CANONICAL_PATENTS : MASTER_PATENTS;
+export const INITIAL_BOS = CANONICAL_BOS_MEETINGS && CANONICAL_BOS_MEETINGS.length > 0 ? CANONICAL_BOS_MEETINGS : MASTER_BOS;
+export const INITIAL_STUDENT_ACHIEVEMENTS = CANONICAL_STUDENT_ACHIEVEMENTS && CANONICAL_STUDENT_ACHIEVEMENTS.length > 0 ? CANONICAL_STUDENT_ACHIEVEMENTS : MASTER_STUDENT_ACHIEVEMENTS;
+export const INITIAL_INTERNSHIPS = CANONICAL_INTERNSHIPS && CANONICAL_INTERNSHIPS.length > 0 ? CANONICAL_INTERNSHIPS : MASTER_INTERNSHIPS;
+export const INITIAL_PROJECTS = CANONICAL_MINI_PROJECTS && CANONICAL_MINI_PROJECTS.length > 0 ? CANONICAL_MINI_PROJECTS : MASTER_PROJECTS;
+export const INITIAL_MOUS = CANONICAL_MOUS && CANONICAL_MOUS.length > 0 ? CANONICAL_MOUS : MASTER_MOUS;
+export const INITIAL_NPTEL = CANONICAL_STUDENT_NPTEL && CANONICAL_STUDENT_NPTEL.length > 0 ? CANONICAL_STUDENT_NPTEL : MASTER_NPTEL;
+export const INITIAL_PLACEMENT_RECORDS = CANONICAL_PLACEMENTS && CANONICAL_PLACEMENTS.length > 0 ? CANONICAL_PLACEMENTS : MASTER_PLACEMENT_RECORDS;
+export const INITIAL_PLACEMENTS = CANONICAL_PLACEMENTS && CANONICAL_PLACEMENTS.length > 0 ? CANONICAL_PLACEMENTS : MASTER_PLACEMENTS;
+export const INITIAL_STUDENTS = (() => {
+  const map = new Map();
+  (MASTER_STUDENTS || []).forEach(s => {
+    if (s && (s.rollNumber || s.registrationNumber)) {
+      const key = (s.rollNumber || s.registrationNumber).toUpperCase().trim();
+      map.set(key, s);
+    }
+  });
+  (CANONICAL_STUDENTS || []).forEach(s => {
+    if (s && (s.rollNumber || s.registrationNumber)) {
+      const key = (s.rollNumber || s.registrationNumber).toUpperCase().trim();
+      if (!map.has(key)) {
+        map.set(key, s);
+      }
+    }
+  });
+  return Array.from(map.values());
+})();
+export const INITIAL_FDPS = (CANONICAL_FACULTY_DEV?.fdpsOrganized || []).length > 0 ? CANONICAL_FACULTY_DEV.fdpsOrganized : MASTER_FDPS;
+export const INITIAL_WORKSHOPS_ATTENDED = CANONICAL_FACULTY_DEV?.workshopsAttended || [];
+export const INITIAL_FACULTY_ACHIEVEMENTS = (CANONICAL_FACULTY_DEV?.facultyNptel || []).length > 0 ? [...(CANONICAL_FACULTY_DEV.facultyNptel || []), ...(CANONICAL_FACULTY_DEV.books || [])] : MASTER_FACULTY_ACHIEVEMENTS;
+export const INITIAL_CSP = CANONICAL_CSP_PROJECTS && CANONICAL_CSP_PROJECTS.length > 0 ? CANONICAL_CSP_PROJECTS : [];
 
 // -------------------------------------------------------------
 // Storage Keys & Security Core (v3 Production Clean)
@@ -66,6 +130,7 @@ export const STORAGE_KEYS = {
   INTERNSHIPS: 'nec_portal_internships_v3',
   PROJECTS: 'nec_portal_projects_v3',
   FDPS: 'nec_portal_fdps_v3',
+  WORKSHOPS_ATTENDED: 'nec_portal_workshops_attended_v3',
   FACULTY_ACHIEVEMENTS: 'nec_portal_faculty_achievements_v3',
   EVENTS: 'nec_portal_events_v3',
   MEMBERSHIPS: 'nec_portal_memberships_v3',
@@ -115,7 +180,7 @@ export const STORAGE_KEYS = {
 // Automatic one-time cleanup of obsolete legacy demo caches & transactional zero-data reset
 if (typeof window !== 'undefined' && window.localStorage) {
   try {
-    const zeroDataPurgeKey = 'et_portal_zero_data_purged_v2';
+    const zeroDataPurgeKey = 'nec_portal_canonical_v5_synced';
     if (!localStorage.getItem(zeroDataPurgeKey)) {
       const transactionalKeysToClear = [
         'nec_portal_publications_v1', 'nec_portal_publications_v2', 'nec_portal_publications_v3',
@@ -314,48 +379,69 @@ export const USER_ROLES = [
 ];
 
 const memoryStore = {};
+const nodeLocalStorage = {};
 
 export function getStorage() {
   if (typeof window !== 'undefined' && window.localStorage) {
     return window.localStorage;
   }
   return {
-    getItem: (k) => (k in memoryStore ? memoryStore[k] : null),
-    setItem: (k, v) => { memoryStore[k] = String(v); },
-    removeItem: (k) => { delete memoryStore[k]; }
+    getItem: (k) => (k in nodeLocalStorage ? nodeLocalStorage[k] : null),
+    setItem: (k, v) => { nodeLocalStorage[k] = String(v); },
+    removeItem: (k) => { delete nodeLocalStorage[k]; }
   };
 }
 
 export function loadStore(key, initialData) {
   try {
+    if (memoryStore[key] !== undefined && typeof memoryStore[key] !== 'string') {
+      return memoryStore[key];
+    }
     const storage = getStorage();
     const item = storage.getItem(key);
     if (!item) {
       const fallback = Array.isArray(initialData) ? initialData : (initialData || []);
-      storage.setItem(key, JSON.stringify(fallback));
+      memoryStore[key] = fallback;
+      try {
+        storage.setItem(key, JSON.stringify(fallback));
+      } catch (quotaErr) {
+        // Fallback to memoryStore when localStorage quota is exceeded
+      }
       return fallback;
     }
     const parsed = JSON.parse(item);
     if (Array.isArray(parsed)) {
+      memoryStore[key] = parsed;
       return parsed;
     }
     if (parsed && Array.isArray(parsed.records)) {
+      memoryStore[key] = parsed.records;
       return parsed.records;
     }
     if (parsed !== null && typeof parsed === 'object') {
+      memoryStore[key] = parsed;
       return parsed;
     }
-    return Array.isArray(initialData) ? initialData : [];
+    const fallback = Array.isArray(initialData) ? initialData : [];
+    memoryStore[key] = fallback;
+    return fallback;
   } catch (e) {
-    console.error('Storage load error for key:', key, e);
-    return Array.isArray(initialData) ? initialData : [];
+    console.warn('Storage load fallback to memory/initial for key:', key, e.message);
+    const fallback = Array.isArray(initialData) ? initialData : (initialData || []);
+    memoryStore[key] = fallback;
+    return fallback;
   }
 }
 
 export function saveStore(key, data) {
   try {
+    memoryStore[key] = data;
     const storage = getStorage();
-    storage.setItem(key, JSON.stringify(data));
+    try {
+      storage.setItem(key, JSON.stringify(data));
+    } catch (quotaErr) {
+      console.warn(`localStorage quota exceeded for key ${key}; retained in memory.`);
+    }
 
     // Background server synchronization for shared cross-device persistence
     if (typeof window !== 'undefined' && typeof fetch !== 'undefined') {
@@ -1306,12 +1392,36 @@ export function normalizePublicationRecord(raw, idx = 0) {
 
   const firstAuthorName = authors[0]?.name || raw.firstAuthor || raw.facultyName || '';
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // PUBLICATION TYPE RECLASSIFICATION
+  // Records imported from FACULTY PUBLICATIONS MERGED.xlsx with the generic
+  // placeholder venue "Academic Journal / Conference Proceedings" were
+  // classified as "Other Research Output" by the importer because the venue
+  // string contains both keywords (journal + conference) and no real name.
+  // Source audit confirms these are predominantly conference proceedings.
+  // Reclassify them as "Conference Paper" unless stronger evidence exists.
+  // ─────────────────────────────────────────────────────────────────────────
+  const GENERIC_VENUE_PLACEHOLDER = 'academic journal / conference proceedings';
+  const rawVenueLC = (raw.journalName || raw.venue || raw.conferenceName || '').toLowerCase().trim();
+  const isGenericPlaceholderVenue = rawVenueLC === GENERIC_VENUE_PLACEHOLDER;
+
+  let resolvedPublicationType = raw.publicationType || (raw.conferenceName ? 'Conference Paper' : 'Journal Article');
+
+  if (resolvedPublicationType === 'Other Research Output' && isGenericPlaceholderVenue) {
+    // These came from institutional sheets with undifferentiated venue names.
+    // Institution primarily submitted conference papers — reclassify accordingly.
+    // If indexing explicitly mentions journal-specific indicators, keep as Journal.
+    const idxLC = (Array.isArray(raw.indexing) ? raw.indexing.join(' ') : '').toLowerCase();
+    const hasJournalSignal = idxLC.includes('journal') || idxLC.includes('ugc') || idxLC.includes('scie') || !!(raw.issn) || !!(raw.volume);
+    resolvedPublicationType = hasJournalSignal ? 'Journal Article' : 'Conference Paper';
+  }
+
   return {
     ...raw,
     id: raw.id || `pub_${Date.now()}_${idx}`,
     publicationRecordNumber: autoNum,
     title: raw.title || raw.name || 'Untitled Publication',
-    publicationType: raw.publicationType || (raw.conferenceName ? 'Conference Paper' : 'Journal Article'),
+    publicationType: resolvedPublicationType,
     paperOwnerType: raw.paperOwnerType || 'Faculty Publication',
     department: dept,
     departmentCode: dept,
@@ -2403,12 +2513,7 @@ export function normalizeStudentProjectRecord(raw, idx = 0) {
     email: ''
   };
 
-  const reviews = Array.isArray(raw.reviews) && raw.reviews.length > 0 ? raw.reviews : [
-    { reviewName: 'Proposal / Synopsis Review', reviewDate: raw.startDate || `${yearSuffix}-08-15`, panelMembers: 'Project Review Committee', marksAwarded: 18, maxMarks: 20, feedback: 'Problem statement and scope approved.', status: 'COMPLETED' },
-    { reviewName: 'Review 1 (Design & Architecture)', reviewDate: `${yearSuffix}-10-20`, panelMembers: 'Internal Committee', marksAwarded: 22, maxMarks: 25, feedback: 'Architecture validated; begin implementation.', status: 'COMPLETED' },
-    { reviewName: 'Review 2 (Implementation & Testing)', reviewDate: `${yearSuffix}-12-10`, panelMembers: 'Internal Committee', marksAwarded: 20, maxMarks: 25, feedback: 'Core modules tested with benchmark dataset.', status: raw.projectStatus === 'Completed' ? 'COMPLETED' : 'IN_PROGRESS' },
-    { reviewName: 'Final Viva & Demo', reviewDate: raw.expectedCompletion || `${parseInt(yearSuffix, 10) + 1}-03-25`, panelMembers: 'External & Internal Panel', marksAwarded: 27, maxMarks: 30, feedback: 'Excellent demonstration and documentation.', status: raw.projectStatus === 'Completed' ? 'COMPLETED' : 'PENDING' }
-  ];
+  const reviews = Array.isArray(raw.reviews) ? raw.reviews : [];
 
   const documents = Array.isArray(raw.documents) ? raw.documents : [
     ...(raw.projectReportPdf ? [{ id: 'DOC-1', name: raw.projectReportPdf, type: 'Project Report PDF', size: '3.2 MB', url: '#' }] : []),
@@ -2697,6 +2802,41 @@ export function softDeleteFDP(id, user) {
     items[index].deletedBy = user?.name;
     saveStore(STORAGE_KEYS.FDPS, items);
     addAuditLog('DELETE_FDP', 'FDPs Organized', `Soft-deleted FDP ID: ${id}`, user);
+  }
+  return Array.isArray(items) ? items.filter(i => !i.isDeleted) : [];
+}
+
+export function getWorkshopsAttended(includeDeleted = false) {
+  const items = loadStore(STORAGE_KEYS.WORKSHOPS_ATTENDED, INITIAL_WORKSHOPS_ATTENDED);
+  return includeDeleted ? items : (Array.isArray(items) ? items.filter(i => !i.isDeleted) : []);
+}
+
+export function saveWorkshopAttended(item, user) {
+  const items = loadStore(STORAGE_KEYS.WORKSHOPS_ATTENDED, INITIAL_WORKSHOPS_ATTENDED);
+  const index = Array.isArray(items) ? items.findIndex(i => i.id === item.id) : -1;
+  if (index >= 0) {
+    items[index] = { ...items[index], ...item, updatedAt: new Date().toISOString(), updatedBy: user?.name || 'Super Admin' };
+    saveStore(STORAGE_KEYS.WORKSHOPS_ATTENDED, items);
+    addAuditLog('UPDATE_WORKSHOP_ATTENDED', 'Programs Attended', `Updated workshop ${item.title || item.id} for ${item.facultyName}`, user);
+    return items[index];
+  } else {
+    const newItem = { ...item, id: item.id || 'att_' + Date.now(), createdAt: new Date().toISOString(), createdBy: user?.name || 'Super Admin', isDeleted: false };
+    if (Array.isArray(items)) items.unshift(newItem);
+    saveStore(STORAGE_KEYS.WORKSHOPS_ATTENDED, items);
+    addAuditLog('CREATE_WORKSHOP_ATTENDED', 'Programs Attended', `Recorded workshop ${newItem.title} for ${newItem.facultyName}`, user);
+    return newItem;
+  }
+}
+
+export function softDeleteWorkshopAttended(id, user) {
+  const items = loadStore(STORAGE_KEYS.WORKSHOPS_ATTENDED, INITIAL_WORKSHOPS_ATTENDED);
+  const index = Array.isArray(items) ? items.findIndex(i => i.id === id) : -1;
+  if (index >= 0) {
+    items[index].isDeleted = true;
+    items[index].deletedAt = new Date().toISOString();
+    items[index].deletedBy = user?.name;
+    saveStore(STORAGE_KEYS.WORKSHOPS_ATTENDED, items);
+    addAuditLog('DELETE_WORKSHOP_ATTENDED', 'Programs Attended', `Soft-deleted attended workshop ID: ${id}`, user);
   }
   return Array.isArray(items) ? items.filter(i => !i.isDeleted) : [];
 }
@@ -4300,22 +4440,55 @@ export function softDeleteMembership(id, user) {
 // ─────────────────────────────────────────────────────────────
 
 export function calculateMoUStatus(effectiveDate, validityType, customExpiryDate) {
-  if (validityType === 'Until Further Notice') {
+  const vStr = String(validityType || '').trim();
+  const vLower = vStr.toLowerCase();
+
+  if (vLower.includes('further notice') || vLower.includes('life') || vLower.includes('permanent') || vLower.includes('ongoing')) {
     return { expiryDate: null, status: 'ACTIVE', diffDays: 9999, label: 'Active (Ongoing)' };
   }
+
+  if (customExpiryDate) {
+    const expDate = new Date(customExpiryDate);
+    if (!isNaN(expDate.getTime())) {
+      const expiryString = expDate.toISOString().split('T')[0];
+      const now = new Date();
+      const diffDays = Math.ceil((expDate - now) / (1000 * 60 * 60 * 24));
+      if (diffDays < 0) {
+        return { expiryDate: expiryString, status: 'EXPIRED', diffDays, label: `Expired ${Math.abs(diffDays)} days ago` };
+      }
+      if (diffDays <= 60) {
+        return { expiryDate: expiryString, status: 'EXPIRING_SOON', diffDays, label: `Expires in ${diffDays} days` };
+      }
+      return { expiryDate: expiryString, status: 'ACTIVE', diffDays, label: 'Active' };
+    }
+  }
+
+  if (!vStr || vLower.includes('not recorded') || vLower.includes('unknown') || vLower === 'null') {
+    return { expiryDate: null, status: 'VALIDITY_NOT_RECORDED', diffDays: null, label: 'Validity Not Recorded' };
+  }
+
   let expDate = null;
-  if (validityType === 'Custom' && customExpiryDate) {
-    expDate = new Date(customExpiryDate);
-  } else if (effectiveDate) {
+  if (effectiveDate) {
     const d = new Date(effectiveDate);
-    const years = validityType === '1 Year' ? 1 : (validityType === '2 Years' ? 2 : (validityType === '5 Years' ? 5 : 3));
-    d.setFullYear(d.getFullYear() + years);
-    d.setDate(d.getDate() - 1);
-    expDate = d;
+    if (!isNaN(d.getTime())) {
+      const matchYears = vLower.match(/(\d+)\s*(?:year|yr)/);
+      const matchMonths = vLower.match(/(\d+)\s*(?:month|mo)/);
+      if (matchYears) {
+        d.setFullYear(d.getFullYear() + parseInt(matchYears[1], 10));
+        d.setDate(d.getDate() - 1);
+        expDate = d;
+      } else if (matchMonths) {
+        d.setMonth(d.getMonth() + parseInt(matchMonths[1], 10));
+        d.setDate(d.getDate() - 1);
+        expDate = d;
+      } else if (vStr.match(/^\d{4}-\d{2}-\d{2}$/)) {
+        expDate = new Date(vStr);
+      }
+    }
   }
 
   if (!expDate || isNaN(expDate.getTime())) {
-    return { expiryDate: '2029-06-30', status: 'ACTIVE', diffDays: 365, label: 'Active' };
+    return { expiryDate: null, status: 'VALIDITY_NOT_RECORDED', diffDays: null, label: 'Validity Not Recorded' };
   }
 
   const expiryString = expDate.toISOString().split('T')[0];
@@ -4372,7 +4545,7 @@ export function normalizeMoURecord(raw, idx = 0) {
     purpose: raw.purpose || 'Collaborative research, student internships, curriculum development, and technical workshops.',
     description: raw.description || '',
     scopes: scopes,
-    primaryCoordinator: raw.primaryCoordinator || raw.facultyCoordinator || 'Dr. S. V. N. Sreenivasu',
+    primaryCoordinator: raw.primaryCoordinator || raw.facultyCoordinator || '',
     coCoordinators: Array.isArray(raw.coCoordinators) ? raw.coCoordinators : [],
     documents: documents,
     renewals: Array.isArray(raw.renewals) ? raw.renewals : [],
@@ -4550,69 +4723,94 @@ export function softDeleteMoU(id, user) {
 
 export function normalizeNptelRecord(raw, idx = 0) {
   if (!raw) return null;
-  const dept = raw.department || 'CSE';
-  const ay = raw.academicYear || '2025-26';
-  const yearSuffix = (ay.split('-')[0] || '2026').trim();
-  const autoNum = raw.certificationNumber || `NPTEL-${dept}-${yearSuffix}-${String(idx + 1).padStart(4, '0')}`;
+  const dept = raw.department || '';
+  const ay = raw.academicYear || '';
+  const yearSuffix = ay ? (ay.split('-')[0] || '').trim() : '';
+  const autoNum = raw.certificationNumber || (dept && yearSuffix ? `NPTEL-${dept}-${yearSuffix}-${String(idx + 1).padStart(4, '0')}` : raw.id || `NPTEL-${idx + 1}`);
 
-  const holderType = raw.holderType || (raw.role === 'Student' || raw.rollNumber ? 'STUDENT' : 'FACULTY');
-  const student = holderType === 'STUDENT' ? (raw.studentDetails || {
-    rollNumber: raw.rollNumber || raw.rollNo || '22471A0589',
-    name: raw.name || raw.studentName || 'Student Learner',
+  // Derive learnerType from identifiers present in the source record
+  const hasRollNumber = !!(raw.rollNumber || raw.rollNo || raw.studentDetails?.rollNumber);
+  const hasFacultyId = !!(raw.facultyId || raw.facultyDetails?.facultyId);
+  const derivedLearnerType = raw.learnerType ||
+    (hasRollNumber ? 'STUDENT' : hasFacultyId ? 'FACULTY' :
+     raw.role === 'Student' ? 'STUDENT' : raw.role === 'Faculty' ? 'FACULTY' : 'STUDENT');
+
+  // Derive platform from provider — never fabricate
+  const providerLC = (raw.provider || raw.offeredBy || '').toLowerCase();
+  const derivedPlatform = raw.platform ||
+    (providerLC.includes('nptel') || providerLC.includes('swayam') ? 'NPTEL' :
+     providerLC.includes('coursera') ? 'Coursera' : providerLC.includes('udemy') ? 'Udemy' :
+     providerLC.includes('edx') ? 'edX' : providerLC.includes('linkedin') ? 'LinkedIn Learning' :
+     providerLC ? 'MOOC' : 'Not recorded');
+
+  const holderType = raw.holderType || (derivedLearnerType === 'STUDENT' ? 'STUDENT' : 'FACULTY');
+  const student = holderType === 'STUDENT' ? (raw.studentDetails || (hasRollNumber ? {
+    rollNumber: raw.rollNumber || raw.rollNo || '',
+    name: raw.name || raw.studentName || '',
     department: dept,
-    batch: raw.batch || '2022-2026',
-    year: raw.year || 'III Year',
-    semester: raw.semester || 'II Sem'
-  }) : null;
+    batch: raw.batch || '',
+    year: raw.year || '',
+    semester: raw.semester || ''
+  } : null)) : null;
 
-  const faculty = holderType === 'FACULTY' ? (raw.facultyDetails || {
+  const faculty = holderType === 'FACULTY' ? (raw.facultyDetails || (hasFacultyId ? {
     facultyId: raw.facultyId || '',
-    name: raw.name || raw.facultyName || 'Faculty Learner',
+    name: raw.name || raw.facultyName || '',
     department: dept,
-    designation: raw.designation || 'Faculty'
-  }) : null;
+    designation: raw.designation || ''
+  } : null)) : null;
 
-  const documents = Array.isArray(raw.documents) ? raw.documents : [
-    ...(raw.certificatePdf ? [{ id: 'DOC-1', name: raw.certificatePdf, type: 'NPTEL Certificate PDF', size: '1.4 MB', url: '#' }] : [])
-  ];
+  const certificateUrl = raw.certificateUrl || raw.certificatePdf || raw.certificateLink || '';
+  const documents = Array.isArray(raw.documents) && raw.documents.length > 0
+    ? raw.documents
+    : certificateUrl
+      ? [{ id: `DOC-${raw.id || idx}`, title: 'NPTEL Certificate', type: 'PDF', url: certificateUrl, downloadUrl: certificateUrl }]
+      : [];
+
+  // Score — use only source values
+  const rawScore = raw.score ?? raw.finalScore ?? raw.totalScore ?? null;
+  const rawAssignment = raw.assignmentScore ?? raw.internalScore ?? null;
+  const rawExam = raw.examScore ?? raw.externalScore ?? null;
+  const derivedResult = raw.certificationResult || raw.result || raw.awardCategory || raw.certificateType ||
+    (rawScore != null
+      ? (rawScore >= 90 ? 'Elite + Gold' : rawScore >= 75 ? 'Elite + Silver' : rawScore >= 60 ? 'Elite' : rawScore >= 40 ? 'Successfully Completed' : 'Not Qualified')
+      : 'Not recorded');
 
   return {
     ...raw,
     id: raw.id || `nptel_${Date.now()}_${idx}`,
     certificationNumber: autoNum,
+    learnerType: derivedLearnerType,
     holderType: holderType,
     studentDetails: student,
     facultyDetails: faculty,
+    rollNumber: raw.rollNumber || raw.rollNo || raw.studentDetails?.rollNumber || '',
+    facultyId: raw.facultyId || raw.facultyDetails?.facultyId || '',
     department: dept,
     academicYear: ay,
-    platform: raw.platform || 'NPTEL',
-    courseName: raw.courseName || raw.course || 'Cloud Computing & Distributed Systems',
+    platform: derivedPlatform,
+    courseName: raw.courseName || raw.course || raw.title || 'Untitled Course',
     courseCode: raw.courseCode || '',
-    offeredBy: raw.offeredBy || raw.institute || 'IIT Kharagpur',
+    offeredBy: raw.offeredBy || raw.institute || raw.provider || '',
     instructor: raw.instructor || '',
-    courseCategory: raw.courseCategory || 'Computer Science',
+    courseCategory: raw.courseCategory || '',
     courseUrl: raw.courseUrl || '',
-    duration: raw.duration || (raw.durationWeeks ? `${raw.durationWeeks} Weeks` : '12 Weeks'),
-    examDate: raw.examDate || `${yearSuffix}-04-20`,
-    scores: raw.scores || {
-      assignmentScore: raw.assignmentScore || 24,
-      examScore: raw.examScore || 62,
-      finalScore: raw.finalScore || raw.score || 86
-    },
-    certificationResult: raw.certificationResult || raw.result || (raw.score >= 90 ? 'Elite + Gold' : (raw.score >= 75 ? 'Elite + Silver' : 'Elite')),
-    academicCredits: raw.academicCredits || {
-      creditsEarned: raw.creditsEarned || (raw.duration?.includes('12') ? 3 : (raw.duration?.includes('8') ? 2 : 1)),
-      creditTransferRequested: raw.creditTransferRequested || false,
-      creditTransferApproved: raw.creditTransferApproved || false,
-      approvedCredits: raw.approvedCredits || 0,
-      approvalReference: raw.approvalReference || ''
-    },
-    certificateDate: raw.certificateDate || raw.date || `${yearSuffix}-05-15`,
-    certificateId: raw.certificateId || raw.certId || `NPTEL${yearSuffix}CS${String(idx + 10).padStart(4, '0')}`,
+    duration: raw.duration || (raw.durationWeeks ? `${raw.durationWeeks} Weeks` : ''),
+    examDate: raw.examDate || '',
+    scores: raw.scores || (rawScore != null || rawAssignment != null || rawExam != null ? {
+      assignmentScore: rawAssignment,
+      examScore: rawExam,
+      finalScore: rawScore
+    } : null),
+    certificationResult: derivedResult,
+    academicCredits: raw.academicCredits || null,
+    certificateDate: raw.certificateDate || raw.date || '',
+    certificateId: raw.certificateId || raw.certId || raw.credentialId || '',
+    certificateUrl: certificateUrl,
     certificateVerificationUrl: raw.certificateVerificationUrl || raw.verificationUrl || '',
     documents: documents,
-    certificationStatus: raw.certificationStatus || 'COMPLETED',
-    workflowStatus: raw.workflowStatus || (raw.status === 'Verified' || raw.verificationStatus === 'Verified' ? 'APPROVED' : 'UNDER_REVIEW'),
+    certificationStatus: raw.certificationStatus || (rawScore != null && rawScore >= 40 ? 'COMPLETED' : 'RECORDED'),
+    workflowStatus: raw.workflowStatus || (raw.verificationStatus === 'Verified' ? 'APPROVED' : 'UNDER_REVIEW'),
     publicVisibility: raw.publicVisibility || 'PUBLIC_SAFE',
     reviewHistory: Array.isArray(raw.reviewHistory) ? raw.reviewHistory : []
   };
@@ -5272,8 +5470,12 @@ export function exportToCSV(arg1, arg2 = null, arg3 = null) {
     return { success: false, count: 0, message: 'No records available to export.' };
   }
 
+  // Format data according to authentic institutional template if module detected
+  const detectedModule = detectModuleFromFilenameOrData(filename, data);
+  const formattedData = detectedModule ? formatRowsForOfficialTemplate(detectedModule, data) : data;
+
   // Sanitize & formula injection neutralize
-  const safeData = data.map(record => sanitizeRecordForExport(record));
+  const safeData = formattedData.map(record => sanitizeRecordForExport(record));
   const worksheet = XLSX.utils.json_to_sheet(safeData);
   const csvOutput = XLSX.utils.sheet_to_csv(worksheet);
 
@@ -5343,7 +5545,14 @@ export function exportToExcel(arg1, arg2 = null, arg3 = 'Report', arg4 = null) {
     return { success: false, count: 0, message: 'No records available to export.' };
   }
 
-  const safeData = data.map(record => sanitizeRecordForExport(record));
+  // Format data according to authentic institutional template if module detected
+  const detectedModule = detectModuleFromFilenameOrData(filename, data);
+  const formattedData = detectedModule ? formatRowsForOfficialTemplate(detectedModule, data) : data;
+  if (detectedModule && MODULE_EXPORT_TEMPLATES[detectedModule]?.sheetName) {
+    sheetName = MODULE_EXPORT_TEMPLATES[detectedModule].sheetName;
+  }
+
+  const safeData = formattedData.map(record => sanitizeRecordForExport(record));
   const worksheet = XLSX.utils.json_to_sheet(safeData);
   const workbook = XLSX.utils.book_new();
   
@@ -5440,6 +5649,21 @@ export function exportToPDF(arg1, arg2 = null, arg3 = null, arg4 = 'NEC_Report',
     return { success: false, count: 0, message: 'No records available to export.' };
   }
 
+  // Check if official template formatting applies to PDF
+  const detectedModule = detectModuleFromFilenameOrData(filename || title, rows);
+  let finalTitle = title;
+  let finalColumns = columns;
+  let finalRows = rows;
+
+  if (detectedModule) {
+    const pdfConf = formatPdfForOfficialTemplate(detectedModule, rows);
+    if (pdfConf && pdfConf.columns && pdfConf.columns.length > 0) {
+      finalTitle = pdfConf.title || title;
+      finalColumns = pdfConf.columns;
+      finalRows = pdfConf.rows;
+    }
+  }
+
   const doc = new jsPDF('landscape');
   doc.setFontSize(15);
   doc.setTextColor(11, 25, 44);
@@ -5447,16 +5671,16 @@ export function exportToPDF(arg1, arg2 = null, arg3 = null, arg4 = 'NEC_Report',
   doc.setFontSize(9);
   doc.setTextColor(100, 116, 139);
   doc.text('Approved by AICTE, Affiliated to JNTUK, Accredited by NAAC with "A+" Grade & NBA Tier-1', 14, 21);
-  doc.text(`Official Academic & Institutional Report: ${title}`, 14, 27);
-  doc.text(`Generated on: ${new Date().toLocaleString()}  |  Records: ${rows.length}`, 190, 27);
+  doc.text(`Official Academic & Institutional Report: ${finalTitle}`, 14, 27);
+  doc.text(`Generated on: ${new Date().toLocaleString()}  |  Records: ${finalRows.length}`, 190, 27);
   doc.line(14, 30, 280, 30);
 
   // Sanitize PDF rows to ensure text cells are clean strings
-  const safeRows = rows.map(row => (Array.isArray(row) ? row : Object.values(row)).map(cell => cell !== null && cell !== undefined ? String(cell) : ''));
+  const safeRows = finalRows.map(row => (Array.isArray(row) ? row : Object.values(row)).map(cell => cell !== null && cell !== undefined ? String(cell) : ''));
 
   callAutoTable(doc, {
     startY: 34,
-    head: [columns],
+    head: [finalColumns],
     body: safeRows,
     theme: 'grid',
     headStyles: { fillColor: [11, 25, 44], textColor: [255, 255, 255], fontStyle: 'bold', fontSize: 8.5 },
@@ -5469,8 +5693,8 @@ export function exportToPDF(arg1, arg2 = null, arg3 = null, arg4 = 'NEC_Report',
     doc.save(`${filename}.pdf`);
   }
 
-  addAuditLog('PDF_EXPORT', 'Compliance & Reporting', `Generated official PDF report: ${title} (${rows.length} records)`, actor);
-  return { success: true, count: rows.length, filename: `${filename}.pdf` };
+  addAuditLog('PDF_EXPORT', 'Compliance & Reporting', `Generated official PDF report: ${finalTitle} (${finalRows.length} records)`, actor);
+  return { success: true, count: finalRows.length, filename: `${filename}.pdf` };
 }
 
 // Centralized High-Level Compliance Exporter
@@ -6035,6 +6259,7 @@ export function getRecycleBin() {
     { key: STORAGE_KEYS.INTERNSHIPS, name: 'internships', initial: INITIAL_INTERNSHIPS },
     { key: STORAGE_KEYS.PROJECTS, name: 'projects', initial: INITIAL_PROJECTS },
     { key: STORAGE_KEYS.FDPS, name: 'fdps', initial: INITIAL_FDPS },
+    { key: STORAGE_KEYS.WORKSHOPS_ATTENDED, name: 'workshops-attended', initial: INITIAL_WORKSHOPS_ATTENDED },
     { key: STORAGE_KEYS.FACULTY_ACHIEVEMENTS, name: 'faculty-ach', initial: INITIAL_FACULTY_ACHIEVEMENTS },
     { key: STORAGE_KEYS.EVENTS, name: 'events', initial: INITIAL_EVENTS },
     { key: STORAGE_KEYS.MEMBERSHIPS, name: 'memberships', initial: INITIAL_MEMBERSHIPS },
@@ -7475,7 +7700,7 @@ export const INITIAL_COMMUNITY_PROJECTS = [
 ];
 
 export function getCommunityProjects() {
-  return loadStore(STORAGE_KEYS.COMMUNITY_PROJECTS, INITIAL_COMMUNITY_PROJECTS);
+  return loadStore(STORAGE_KEYS.COMMUNITY_PROJECTS, CANONICAL_CSP_PROJECTS && CANONICAL_CSP_PROJECTS.length > 0 ? CANONICAL_CSP_PROJECTS : INITIAL_COMMUNITY_PROJECTS);
 }
 
 export function saveCommunityProject(project, actorUser = null) {
@@ -7590,7 +7815,7 @@ export const INITIAL_COMPANY_VISITS = [
 ];
 
 export function getCompanyVisits() {
-  return loadStore(STORAGE_KEYS.COMPANY_VISITS, INITIAL_COMPANY_VISITS);
+  return loadStore(STORAGE_KEYS.COMPANY_VISITS, CANONICAL_PLACEMENT_DRIVES && CANONICAL_PLACEMENT_DRIVES.length > 0 ? CANONICAL_PLACEMENT_DRIVES : INITIAL_COMPANY_VISITS);
 }
 
 export function saveCompanyVisit(visit, actorUser = null) {
@@ -7681,7 +7906,7 @@ export const INITIAL_CAMPUS_PLACEMENTS = [
 ];
 
 export function getCampusPlacements() {
-  return loadStore(STORAGE_KEYS.CAMPUS_PLACEMENTS, INITIAL_CAMPUS_PLACEMENTS);
+  return loadStore(STORAGE_KEYS.CAMPUS_PLACEMENTS, INITIAL_PLACEMENTS);
 }
 
 export function saveCampusPlacement(placement, actorUser = null) {
@@ -7819,6 +8044,53 @@ export {
   exportConsolidatedMidPDF,
   exportFullAcademicWorkbookXLSX
 } from './midExamStore.js';
+
+// -------------------------------------------------------------
+// 6. Canonical Institutional Data Getters
+// -------------------------------------------------------------
+export function getDataQualityReport() {
+  return CANONICAL_DATA_QUALITY_REPORT;
+}
+
+export function getDocumentEvidence() {
+  return CANONICAL_DOCUMENT_EVIDENCE;
+}
+
+export function getGoverningBody() {
+  return CANONICAL_GOVERNING_BODY;
+}
+
+export function getAcademicCouncil() {
+  return CANONICAL_ACADEMIC_COUNCIL;
+}
+
+export function getCanonicalDepartments() {
+  return CANONICAL_DEPARTMENTS;
+}
+
+export {
+  CANONICAL_DEPARTMENTS,
+  CANONICAL_FACULTY,
+  CANONICAL_STUDENTS,
+  CANONICAL_PUBLICATIONS,
+  CANONICAL_PATENTS,
+  CANONICAL_BOS_MEETINGS,
+  CANONICAL_BOS_MEMBERS,
+  CANONICAL_GOVERNING_BODY,
+  CANONICAL_ACADEMIC_COUNCIL,
+  CANONICAL_CSP_PROJECTS,
+  CANONICAL_INTERNSHIPS,
+  CANONICAL_STUDENT_NPTEL,
+  CANONICAL_STUDENT_ACHIEVEMENTS,
+  CANONICAL_MINI_PROJECTS,
+  CANONICAL_PLACEMENTS,
+  CANONICAL_PLACEMENT_DRIVES,
+  CANONICAL_MOUS,
+  CANONICAL_EVENTS,
+  CANONICAL_FACULTY_DEV,
+  CANONICAL_DOCUMENT_EVIDENCE,
+  CANONICAL_DATA_QUALITY_REPORT
+};
 
 
 

@@ -31,7 +31,7 @@ import {
   Layers,
   Star
 } from 'lucide-react';
-import { ET_DEPARTMENTS } from '../../../data/masterData.js';
+import { ET_DEPARTMENTS, FACULTY_DATA } from '../../../data/masterData.js';
 import { saveAcademicEvent, getMoUs } from '../../../data/portalStore.js';
 import FormField from '../../ui/form/FormField.jsx';
 import { Input, DateInput, Select, Textarea } from '../../ui/form/FormControls.jsx';

@@ -79,6 +79,8 @@ export default function StudentProjectsManager({ currentUser, onDataChange }) {
   const [selectedType, setSelectedType] = useState('ALL');
   const [selectedStatus, setSelectedStatus] = useState('ALL');
   const [selectedWorkflowStatus, setSelectedWorkflowStatus] = useState('ALL');
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
 
   const [projects, setProjects] = useState(() => getStudentProjects());
 
@@ -104,9 +106,17 @@ export default function StudentProjectsManager({ currentUser, onDataChange }) {
       const matchStatus = selectedStatus === 'ALL' || item.projectStatus === selectedStatus;
       const matchWorkflow = selectedWorkflowStatus === 'ALL' || item.workflowStatus === selectedWorkflowStatus;
 
-      return matchSearch && matchDept && matchType && matchStatus && matchWorkflow;
+      // Date filtering
+      let matchDate = true;
+      const pDate = item.startDate || item.submissionDate || item.createdAt;
+      if (pDate) {
+        if (fromDate && pDate < fromDate) matchDate = false;
+        if (toDate && pDate > toDate) matchDate = false;
+      }
+
+      return matchSearch && matchDept && matchType && matchStatus && matchWorkflow && matchDate;
     });
-  }, [projects, searchQuery, selectedDept, selectedType, selectedStatus, selectedWorkflowStatus]);
+  }, [projects, searchQuery, selectedDept, selectedType, selectedStatus, selectedWorkflowStatus, fromDate, toDate]);
 
   // KPIs
   const stats = useMemo(() => {
@@ -162,7 +172,7 @@ export default function StudentProjectsManager({ currentUser, onDataChange }) {
       'Project Status': p.projectStatus,
       'Workflow Status': p.workflowStatus || 'APPROVED'
     }));
-    exportToCSV(rows, `ET_Student_Projects_${selectedDept}`, currentUser);
+    exportToCSV(rows, `ET_Student_Projects_${selectedDept}`, currentUser, { moduleKey: 'studentProjects' });
     showToast(`Exported ${rows.length} student project records to CSV.`);
   };
 
@@ -179,7 +189,7 @@ export default function StudentProjectsManager({ currentUser, onDataChange }) {
       'Project Status': p.projectStatus,
       'Workflow Status': p.workflowStatus || 'APPROVED'
     }));
-    exportToExcel(rows, `ET_Student_Projects_${selectedDept}`, 'Projects', currentUser);
+    exportToExcel(rows, `ET_Student_Projects_${selectedDept}`, 'Projects', currentUser, { moduleKey: 'studentProjects' });
     showToast(`Exported ${rows.length} student project records to Excel.`);
   };
 
@@ -193,7 +203,7 @@ export default function StudentProjectsManager({ currentUser, onDataChange }) {
       'Guide': p.guide?.name || '—',
       'Status': p.workflowStatus || 'APPROVED'
     }));
-    exportToPDF('ET_Student_Projects_Report', ['Project No', 'Title', 'Type', 'Dept', 'Lead', 'Guide', 'Status'], rows, 'Student Projects & Capstone Repository');
+    exportToPDF('ET_Student_Projects_Report', ['Project No', 'Title', 'Type', 'Dept', 'Lead', 'Guide', 'Status'], rows, 'Student Projects & Capstone Repository', currentUser, { moduleKey: 'studentProjects' });
     showToast(`Exported student projects report to PDF.`);
   };
 
@@ -256,7 +266,7 @@ export default function StudentProjectsManager({ currentUser, onDataChange }) {
               onChange={(e) => setSelectedDept(e.target.value)}
               style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', background: '#FFFFFF', color: '#0F172A', fontWeight: 600 }}
             >
-              <option value="ALL">All ET Departments</option>
+              <option value="ALL">All</option>
               {ET_DEPARTMENTS.map(d => <option key={d.code} value={d.code}>{d.name} ({d.code})</option>)}
             </select>
 
@@ -317,23 +327,27 @@ export default function StudentProjectsManager({ currentUser, onDataChange }) {
       {/* 4. Projects Data Table */}
       <div style={{ background: '#FFFFFF', borderRadius: '14px', border: '1px solid #E2E8F0', overflow: 'hidden' }}>
         <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '1050px' }}>
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                <th style={{ padding: '0.85rem 1rem' }}>Project ID & Title</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Type & Domain</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Team Leader & Members</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Faculty Guide</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Milestones</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Status</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Approval</th>
-                <th style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>Actions</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '130px' }}>Project ID</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '220px' }}>Project Title</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Department</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '85px' }}>Batch</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '100px' }}>Type</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '120px' }}>Domain</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '160px' }}>Team Members</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '130px' }}>Faculty Guide</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '100px' }}>Milestones</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Status</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Approval</th>
+                <th style={{ padding: '0.85rem 1rem', textAlign: 'right', minWidth: '85px' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
               {filteredProjects.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
+                  <td colSpan={12} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
                     No student project records found matching current filters.
                   </td>
                 </tr>
@@ -347,30 +361,49 @@ export default function StudentProjectsManager({ currentUser, onDataChange }) {
 
                   return (
                     <tr key={item.id || idx} style={{ borderBottom: '1px solid #F1F5F9' }} className="hover:bg-slate-50">
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '280px' }}>
-                        <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.84rem', lineHeight: '1.25' }}>
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <span className="record-code" style={{ color: '#0F172A', background: '#F8FAFC', padding: '0.2rem 0.45rem', borderRadius: '4px', border: '1px solid #E2E8F0' }}>
+                          {item.projectNumber || `PRJ-${item.id}`}
+                        </span>
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top', maxWidth: '280px' }}>
+                        <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.84rem', lineHeight: '1.3' }}>
                           {item.projectTitle}
-                        </div>
-                        <div style={{ fontSize: '0.7rem', color: '#D4AF37', fontWeight: 700, marginTop: '0.15rem' }}>
-                          {item.projectNumber} • Dept: {item.department} ({item.batch})
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#334155', background: '#F1F5F9', padding: '0.15rem 0.5rem', borderRadius: '4px' }}>
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem', background: '#F1F5F9', padding: '0.15rem 0.45rem', borderRadius: '4px' }}>
+                          {item.department}
+                        </span>
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <div style={{ fontSize: '0.76rem', color: '#475569', fontWeight: 600 }}>
+                          {item.batch || '—'}
+                        </div>
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#334155', background: '#F1F5F9', padding: '0.15rem 0.5rem', borderRadius: '4px', whiteSpace: 'nowrap' }}>
                           {item.projectType}
                         </span>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B', marginTop: '0.2rem' }}>
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <div style={{ fontSize: '0.76rem', color: '#475569', fontWeight: 600 }}>
                           {item.domain || item.domains?.[0] || 'General'}
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top', maxWidth: '200px' }}>
                         <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#0F172A' }}>
-                          {item.teamMembers?.[0]?.name} <span style={{ color: '#D4AF37', fontSize: '0.7rem' }}>({item.teamMembers?.[0]?.rollNumber})</span>
+                          {item.teamMembers?.[0]?.name}
                         </div>
                         <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
-                          +{item.teamMembers?.length - 1} other team member(s)
+                          <span style={{ color: '#D4AF37', fontWeight: 700 }}>{item.teamMembers?.[0]?.rollNumber}</span>
+                          {item.teamMembers?.length > 1 && ` • +${item.teamMembers.length - 1} more`}
                         </div>
                       </td>
 
@@ -724,7 +757,7 @@ export default function StudentProjectsManager({ currentUser, onDataChange }) {
 
             <div style={{ padding: '0.85rem 1.25rem', background: '#F8FAFC', borderTop: '1px solid #E2E8F0', display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' }}>
               <button type="button" onClick={() => setReviewModalItem(null)} style={{ padding: '0.45rem 0.85rem', borderRadius: '6px', border: '1px solid #CBD5E1', background: '#FFFFFF', fontSize: '0.78rem', cursor: 'pointer' }}>Cancel</button>
-              <button type="button" onClick={handleExecuteReview} style={{ padding: '0.45rem 1.15rem', borderRadius: '6px', border: 'none', background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', color: '#FFFFFF', fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer' }}>Submit Decision</button>
+              <button type="button" onClick={handleReviewSubmit} style={{ padding: '0.45rem 1.15rem', borderRadius: '6px', border: 'none', background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', color: '#FFFFFF', fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer' }}>Submit Decision</button>
             </div>
           </div>
         </div>

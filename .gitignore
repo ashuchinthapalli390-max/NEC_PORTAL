@@ -18,7 +18,8 @@ dist-ssr
 .portal_otp_challenges.json
 .portal_audit_logs.json
 *service-account*.json
-!*service-account*.example.json
+# Local large binary documents archive
+public/documents/csp/
 
 # Editor directories and files
 .vscode/*

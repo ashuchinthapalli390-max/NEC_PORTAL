@@ -39,6 +39,7 @@ import {
 } from '../../../data/portalStore.js';
 import { 
   getWorkflowBadge, 
+  getResultBadge,
   StatusBadge 
 } from '../../../lib/ui/statusBadges.jsx';
 import NptelCertificationWizardModal from './NptelCertificationWizardModal.jsx';
@@ -59,6 +60,7 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
   const [wizardOpen, setWizardOpen] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [dossierModalItem, setDossierModalItem] = useState(null);
+  const [dossierActiveTab, setDossierActiveTab] = useState('overview');
   const [reviewModalItem, setReviewModalItem] = useState(null);
   const [reviewAction, setReviewAction] = useState('APPROVE');
   const [reviewRemarks, setReviewRemarks] = useState('');
@@ -78,6 +80,8 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
   const [selectedPlatform, setSelectedPlatform] = useState('ALL');
   const [selectedResult, setSelectedResult] = useState('ALL');
   const [selectedWorkflowStatus, setSelectedWorkflowStatus] = useState('ALL');
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
 
   const refresh = () => {
     setDataVersion(v => v + 1);
@@ -106,6 +110,14 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
       const matchResult = selectedResult === 'ALL' || item.certificateType === selectedResult;
       const matchWorkflow = selectedWorkflowStatus === 'ALL' || item.workflowStatus === selectedWorkflowStatus;
 
+      // Date filtering
+      let matchDate = true;
+      const certDate = item.certificateDate || item.examDate || item.date;
+      if (certDate) {
+        if (fromDate && certDate < fromDate) matchDate = false;
+        if (toDate && certDate > toDate) matchDate = false;
+      }
+
       // Quick Tab
       let matchQuick = true;
       if (quickTab === 'STUDENTS') matchQuick = item.learnerType === 'STUDENT';
@@ -114,9 +126,9 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
       else if (quickTab === 'ELITE') matchQuick = item.certificateType && item.certificateType.includes('Elite');
       else if (quickTab === 'PENDING') matchQuick = item.workflowStatus === 'SUBMITTED' || item.workflowStatus === 'UNDER_REVIEW';
 
-      return matchSearch && matchDept && matchAy && matchPlatform && matchResult && matchWorkflow && matchQuick;
+      return matchSearch && matchDept && matchAy && matchPlatform && matchResult && matchWorkflow && matchQuick && matchDate;
     });
-  }, [nptelList, searchQuery, quickTab, selectedDept, selectedAy, selectedPlatform, selectedResult, selectedWorkflowStatus]);
+  }, [nptelList, searchQuery, quickTab, selectedDept, selectedAy, selectedPlatform, selectedResult, selectedWorkflowStatus, fromDate, toDate]);
 
   // KPIs
   const stats = useMemo(() => {
@@ -172,7 +184,7 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
       'Credits': n.academicCredits?.creditsEarned || 0,
       'Workflow Status': n.workflowStatus || 'APPROVED'
     }));
-    exportToCSV(rows, `ET_NPTEL_Certifications_${selectedDept}`, currentUser);
+    exportToCSV(rows, `ET_NPTEL_Certifications_${selectedDept}`, currentUser, { moduleKey: 'nptel' });
     showToast(`Exported ${rows.length} certification records to CSV.`);
   };
 
@@ -190,7 +202,7 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
       'Credits': n.academicCredits?.creditsEarned || 0,
       'Workflow Status': n.workflowStatus || 'APPROVED'
     }));
-    exportToExcel(rows, `ET_NPTEL_Certifications_${selectedDept}`, 'Certifications', currentUser);
+    exportToExcel(rows, `ET_NPTEL_Certifications_${selectedDept}`, 'Certifications', currentUser, { moduleKey: 'nptel' });
     showToast(`Exported ${rows.length} certification records to Excel.`);
   };
 
@@ -204,7 +216,7 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
       'Score': `${n.finalScore || '—'}%`,
       'Status': n.workflowStatus || 'APPROVED'
     }));
-    exportToPDF('ET_NPTEL_Certifications_Report', ['Learner', 'Type', 'Dept', 'Platform', 'Course', 'Score', 'Status'], rows, 'NPTEL & MOOC Certifications Repository');
+    exportToPDF('ET_NPTEL_Certifications_Report', ['Learner', 'Type', 'Dept', 'Platform', 'Course', 'Score', 'Status'], rows, 'NPTEL & MOOC Certifications Repository', currentUser, { moduleKey: 'nptel' });
     showToast(`Exported certification records report to PDF.`);
   };
 
@@ -299,11 +311,10 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
               onChange={(e) => setSelectedDept(e.target.value)}
               style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', background: '#FFFFFF', color: '#0F172A', fontWeight: 600 }}
             >
-              <option value="ALL">All ET Departments</option>
-              <option value="CYS">Cyber Security</option>
-              <option value="DS">Data Science</option>
-              <option value="AI">Artificial Intelligence</option>
-              <option value="AIML">AI & ML</option>
+              <option value="ALL">All</option>
+              {ET_DEPARTMENTS.map(d => (
+                <option key={d.code} value={d.code}>{d.name} ({d.code})</option>
+              ))}
             </select>
 
             <select
@@ -343,7 +354,7 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
               <option value="DRAFT">Draft</option>
             </select>
 
-            {(searchQuery || selectedDept !== 'ALL' || selectedPlatform !== 'ALL' || selectedResult !== 'ALL' || selectedWorkflowStatus !== 'ALL') && (
+            {(searchQuery || selectedDept !== 'ALL' || selectedPlatform !== 'ALL' || selectedResult !== 'ALL' || selectedWorkflowStatus !== 'ALL' || fromDate || toDate) && (
               <button
                 type="button"
                 onClick={() => {
@@ -352,6 +363,8 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
                   setSelectedPlatform('ALL');
                   setSelectedResult('ALL');
                   setSelectedWorkflowStatus('ALL');
+                  setFromDate('');
+                  setToDate('');
                 }}
                 style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', background: '#F8FAFC', color: '#64748B', fontSize: '0.76rem', fontWeight: 700, cursor: 'pointer' }}
               >
@@ -359,6 +372,38 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
               </button>
             )}
           </div>
+        </div>
+
+        {/* Date Filter Controls */}
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', paddingTop: '0.45rem', borderTop: '1px dashed #E2E8F0', fontSize: '0.78rem' }}>
+          <span style={{ fontWeight: 700, color: '#475569' }}>Exam / Certificate Date:</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+            <span style={{ color: '#64748B' }}>From Date</span>
+            <input
+              type="date"
+              value={fromDate}
+              onChange={(e) => setFromDate(e.target.value)}
+              style={{ padding: '0.35rem 0.6rem', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '0.78rem', color: '#0F172A' }}
+            />
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+            <span style={{ color: '#64748B' }}>To Date</span>
+            <input
+              type="date"
+              value={toDate}
+              onChange={(e) => setToDate(e.target.value)}
+              style={{ padding: '0.35rem 0.6rem', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '0.78rem', color: '#0F172A' }}
+            />
+          </div>
+          {(fromDate || toDate) && (
+            <button
+              type="button"
+              onClick={() => { setFromDate(''); setToDate(''); }}
+              style={{ padding: '0.35rem 0.75rem', borderRadius: '6px', border: '1px solid #CBD5E1', background: '#F8FAFC', color: '#475569', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer' }}
+            >
+              Clear Dates
+            </button>
+          )}
         </div>
       </div>
 
@@ -374,6 +419,7 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
                 <th style={{ padding: '0.85rem 1rem' }}>Duration</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Score & Badge</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Credits</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Certificate</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Approval</th>
                 <th style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>Actions</th>
               </tr>
@@ -381,7 +427,7 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
             <tbody>
               {filteredCertifications.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
+                  <td colSpan={9} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
                     No NPTEL/MOOC certification records found matching current filters.
                   </td>
                 </tr>
@@ -459,6 +505,23 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
                         <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#059669' }}>
                           {item.academicCredits?.creditsEarned || 0} Credits
                         </div>
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem' }}>
+                        {item.certificateUrl || item.certificateDocument ? (
+                          <a
+                            href={`/api/portal/documents/serve?id=${encodeURIComponent(item.certificateDocument?.id || item.certificateUrl)}&download=false`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ fontSize: '0.72rem', color: '#2563EB', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}
+                          >
+                            <FileText size={12} /> View Certificate
+                          </a>
+                        ) : (
+                          <span style={{ fontSize: '0.72rem', color: '#64748B', fontStyle: 'italic', background: '#F1F5F9', padding: '0.2rem 0.5rem', borderRadius: '4px', whiteSpace: 'nowrap' }}>
+                            Certificate not uploaded
+                          </span>
+                        )}
                       </td>
 
                       <td style={{ padding: '0.85rem 1rem' }}>
@@ -720,7 +783,7 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
 
             <div style={{ padding: '0.85rem 1.25rem', background: '#F8FAFC', borderTop: '1px solid #E2E8F0', display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' }}>
               <button type="button" onClick={() => setReviewModalItem(null)} style={{ padding: '0.45rem 0.85rem', borderRadius: '6px', border: '1px solid #CBD5E1', background: '#FFFFFF', fontSize: '0.78rem', cursor: 'pointer' }}>Cancel</button>
-              <button type="button" onClick={handleExecuteReview} style={{ padding: '0.45rem 1.15rem', borderRadius: '6px', border: 'none', background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', color: '#FFFFFF', fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer' }}>Submit Decision</button>
+              <button type="button" onClick={handleReviewSubmit} style={{ padding: '0.45rem 1.15rem', borderRadius: '6px', border: 'none', background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', color: '#FFFFFF', fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer' }}>Submit Decision</button>
             </div>
           </div>
         </div>

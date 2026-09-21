@@ -1,0 +1,50 @@
+[
+  {
+    "code": "CSE(AIML)",
+    "numberCode": "42",
+    "aliasCode": "CSM",
+    "name": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "shortName": "AI & ML",
+    "canonicalId": "csm"
+  },
+  {
+    "code": "CSE(AI)",
+    "numberCode": "43",
+    "aliasCode": "AI",
+    "name": "Computer Science & Engineering (Artificial Intelligence)",
+    "shortName": "AI",
+    "canonicalId": "ai"
+  },
+  {
+    "code": "CSE(DS)",
+    "numberCode": "44",
+    "aliasCode": "CSD",
+    "name": "Computer Science & Engineering (Data Science)",
+    "shortName": "Data Science",
+    "canonicalId": "ds"
+  },
+  {
+    "code": "CSE(CS)",
+    "numberCode": "46",
+    "aliasCode": "CSC",
+    "name": "Computer Science & Engineering (Cyber Security)",
+    "shortName": "Cyber Security",
+    "canonicalId": "cys"
+  },
+  {
+    "code": "AIML",
+    "numberCode": "61",
+    "aliasCode": "AIML",
+    "name": "Artificial Intelligence & Machine Learning",
+    "shortName": "AIML",
+    "canonicalId": "aiml"
+  },
+  {
+    "code": "Institution Level",
+    "numberCode": "ET",
+    "aliasCode": "INST",
+    "name": "Institution Level",
+    "shortName": "Institution Level",
+    "canonicalId": "institution_level"
+  }
+]

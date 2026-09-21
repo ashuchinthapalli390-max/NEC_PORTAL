@@ -632,6 +632,119 @@ export function authServerPlugin() {
           }
         }
 
+        // ──────────────────────────────────────────────────────────
+        // 7. /api/portal/scopus - Elsevier Scopus Official Proxy
+        // ──────────────────────────────────────────────────────────
+        if (req.url && req.url.startsWith('/api/portal/scopus')) {
+          const parsedUrl = new URL(req.url, 'http://localhost');
+          const action = parsedUrl.searchParams.get('action') || 'diagnostic';
+          const query = parsedUrl.searchParams.get('query') || '';
+          const authorId = parsedUrl.searchParams.get('authorId') || '';
+
+          try {
+            const { 
+              runScopusDiagnostic, 
+              searchScopusAuthors, 
+              getScopusAuthorProfile, 
+              getScopusAuthorPublications 
+            } = await import('./scopusService.js');
+
+            if (action === 'diagnostic') {
+              const result = await runScopusDiagnostic();
+              res.writeHead(200, { 'Content-Type': 'application/json' });
+              return res.end(JSON.stringify(result));
+            }
+
+            if (action === 'author-search') {
+              const result = await searchScopusAuthors(query);
+              res.writeHead(200, { 'Content-Type': 'application/json' });
+              return res.end(JSON.stringify(result));
+            }
+
+            if (action === 'author-profile') {
+              const result = await getScopusAuthorProfile(authorId);
+              res.writeHead(200, { 'Content-Type': 'application/json' });
+              return res.end(JSON.stringify(result));
+            }
+
+            if (action === 'author-publications') {
+              const result = await getScopusAuthorPublications(authorId);
+              res.writeHead(200, { 'Content-Type': 'application/json' });
+              return res.end(JSON.stringify(result));
+            }
+
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ success: false, error: `Unsupported action: ${action}` }));
+          } catch (err) {
+            return safeApiError(res, err, 500, 'Scopus API Proxy Error');
+          }
+        }
+
+        // ──────────────────────────────────────────────────────────
+        // 8. /api/portal/documents/serve - Secure Institutional Document Streaming
+        // ──────────────────────────────────────────────────────────
+        if (req.url && req.url.startsWith('/api/portal/documents/serve')) {
+          try {
+            const parsedUrl = new URL(req.url, 'http://localhost');
+            const docId = parsedUrl.searchParams.get('id') || '';
+            const isDownload = parsedUrl.searchParams.get('download') === 'true';
+
+            const docsPath = path.resolve(process.cwd(), 'src', 'data', 'canonical', 'documentEvidence.json');
+            if (!fs.existsSync(docsPath)) {
+              res.writeHead(404, { 'Content-Type': 'application/json' });
+              return res.end(JSON.stringify({ success: false, error: 'Document catalog not found' }));
+            }
+
+            const docs = JSON.parse(fs.readFileSync(docsPath, 'utf8'));
+            const doc = docs.find(d => d.id === docId);
+            if (!doc) {
+              res.writeHead(404, { 'Content-Type': 'application/json' });
+              return res.end(JSON.stringify({ success: false, error: 'Document not found' }));
+            }
+
+            const necDataDir = path.resolve(process.cwd(), '..', 'nec-data');
+            const publicDir = path.resolve(process.cwd(), 'public');
+            let targetFile = null;
+
+            if (doc.storageReference) {
+              const sub = doc.storageReference.replace(/^documents\//, '');
+              const p1 = path.resolve(necDataDir, sub);
+              const p2 = path.resolve(publicDir, doc.storageReference);
+              const p3 = path.resolve(publicDir, 'documents', 'csp', '2023-batch', path.basename(sub));
+              const p4 = path.resolve(publicDir, 'documents', 'csp', '2022-batch', path.basename(sub));
+              if (fs.existsSync(p1)) targetFile = p1;
+              else if (fs.existsSync(p2)) targetFile = p2;
+              else if (fs.existsSync(p3)) targetFile = p3;
+              else if (fs.existsSync(p4)) targetFile = p4;
+            }
+
+            if (!targetFile || !fs.existsSync(targetFile)) {
+              res.writeHead(404, { 'Content-Type': 'application/json' });
+              return res.end(JSON.stringify({ success: false, error: 'Document file not found on disk' }));
+            }
+
+            const ext = path.extname(targetFile).toLowerCase();
+            let contentType = 'application/octet-stream';
+            if (ext === '.pdf') contentType = 'application/pdf';
+            else if (ext === '.docx') contentType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+            else if (ext === '.xlsx') contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+
+            const safeName = path.basename(targetFile).replace(/["\r\n]/g, '');
+            const disposition = isDownload ? `attachment; filename="${safeName}"` : `inline; filename="${safeName}"`;
+
+            res.writeHead(200, {
+              'Content-Type': contentType,
+              'Content-Disposition': disposition,
+              'Cache-Control': 'private, max-age=3600'
+            });
+
+            const stream = fs.createReadStream(targetFile);
+            return stream.pipe(res);
+          } catch (err) {
+            return safeApiError(res, err, 500, 'Document Serving Error');
+          }
+        }
+
         next();
       });
     }

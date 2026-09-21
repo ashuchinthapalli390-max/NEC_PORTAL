@@ -240,12 +240,15 @@ export function getMouStatusBadge(status) {
     case 'ACTIVE':
     case 'SIGNED':
       return { bg: '#ECFDF5', text: '#065F46', border: '#A7F3D0', icon: CheckCircle2, label: 'ACTIVE' };
+    case 'EXPIRING_SOON':
     case 'RENEWAL_DUE':
-      return { bg: '#FEF3C7', text: '#92400E', border: '#FDE68A', icon: AlertTriangle, label: 'RENEWAL DUE' };
+      return { bg: '#FEF3C7', text: '#92400E', border: '#FDE68A', icon: AlertTriangle, label: 'EXPIRING SOON' };
     case 'EXPIRED':
       return { bg: '#FEF2F2', text: '#DC2626', border: '#FECACA', icon: XCircle, label: 'EXPIRED' };
     case 'TERMINATED':
       return { bg: '#F1F5F9', text: '#475569', border: '#CBD5E1', icon: XCircle, label: 'TERMINATED' };
+    case 'VALIDITY_NOT_RECORDED':
+      return { bg: '#F8FAFC', text: '#64748B', border: '#E2E8F0', icon: Clock, label: 'VALIDITY NOT RECORDED' };
     default:
       return { 
         bg: '#F1F5F9', 
@@ -318,6 +321,26 @@ export function getAttendanceContactBadge(status) {
     default:
       return { bg: '#FEF2F2', text: '#DC2626', border: '#FECACA', icon: AlertTriangle, label: 'ACTION REQUIRED' };
   }
+}
+
+/**
+ * 11. ACADEMIC & CERTIFICATION RESULT BADGE (NPTEL, MOOCs)
+ */
+export function getResultBadge(result) {
+  const key = normalizeStatusKey(result);
+  if (key.includes('GOLD') || key.includes('TOP_1') || key.includes('TOP_5')) {
+    return { bg: '#FEF3C7', text: '#92400E', border: '#FDE68A', icon: Award, label: result || 'ELITE + GOLD' };
+  }
+  if (key.includes('SILVER') || key.includes('ELITE')) {
+    return { bg: '#EFF6FF', text: '#1D4ED8', border: '#BFDBFE', icon: Award, label: result || 'ELITE' };
+  }
+  if (key.includes('PASS') || key.includes('SUCCESS') || key.includes('COMPLETED')) {
+    return { bg: '#ECFDF5', text: '#047857', border: '#A7F3D0', icon: CheckCircle2, label: result || 'SUCCESSFULLY COMPLETED' };
+  }
+  if (key.includes('FAIL') || key.includes('NO_CERT')) {
+    return { bg: '#FEF2F2', text: '#DC2626', border: '#FECACA', icon: XCircle, label: result || 'NO CERTIFICATE' };
+  }
+  return { bg: '#F8FAFC', text: '#475569', border: '#E2E8F0', icon: Award, label: result || 'REGISTERED' };
 }
 
 /**

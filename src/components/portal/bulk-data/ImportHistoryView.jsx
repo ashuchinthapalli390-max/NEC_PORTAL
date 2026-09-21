@@ -21,6 +21,7 @@ export default function ImportHistoryView({ currentUser, onRefreshNeeded }) {
   const [selectedJobDetail, setSelectedJobDetail] = useState(null);
   const [rollbackConfirmJob, setRollbackConfirmJob] = useState(null);
   const [actionMessage, setActionMessage] = useState(null);
+  const [_dataVersion, setDataVersion] = useState(0);
 
   const showToast = (msg) => {
     setActionMessage(msg);

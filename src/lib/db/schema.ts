@@ -7,7 +7,8 @@ import {
   timestamp, 
   pgEnum, 
   primaryKey,
-  jsonb
+  jsonb,
+  numeric
 } from 'drizzle-orm/pg-core';
 
 // 1. Status Enums

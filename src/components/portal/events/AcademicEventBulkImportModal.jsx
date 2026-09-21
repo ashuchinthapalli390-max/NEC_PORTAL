@@ -14,7 +14,7 @@ import {
   Check, 
   X
 } from 'lucide-react';
-import { ET_DEPARTMENTS } from '../../../data/masterData.js';
+import { DEPARTMENTS, ET_DEPARTMENTS } from '../../../data/masterData.js';
 import { 
   getMoUs, 
   getAcademicEvents, 

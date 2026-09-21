@@ -4071,9 +4071,45 @@
       "academicEvents": 15,
       "bosMeetings": 6
     },
-    "lastUpdatedAt": "2026-09-18T04:44:59.283Z"
+    "lastUpdatedAt": "2026-09-21T04:28:50.200Z"
   },
   "auditLogs": [
+    {
+      "id": "AUD-1789964930192-36",
+      "timestamp": "2026-09-21T04:28:50.192Z",
+      "userName": "System Operator",
+      "userRole": "Super Admin",
+      "action": "CSV_EXPORT",
+      "module": "Compliance & Reporting",
+      "details": "Exported 5 records to NEC_Attendance_Risk_List_2026-09-21.csv"
+    },
+    {
+      "id": "AUD-1789808547806-947",
+      "timestamp": "2026-09-19T09:02:27.806Z",
+      "userName": "Sri Mittapalli Ramesh Babu",
+      "userRole": "SUPER_ADMIN",
+      "action": "BOS_EXPORT_PDF",
+      "module": "Board of Studies",
+      "details": "Exported BoS single meeting PDF: BOS-CSE(AIML)-R23-013"
+    },
+    {
+      "id": "AUD-1789792131512-480",
+      "timestamp": "2026-09-19T04:28:51.512Z",
+      "userName": "Sri Mittapalli Ramesh Babu",
+      "userRole": "SUPER_ADMIN",
+      "action": "UPDATE_RESEARCH_PROFILE",
+      "module": "Publications",
+      "details": "Updated research profile for faculty ID: NEC-PER-0140"
+    },
+    {
+      "id": "AUD-1789747488711-469",
+      "timestamp": "2026-09-18T16:04:48.711Z",
+      "userName": "Ashu Chinthapalli",
+      "userRole": "SUPER_ADMIN",
+      "action": "FIREBASE_UID_LINKED",
+      "module": "IAM Governance",
+      "details": "Bound Firebase UID for ashuchinthapalli3900@gmail.com"
+    },
     {
       "id": "AUD-1789706699275-156",
       "timestamp": "2026-09-18T04:44:59.275Z",

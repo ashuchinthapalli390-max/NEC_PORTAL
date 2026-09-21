@@ -71,6 +71,7 @@ export const NAVIGATION_CATEGORIES = [
     items: [
       { id: 'attendance-risk', label: 'Attendance Risk & Parent Contact', icon: AlertTriangle },
       { id: 'student-projects', label: 'Student Projects & Capstone', icon: Code },
+      { id: 'community-projects', label: 'Community Service Projects (CSP)', icon: HeartHandshake },
       { id: 'student-achievements', label: 'Student Achievements & Honors', icon: Trophy },
       { id: 'internships', label: 'Student Internships & Training', icon: Briefcase }
     ]
@@ -91,7 +92,7 @@ export const NAVIGATION_CATEGORIES = [
     items: [
       { id: 'bos-meetings', label: 'Board of Studies (BoS)', icon: BookOpen },
       { id: 'academic-council', label: 'Academic Council', icon: Award },
-      { id: 'regulations-hub', label: 'Governance Body', icon: FileText, badge: 'Pending' }
+      { id: 'regulations-hub', label: 'Governing Body & CAC Records', icon: FileText }
     ]
   },
   {
@@ -111,9 +112,7 @@ export const NAVIGATION_CATEGORIES = [
     items: [
       { id: 'faculty-memberships', label: 'Faculty Memberships', icon: Award },
       { id: 'fdps-organized', label: 'FDPs Organized (Host)', icon: Award },
-      { id: 'faculty-achievements', label: 'Faculty Achievements & FDPs', icon: GraduationCap },
-      { id: 'faculty-directory', label: 'Faculty Directory & Profiles', icon: Users },
-      { id: 'staff-profiles', label: 'Staff Profiles', icon: UserCheck }
+      { id: 'faculty-achievements', label: 'Faculty Achievements & FDPs', icon: GraduationCap }
     ]
   },
   {

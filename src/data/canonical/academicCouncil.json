@@ -1,0 +1,45 @@
+[
+  {
+    "id": "CAC_MEETING_2025_07",
+    "councilType": "College Academic Committee (CAC)",
+    "meetingNumber": "CAC Meeting (July 2025)",
+    "meetingDate": "2025-07-29",
+    "reportingPeriod": "21-03-2025 to 29-07-2025",
+    "academicYear": "2025-26",
+    "status": "Conducted",
+    "venue": "Academic Council Conference Room",
+    "agendaItems": [
+      "Review of semester academic progress and mid-examination performance",
+      "Approval of academic calendars for UG (B.Tech) and PG programs for AY 2025-26",
+      "Faculty research advancements: awarded and pursuing Ph.D. degrees",
+      "Attendance condonation and student detention reviews",
+      "Community Service Project (CSP) field execution and evaluation rubrics"
+    ],
+    "resolutions": [
+      "Approved academic schedules for odd semesters of 2025-26",
+      "Ratified guidelines for student internship credits and NPTEL course substitutions",
+      "Noted doctoral progress of faculty scholars enrolled in central/state universities"
+    ],
+    "sourceFile": "Formats/CAC - File.docx"
+  },
+  {
+    "id": "CAC_MEETING_2023_10",
+    "councilType": "College Academic Committee (CAC)",
+    "meetingNumber": "CAC Meeting (October 2023)",
+    "meetingDate": "2023-10-28",
+    "reportingPeriod": "06-11-2022 to 28-10-2023",
+    "academicYear": "2023-24",
+    "status": "Conducted",
+    "venue": "Academic Council Conference Room",
+    "agendaItems": [
+      "Curricular review under R20 autonomous regulations",
+      "Evaluation of student performance in end-semester autonomous examinations",
+      "Faculty development program participation and NPTEL online course achievements"
+    ],
+    "resolutions": [
+      "Approved question paper setter panels and moderation committee proceedings",
+      "Sanctioned implementation of mandatory internships for Emerging Technologies branches"
+    ],
+    "sourceFile": "Formats/CACDETAILS.docx"
+  }
+]

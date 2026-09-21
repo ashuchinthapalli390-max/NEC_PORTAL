@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "ingest:event-media": "node scripts/ingest_event_media.mjs"
+    "ingest:event-media": "node scripts/ingest_event_media.mjs",
+    "import:nec-data": "node scripts/importNecInstitutionalData.mjs"
   },
   "dependencies": {
     "@node-rs/argon2": "^2.1.0",

@@ -126,16 +126,17 @@ export default function MouWizardModal({
       effectiveDate: new Date().toISOString().split('T')[0],
       validityType: '3 Years',
       expiryDate: '',
-      department: 'All Departments (Institution-Level)',
+      department: isHod ? (currentUser?.dept || 'CSE(AIML)') : 'Institution Level',
       purpose: 'Collaborative research, student internships, curriculum development, and technical workshops.',
+      scopes: ['STUDENT_INTERNSHIP', 'FACULTY_TRAINING', 'PLACEMENT_ASSISTANCE'],
       description: '',
-      
-      scopes: ['Internships', 'Student Projects', 'Workshops', 'Faculty Training'],
-      primaryCoordinator: defaultFac?.name || 'Dr. S. V. N. Sreenivasu',
-      coCoordinators: [],
-      
-      documents: [],
-      workflowStatus: 'DRAFT'
+      contactPerson: '',
+      contactEmail: '',
+      contactPhone: '',
+      partnerAddress: '',
+      partnerWebsite: '',
+      workflowStatus: 'SUBMITTED',
+      documents: []
     };
   });
 
@@ -189,9 +190,6 @@ export default function MouWizardModal({
     } else if (step === 3) {
       if (!formData.scopes || formData.scopes.length === 0) {
         newErrors.scopes = 'Please select at least one scope of collaboration';
-      }
-      if (!formData.primaryCoordinator) {
-        newErrors.primaryCoordinator = 'Primary NEC Coordinator is required';
       }
     }
     setErrors(newErrors);
@@ -337,7 +335,7 @@ export default function MouWizardModal({
           {[
             { step: 1, label: 'Partner Organization' },
             { step: 2, label: 'Agreement Details' },
-            { step: 3, label: 'Scope & Coordinators' },
+            { step: 3, label: 'Scope & Purpose' },
             { step: 4, label: 'Documents' },
             { step: 5, label: 'Review & Submit' }
           ].map((s) => {
@@ -551,25 +549,6 @@ export default function MouWizardModal({
                     })}
                   </div>
                 </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '0.5rem' }}>
-                  <FormField label="PRIMARY NEC COORDINATOR *" error={errors.primaryCoordinator}>
-                    <Select value={formData.primaryCoordinator} onChange={(e) => setFormData({ ...formData, primaryCoordinator: e.target.value })} error={!!errors.primaryCoordinator}>
-                      {FACULTY_DATA.map(f => (
-                        <option key={f.id} value={f.name}>{f.name} ({f.department} - {f.designation})</option>
-                      ))}
-                    </Select>
-                  </FormField>
-
-                  <FormField label="CO-COORDINATOR (OPTIONAL)">
-                    <Select value={formData.coCoordinators?.[0] || ''} onChange={(e) => setFormData({ ...formData, coCoordinators: e.target.value ? [e.target.value] : [] })}>
-                      <option value="">None / Single Coordinator</option>
-                      {FACULTY_DATA.map(f => (
-                        <option key={f.id} value={f.name}>{f.name} ({f.department})</option>
-                      ))}
-                    </Select>
-                  </FormField>
-                </div>
               </motion.div>
             )}
 
@@ -640,8 +619,8 @@ export default function MouWizardModal({
                       <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#0F172A' }}>{formData.effectiveDate} &rarr; {validityInfo.expiryDate}</div>
                     </div>
                     <div>
-                      <div style={{ fontSize: '0.7rem', color: '#64748B' }}>Primary Coordinator</div>
-                      <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#0F172A' }}>{formData.primaryCoordinator}</div>
+                      <div style={{ fontSize: '0.7rem', color: '#64748B' }}>Department / Level</div>
+                      <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#0F172A' }}>{formData.department || 'Institution Level'}</div>
                     </div>
                     <div>
                       <div style={{ fontSize: '0.7rem', color: '#64748B' }}>Scopes</div>

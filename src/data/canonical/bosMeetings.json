@@ -1,0 +1,1482 @@
+[
+  {
+    "id": "BOS_AIML_R23_1",
+    "bosNumber": "BOS-AIML-R23-001",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "meetingNumber": "Meeting I",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Artificial Intelligence & Machine Learning - I BoS Meeting (R23)",
+    "title": "Artificial Intelligence & Machine Learning - I BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2023-09-26",
+    "bosDate": "2023-09-26",
+    "date": "2023-09-26",
+    "academicYear": "2023-24",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_OTMxY2EyNjEtZDgxZS00NjQ2LTk4YzUtZWVkNmFjNjU2ZmYy%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr. O. Srinivasa Rao"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr. C. Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr. K. Karteeka Pavan"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr. G.N.M. Raju"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr. R. Yuvaraj"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "AIML/BOS AIML.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 2
+    }
+  },
+  {
+    "id": "BOS_AIML_R23_2",
+    "bosNumber": "BOS-AIML-R23-002",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "meetingNumber": "Meeting II",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Artificial Intelligence & Machine Learning - II BoS Meeting (R23)",
+    "title": "Artificial Intelligence & Machine Learning - II BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2024-07-05",
+    "bosDate": "2024-07-05",
+    "date": "2024-07-05",
+    "academicYear": "2024-25",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_Y2NiZDg1NDEtOTJhYy00ZTY5LWE2OTctMmQwYTA0OTg1YTM3%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr. O. Srinivasa Rao"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr. C. Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr. K. Karteeka Pavan"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr. G.N.M. Raju"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr. R. Yuvaraj"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "AIML/BOS AIML.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 3
+    }
+  },
+  {
+    "id": "BOS_AIML_R23_3",
+    "bosNumber": "BOS-AIML-R23-003",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "meetingNumber": "Meeting III",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Artificial Intelligence & Machine Learning - III BoS Meeting (R23)",
+    "title": "Artificial Intelligence & Machine Learning - III BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2025-07-11",
+    "bosDate": "2025-07-11",
+    "date": "2025-07-11",
+    "academicYear": "2025-26",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_YmJlNDEyODQtODhkMi00MjY3LTlkYjUtZWYxZGYwMzAzOGNk%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr. O. Srinivasa Rao"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr. C. Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr. K. Karteeka Pavan"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr. G.N.M. Raju"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr. R. Yuvaraj"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "AIML/BOS AIML.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 4
+    }
+  },
+  {
+    "id": "BOS_AIML_R23_4",
+    "bosNumber": "BOS-AIML-R23-004",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "meetingNumber": "Meeting IV",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Artificial Intelligence & Machine Learning - IV BoS Meeting (R23)",
+    "title": "Artificial Intelligence & Machine Learning - IV BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2026-02-17",
+    "bosDate": "2026-02-17",
+    "date": "2026-02-17",
+    "academicYear": "2026-27",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZWUxNTQ3ZjMtM2UzMC00ZjA5LWJlZWMtMDc2NTQxNWY4Yjg0%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr. O. Srinivasa Rao"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr. C. Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr. K. Karteeka Pavan"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr. G.N.M. Raju"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr. R. Yuvaraj"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "AIML/BOS AIML.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 5
+    }
+  },
+  {
+    "id": "BOS_CSE(AI)_R20_5",
+    "bosNumber": "BOS-CSE(AI)-R20-005",
+    "department": "CSE(AI)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence)",
+    "meetingNumber": "Meeting I",
+    "meetingDetails": "Autonomous BoS Meeting (R20)",
+    "meetingTitle": "Computer Science & Engineering (Artificial Intelligence) - I BoS Meeting (R20)",
+    "title": "Computer Science & Engineering (Artificial Intelligence) - I BoS Meeting (R20)",
+    "regulation": "R20",
+    "meetingDate": "2021-01-19",
+    "bosDate": "2021-01-19",
+    "date": "2021-01-19",
+    "academicYear": "2021-22",
+    "meetingLink": null,
+    "mode": "Offline / In-Person",
+    "meetingMode": "In-Person",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr. K.V Ramana"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr. Karthik S"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr. D. Jaya Kumari"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr. T. Aditya Kumar"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R20.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(AI)/BOS CSE AI.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 2
+    }
+  },
+  {
+    "id": "BOS_CSE(AI)_R20_6",
+    "bosNumber": "BOS-CSE(AI)-R20-006",
+    "department": "CSE(AI)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence)",
+    "meetingNumber": "Meeting II, III & IV",
+    "meetingDetails": "Autonomous BoS Meeting (R20)",
+    "meetingTitle": "Computer Science & Engineering (Artificial Intelligence) - II, III & IV BoS Meeting (R20)",
+    "title": "Computer Science & Engineering (Artificial Intelligence) - II, III & IV BoS Meeting (R20)",
+    "regulation": "R20",
+    "meetingDate": "2021-10-04",
+    "bosDate": "2021-10-04",
+    "date": "2021-10-04",
+    "academicYear": "2021-22",
+    "meetingLink": null,
+    "mode": "Offline / In-Person",
+    "meetingMode": "In-Person",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr. O. Srinivasa Rao"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr R. B V Subrahmanyam"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.V. Valli Kumari"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Dr.Ch. Rupa"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "V Santhosh Kumar Tangudu"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R20.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(AI)/BOS CSE AI.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 3
+    }
+  },
+  {
+    "id": "BOS_CSE(AI)_R23_7",
+    "bosNumber": "BOS-CSE(AI)-R23-007",
+    "department": "CSE(AI)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence)",
+    "meetingNumber": "Meeting I",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Artificial Intelligence) - I BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Artificial Intelligence) - I BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2023-09-26",
+    "bosDate": "2023-09-26",
+    "date": "2023-09-26",
+    "academicYear": "2023-24",
+    "meetingLink": null,
+    "mode": "Offline / In-Person",
+    "meetingMode": "In-Person",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr. K.V Ramana"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr. Karthik S"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr. D. Jaya Kumari"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr. T. Aditya Kumar"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(AI)/BOS CSE AI.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 4
+    }
+  },
+  {
+    "id": "BOS_CSE(AI)_R23_8",
+    "bosNumber": "BOS-CSE(AI)-R23-008",
+    "department": "CSE(AI)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence)",
+    "meetingNumber": "Meeting II",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Artificial Intelligence) - II BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Artificial Intelligence) - II BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2024-07-11",
+    "bosDate": "2024-07-11",
+    "date": "2024-07-11",
+    "academicYear": "2024-25",
+    "meetingLink": null,
+    "mode": "Offline / In-Person",
+    "meetingMode": "In-Person",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr. O. Srinivasa Rao"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr R. B V Subrahmanyam"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.V. Valli Kumari"
+      },
+      {
+        "role": "Industry Member",
+        "name": "T. Uday Kumar"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(AI)/BOS CSE AI.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 5
+    }
+  },
+  {
+    "id": "BOS_CSE(AI)_R23_9",
+    "bosNumber": "BOS-CSE(AI)-R23-009",
+    "department": "CSE(AI)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence)",
+    "meetingNumber": "Meeting III",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Artificial Intelligence) - III BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Artificial Intelligence) - III BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2025-07-17",
+    "bosDate": "2025-07-17",
+    "date": "2025-07-17",
+    "academicYear": "2025-26",
+    "meetingLink": null,
+    "mode": "Offline / In-Person",
+    "meetingMode": "In-Person",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr. O. Srinivasa Rao"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr R. B V Subrahmanyam"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.V. Valli Kumari"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr. Srikanth Ganipisetty"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Dr. D. Jaya Kumari"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(AI)/BOS CSE AI.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 6
+    }
+  },
+  {
+    "id": "BOS_CSE(AI)_R23_10",
+    "bosNumber": "BOS-CSE(AI)-R23-010",
+    "department": "CSE(AI)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence)",
+    "meetingNumber": "Meeting IV",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Artificial Intelligence) - IV BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Artificial Intelligence) - IV BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2026-02-17",
+    "bosDate": "2026-02-17",
+    "date": "2026-02-17",
+    "academicYear": "2026-27",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_YzhmOGM2NTAtODg0ZC00MjcwLTg5MWUtNmU4MThjYzc0MGNh%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr. O. Srinivasa Rao"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr R Praneetha Sree"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.Hemantha Kumar Kalluri"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mrs.M.Rohini"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr.Ch.Anil Kumar"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(AI)/BOS CSE AI.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 7
+    }
+  },
+  {
+    "id": "BOS_CSE(AIML)_R20_11",
+    "bosNumber": "BOS-CSE(AIML)-R20-011",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "meetingNumber": "Meeting I & II",
+    "meetingDetails": "Autonomous BoS Meeting (R20)",
+    "meetingTitle": "Computer Science & Engineering (Artificial Intelligence & Machine Learning) - I & II BoS Meeting (R20)",
+    "title": "Computer Science & Engineering (Artificial Intelligence & Machine Learning) - I & II BoS Meeting (R20)",
+    "regulation": "R20",
+    "meetingDate": "2022-09-28",
+    "bosDate": "2022-09-28",
+    "date": "2022-09-28",
+    "academicYear": "2022-23",
+    "meetingLink": null,
+    "mode": "Offline / In-Person",
+    "meetingMode": "In-Person",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr.D.Rajya Lakshmi"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr.C.Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.K.Karteeka Pavan"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr.G.N.M.Raju"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr.R.Yuvarj"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R20.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/BOS CSE AIML.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 2
+    }
+  },
+  {
+    "id": "BOS_CSE(AIML)_R20_12",
+    "bosNumber": "BOS-CSE(AIML)-R20-012",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "meetingNumber": "Meeting III & IV",
+    "meetingDetails": "Autonomous BoS Meeting (R20)",
+    "meetingTitle": "Computer Science & Engineering (Artificial Intelligence & Machine Learning) - III & IV BoS Meeting (R20)",
+    "title": "Computer Science & Engineering (Artificial Intelligence & Machine Learning) - III & IV BoS Meeting (R20)",
+    "regulation": "R20",
+    "meetingDate": "2023-12-30",
+    "bosDate": "2023-12-30",
+    "date": "2023-12-30",
+    "academicYear": "2023-24",
+    "meetingLink": null,
+    "mode": "Offline / In-Person",
+    "meetingMode": "In-Person",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr.D.Rajya Lakshmi"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr.C.Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.K.Karteeka Pavan"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr.G.N.M.Raju"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr.R.Yuvarj"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R20.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/BOS CSE AIML.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 3
+    }
+  },
+  {
+    "id": "BOS_CSE(AIML)_R23_13",
+    "bosNumber": "BOS-CSE(AIML)-R23-013",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "meetingNumber": "Meeting I",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Artificial Intelligence & Machine Learning) - I BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Artificial Intelligence & Machine Learning) - I BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2024-07-12",
+    "bosDate": "2024-07-12",
+    "date": "2024-07-12",
+    "academicYear": "2024-25",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_NGVhNDg4NjItZWIzYy00NzE1LWE2MWYtNTVjYzc3MzNjNTdj%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Prof.D.Haritha"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr.C.Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.K.Karteeka Pavan"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr.G.N.M.Raju"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr.R.Yuvarj"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/BOS CSE AIML.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 4
+    }
+  },
+  {
+    "id": "BOS_CSE(AIML)_R23_14",
+    "bosNumber": "BOS-CSE(AIML)-R23-014",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "meetingNumber": "Meeting II",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Artificial Intelligence & Machine Learning) - II BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Artificial Intelligence & Machine Learning) - II BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2023-09-25",
+    "bosDate": "2023-09-25",
+    "date": "2023-09-25",
+    "academicYear": "2023-24",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_N2ZhYTA0YmQtMmE3Mi00NmZiLTgxMzktZjE5ZjZkMmRmNzVm%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr.D.Rajya Lakshmi"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr.C.Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.K.Karteeka Pavan"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr.G.N.M.Raju"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr.R.Yuvarj"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/BOS CSE AIML.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 5
+    }
+  },
+  {
+    "id": "BOS_CSE(AIML)_R23_15",
+    "bosNumber": "BOS-CSE(AIML)-R23-015",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "meetingNumber": "Meeting III",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Artificial Intelligence & Machine Learning) - III BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Artificial Intelligence & Machine Learning) - III BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2025-07-17",
+    "bosDate": "2025-07-17",
+    "date": "2025-07-17",
+    "academicYear": "2025-26",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_MmE1NGQ0N2YtZmZhMS00Nzg0LTg2ZTYtM2VlMDYyNWI0MmE3%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Prof.D.Haritha"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr.C.Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.K.Karteeka Pavan"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr.G.N.M.Raju"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr.R.Yuvarj"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/BOS CSE AIML.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 6
+    }
+  },
+  {
+    "id": "BOS_CSE(AIML)_R23_16",
+    "bosNumber": "BOS-CSE(AIML)-R23-016",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "meetingNumber": "Meeting IV",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Artificial Intelligence & Machine Learning) - IV BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Artificial Intelligence & Machine Learning) - IV BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2026-02-18",
+    "bosDate": "2026-02-18",
+    "date": "2026-02-18",
+    "academicYear": "2026-27",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_YWEzNWI5NDMtZjI4Ny00Mzg3LWE4MjctMTFlNGQ1MzI2MTFk%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Prof.D.Haritha"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr.N.Satya Krishnna"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.S.Sagar Imambi"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr.G.N.M.Raju"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr.R.Yuvarj"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/BOS CSE AIML.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 7
+    }
+  },
+  {
+    "id": "BOS_CSE(CS)_R20_17",
+    "bosNumber": "BOS-CSE(CS)-R20-017",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "meetingNumber": "Meeting I & II",
+    "meetingDetails": "Autonomous BoS Meeting (R20)",
+    "meetingTitle": "Computer Science & Engineering (Cyber Security) - I & II BoS Meeting (R20)",
+    "title": "Computer Science & Engineering (Cyber Security) - I & II BoS Meeting (R20)",
+    "regulation": "R20",
+    "meetingDate": "2022-09-26",
+    "bosDate": "2022-09-26",
+    "date": "2022-09-26",
+    "academicYear": "2022-23",
+    "meetingLink": null,
+    "mode": "Offline / In-Person",
+    "meetingMode": "In-Person",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr.ASN Chakravarthy"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr.Bheemarjuna Reddy Tamma"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.K.V.D.Kiran"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr.P.Sudhakar"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mrs.Lakshmi Deepthi"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R20.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(CS)/BOS CSE CS.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 2
+    }
+  },
+  {
+    "id": "BOS_CSE(CS)_R20_18",
+    "bosNumber": "BOS-CSE(CS)-R20-018",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "meetingNumber": "Meeting III & IV",
+    "meetingDetails": "Autonomous BoS Meeting (R20)",
+    "meetingTitle": "Computer Science & Engineering (Cyber Security) - III & IV BoS Meeting (R20)",
+    "title": "Computer Science & Engineering (Cyber Security) - III & IV BoS Meeting (R20)",
+    "regulation": "R20",
+    "meetingDate": "2023-12-16",
+    "bosDate": "2023-12-16",
+    "date": "2023-12-16",
+    "academicYear": "2023-24",
+    "meetingLink": null,
+    "mode": "Offline / In-Person",
+    "meetingMode": "In-Person",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr.ASN Chakravarthy"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr.Bheemarjuna Reddy Tamma"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.K.V.D.Kiran"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr.P.Sudhakar"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mrs.Lakshmi Deepthi"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R20.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(CS)/BOS CSE CS.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 3
+    }
+  },
+  {
+    "id": "BOS_CSE(CS)_R23_19",
+    "bosNumber": "BOS-CSE(CS)-R23-019",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "meetingNumber": "Meeting I",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Cyber Security) - I BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Cyber Security) - I BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2023-09-26",
+    "bosDate": "2023-09-26",
+    "date": "2023-09-26",
+    "academicYear": "2023-24",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZTI5ZjIzMmUtNThkZi00YjBkLTk0MzEtNTZiMGRmYWVhMTVj%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr.ASN Chakravarthy"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr.Bheemarjuna Reddy Tamma"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.K.V.D.Kiran"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr.P.Sudhakar"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mrs.Lakshmi Deepthi"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Verified",
+    "workflowStatus": "APPROVED",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [
+      {
+        "id": "doc_bos_cys_r23_01",
+        "title": "R23 - 1st Board of Studies Meeting - I Year (Official Signed Minutes)",
+        "filename": "01_R23_1st_BoS_CYS_2023-09-26.pdf",
+        "type": "MINUTES",
+        "documentType": "MINUTES_PACKAGE",
+        "containsAgenda": true,
+        "containsAttendance": true,
+        "containsMeetingEvidence": true,
+        "storagePath": "/documents/bos/cse-cys/01_R23_1st_BoS_CYS_2023-09-26.pdf",
+        "downloadUrl": "/documents/bos/cse-cys/01_R23_1st_BoS_CYS_2023-09-26.pdf",
+        "sizeBytes": 4889167,
+        "visibility": "INTERNAL",
+        "version": "v1.0"
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/BOS CSE CS.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 4
+    }
+  },
+  {
+    "id": "BOS_CSE(CS)_R23_20",
+    "bosNumber": "BOS-CSE(CS)-R23-020",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "meetingNumber": "Meeting II",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Cyber Security) - II BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Cyber Security) - II BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2024-07-09",
+    "bosDate": "2024-07-09",
+    "date": "2024-07-09",
+    "academicYear": "2024-25",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZmE4NjRiYmMtY2Q0My00OTRiLTg3MzUtMmJkNTM0NGJmOGUz%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr.ASN Chakravarthy"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr.Bheemarjuna Reddy Tamma"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.K.V.D.Kiran"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr.P.Sudhakar"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mrs.Lakshmi Deepthi"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Verified",
+    "workflowStatus": "APPROVED",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [
+      {
+        "id": "doc_bos_cys_r23_02",
+        "title": "R23 - 2nd Board of Studies Meeting - II Year (Official Signed Minutes)",
+        "filename": "02_R23_2nd_BoS_CYS_2024-07-09.pdf",
+        "type": "MINUTES",
+        "documentType": "MINUTES_PACKAGE",
+        "containsAgenda": true,
+        "containsAttendance": true,
+        "containsMeetingEvidence": true,
+        "storagePath": "/documents/bos/cse-cys/02_R23_2nd_BoS_CYS_2024-07-09.pdf",
+        "downloadUrl": "/documents/bos/cse-cys/02_R23_2nd_BoS_CYS_2024-07-09.pdf",
+        "sizeBytes": 3108605,
+        "visibility": "INTERNAL",
+        "version": "v1.0"
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/BOS CSE CS.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 5
+    }
+  },
+  {
+    "id": "BOS_CSE(CS)_R23_21",
+    "bosNumber": "BOS-CSE(CS)-R23-021",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "meetingNumber": "Meeting III",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Cyber Security) - III BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Cyber Security) - III BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2025-07-11",
+    "bosDate": "2025-07-11",
+    "date": "2025-07-11",
+    "academicYear": "2025-26",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_YmJlNDEyODQtODhkMi00MjY3LTlkYjUtZWYxZGYwMzAzOGNk%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr.ASN Chakravarthy"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr.Bheemarjuna Reddy Tamma"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.K.V.D.Kiran"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr.P.Sudhakar"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mrs.Lakshmi Deepthi"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Verified",
+    "workflowStatus": "APPROVED",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [
+      {
+        "id": "doc_bos_cys_r23_03",
+        "title": "R23 - 3rd Board of Studies Meeting - III Year (Official Signed Minutes)",
+        "filename": "03_R23_3rd_BoS_CYS_2025-07-12.pdf",
+        "type": "MINUTES",
+        "documentType": "MINUTES_PACKAGE",
+        "containsAgenda": true,
+        "containsAttendance": true,
+        "containsMeetingEvidence": true,
+        "storagePath": "/documents/bos/cse-cys/03_R23_3rd_BoS_CYS_2025-07-12.pdf",
+        "downloadUrl": "/documents/bos/cse-cys/03_R23_3rd_BoS_CYS_2025-07-12.pdf",
+        "sizeBytes": 4363231,
+        "visibility": "INTERNAL",
+        "version": "v1.0"
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/BOS CSE CS.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 6
+    }
+  },
+  {
+    "id": "BOS_CSE(CS)_R23_22",
+    "bosNumber": "BOS-CSE(CS)-R23-022",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "meetingNumber": "Meeting IV",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Cyber Security) - IV BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Cyber Security) - IV BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2026-02-21",
+    "bosDate": "2026-02-21",
+    "date": "2026-02-21",
+    "academicYear": "2026-27",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_OTczYTUxMWEtZGRkOC00ZGQyLTg5ZjItYTUxNDgwMzBmNTZk%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr.ASN Chakravarthy"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr.Sriramulu Bojjagani"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr.B.Kotaiah"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mr.P.Sudhakar"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mrs.Lakshmi Deepthi"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Verified",
+    "workflowStatus": "APPROVED",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [
+      {
+        "id": "doc_bos_cys_r23_04",
+        "title": "R23 - 4th Board of Studies Meeting - IV Year (Official Signed Minutes)",
+        "filename": "04_R23_4th_BoS_CYS_2026-02-21.pdf",
+        "type": "MINUTES",
+        "documentType": "MINUTES_PACKAGE",
+        "containsAgenda": true,
+        "containsAttendance": true,
+        "containsMeetingEvidence": true,
+        "storagePath": "/documents/bos/cse-cys/04_R23_4th_BoS_CYS_2026-02-21.pdf",
+        "downloadUrl": "/documents/bos/cse-cys/04_R23_4th_BoS_CYS_2026-02-21.pdf",
+        "sizeBytes": 4212726,
+        "visibility": "INTERNAL",
+        "version": "v1.0"
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/BOS CSE CS.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 7
+    }
+  },
+  {
+    "id": "BOS_CSE(DS)_R20_23",
+    "bosNumber": "BOS-CSE(DS)-R20-023",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "meetingNumber": "Meeting I & II",
+    "meetingDetails": "Autonomous BoS Meeting (R20)",
+    "meetingTitle": "Computer Science & Engineering (Data Science) - I & II BoS Meeting (R20)",
+    "title": "Computer Science & Engineering (Data Science) - I & II BoS Meeting (R20)",
+    "regulation": "R20",
+    "meetingDate": "2022-09-29",
+    "bosDate": "2022-09-29",
+    "date": "2022-09-29",
+    "academicYear": "2022-23",
+    "meetingLink": null,
+    "mode": "Offline / In-Person",
+    "meetingMode": "In-Person",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr. R. Rajeswara Rao"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr. C. Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr. S. Sagar Imambi"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mrs. M. Rohini"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr. Ch. Anil Kumar"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R20.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(DS)/BOS CSE DS.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 2
+    }
+  },
+  {
+    "id": "BOS_CSE(DS)_R20_24",
+    "bosNumber": "BOS-CSE(DS)-R20-024",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "meetingNumber": "Meeting III & IV",
+    "meetingDetails": "Autonomous BoS Meeting (R20)",
+    "meetingTitle": "Computer Science & Engineering (Data Science) - III & IV BoS Meeting (R20)",
+    "title": "Computer Science & Engineering (Data Science) - III & IV BoS Meeting (R20)",
+    "regulation": "R20",
+    "meetingDate": "2023-12-13",
+    "bosDate": "2023-12-13",
+    "date": "2023-12-13",
+    "academicYear": "2023-24",
+    "meetingLink": null,
+    "mode": "Offline / In-Person",
+    "meetingMode": "In-Person",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr. R. Rajeswara Rao"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr. C. Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr. S. Sagar Imambi"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mrs. M. Rohini"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr. Ch. Anil Kumar"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R20.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(DS)/BOS CSE DS.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 3
+    }
+  },
+  {
+    "id": "BOS_CSE(DS)_R23_25",
+    "bosNumber": "BOS-CSE(DS)-R23-025",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "meetingNumber": "Meeting I",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Data Science) - I BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Data Science) - I BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2023-09-25",
+    "bosDate": "2023-09-25",
+    "date": "2023-09-25",
+    "academicYear": "2023-24",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-oin/19%3ameeting_MjY4ZDBkMWMtNjM5MC00ZTVjLWExMmUtYWZhNTQ4ZWZhZWJh%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Dr. R. Rajeswara Rao"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr. C. Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr. S. Sagar Imambi"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mrs. M. Rohini"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr. Ch. Anil Kumar"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(DS)/BOS CSE DS.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 4
+    }
+  },
+  {
+    "id": "BOS_CSE(DS)_R23_26",
+    "bosNumber": "BOS-CSE(DS)-R23-026",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "meetingNumber": "Meeting II",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Data Science) - II BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Data Science) - II BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2024-07-08",
+    "bosDate": "2024-07-08",
+    "date": "2024-07-08",
+    "academicYear": "2024-25",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZGNhMDIyMzMtMjg4ZS00Yjg3LWJlMzUtMTQzMWNhMmY2Y2I1%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Prof. MHM Krishna Prasad"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr. C. Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr. S. Sagar Imambi"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mrs. M. Rohini"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr. Ch. Anil Kumar"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(DS)/BOS CSE DS.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 5
+    }
+  },
+  {
+    "id": "BOS_CSE(DS)_R23_27",
+    "bosNumber": "BOS-CSE(DS)-R23-027",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "meetingNumber": "Meeting III",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Data Science) - III BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Data Science) - III BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2025-07-14",
+    "bosDate": "2025-07-14",
+    "date": "2025-07-14",
+    "academicYear": "2025-26",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZDgwMDAyOGEtOGI1Ni00NTU3LTk5OWQtODVjYzczNTc0OWNj%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Prof. MHM Krishna Prasad"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr. C. Krishna Mohan"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr. S. Sagar Imambi"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mrs. M. Rohini"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr. Ch. Anil Kumar"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(DS)/BOS CSE DS.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 6
+    }
+  },
+  {
+    "id": "BOS_CSE(DS)_R23_28",
+    "bosNumber": "BOS-CSE(DS)-R23-028",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "meetingNumber": "Meeting IV",
+    "meetingDetails": "Autonomous BoS Meeting (R23)",
+    "meetingTitle": "Computer Science & Engineering (Data Science) - IV BoS Meeting (R23)",
+    "title": "Computer Science & Engineering (Data Science) - IV BoS Meeting (R23)",
+    "regulation": "R23",
+    "meetingDate": "2026-02-16",
+    "bosDate": "2026-02-16",
+    "date": "2026-02-16",
+    "academicYear": "2026-27",
+    "meetingLink": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_MmE1NTk2NTctMTFiYy00YTg1LWFhODktMDM2NmM4ODlhNzVi%40thread.v2/0?context=%7b%22Tid%22%3a%2276254ace-27ad-489b-9f92-b6f1aa89d5d4%22%2c%22Oid%22%3a%22cc38ad36-f59f-4a8c-9f45-4cf536e0b763%22%7d",
+    "mode": "Online (Microsoft Teams)",
+    "meetingMode": "Online",
+    "attendees": [
+      {
+        "role": "University Nominee",
+        "name": "Prof. MHM Krishna Prasad"
+      },
+      {
+        "role": "External Expert 1",
+        "name": "Dr R Praneetha Sree"
+      },
+      {
+        "role": "External Expert 2",
+        "name": "Dr V Ramanjaneyulu Yannam"
+      },
+      {
+        "role": "Industry Member",
+        "name": "Mrs. M. Rohini"
+      },
+      {
+        "role": "Alumni Representative",
+        "name": "Mr. Ch. Anil Kumar"
+      }
+    ],
+    "status": "Conducted",
+    "meetingStatus": "HELD",
+    "verificationStatus": "Unverified",
+    "workflowStatus": "Approval Not Recorded",
+    "resolutionsSummary": "Autonomous Board of Studies proceeding and curriculum review under R23.",
+    "documents": [],
+    "provenance": {
+      "sourceFile": "CSE(DS)/BOS CSE DS.xlsx",
+      "sheetName": "Sheet1",
+      "rowNum": 7
+    }
+  }
+]

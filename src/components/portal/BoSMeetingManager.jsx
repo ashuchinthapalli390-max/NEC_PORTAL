@@ -83,6 +83,8 @@ export default function BoSMeetingManager({ currentUser, onDataChange }) {
   const [selectedRegulationFilter, setSelectedRegulationFilter] = useState('ALL');
   const [selectedStatusFilter, setSelectedStatusFilter] = useState('ALL');
   const [selectedAcademicYearFilter, setSelectedAcademicYearFilter] = useState('ALL');
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
 
   // Wizard Modal State
   const [wizardModalOpen, setWizardModalOpen] = useState(false);
@@ -212,7 +214,14 @@ export default function BoSMeetingManager({ currentUser, onDataChange }) {
     const matchesStatus = selectedStatusFilter === 'ALL' || m.workflowStatus === selectedStatusFilter;
     const matchesYear = selectedAcademicYearFilter === 'ALL' || m.academicYear === selectedAcademicYearFilter;
 
-    return matchesSearch && matchesDept && matchesReg && matchesStatus && matchesYear;
+    let matchesDate = true;
+    const mDate = m.bosDate || m.meetingDate || m.date;
+    if (mDate) {
+      if (fromDate && mDate < fromDate) matchesDate = false;
+      if (toDate && mDate > toDate) matchesDate = false;
+    }
+
+    return matchesSearch && matchesDept && matchesReg && matchesStatus && matchesYear && matchesDate;
   });
 
   // KPI Metrics Summary (Synchronized strictly with filtered projection)
@@ -337,8 +346,8 @@ export default function BoSMeetingManager({ currentUser, onDataChange }) {
         ]}
         title="Board of Studies (BoS) Academic Governance"
         subtitle="Statutory repository for department BoS regulations, external nominees, meeting minutes, and compliance approvals."
-        onExportCSV={() => exportToCSV('bos_meetings')}
-        onExportExcel={() => exportToExcel('bos_meetings')}
+        onExportCSV={() => exportToCSV(filteredMeetings, `ET_BoS_Meetings_${selectedDeptFilter}`, currentUser, { moduleKey: 'bosMeetings' })}
+        onExportExcel={() => exportToExcel(filteredMeetings, `ET_BoS_Meetings_${selectedDeptFilter}`, 'BoS_Meetings', currentUser, { moduleKey: 'bosMeetings' })}
         onExportPDF={handleExportFilteredPDF}
         primaryAction={canCreate ? {
           label: 'Create BoS Record',
@@ -420,11 +429,10 @@ export default function BoSMeetingManager({ currentUser, onDataChange }) {
               onChange={(e) => setSelectedDeptFilter(e.target.value)}
               style={{ width: '100%', padding: '0.45rem', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '0.78rem', outline: 'none', background: currentUser?.role === 'HOD' ? '#F1F5F9' : '#FFFFFF' }}
             >
-              {currentUser?.role !== 'HOD' && <option value="ALL">All ET Departments</option>}
-              <option value="CYS">Cyber Security</option>
-              <option value="DS">Data Science</option>
-              <option value="AI">Artificial Intelligence</option>
-              <option value="AIML">AI & ML</option>
+              {currentUser?.role !== 'HOD' && <option value="ALL">All</option>}
+              {ET_DEPARTMENTS.map(d => (
+                <option key={d.code} value={d.code}>{d.name} ({d.code})</option>
+              ))}
             </select>
           </div>
 
@@ -476,6 +484,38 @@ export default function BoSMeetingManager({ currentUser, onDataChange }) {
               <option value="ARCHIVED">ARCHIVED</option>
             </select>
           </div>
+        </div>
+
+        {/* Date Filter Controls */}
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', paddingTop: '0.45rem', borderTop: '1px dashed #E2E8F0', fontSize: '0.78rem' }}>
+          <span style={{ fontWeight: 700, color: '#475569' }}>Meeting Date:</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+            <span style={{ color: '#64748B' }}>From Date</span>
+            <input
+              type="date"
+              value={fromDate}
+              onChange={(e) => setFromDate(e.target.value)}
+              style={{ padding: '0.35rem 0.6rem', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '0.78rem', color: '#0F172A' }}
+            />
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+            <span style={{ color: '#64748B' }}>To Date</span>
+            <input
+              type="date"
+              value={toDate}
+              onChange={(e) => setToDate(e.target.value)}
+              style={{ padding: '0.35rem 0.6rem', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '0.78rem', color: '#0F172A' }}
+            />
+          </div>
+          {(fromDate || toDate) && (
+            <button
+              type="button"
+              onClick={() => { setFromDate(''); setToDate(''); }}
+              style={{ padding: '0.35rem 0.75rem', borderRadius: '6px', border: '1px solid #CBD5E1', background: '#F8FAFC', color: '#475569', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer' }}
+            >
+              Clear Dates
+            </button>
+          )}
         </div>
       </div>
 
@@ -619,7 +659,7 @@ export default function BoSMeetingManager({ currentUser, onDataChange }) {
                           </button>
                         ) : (
                           <span style={{ fontSize: '0.74rem', color: '#94A3B8', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
-                            <FileText size={13} /> 0 Docs
+                            <FileText size={13} /> No linked document
                           </span>
                         )}
                       </td>

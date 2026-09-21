@@ -80,7 +80,11 @@ import {
   exportToCSV,
   getAcademicEvents,
   getCampusPlacements,
-  getBoSMeetings
+  getBoSMeetings,
+  getCommunityProjects,
+  getStudentProjects,
+  getNPTEL,
+  getStudents
 } from '../../data/portalStore.js';
 import { DEPARTMENTS, BRANDING_LOGOS } from '../../data/masterData.js';
 import MadamModulesCRUD from './MadamModulesCRUD.jsx';
@@ -105,6 +109,7 @@ import FacultyResearchSyncModal from './publications/FacultyResearchSyncModal.js
 import MembershipsManager from './memberships/MembershipsManager.jsx';
 import MousManager from './mous/MousManager.jsx';
 import StudentProjectsManager from './projects/StudentProjectsManager.jsx';
+import CommunityServiceProjectsManager from './community-service/CommunityServiceProjectsManager.jsx';
 import NptelCertificationsManager from './nptel/NptelCertificationsManager.jsx';
 import AttendanceRiskManager from './attendance/AttendanceRiskManager.jsx';
 import MidExamAnalysis from './analytics/MidExamAnalysis.jsx';
@@ -228,7 +233,38 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
 
   const campusPlacements = getCampusPlacements();
   const bosMeetings = getBoSMeetings();
-  const uniquePlacedCount = new Set(campusPlacements.map(p => (p.studentRoll || '').trim().toUpperCase())).size;
+  const communityProjects = getCommunityProjects();
+  const studentProjects = getStudentProjects();
+  const nptelCertifications = getNPTEL();
+  const studentsList = getStudents();
+
+  // Department-scoped records for HOD role
+  const isHod = currentUser?.role === 'HOD';
+  const hodDept = currentUser?.dept;
+  const filterByDept = (item) => {
+    if (!isHod || !hodDept || hodDept === 'ALL') return true;
+    const d = item.department || item.branch || '';
+    if (d === hodDept || d === 'Institution Level' || d === 'Common') return true;
+    if (item.authors && item.authors.some(a => a.department === hodDept)) return true;
+    if (item.inventors && item.inventors.some(i => i.department === hodDept)) return true;
+    return false;
+  };
+
+  const activeFacultyList = isHod ? facultyList.filter(f => f.department === hodDept) : facultyList;
+  const activeStudentsList = isHod ? studentsList.filter(s => s.department === hodDept) : studentsList;
+  const activePublications = isHod ? publications.filter(filterByDept) : publications;
+  const activePatents = isHod ? patents.filter(filterByDept) : patents;
+  const activeMoUs = isHod ? mous.filter(filterByDept) : mous;
+  const activeEvents = isHod ? academicEvents.filter(filterByDept) : academicEvents;
+  const activeAchievements = isHod ? achievements.filter(filterByDept) : achievements;
+  const activePlacements = isHod ? campusPlacements.filter(filterByDept) : campusPlacements;
+  const activeUniquePlaced = new Set(activePlacements.map(p => (p.studentRoll || p.rollNumber || '').trim().toUpperCase()).filter(Boolean)).size;
+  const activeBosMeetings = isHod ? bosMeetings.filter(filterByDept) : bosMeetings;
+  const activeCommunityProjects = isHod ? communityProjects.filter(filterByDept) : communityProjects;
+  const activeInternships = isHod ? internships.filter(filterByDept) : internships;
+  const activeStudentProjects = isHod ? studentProjects.filter(filterByDept) : studentProjects;
+  const activeNptel = isHod ? nptelCertifications.filter(filterByDept) : nptelCertifications;
+  const activeUniqueNptel = new Set(activeNptel.map(n => (n.studentDetails?.rollNumber || n.rollNumber || '').trim().toUpperCase()).filter(Boolean)).size;
 
   const isSuperAdmin = currentUser?.role === 'SUPER_ADMIN';
   const isAdminOrSuper = currentUser?.role === 'SUPER_ADMIN' || currentUser?.role === 'ADMIN';
@@ -488,16 +524,22 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
                   <DashboardOverviewView
                     currentUser={currentUser}
                     usersCount={usersList.length}
-                    facultyCount={facultyList.length}
-                    publicationsCount={publications.length}
-                    patentsCount={patents.length}
-                    mousCount={mous.length}
-                    eventsCount={academicEvents.length}
-                    achievementsCount={achievements.length}
+                    facultyCount={activeFacultyList.length}
+                    uniqueStudentsCount={activeStudentsList.length}
+                    publicationsCount={activePublications.length}
+                    patentsCount={activePatents.length}
+                    mousCount={activeMoUs.length}
+                    eventsCount={activeEvents.length}
+                    achievementsCount={activeAchievements.length}
                     activeSessionsCount={activeSessions.length}
-                    placementsCount={campusPlacements.length}
-                    uniquePlacedStudentsCount={uniquePlacedCount}
-                    bosMeetingsCount={bosMeetings.length}
+                    placementsCount={activePlacements.length}
+                    uniquePlacedStudentsCount={activeUniquePlaced}
+                    bosMeetingsCount={activeBosMeetings.length}
+                    cspCount={activeCommunityProjects.length}
+                    internshipsCount={activeInternships.length}
+                    miniProjectsCount={activeStudentProjects.length}
+                    nptelCount={activeNptel.length}
+                    uniqueNptelCount={activeUniqueNptel}
                     onNavigate={(mod) => setActiveModule(mod)}
                     onOpenQuickAction={() => setActiveModule('events')}
                     onOpenSync={() => setSyncModalOpen(true)}
@@ -530,144 +572,7 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
             />
           )}
 
-          {/* ────────────────────────────────────────────────────────── */}
-          {/* VIEW 3: FACULTY PHOTO & DIRECTORY GOVERNANCE */}
-          {/* ────────────────────────────────────────────────────────── */}
-          {activeModule === 'faculty-directory' && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
-                <div>
-                  <h1 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#0F172A', margin: '0 0 0.25rem 0', fontFamily: 'Cinzel, Georgia, serif' }}>
-                    Faculty Directory & Photo Governance
-                  </h1>
-                  <p style={{ fontSize: '0.82rem', color: '#64748B', margin: 0 }}>
-                    Manage authentic verified faculty photographs and institutional directory records.
-                  </p>
-                </div>
-              </div>
 
-              {/* Filter Row */}
-              <div style={{ background: '#FFFFFF', padding: '0.9rem', borderRadius: '12px', border: '1px solid #E2E8F0', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                <input
-                  type="text"
-                  placeholder="Search faculty name, ID, department..."
-                  value={facultySearch}
-                  onChange={(e) => setFacultySearch(e.target.value)}
-                  style={{ flex: 1, minWidth: '220px', padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.82rem' }}
-                />
-                <select
-                  value={facultyDeptFilter}
-                  onChange={(e) => setFacultyDeptFilter(e.target.value)}
-                  style={{ padding: '0.5rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.82rem' }}
-                >
-                  <option value="ALL">All Departments</option>
-                  {DEPARTMENTS.map(d => <option key={d.code} value={d.code}>{d.name} ({d.code})</option>)}
-                </select>
-                <select
-                  value={facultyPhotoStatusFilter}
-                  onChange={(e) => setFacultyPhotoStatusFilter(e.target.value)}
-                  style={{ padding: '0.5rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.82rem' }}
-                >
-                  <option value="ALL">All Photo Statuses</option>
-                  <option value="WITH_PHOTO">With Verified Photo</option>
-                  <option value="WITHOUT_PHOTO">Missing Photo</option>
-                </select>
-              </div>
-
-              {/* Faculty Cards Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '1rem' }}>
-                {filteredFacultyList.map(faculty => (
-                  <div
-                    key={faculty.id}
-                    style={{
-                      background: '#FFFFFF',
-                      borderRadius: '14px',
-                      padding: '1.25rem',
-                      border: '1px solid #E2E8F0',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                      position: 'relative'
-                    }}
-                  >
-                    <div style={{ position: 'relative', marginBottom: '0.75rem' }}>
-                      <FacultyAvatar
-                        faculty={faculty}
-                        size={84}
-                        showBadge={false}
-                        shape="circle"
-                        ringColor={faculty.photo ? '#10B981' : '#CBD5E1'}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => handleOpenPhotoModal(faculty)}
-                        style={{
-                          position: 'absolute',
-                          bottom: 0,
-                          right: 0,
-                          background: '#070F1E',
-                          color: '#F1C40F',
-                          border: '2px solid #FFFFFF',
-                          borderRadius: '50%',
-                          width: '28px',
-                          height: '28px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: 'pointer',
-                          boxShadow: '0 2px 6px rgba(0,0,0,0.3)'
-                        }}
-                        title="Upload / Change Photo"
-                      >
-                        <Camera size={13} />
-                      </button>
-                    </div>
-
-                    <div style={{ fontSize: '0.92rem', fontWeight: 800, color: '#0F172A', marginBottom: '0.2rem' }}>
-                      {faculty.name}
-                    </div>
-                    <div style={{ fontSize: '0.74rem', color: '#64748B', marginBottom: '0.35rem' }}>
-                      {faculty.designation} • <span style={{ fontWeight: 700, color: '#D4AF37' }}>{faculty.department}</span>
-                    </div>
-
-                    <span style={{
-                      fontSize: '0.68rem',
-                      fontWeight: 700,
-                      padding: '0.15rem 0.55rem',
-                      borderRadius: '9999px',
-                      background: faculty.photo ? '#ECFDF5' : '#F1F5F9',
-                      color: faculty.photo ? '#047857' : '#64748B',
-                      border: `1px solid ${faculty.photo ? '#A7F3D0' : '#E2E8F0'}`,
-                      marginBottom: '0.75rem'
-                    }}>
-                      {faculty.photo ? 'Verified Photo' : 'No Photo Available'}
-                    </span>
-
-                    <button
-                      type="button"
-                      onClick={() => handleOpenPhotoModal(faculty)}
-                      style={{
-                        width: '100%',
-                        padding: '0.45rem',
-                        borderRadius: '8px',
-                        background: '#F8FAFC',
-                        border: '1px solid #CBD5E1',
-                        color: '#334155',
-                        fontSize: '0.76rem',
-                        fontWeight: 700,
-                        cursor: 'pointer'
-                      }}
-                      className="hover:bg-slate-100"
-                    >
-                      Manage Photograph
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* ────────────────────────────────────────────────────────── */}
           {/* VIEW 4: IAM USER DIRECTORY */}
@@ -868,6 +773,16 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
           )}
 
           {/* ────────────────────────────────────────────────────────── */}
+          {/* VIEW 14.5: COMMUNITY SERVICE PROJECTS (CSP) */}
+          {/* ────────────────────────────────────────────────────────── */}
+          {(activeModule === 'community-projects' || activeModule === 'csp') && (
+            <CommunityServiceProjectsManager
+              currentUser={currentUser}
+              onDataChange={refreshData}
+            />
+          )}
+
+          {/* ────────────────────────────────────────────────────────── */}
           {/* VIEW 15: NPTEL & MOOC ONLINE CERTIFICATIONS */}
           {/* ────────────────────────────────────────────────────────── */}
           {(activeModule === 'nptel-certifications' || activeModule === 'nptel' || activeModule === 'moocs') && (
@@ -898,10 +813,6 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
 
           {activeModule === 'circulars-notices' && (
             <CircularsManager currentUser={currentUser} />
-          )}
-
-          {activeModule === 'staff-profiles' && (
-            <StaffProfilesManager currentUser={currentUser} />
           )}
 
           {activeModule === 'academic-council' && (
@@ -1018,11 +929,11 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
             'fdps',
             'faculty-achievements',
             'faculty-ach',
-            'faculty-directory',
-            'staff-profiles',
             'student-projects',
             'projects',
             'capstone-projects',
+            'community-projects',
+            'csp',
             'student-achievements',
             'achievements',
             'internships',

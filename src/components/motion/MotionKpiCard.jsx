@@ -16,10 +16,32 @@ export default function MotionKpiCard({
   suffix = '',
   onClick,
   className = '',
-  style = {}
+  style = {},
+  children
 }) {
   const shouldReduce = useReducedMotion();
   const displayLabel = label || title || '';
+
+  if (children) {
+    return (
+      <motion.div
+        variants={shouldReduce ? undefined : kpiCardVariants}
+        whileHover={shouldReduce ? undefined : "hover"}
+        onClick={onClick}
+        className={className}
+        style={{
+          background: bg,
+          padding: '1rem',
+          borderRadius: '12px',
+          border,
+          boxSizing: 'border-box',
+          ...style
+        }}
+      >
+        {children}
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div

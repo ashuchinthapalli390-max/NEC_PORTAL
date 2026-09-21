@@ -1,0 +1,5412 @@
+[
+  {
+    "id": "MINI_aiml_2023_1",
+    "projectNumber": "MP-AIML-2023-001",
+    "teamNumber": "B1",
+    "title": "A DEEP LEARNING APPROACH FOR PNEUMONIA DETECTION FROM CHEST X-RAY IMAGES",
+    "projectTitle": "A DEEP LEARNING APPROACH FOR PNEUMONIA DETECTION FROM CHEST X-RAY IMAGES",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "D. Sreekanth",
+    "guideFacultyId": "NEC-PER-0239",
+    "guide": {
+      "name": "D. Sreekanth",
+      "facultyId": "NEC-PER-0239",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6140",
+        "studentName": "Student 23471A6140",
+        "name": "Student 23471A6140",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6102",
+        "studentName": "Bhavanasi Anantha Jhansi",
+        "name": "Bhavanasi Anantha Jhansi",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "24475A6106",
+        "studentName": "Dhille rao kotilingala",
+        "name": "Dhille rao kotilingala",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 5
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_2",
+    "projectNumber": "MP-AIML-2023-002",
+    "teamNumber": "B2",
+    "title": "DRUG RECOMMENDATION SYSTEM USING MACHINE LEARNING",
+    "projectTitle": "DRUG RECOMMENDATION SYSTEM USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Mahesh Babu",
+    "guideFacultyId": "NEC-PER-0241",
+    "guide": {
+      "name": "G. Mahesh Babu",
+      "facultyId": "NEC-PER-0241",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6116",
+        "studentName": "Student 23471A6116",
+        "name": "Student 23471A6116",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6135",
+        "studentName": "Student 23471A6135",
+        "name": "Student 23471A6135",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6148",
+        "studentName": "VALLEPU SIVA KOTAIAH",
+        "name": "VALLEPU SIVA KOTAIAH",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 8
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_3",
+    "projectNumber": "MP-AIML-2023-003",
+    "teamNumber": "B3",
+    "title": "AI POWERED VIRTUAL TEACHING ASSISTANT",
+    "projectTitle": "AI POWERED VIRTUAL TEACHING ASSISTANT",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "N. Siva Ramakrishna",
+    "guideFacultyId": "NEC-PER-0238",
+    "guide": {
+      "name": "N. Siva Ramakrishna",
+      "facultyId": "NEC-PER-0238",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6107",
+        "studentName": "Student 23471A6107",
+        "name": "Student 23471A6107",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6126",
+        "studentName": "Student 23471A6126",
+        "name": "Student 23471A6126",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6144",
+        "studentName": "Shaik Vaidyudu Abdul Basha",
+        "name": "Shaik Vaidyudu Abdul Basha",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 11
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_4",
+    "projectNumber": "MP-AIML-2023-004",
+    "teamNumber": "B4",
+    "title": "DIABETES PREDICTION USING MACHINE LEARNING",
+    "projectTitle": "DIABETES PREDICTION USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P.V. SATEESH KUMAR",
+    "guideFacultyId": null,
+    "guide": {
+      "name": "P.V. SATEESH KUMAR",
+      "facultyId": null,
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6139",
+        "studentName": "Student 23471A6139",
+        "name": "Student 23471A6139",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6119",
+        "studentName": "Student 23471A6119",
+        "name": "Student 23471A6119",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6109",
+        "studentName": "Student 23471A6109",
+        "name": "Student 23471A6109",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 14
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_5",
+    "projectNumber": "MP-AIML-2023-005",
+    "teamNumber": "B5",
+    "title": "RESUME SCREENING SYSTEM USING NATURAL LANGUAGE PROCESSING",
+    "projectTitle": "RESUME SCREENING SYSTEM USING NATURAL LANGUAGE PROCESSING",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Srinivasa Rao",
+    "guideFacultyId": "NEC-PER-0237",
+    "guide": {
+      "name": "P. Srinivasa Rao",
+      "facultyId": "NEC-PER-0237",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6143",
+        "studentName": "Student 23471A6143",
+        "name": "Student 23471A6143",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6123",
+        "studentName": "KOSANA DHEERAJ VARMA",
+        "name": "KOSANA DHEERAJ VARMA",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6149",
+        "studentName": "V. BALA VENKATA NARAYANA",
+        "name": "V. BALA VENKATA NARAYANA",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 17
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_6",
+    "projectNumber": "MP-AIML-2023-006",
+    "teamNumber": "B6",
+    "title": "TEXT TO IMAGE GENERATION USING STABLE DIFFUSION",
+    "projectTitle": "TEXT TO IMAGE GENERATION USING STABLE DIFFUSION",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. SARDAR KHAN",
+    "guideFacultyId": null,
+    "guide": {
+      "name": "P. SARDAR KHAN",
+      "facultyId": null,
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6133",
+        "studentName": "Nakka Lakshmi Narasimha Reddy",
+        "name": "Nakka Lakshmi Narasimha Reddy",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "24475A6102",
+        "studentName": "ILLURI MAHIDAR REDDY .",
+        "name": "ILLURI MAHIDAR REDDY .",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6132",
+        "studentName": "Student 23471A6132",
+        "name": "Student 23471A6132",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 20
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_7",
+    "projectNumber": "MP-AIML-2023-007",
+    "teamNumber": "B7",
+    "title": "PLANT LEAF DISEASE PREDICTION USING CONVOLUTION NERUAL NETWORKS",
+    "projectTitle": "PLANT LEAF DISEASE PREDICTION USING CONVOLUTION NERUAL NETWORKS",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "A. Veema Rao",
+    "guideFacultyId": "NEC-PER-0245",
+    "guide": {
+      "name": "A. Veema Rao",
+      "facultyId": "NEC-PER-0245",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6134",
+        "studentName": "Student 23471A6134",
+        "name": "Student 23471A6134",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6124",
+        "studentName": "Student 23471A6124",
+        "name": "Student 23471A6124",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "24475A6108",
+        "studentName": "Student 24475A6108",
+        "name": "Student 24475A6108",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 23
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_8",
+    "projectNumber": "MP-AIML-2023-008",
+    "teamNumber": "B8",
+    "title": "MEDICAL INSURANCE PREMIUM PREDICTION USING MACHINE LEARNING",
+    "projectTitle": "MEDICAL INSURANCE PREMIUM PREDICTION USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Srinivasa Rao",
+    "guideFacultyId": "NEC-PER-0237",
+    "guide": {
+      "name": "P. Srinivasa Rao",
+      "facultyId": "NEC-PER-0237",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6130",
+        "studentName": "Manneti Mahesh Reddy",
+        "name": "Manneti Mahesh Reddy",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6151",
+        "studentName": "Student 23471A6151",
+        "name": "Student 23471A6151",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6152",
+        "studentName": "Student 23471A6152",
+        "name": "Student 23471A6152",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 26
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_9",
+    "projectNumber": "MP-AIML-2023-009",
+    "teamNumber": "B9",
+    "title": "PERSONALIZED MOVIE RECOMMENDATION USING ARTIFICIAL INTELLIGENCE",
+    "projectTitle": "PERSONALIZED MOVIE RECOMMENDATION USING ARTIFICIAL INTELLIGENCE",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Jeevana Manikanta",
+    "guideFacultyId": "NEC-PER-0265",
+    "guide": {
+      "name": "G. Jeevana Manikanta",
+      "facultyId": "NEC-PER-0265",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6111",
+        "studentName": "Gollapudi Chakravarthi",
+        "name": "Gollapudi Chakravarthi",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6131",
+        "studentName": "Student 23471A6131",
+        "name": "Student 23471A6131",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6145",
+        "studentName": "Student 23471A6145",
+        "name": "Student 23471A6145",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 29
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_10",
+    "projectNumber": "MP-AIML-2023-010",
+    "teamNumber": "B10",
+    "title": "STRESS LEVEL DETECTION FROM VOICE/ HEART RATE DATA",
+    "projectTitle": "STRESS LEVEL DETECTION FROM VOICE/ HEART RATE DATA",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Mahesh Babu",
+    "guideFacultyId": "NEC-PER-0241",
+    "guide": {
+      "name": "G. Mahesh Babu",
+      "facultyId": "NEC-PER-0241",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6114",
+        "studentName": "Guntur B S S D Radha Ramadevi",
+        "name": "Guntur B S S D Radha Ramadevi",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6104",
+        "studentName": "Student 23471A6104",
+        "name": "Student 23471A6104",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6137",
+        "studentName": "I VENKATA NAGA ANANDA SAI KALYAN",
+        "name": "I VENKATA NAGA ANANDA SAI KALYAN",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 32
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_11",
+    "projectNumber": "MP-AIML-2023-011",
+    "teamNumber": "B11",
+    "title": "STOCK PRICE PREDICTION USING LONG SHORT- TERM MEMORY (LSTM)",
+    "projectTitle": "STOCK PRICE PREDICTION USING LONG SHORT- TERM MEMORY (LSTM)",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Nageswara Rao",
+    "guideFacultyId": "NEC-PER-0240",
+    "guide": {
+      "name": "G. Nageswara Rao",
+      "facultyId": "NEC-PER-0240",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6105",
+        "studentName": "Student 23471A6105",
+        "name": "Student 23471A6105",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6129",
+        "studentName": "Student 23471A6129",
+        "name": "Student 23471A6129",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6118",
+        "studentName": "KALANGI PRUDHVI THIRUPAL",
+        "name": "KALANGI PRUDHVI THIRUPAL",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 35
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_12",
+    "projectNumber": "MP-AIML-2023-012",
+    "teamNumber": "B12",
+    "title": "AI CRIME PREDICTION SYSTEM USING MACHIE LEARNING",
+    "projectTitle": "AI CRIME PREDICTION SYSTEM USING MACHIE LEARNING",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P.SOLMON",
+    "guideFacultyId": "FAC_1789967027288_yhwq0",
+    "guide": {
+      "name": "P.SOLMON",
+      "facultyId": "FAC_1789967027288_yhwq0",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6106",
+        "studentName": "CHINNAM DHANA LAKSHMI",
+        "name": "CHINNAM DHANA LAKSHMI",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6110",
+        "studentName": "Student 23471A6110",
+        "name": "Student 23471A6110",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "24475A6103",
+        "studentName": "GUNJI ANKAMMA RAJU .",
+        "name": "GUNJI ANKAMMA RAJU .",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 38
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_13",
+    "projectNumber": "MP-AIML-2023-013",
+    "teamNumber": "B13",
+    "title": "AI- POWERED WEB APPLICATION FOR DETECTING TRAFFIC VIOLATIONS USING YOLOV8 AND FLASK",
+    "projectTitle": "AI- POWERED WEB APPLICATION FOR DETECTING TRAFFIC VIOLATIONS USING YOLOV8 AND FLASK",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "M. Revathi",
+    "guideFacultyId": "NEC-PER-0244",
+    "guide": {
+      "name": "M. Revathi",
+      "facultyId": "NEC-PER-0244",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6122",
+        "studentName": "KANDA LAKSHMI BHAVANI",
+        "name": "KANDA LAKSHMI BHAVANI",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6121",
+        "studentName": "KAMINENI TIRUMALESWARA RAO",
+        "name": "KAMINENI TIRUMALESWARA RAO",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "24475A6105",
+        "studentName": "Student 24475A6105",
+        "name": "Student 24475A6105",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 41
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_14",
+    "projectNumber": "MP-AIML-2023-014",
+    "teamNumber": "B14",
+    "title": "HEART DESEASE PREDICTION",
+    "projectTitle": "HEART DESEASE PREDICTION",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "M. Sai Yaswanth",
+    "guideFacultyId": "NEC-PER-0206",
+    "guide": {
+      "name": "M. Sai Yaswanth",
+      "facultyId": "NEC-PER-0206",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6136",
+        "studentName": "PEELA LAKSHMI BRAHMESWARI",
+        "name": "PEELA LAKSHMI BRAHMESWARI",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6146",
+        "studentName": "Student 23471A6146",
+        "name": "Student 23471A6146",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "24475A6104",
+        "studentName": "Student 24475A6104",
+        "name": "Student 24475A6104",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 44
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_15",
+    "projectNumber": "MP-AIML-2023-015",
+    "teamNumber": "B15",
+    "title": "SENTIMENT ANALYSIS OF MOVIE AND PRODUCT REVIEWS USING MACHINE LEARNING TECHNIQUES",
+    "projectTitle": "SENTIMENT ANALYSIS OF MOVIE AND PRODUCT REVIEWS USING MACHINE LEARNING TECHNIQUES",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P.SOLMON",
+    "guideFacultyId": "FAC_1789967027288_yhwq0",
+    "guide": {
+      "name": "P.SOLMON",
+      "facultyId": "FAC_1789967027288_yhwq0",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6128",
+        "studentName": "KURAPATI VENKATA NAGA GOPI JAYARAM",
+        "name": "KURAPATI VENKATA NAGA GOPI JAYARAM",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "24475A6107",
+        "studentName": "Student 24475A6107",
+        "name": "Student 24475A6107",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6112",
+        "studentName": "Student 23471A6112",
+        "name": "Student 23471A6112",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 47
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_16",
+    "projectNumber": "MP-AIML-2023-016",
+    "teamNumber": "B16",
+    "title": "A MACHINE LEARNING APPROACH TO HAND WRITTEN DIGIT RECOGNITION",
+    "projectTitle": "A MACHINE LEARNING APPROACH TO HAND WRITTEN DIGIT RECOGNITION",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G.V.Neelimadhavi",
+    "guideFacultyId": "NEC-PER-0223",
+    "guide": {
+      "name": "G.V.Neelimadhavi",
+      "facultyId": "NEC-PER-0223",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6115",
+        "studentName": "JALE LAKSHMI THRISHA",
+        "name": "JALE LAKSHMI THRISHA",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6127",
+        "studentName": "Student 23471A6127",
+        "name": "Student 23471A6127",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6141",
+        "studentName": "Shaik mothad mahaboob subhani",
+        "name": "Shaik mothad mahaboob subhani",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 50
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_17",
+    "projectNumber": "MP-AIML-2023-017",
+    "teamNumber": "B17",
+    "title": "HOUSE PRICE PREDICTION USING REGRESSION",
+    "projectTitle": "HOUSE PRICE PREDICTION USING REGRESSION",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "J. Syam Babu",
+    "guideFacultyId": "NEC-PER-0243",
+    "guide": {
+      "name": "J. Syam Babu",
+      "facultyId": "NEC-PER-0243",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6117",
+        "studentName": "Kakumanu Thirdha Priya",
+        "name": "Kakumanu Thirdha Priya",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6125",
+        "studentName": "Kovuri Venkata Krishna chaitanya",
+        "name": "Kovuri Venkata Krishna chaitanya",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6120",
+        "studentName": "Student 23471A6120",
+        "name": "Student 23471A6120",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 53
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_18",
+    "projectNumber": "MP-AIML-2023-018",
+    "teamNumber": "B18",
+    "title": "FAKE NEWS DETECTION PROJECT",
+    "projectTitle": "FAKE NEWS DETECTION PROJECT",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "Dr. V. V. A. S. Lakshmi",
+    "guideFacultyId": "NEC-PER-0140",
+    "guide": {
+      "name": "Dr. V. V. A. S. Lakshmi",
+      "facultyId": "NEC-PER-0140",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "24475A6101",
+        "studentName": "M. LAKSHMI SRI LEKHA",
+        "name": "M. LAKSHMI SRI LEKHA",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6147",
+        "studentName": "Student 23471A6147",
+        "name": "Student 23471A6147",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6113",
+        "studentName": "Student 23471A6113",
+        "name": "Student 23471A6113",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 56
+    }
+  },
+  {
+    "id": "MINI_aiml_2023_19",
+    "projectNumber": "MP-AIML-2023-019",
+    "teamNumber": "B19",
+    "title": "SENTIMENT ANALYSIS OF MOVIE AND PRODUCT REVIEWS",
+    "projectTitle": "SENTIMENT ANALYSIS OF MOVIE AND PRODUCT REVIEWS",
+    "projectType": "Mini Project",
+    "department": "AIML",
+    "departmentName": "Artificial Intelligence & Machine Learning",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "Dr. V. V. A. S. Lakshmi",
+    "guideFacultyId": "NEC-PER-0140",
+    "guide": {
+      "name": "Dr. V. V. A. S. Lakshmi",
+      "facultyId": "NEC-PER-0140",
+      "department": "AIML"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A6103",
+        "studentName": "Student 23471A6103",
+        "name": "Student 23471A6103",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A6101",
+        "studentName": "Student 23471A6101",
+        "name": "Student 23471A6101",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A6138",
+        "studentName": "Student 23471A6138",
+        "name": "Student 23471A6138",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "AIML/Mini Projects/23 BATCH AIML MINI PROJECTS.xlsx",
+      "sheetName": "AIML",
+      "startRow": 59
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_20",
+    "projectNumber": "MP-CSE(AIML)-2022-020",
+    "teamNumber": "B1",
+    "title": "SENTIMENTAL ANLYSIS ON FLIPKART PRODUCT REVIEWS",
+    "projectTitle": "SENTIMENTAL ANLYSIS ON FLIPKART PRODUCT REVIEWS",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "D. Sreekanth",
+    "guideFacultyId": "NEC-PER-0239",
+    "guide": {
+      "name": "D. Sreekanth",
+      "facultyId": "NEC-PER-0239",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4247",
+        "studentName": "SURABOINA VENKATA KOTESWARA RAO",
+        "name": "SURABOINA VENKATA KOTESWARA RAO",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4235",
+        "studentName": "Student 22471A4235",
+        "name": "Student 22471A4235",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4240",
+        "studentName": "PERAM MANOHAR REDDY",
+        "name": "PERAM MANOHAR REDDY",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23475A4201",
+        "studentName": "LAGA. VENKATESWARLU",
+        "name": "LAGA. VENKATESWARLU",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 5
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_21",
+    "projectNumber": "MP-CSE(AIML)-2022-021",
+    "teamNumber": "B2",
+    "title": "FAKE NEWS DETECTION USING MACHINE LEARNING",
+    "projectTitle": "FAKE NEWS DETECTION USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Mallika",
+    "guideFacultyId": "NEC-PER-0272",
+    "guide": {
+      "name": "P. Mallika",
+      "facultyId": "NEC-PER-0272",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4239",
+        "studentName": "Student 22471A4239",
+        "name": "Student 22471A4239",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4203",
+        "studentName": "Student 22471A4203",
+        "name": "Student 22471A4203",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4256",
+        "studentName": "SHAIK MOHAMMAD AABEED",
+        "name": "SHAIK MOHAMMAD AABEED",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4217",
+        "studentName": "Student 22471A4217",
+        "name": "Student 22471A4217",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 9
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_22",
+    "projectNumber": "MP-CSE(AIML)-2022-022",
+    "teamNumber": "B3",
+    "title": "RESULTS DASHBOARD BY USING POWER BI",
+    "projectTitle": "RESULTS DASHBOARD BY USING POWER BI",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "D. Sreekanth",
+    "guideFacultyId": "NEC-PER-0239",
+    "guide": {
+      "name": "D. Sreekanth",
+      "facultyId": "NEC-PER-0239",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4223",
+        "studentName": "Student 22471A4223",
+        "name": "Student 22471A4223",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4230",
+        "studentName": "Student 22471A4230",
+        "name": "Student 22471A4230",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4245",
+        "studentName": "SHAIK BOBBEPALLI MEERA MOHIDDIN",
+        "name": "SHAIK BOBBEPALLI MEERA MOHIDDIN",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4252",
+        "studentName": "S. UMA VEERENDRA CHARI",
+        "name": "S. UMA VEERENDRA CHARI",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 13
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_23",
+    "projectNumber": "MP-CSE(AIML)-2022-023",
+    "teamNumber": "B4",
+    "title": "HEART DESEASE PREDICTION USING MACHINE LEARNING TECHNIQUES",
+    "projectTitle": "HEART DESEASE PREDICTION USING MACHINE LEARNING TECHNIQUES",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Mallika",
+    "guideFacultyId": "NEC-PER-0272",
+    "guide": {
+      "name": "P. Mallika",
+      "facultyId": "NEC-PER-0272",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4213",
+        "studentName": "Student 22471A4213",
+        "name": "Student 22471A4213",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4228",
+        "studentName": "Student 22471A4228",
+        "name": "Student 22471A4228",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4248",
+        "studentName": "Student 22471A4248",
+        "name": "Student 22471A4248",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4204",
+        "studentName": "I PAVAN KALYAN PAVAN KALYAN",
+        "name": "I PAVAN KALYAN PAVAN KALYAN",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4250",
+        "studentName": "Student 22471A4250",
+        "name": "Student 22471A4250",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 17
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_24",
+    "projectNumber": "MP-CSE(AIML)-2022-024",
+    "teamNumber": "B5",
+    "title": "HOUSE PRICE PREDICTION USING MACHINE LEARNING",
+    "projectTitle": "HOUSE PRICE PREDICTION USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Mallika",
+    "guideFacultyId": "NEC-PER-0272",
+    "guide": {
+      "name": "P. Mallika",
+      "facultyId": "NEC-PER-0272",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4222",
+        "studentName": "Student 22471A4222",
+        "name": "Student 22471A4222",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4214",
+        "studentName": "Student 22471A4214",
+        "name": "Student 22471A4214",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4215",
+        "studentName": "KANDULA NAVEEN CHANDRA",
+        "name": "KANDULA NAVEEN CHANDRA",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4238",
+        "studentName": "Student 22471A4238",
+        "name": "Student 22471A4238",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 22
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_25",
+    "projectNumber": "MP-CSE(AIML)-2022-025",
+    "teamNumber": "B6",
+    "title": "PRODUCT AND SALES ANALYSIS USING POWER BI",
+    "projectTitle": "PRODUCT AND SALES ANALYSIS USING POWER BI",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Mallika",
+    "guideFacultyId": "NEC-PER-0272",
+    "guide": {
+      "name": "P. Mallika",
+      "facultyId": "NEC-PER-0272",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4211",
+        "studentName": "Student 22471A4211",
+        "name": "Student 22471A4211",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4201",
+        "studentName": "A. BHAGYA SREE LAKSHMI",
+        "name": "A. BHAGYA SREE LAKSHMI",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4210",
+        "studentName": "GUDIPUDI RAGHAVENDRA",
+        "name": "GUDIPUDI RAGHAVENDRA",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23475A4202",
+        "studentName": "VEMULA. RAMANJANEYULU",
+        "name": "VEMULA. RAMANJANEYULU",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 26
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_26",
+    "projectNumber": "MP-CSE(AIML)-2022-026",
+    "teamNumber": "B7",
+    "title": "LOAN APPROVAL PREDICTION USING MACHINE LEARNING",
+    "projectTitle": "LOAN APPROVAL PREDICTION USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Mahesh Babu",
+    "guideFacultyId": "NEC-PER-0241",
+    "guide": {
+      "name": "G. Mahesh Babu",
+      "facultyId": "NEC-PER-0241",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4205",
+        "studentName": "DEVISETTI RAM SAI MANIKANTA GURU KALYAN",
+        "name": "DEVISETTI RAM SAI MANIKANTA GURU KALYAN",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4207",
+        "studentName": "Student 22471A4207",
+        "name": "Student 22471A4207",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4221",
+        "studentName": "Student 22471A4221",
+        "name": "Student 22471A4221",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4224",
+        "studentName": "KURAPATI SURYA SAI SREE",
+        "name": "KURAPATI SURYA SAI SREE",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 30
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_27",
+    "projectNumber": "MP-CSE(AIML)-2022-027",
+    "teamNumber": "B8",
+    "title": "AUTISM PREDICTION USING MACHNE LEARNING",
+    "projectTitle": "AUTISM PREDICTION USING MACHNE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Mallika",
+    "guideFacultyId": "NEC-PER-0272",
+    "guide": {
+      "name": "P. Mallika",
+      "facultyId": "NEC-PER-0272",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4234",
+        "studentName": "Student 22471A4234",
+        "name": "Student 22471A4234",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "2247A14244",
+        "studentName": "SK. ADIL",
+        "name": "SK. ADIL",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4208",
+        "studentName": "GANDHAM SIVA DHANUSH NAIDU",
+        "name": "GANDHAM SIVA DHANUSH NAIDU",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4220",
+        "studentName": "KONDAMIDA NAGALAKSHMI",
+        "name": "KONDAMIDA NAGALAKSHMI",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 34
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_28",
+    "projectNumber": "MP-CSE(AIML)-2022-028",
+    "teamNumber": "B9",
+    "title": "DIABETES PREDICTION USING MACHNE LEARNING",
+    "projectTitle": "DIABETES PREDICTION USING MACHNE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "D. Sreekanth",
+    "guideFacultyId": "NEC-PER-0239",
+    "guide": {
+      "name": "D. Sreekanth",
+      "facultyId": "NEC-PER-0239",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4202",
+        "studentName": "BALA VENKATA DURGA SAI",
+        "name": "BALA VENKATA DURGA SAI",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4226",
+        "studentName": "LOTLA VASANTHA LAKSHMI",
+        "name": "LOTLA VASANTHA LAKSHMI",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4229",
+        "studentName": "MEDISETTY SHANMUKHA NANDA",
+        "name": "MEDISETTY SHANMUKHA NANDA",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4237",
+        "studentName": "Student 22471A4237",
+        "name": "Student 22471A4237",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 38
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_29",
+    "projectNumber": "MP-CSE(AIML)-2022-029",
+    "teamNumber": "B10",
+    "title": "SPACESHIP TITANIC",
+    "projectTitle": "SPACESHIP TITANIC",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "D. Sreekanth",
+    "guideFacultyId": "NEC-PER-0239",
+    "guide": {
+      "name": "D. Sreekanth",
+      "facultyId": "NEC-PER-0239",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4212",
+        "studentName": "JALADI RICHARD MARK",
+        "name": "JALADI RICHARD MARK",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4241",
+        "studentName": "Student 22471A4241",
+        "name": "Student 22471A4241",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4243",
+        "studentName": "Student 22471A4243",
+        "name": "Student 22471A4243",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23475A4203",
+        "studentName": "Student 23475A4203",
+        "name": "Student 23475A4203",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 42
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_30",
+    "projectNumber": "MP-CSE(AIML)-2022-030",
+    "teamNumber": "B11",
+    "title": "IPL SCORE PREDICTION USING DEEP LAERNING",
+    "projectTitle": "IPL SCORE PREDICTION USING DEEP LAERNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "M. Sai Yaswanth",
+    "guideFacultyId": "NEC-PER-0206",
+    "guide": {
+      "name": "M. Sai Yaswanth",
+      "facultyId": "NEC-PER-0206",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4236",
+        "studentName": "NELLURI GOPI SANKAR",
+        "name": "NELLURI GOPI SANKAR",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4232",
+        "studentName": "M. DASARADHA RAMA BHARADWAJ",
+        "name": "M. DASARADHA RAMA BHARADWAJ",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4253",
+        "studentName": "Student 22471A4253",
+        "name": "Student 22471A4253",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23475A4204",
+        "studentName": "SAMPATHI. VARA PRASAD",
+        "name": "SAMPATHI. VARA PRASAD",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 46
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_31",
+    "projectNumber": "MP-CSE(AIML)-2022-031",
+    "teamNumber": "B12",
+    "title": "AUTOMATIC ONLINE CERTIFICATE GENERATION AND DISTRIBUTION SYSTEM",
+    "projectTitle": "AUTOMATIC ONLINE CERTIFICATE GENERATION AND DISTRIBUTION SYSTEM",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "M. Sai Yaswanth",
+    "guideFacultyId": "NEC-PER-0206",
+    "guide": {
+      "name": "M. Sai Yaswanth",
+      "facultyId": "NEC-PER-0206",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4231",
+        "studentName": "Student 22471A4231",
+        "name": "Student 22471A4231",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23475A4206",
+        "studentName": "Student 23475A4206",
+        "name": "Student 23475A4206",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4254",
+        "studentName": "Student 22471A4254",
+        "name": "Student 22471A4254",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4255",
+        "studentName": "LA BADIGUNCHALA CHAKRAPANI SAI MANIKANTA",
+        "name": "LA BADIGUNCHALA CHAKRAPANI SAI MANIKANTA",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 50
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_32",
+    "projectNumber": "MP-CSE(AIML)-2022-032",
+    "teamNumber": "B13",
+    "title": "WINE QUALITY PREDICTION USING MACHINE LEARNING",
+    "projectTitle": "WINE QUALITY PREDICTION USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "Dr. V. V. A. S. Lakshmi",
+    "guideFacultyId": "NEC-PER-0140",
+    "guide": {
+      "name": "Dr. V. V. A. S. Lakshmi",
+      "facultyId": "NEC-PER-0140",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4209",
+        "studentName": "VINAY KUMAR GUDDATI",
+        "name": "VINAY KUMAR GUDDATI",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4206",
+        "studentName": "DONDAPATI VENKATA SAI AKHIL",
+        "name": "DONDAPATI VENKATA SAI AKHIL",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4216",
+        "studentName": "KAPUGANTI YASWANTH GUPTHA",
+        "name": "KAPUGANTI YASWANTH GUPTHA",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4225",
+        "studentName": "Student 22471A4225",
+        "name": "Student 22471A4225",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4246",
+        "studentName": "Student 22471A4246",
+        "name": "Student 22471A4246",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 54
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_33",
+    "projectNumber": "MP-CSE(AIML)-2022-033",
+    "teamNumber": "B14",
+    "title": "WAITERS TIP PREDICTION",
+    "projectTitle": "WAITERS TIP PREDICTION",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Mahesh Babu",
+    "guideFacultyId": "NEC-PER-0241",
+    "guide": {
+      "name": "G. Mahesh Babu",
+      "facultyId": "NEC-PER-0241",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4233",
+        "studentName": "Student 22471A4233",
+        "name": "Student 22471A4233",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4218",
+        "studentName": "Student 22471A4218",
+        "name": "Student 22471A4218",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4251",
+        "studentName": "Student 22471A4251",
+        "name": "Student 22471A4251",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23475A4207",
+        "studentName": "Student 23475A4207",
+        "name": "Student 23475A4207",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 59
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2022_34",
+    "projectNumber": "MP-CSE(AIML)-2022-034",
+    "teamNumber": "B15",
+    "title": "LOAN ELIGIBILITY PREDICTION USING MACHINE LEARNING",
+    "projectTitle": "LOAN ELIGIBILITY PREDICTION USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "D. Sreekanth",
+    "guideFacultyId": "NEC-PER-0239",
+    "guide": {
+      "name": "D. Sreekanth",
+      "facultyId": "NEC-PER-0239",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4249",
+        "studentName": "Student 22471A4249",
+        "name": "Student 22471A4249",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4219",
+        "studentName": "KOLLI SRI SAI NAGA VARDHANA REDDY",
+        "name": "KOLLI SRI SAI NAGA VARDHANA REDDY",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4227",
+        "studentName": "Student 22471A4227",
+        "name": "Student 22471A4227",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23475A4205",
+        "studentName": "Student 23475A4205",
+        "name": "Student 23475A4205",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/22 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE (AIML)",
+      "startRow": 63
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_35",
+    "projectNumber": "MP-CSE(AIML)-2023-035",
+    "teamNumber": "B1",
+    "title": "AI POWERED INVENTORY MANAGEMENT SYSTEM USING MERN STACK",
+    "projectTitle": "AI POWERED INVENTORY MANAGEMENT SYSTEM USING MERN STACK",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Jeevana Manikanta",
+    "guideFacultyId": "NEC-PER-0265",
+    "guide": {
+      "name": "G. Jeevana Manikanta",
+      "facultyId": "NEC-PER-0265",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4260",
+        "studentName": "Student 23471A4260",
+        "name": "Student 23471A4260",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4257",
+        "studentName": "TENTU ANANTHA KUMAR",
+        "name": "TENTU ANANTHA KUMAR",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4247",
+        "studentName": "SURABOINA VENKATA KOTESWARA RAO",
+        "name": "SURABOINA VENKATA KOTESWARA RAO",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 5
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_36",
+    "projectNumber": "MP-CSE(AIML)-2023-036",
+    "teamNumber": "B2",
+    "title": "PLANT DESEASE DETECTION",
+    "projectTitle": "PLANT DESEASE DETECTION",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Srinivasa Rao",
+    "guideFacultyId": "NEC-PER-0237",
+    "guide": {
+      "name": "P. Srinivasa Rao",
+      "facultyId": "NEC-PER-0237",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4259",
+        "studentName": "Student 23471A4259",
+        "name": "Student 23471A4259",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4214",
+        "studentName": "Bala Manohar Budala",
+        "name": "Bala Manohar Budala",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4265",
+        "studentName": "YALAGALI NAGA PAVAN KALYAN",
+        "name": "YALAGALI NAGA PAVAN KALYAN",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 8
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_37",
+    "projectNumber": "MP-CSE(AIML)-2023-037",
+    "teamNumber": "B3",
+    "title": "HOUSE PRICE PREDICTION USING REGRESSION",
+    "projectTitle": "HOUSE PRICE PREDICTION USING REGRESSION",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "Dr. V. V. A. S. Lakshmi",
+    "guideFacultyId": "NEC-PER-0140",
+    "guide": {
+      "name": "Dr. V. V. A. S. Lakshmi",
+      "facultyId": "NEC-PER-0140",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4226",
+        "studentName": "Student 23471A4226",
+        "name": "Student 23471A4226",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4251",
+        "studentName": "Shaik Yalavarthi Sami",
+        "name": "Shaik Yalavarthi Sami",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4237",
+        "studentName": "Student 23471A4237",
+        "name": "Student 23471A4237",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4215",
+        "studentName": "BURRI PRASANNA KUMAR",
+        "name": "BURRI PRASANNA KUMAR",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 11
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_38",
+    "projectNumber": "MP-CSE(AIML)-2023-038",
+    "teamNumber": "B4",
+    "title": "RAG (RETREVAL-AUGMENTED GENERATION)",
+    "projectTitle": "RAG (RETREVAL-AUGMENTED GENERATION)",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "Dr. V. V. A. S. Lakshmi",
+    "guideFacultyId": "NEC-PER-0140",
+    "guide": {
+      "name": "Dr. V. V. A. S. Lakshmi",
+      "facultyId": "NEC-PER-0140",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4245",
+        "studentName": "REDDY VARI GOPINATH REDDY",
+        "name": "REDDY VARI GOPINATH REDDY",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4235",
+        "studentName": "Student 22471A4235",
+        "name": "Student 22471A4235",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4229",
+        "studentName": "MEDISETTY SHANMUKHA NANDA",
+        "name": "MEDISETTY SHANMUKHA NANDA",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 15
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_39",
+    "projectNumber": "MP-CSE(AIML)-2023-039",
+    "teamNumber": "B5",
+    "title": "USER BEHAVIOUR ANALYSIS USING ISOLATION FOREST",
+    "projectTitle": "USER BEHAVIOUR ANALYSIS USING ISOLATION FOREST",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "M. Revathi",
+    "guideFacultyId": "NEC-PER-0244",
+    "guide": {
+      "name": "M. Revathi",
+      "facultyId": "NEC-PER-0244",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4255",
+        "studentName": "Student 23471A4255",
+        "name": "Student 23471A4255",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4216",
+        "studentName": "Dandamudi. Lakshmi Prasanna",
+        "name": "Dandamudi. Lakshmi Prasanna",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4254",
+        "studentName": "Student 23471A4254",
+        "name": "Student 23471A4254",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 18
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_40",
+    "projectNumber": "MP-CSE(AIML)-2023-040",
+    "teamNumber": "B6",
+    "title": "CROP YIELD PREDICTION USING WEATHER AND SOIL DATA",
+    "projectTitle": "CROP YIELD PREDICTION USING WEATHER AND SOIL DATA",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Mahesh Babu",
+    "guideFacultyId": "NEC-PER-0241",
+    "guide": {
+      "name": "G. Mahesh Babu",
+      "facultyId": "NEC-PER-0241",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4202",
+        "studentName": "Student 23471A4202",
+        "name": "Student 23471A4202",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4203",
+        "studentName": "Student 23471A4203",
+        "name": "Student 23471A4203",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4208",
+        "studentName": "Student 23471A4208",
+        "name": "Student 23471A4208",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 21
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_41",
+    "projectNumber": "MP-CSE(AIML)-2023-041",
+    "teamNumber": "B7",
+    "title": "HOUSE PRICE PREDICTION USING REGRESSION",
+    "projectTitle": "HOUSE PRICE PREDICTION USING REGRESSION",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P.SOLMON",
+    "guideFacultyId": "FAC_1789967027288_yhwq0",
+    "guide": {
+      "name": "P.SOLMON",
+      "facultyId": "FAC_1789967027288_yhwq0",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4205",
+        "studentName": "Student 23471A4205",
+        "name": "Student 23471A4205",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4207",
+        "studentName": "Student 23471A4207",
+        "name": "Student 23471A4207",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4243",
+        "studentName": "RAMISETTY GNANA HARSHA VARDHAN",
+        "name": "RAMISETTY GNANA HARSHA VARDHAN",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 24
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_42",
+    "projectNumber": "MP-CSE(AIML)-2023-042",
+    "teamNumber": "B8",
+    "title": "SMART COLLEGE TRANSPORTATION TRACKING SYSTEM",
+    "projectTitle": "SMART COLLEGE TRANSPORTATION TRACKING SYSTEM",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "A. Veema Rao",
+    "guideFacultyId": "NEC-PER-0245",
+    "guide": {
+      "name": "A. Veema Rao",
+      "facultyId": "NEC-PER-0245",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4227",
+        "studentName": "Student 23471A4227",
+        "name": "Student 23471A4227",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4224",
+        "studentName": "Student 23471A4224",
+        "name": "Student 23471A4224",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4258",
+        "studentName": "Sumanth Thimmisetty",
+        "name": "Sumanth Thimmisetty",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 27
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_43",
+    "projectNumber": "MP-CSE(AIML)-2023-043",
+    "teamNumber": "B9",
+    "title": "SMART HOME VALUATION PRECISION THROUGH MACHINE LEARNING",
+    "projectTitle": "SMART HOME VALUATION PRECISION THROUGH MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "N. Siva Ramakrishna",
+    "guideFacultyId": "NEC-PER-0238",
+    "guide": {
+      "name": "N. Siva Ramakrishna",
+      "facultyId": "NEC-PER-0238",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4241",
+        "studentName": "Student 23471A4241",
+        "name": "Student 23471A4241",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4230",
+        "studentName": "KUDUMULA BHAGYA YOGANANDA SHARMA",
+        "name": "KUDUMULA BHAGYA YOGANANDA SHARMA",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4206",
+        "studentName": "Anumula Lakshman Venkata Naga Sai",
+        "name": "Anumula Lakshman Venkata Naga Sai",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 30
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_44",
+    "projectNumber": "MP-CSE(AIML)-2023-044",
+    "teamNumber": "B10",
+    "title": "FAKE JOB POSTING DETECTION USING NATURAL LANGUAGE PROCESSING",
+    "projectTitle": "FAKE JOB POSTING DETECTION USING NATURAL LANGUAGE PROCESSING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Mahesh Babu",
+    "guideFacultyId": "NEC-PER-0241",
+    "guide": {
+      "name": "G. Mahesh Babu",
+      "facultyId": "NEC-PER-0241",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4232",
+        "studentName": "Student 23471A4232",
+        "name": "Student 23471A4232",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4242",
+        "studentName": "Student 23471A4242",
+        "name": "Student 23471A4242",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4220",
+        "studentName": "Student 23471A4220",
+        "name": "Student 23471A4220",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 33
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_45",
+    "projectNumber": "MP-CSE(AIML)-2023-045",
+    "teamNumber": "B11",
+    "title": "NEC-CHATBOT FOR COLLEGE ENQUIRY",
+    "projectTitle": "NEC-CHATBOT FOR COLLEGE ENQUIRY",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "N. Siva Ramakrishna",
+    "guideFacultyId": "NEC-PER-0238",
+    "guide": {
+      "name": "N. Siva Ramakrishna",
+      "facultyId": "NEC-PER-0238",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4210",
+        "studentName": "B. RISHITHA MADHURI",
+        "name": "B. RISHITHA MADHURI",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4212",
+        "studentName": "BOKKA VARUN SANDESH",
+        "name": "BOKKA VARUN SANDESH",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4256",
+        "studentName": "TALLURI NAGA MANIKANTA",
+        "name": "TALLURI NAGA MANIKANTA",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 36
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_46",
+    "projectNumber": "MP-CSE(AIML)-2023-046",
+    "teamNumber": "B12",
+    "title": "CODE AUTO COMLETION USING LLM'S",
+    "projectTitle": "CODE AUTO COMLETION USING LLM'S",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Nageswara Rao",
+    "guideFacultyId": "NEC-PER-0240",
+    "guide": {
+      "name": "G. Nageswara Rao",
+      "facultyId": "NEC-PER-0240",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4244",
+        "studentName": "Student 23471A4244",
+        "name": "Student 23471A4244",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4233",
+        "studentName": "Student 23471A4233",
+        "name": "Student 23471A4233",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4263",
+        "studentName": "VELPULA CHANDRASEKHAR",
+        "name": "VELPULA CHANDRASEKHAR",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 39
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_47",
+    "projectNumber": "MP-CSE(AIML)-2023-047",
+    "teamNumber": "B13",
+    "title": "HEART ATTACK PREDIICTION USING MACHINE LEARNING",
+    "projectTitle": "HEART ATTACK PREDIICTION USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "D. Sreekanth",
+    "guideFacultyId": "NEC-PER-0239",
+    "guide": {
+      "name": "D. Sreekanth",
+      "facultyId": "NEC-PER-0239",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4250",
+        "studentName": "Student 23471A4250",
+        "name": "Student 23471A4250",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4238",
+        "studentName": "Student 23471A4238",
+        "name": "Student 23471A4238",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4225",
+        "studentName": "Student 23471A4225",
+        "name": "Student 23471A4225",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 42
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_48",
+    "projectNumber": "MP-CSE(AIML)-2023-048",
+    "teamNumber": "B14",
+    "title": "SOME EMOTION TIME LINE AND VISUALIZATION TOOL",
+    "projectTitle": "SOME EMOTION TIME LINE AND VISUALIZATION TOOL",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "M. Sai Yaswanth",
+    "guideFacultyId": "NEC-PER-0206",
+    "guide": {
+      "name": "M. Sai Yaswanth",
+      "facultyId": "NEC-PER-0206",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4211",
+        "studentName": "Bodapati Manjeera Devi",
+        "name": "Bodapati Manjeera Devi",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4236",
+        "studentName": "Student 23471A4236",
+        "name": "Student 23471A4236",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4223",
+        "studentName": "Kancharla Nagendra Babu",
+        "name": "Kancharla Nagendra Babu",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 45
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_49",
+    "projectNumber": "MP-CSE(AIML)-2023-049",
+    "teamNumber": "B15",
+    "title": "SARCASM AND EMOTION DETECTION USING NLP",
+    "projectTitle": "SARCASM AND EMOTION DETECTION USING NLP",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Nageswara Rao",
+    "guideFacultyId": "NEC-PER-0240",
+    "guide": {
+      "name": "G. Nageswara Rao",
+      "facultyId": "NEC-PER-0240",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4239",
+        "studentName": "PONUGOTI LAKSHMI SRINIDHI",
+        "name": "PONUGOTI LAKSHMI SRINIDHI",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4248",
+        "studentName": "Student 23471A4248",
+        "name": "Student 23471A4248",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4264",
+        "studentName": "VEMULA VISHNU VARDHAN",
+        "name": "VEMULA VISHNU VARDHAN",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 48
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_50",
+    "projectNumber": "MP-CSE(AIML)-2023-050",
+    "teamNumber": "B16",
+    "title": "LOAN APPROVAL PREDICTION SYSTEM",
+    "projectTitle": "LOAN APPROVAL PREDICTION SYSTEM",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "J. Syam Babu",
+    "guideFacultyId": "NEC-PER-0243",
+    "guide": {
+      "name": "J. Syam Babu",
+      "facultyId": "NEC-PER-0243",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4228",
+        "studentName": "Student 23471A4228",
+        "name": "Student 23471A4228",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4222",
+        "studentName": "Student 23471A4222",
+        "name": "Student 23471A4222",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4218",
+        "studentName": "Gonaboina Naveen Kumar",
+        "name": "Gonaboina Naveen Kumar",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 51
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_51",
+    "projectNumber": "MP-CSE(AIML)-2023-051",
+    "teamNumber": "B17",
+    "title": "HOUSE PRICE PREDICTION USING AI",
+    "projectTitle": "HOUSE PRICE PREDICTION USING AI",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "J. Syam Babu",
+    "guideFacultyId": "NEC-PER-0243",
+    "guide": {
+      "name": "J. Syam Babu",
+      "facultyId": "NEC-PER-0243",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4249",
+        "studentName": "Student 23471A4249",
+        "name": "Student 23471A4249",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4217",
+        "studentName": "Student 23471A4217",
+        "name": "Student 23471A4217",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4231",
+        "studentName": "Loka venkatasivanagabalaanusha",
+        "name": "Loka venkatasivanagabalaanusha",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 54
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_52",
+    "projectNumber": "MP-CSE(AIML)-2023-052",
+    "teamNumber": "B18",
+    "title": "AI BASED RESUME SHORTLISTING TOOL",
+    "projectTitle": "AI BASED RESUME SHORTLISTING TOOL",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. V. SATEESH KUMAR",
+    "guideFacultyId": null,
+    "guide": {
+      "name": "P. V. SATEESH KUMAR",
+      "facultyId": null,
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4253",
+        "studentName": "Somula Lakshmi Sowjanya",
+        "name": "Somula Lakshmi Sowjanya",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4240",
+        "studentName": "POTHURI LALITANJALI",
+        "name": "POTHURI LALITANJALI",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4219",
+        "studentName": "GONDESI MANOJ KUMAR",
+        "name": "GONDESI MANOJ KUMAR",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 57
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_53",
+    "projectNumber": "MP-CSE(AIML)-2023-053",
+    "teamNumber": "B19",
+    "title": "STOCK MARKET TREND PREDICTION",
+    "projectTitle": "STOCK MARKET TREND PREDICTION",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. V. SATEESH KUMAR",
+    "guideFacultyId": null,
+    "guide": {
+      "name": "P. V. SATEESH KUMAR",
+      "facultyId": null,
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4201",
+        "studentName": "Student 23471A4201",
+        "name": "Student 23471A4201",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4261",
+        "studentName": "VAJRAPU DURGA SANKAR",
+        "name": "VAJRAPU DURGA SANKAR",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4262",
+        "studentName": "Student 23471A4262",
+        "name": "Student 23471A4262",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 60
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_54",
+    "projectNumber": "MP-CSE(AIML)-2023-054",
+    "teamNumber": "B20",
+    "title": "LOAN APPROVAL PREDICTION SYSTEM USING MACHINE LEARNING",
+    "projectTitle": "LOAN APPROVAL PREDICTION SYSTEM USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. SARDAR KHAN",
+    "guideFacultyId": null,
+    "guide": {
+      "name": "P. SARDAR KHAN",
+      "facultyId": null,
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4213",
+        "studentName": "Student 23471A4213",
+        "name": "Student 23471A4213",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4221",
+        "studentName": "Student 23471A4221",
+        "name": "Student 23471A4221",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4252",
+        "studentName": "Student 23471A4252",
+        "name": "Student 23471A4252",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 63
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_55",
+    "projectNumber": "MP-CSE(AIML)-2023-055",
+    "teamNumber": "B21",
+    "title": "SPAM MAIL CLASSIFIER",
+    "projectTitle": "SPAM MAIL CLASSIFIER",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Srinivasa Rao",
+    "guideFacultyId": "NEC-PER-0237",
+    "guide": {
+      "name": "P. Srinivasa Rao",
+      "facultyId": "NEC-PER-0237",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4292",
+        "studentName": "PAMMI INDU AKSHITHA REDDY",
+        "name": "PAMMI INDU AKSHITHA REDDY",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "24475A4205",
+        "studentName": "YAMARTHI MANIKANTA .",
+        "name": "YAMARTHI MANIKANTA .",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4282",
+        "studentName": "Student 23471A4282",
+        "name": "Student 23471A4282",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 66
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_56",
+    "projectNumber": "MP-CSE(AIML)-2023-056",
+    "teamNumber": "B22",
+    "title": "WINE QUALITY PREDICTION USING MACHINE LAERNING",
+    "projectTitle": "WINE QUALITY PREDICTION USING MACHINE LAERNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Srinivasa Rao",
+    "guideFacultyId": "NEC-PER-0237",
+    "guide": {
+      "name": "P. Srinivasa Rao",
+      "facultyId": "NEC-PER-0237",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4290",
+        "studentName": "Student 23471A4290",
+        "name": "Student 23471A4290",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4275",
+        "studentName": "Student 23471A4275",
+        "name": "Student 23471A4275",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A42AD",
+        "studentName": "Student 23471A42AD",
+        "name": "Student 23471A42AD",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 69
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_57",
+    "projectNumber": "MP-CSE(AIML)-2023-057",
+    "teamNumber": "B23",
+    "title": "STUDENT PREDICTION PERCEPTION SYSTEM",
+    "projectTitle": "STUDENT PREDICTION PERCEPTION SYSTEM",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Jeevana Manikanta",
+    "guideFacultyId": "NEC-PER-0265",
+    "guide": {
+      "name": "G. Jeevana Manikanta",
+      "facultyId": "NEC-PER-0265",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A42A8",
+        "studentName": "Student 23471A42A8",
+        "name": "Student 23471A42A8",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A42AC",
+        "studentName": "Student 23471A42AC",
+        "name": "Student 23471A42AC",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4269",
+        "studentName": "Buchi pardhu yedukondala reddy",
+        "name": "Buchi pardhu yedukondala reddy",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 72
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_58",
+    "projectNumber": "MP-CSE(AIML)-2023-058",
+    "teamNumber": "B24",
+    "title": "FAKE NEWS DETECTION USING MACHINE LEARNING CLASSIFIERS",
+    "projectTitle": "FAKE NEWS DETECTION USING MACHINE LEARNING CLASSIFIERS",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P.SOLMON",
+    "guideFacultyId": "FAC_1789967027288_yhwq0",
+    "guide": {
+      "name": "P.SOLMON",
+      "facultyId": "FAC_1789967027288_yhwq0",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4276",
+        "studentName": "Student 23471A4276",
+        "name": "Student 23471A4276",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "24475A4202",
+        "studentName": "PALLEPATI SUDHEER .",
+        "name": "PALLEPATI SUDHEER .",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A42A0",
+        "studentName": "SITA RAMAIAH KAMEPALLI",
+        "name": "SITA RAMAIAH KAMEPALLI",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 75
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_59",
+    "projectNumber": "MP-CSE(AIML)-2023-059",
+    "teamNumber": "B25",
+    "title": "SIGN LANGUAGE RECOGNITION USING CONVOLUTIONL NEURAL NETWORKS",
+    "projectTitle": "SIGN LANGUAGE RECOGNITION USING CONVOLUTIONL NEURAL NETWORKS",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G.V.Neelimadhavi",
+    "guideFacultyId": "NEC-PER-0223",
+    "guide": {
+      "name": "G.V.Neelimadhavi",
+      "facultyId": "NEC-PER-0223",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A42A1",
+        "studentName": "SRI RAMASETTI SRINATH",
+        "name": "SRI RAMASETTI SRINATH",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4280",
+        "studentName": "Student 23471A4280",
+        "name": "Student 23471A4280",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4266",
+        "studentName": "Student 23471A4266",
+        "name": "Student 23471A4266",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 78
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_60",
+    "projectNumber": "MP-CSE(AIML)-2023-060",
+    "teamNumber": "B26",
+    "title": "MOVIE RECOMMENDATION SYSTEM",
+    "projectTitle": "MOVIE RECOMMENDATION SYSTEM",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "M. Revathi",
+    "guideFacultyId": "NEC-PER-0244",
+    "guide": {
+      "name": "M. Revathi",
+      "facultyId": "NEC-PER-0244",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A42A2",
+        "studentName": "Student 23471A42A2",
+        "name": "Student 23471A42A2",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A42A5",
+        "studentName": "THOTA RANGA SIVA SUDHEER",
+        "name": "THOTA RANGA SIVA SUDHEER",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4291",
+        "studentName": "Palamuri bhanu kumar reddy",
+        "name": "Palamuri bhanu kumar reddy",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 81
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_61",
+    "projectNumber": "MP-CSE(AIML)-2023-061",
+    "teamNumber": "B27",
+    "title": "LOAN APPROVAL PREDICTION SYSTEM",
+    "projectTitle": "LOAN APPROVAL PREDICTION SYSTEM",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "D. Sreekanth",
+    "guideFacultyId": "NEC-PER-0239",
+    "guide": {
+      "name": "D. Sreekanth",
+      "facultyId": "NEC-PER-0239",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4281",
+        "studentName": "Student 23471A4281",
+        "name": "Student 23471A4281",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4286",
+        "studentName": "Student 23471A4286",
+        "name": "Student 23471A4286",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4289",
+        "studentName": "MUNAGALA NAVEEN",
+        "name": "MUNAGALA NAVEEN",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 84
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_62",
+    "projectNumber": "MP-CSE(AIML)-2023-062",
+    "teamNumber": "B28",
+    "title": "SMART TRAFFIC SIGNAL CONTROL SYSTEM FOR AMBULANCE PRIORITY",
+    "projectTitle": "SMART TRAFFIC SIGNAL CONTROL SYSTEM FOR AMBULANCE PRIORITY",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. MAHSH BBU",
+    "guideFacultyId": null,
+    "guide": {
+      "name": "G. MAHSH BBU",
+      "facultyId": null,
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4271",
+        "studentName": "Student 23471A4271",
+        "name": "Student 23471A4271",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "24475A4203",
+        "studentName": "Venkatesh Suddapalli",
+        "name": "Venkatesh Suddapalli",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "24475A4204",
+        "studentName": "Student 24475A4204",
+        "name": "Student 24475A4204",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 87
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_63",
+    "projectNumber": "MP-CSE(AIML)-2023-063",
+    "teamNumber": "B29",
+    "title": "FACIAL EMOTION RECOGNITION USING CONVOLUTIONAL NEURAL NETWORKS",
+    "projectTitle": "FACIAL EMOTION RECOGNITION USING CONVOLUTIONAL NEURAL NETWORKS",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. V. SATEESH KUMAR",
+    "guideFacultyId": null,
+    "guide": {
+      "name": "P. V. SATEESH KUMAR",
+      "facultyId": null,
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A42AB",
+        "studentName": "S. VIGHNA CHAITANYA",
+        "name": "S. VIGHNA CHAITANYA",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A42AA",
+        "studentName": "Student 23471A42AA",
+        "name": "Student 23471A42AA",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4284",
+        "studentName": "Maddirala Nischitha",
+        "name": "Maddirala Nischitha",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 90
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_64",
+    "projectNumber": "MP-CSE(AIML)-2023-064",
+    "teamNumber": "B30",
+    "title": "SPAM MAIL CLASSIFIER",
+    "projectTitle": "SPAM MAIL CLASSIFIER",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P.SOLMON",
+    "guideFacultyId": "FAC_1789967027288_yhwq0",
+    "guide": {
+      "name": "P.SOLMON",
+      "facultyId": "FAC_1789967027288_yhwq0",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4268",
+        "studentName": "Student 23471A4268",
+        "name": "Student 23471A4268",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "24475A4208",
+        "studentName": "KUNDETI NAVEEN",
+        "name": "KUNDETI NAVEEN",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A42A7",
+        "studentName": "Student 23471A42A7",
+        "name": "Student 23471A42A7",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 93
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_65",
+    "projectNumber": "MP-CSE(AIML)-2023-065",
+    "teamNumber": "B31",
+    "title": "FACE RECOGNITION FOR ATTENDACE SYSTEM",
+    "projectTitle": "FACE RECOGNITION FOR ATTENDACE SYSTEM",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "A. Veema Rao",
+    "guideFacultyId": "NEC-PER-0245",
+    "guide": {
+      "name": "A. Veema Rao",
+      "facultyId": "NEC-PER-0245",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4294",
+        "studentName": "PONNAPATI DEVI AKSHAYA",
+        "name": "PONNAPATI DEVI AKSHAYA",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4274",
+        "studentName": "Dudekula Gafoor Basha",
+        "name": "Dudekula Gafoor Basha",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4287",
+        "studentName": "Student 23471A4287",
+        "name": "Student 23471A4287",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 96
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_66",
+    "projectNumber": "MP-CSE(AIML)-2023-066",
+    "teamNumber": "B32",
+    "title": "PARKINSON'S DISEASE PREDICTION ON NEURO DEGENERATIVE DISORDER",
+    "projectTitle": "PARKINSON'S DISEASE PREDICTION ON NEURO DEGENERATIVE DISORDER",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "J. Syam Babu",
+    "guideFacultyId": "NEC-PER-0243",
+    "guide": {
+      "name": "J. Syam Babu",
+      "facultyId": "NEC-PER-0243",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4285",
+        "studentName": "Student 23471A4285",
+        "name": "Student 23471A4285",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4279",
+        "studentName": "GURRAM GOPAL REDDY",
+        "name": "GURRAM GOPAL REDDY",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A42AF",
+        "studentName": "Student 23471A42AF",
+        "name": "Student 23471A42AF",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 99
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_67",
+    "projectNumber": "MP-CSE(AIML)-2023-067",
+    "teamNumber": "B33",
+    "title": "FACIAL EMOTION RECOGNITION USING CONVOLUTIONAL NEURAL NETWORKS",
+    "projectTitle": "FACIAL EMOTION RECOGNITION USING CONVOLUTIONAL NEURAL NETWORKS",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Nageswara Rao",
+    "guideFacultyId": "NEC-PER-0240",
+    "guide": {
+      "name": "G. Nageswara Rao",
+      "facultyId": "NEC-PER-0240",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A42AE",
+        "studentName": "GONABOINA BALA SUBRAHMANYAM . A",
+        "name": "GONABOINA BALA SUBRAHMANYAM . A",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4296",
+        "studentName": "RAGINENI.VEERAVEMANA RAO",
+        "name": "RAGINENI.VEERAVEMANA RAO",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4299",
+        "studentName": "Shaik khaja Mohiddin",
+        "name": "Shaik khaja Mohiddin",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 102
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_68",
+    "projectNumber": "MP-CSE(AIML)-2023-068",
+    "teamNumber": "B34",
+    "title": "THE EMPLOYEE ATTRITION PREDICTION USING MACHINE LEARNING",
+    "projectTitle": "THE EMPLOYEE ATTRITION PREDICTION USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "M. Sai Yaswanth",
+    "guideFacultyId": "NEC-PER-0206",
+    "guide": {
+      "name": "M. Sai Yaswanth",
+      "facultyId": "NEC-PER-0206",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "24475A4206",
+        "studentName": "BODIPUDI ANIL KUMAR .",
+        "name": "BODIPUDI ANIL KUMAR .",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4273",
+        "studentName": "DIGALA BHARATH KUMAR RAJU",
+        "name": "DIGALA BHARATH KUMAR RAJU",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A42A4",
+        "studentName": "Student 23471A42A4",
+        "name": "Student 23471A42A4",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 105
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_69",
+    "projectNumber": "MP-CSE(AIML)-2023-069",
+    "teamNumber": "B35",
+    "title": "AI-BASED CLOTHING IMAGE CLASSIFICATION AND RECOMMENDATION SYSTEM USING DEEP LEARNING",
+    "projectTitle": "AI-BASED CLOTHING IMAGE CLASSIFICATION AND RECOMMENDATION SYSTEM USING DEEP LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "J. Syam Babu",
+    "guideFacultyId": "NEC-PER-0243",
+    "guide": {
+      "name": "J. Syam Babu",
+      "facultyId": "NEC-PER-0243",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4297",
+        "studentName": "Student 23471A4297",
+        "name": "Student 23471A4297",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4293",
+        "studentName": "Student 23471A4293",
+        "name": "Student 23471A4293",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4272",
+        "studentName": "Student 23471A4272",
+        "name": "Student 23471A4272",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 108
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_70",
+    "projectNumber": "MP-CSE(AIML)-2023-070",
+    "teamNumber": "B36",
+    "title": "TRAFFIC SIGN RECOGNITION SYSTEM USING DEEP LEARNING",
+    "projectTitle": "TRAFFIC SIGN RECOGNITION SYSTEM USING DEEP LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "Dr. V. V. A. S. Lakshmi",
+    "guideFacultyId": "NEC-PER-0140",
+    "guide": {
+      "name": "Dr. V. V. A. S. Lakshmi",
+      "facultyId": "NEC-PER-0140",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A42A9",
+        "studentName": "Student 23471A42A9",
+        "name": "Student 23471A42A9",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4295",
+        "studentName": "POTNURU DURGA PRASAD",
+        "name": "POTNURU DURGA PRASAD",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4298",
+        "studentName": "Student 23471A4298",
+        "name": "Student 23471A4298",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 111
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_71",
+    "projectNumber": "MP-CSE(AIML)-2023-071",
+    "teamNumber": "B37",
+    "title": "STUDENT PERFOMANCE PREDICTION USING MACHINE LEARNING",
+    "projectTitle": "STUDENT PERFOMANCE PREDICTION USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "N. Siva Ramakrishna",
+    "guideFacultyId": "NEC-PER-0238",
+    "guide": {
+      "name": "N. Siva Ramakrishna",
+      "facultyId": "NEC-PER-0238",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "24475A4201",
+        "studentName": "Student 24475A4201",
+        "name": "Student 24475A4201",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "24475A4207",
+        "studentName": "Student 24475A4207",
+        "name": "Student 24475A4207",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A42A3",
+        "studentName": "SURA MAHENDRA REDDY",
+        "name": "SURA MAHENDRA REDDY",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 114
+    }
+  },
+  {
+    "id": "MINI_cse(aiml)_2023_72",
+    "projectNumber": "MP-CSE(AIML)-2023-072",
+    "teamNumber": "B38",
+    "title": "PREDICTIVE ANALYSIS OF CAR PRICES USING MACHINE LEARNING LINEAR MODELS",
+    "projectTitle": "PREDICTIVE ANALYSIS OF CAR PRICES USING MACHINE LEARNING LINEAR MODELS",
+    "projectType": "Mini Project",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "Dr. V. V. A. S. Lakshmi",
+    "guideFacultyId": "NEC-PER-0140",
+    "guide": {
+      "name": "Dr. V. V. A. S. Lakshmi",
+      "facultyId": "NEC-PER-0140",
+      "department": "CSE(AIML)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4283",
+        "studentName": "Student 23471A4283",
+        "name": "Student 23471A4283",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "24475A4209",
+        "studentName": "RUVU NAGA SWAROOP .",
+        "name": "RUVU NAGA SWAROOP .",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A42A6",
+        "studentName": "UPPU PEDDA ANKAMMA RAO",
+        "name": "UPPU PEDDA ANKAMMA RAO",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(AIML)/Mini Projects/23 BATCH CSE (AIML) MINI PROJECTS.xlsx",
+      "sheetName": "CSE AIML 23 BATCH",
+      "startRow": 117
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_73",
+    "projectNumber": "MP-CSE(CS)-2023-073",
+    "teamNumber": "B1",
+    "title": "END - TO - END ENCRYPTED CHT APPLICATION - SECURE CHAT APP WITH RSA/ AES ENCRYPTION",
+    "projectTitle": "END - TO - END ENCRYPTED CHT APPLICATION - SECURE CHAT APP WITH RSA/ AES ENCRYPTION",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "Dr. V. V. A. S. Lakshmi",
+    "guideFacultyId": "NEC-PER-0140",
+    "guide": {
+      "name": "Dr. V. V. A. S. Lakshmi",
+      "facultyId": "NEC-PER-0140",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4649",
+        "studentName": "Student 23471A4649",
+        "name": "Student 23471A4649",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4602",
+        "studentName": "ANNAREDDY CHANDRA HARISH REDDY",
+        "name": "ANNAREDDY CHANDRA HARISH REDDY",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4614",
+        "studentName": "Karanam Babi Manikanta",
+        "name": "Karanam Babi Manikanta",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 5
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_74",
+    "projectNumber": "MP-CSE(CS)-2023-074",
+    "teamNumber": "B2",
+    "title": "PORT SCANNER AND MITIGATION SYSTEM",
+    "projectTitle": "PORT SCANNER AND MITIGATION SYSTEM",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "Dr. V. V. A. S. Lakshmi",
+    "guideFacultyId": "NEC-PER-0140",
+    "guide": {
+      "name": "Dr. V. V. A. S. Lakshmi",
+      "facultyId": "NEC-PER-0140",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "24475A4606",
+        "studentName": "Student 24475A4606",
+        "name": "Student 24475A4606",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "24475A4603",
+        "studentName": "SHAIK ABDUL KHUDDUS .",
+        "name": "SHAIK ABDUL KHUDDUS .",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4603",
+        "studentName": "Bhushi Venkata Ramesh",
+        "name": "Bhushi Venkata Ramesh",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 8
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_75",
+    "projectNumber": "MP-CSE(CS)-2023-075",
+    "teamNumber": "B3",
+    "title": "INCIDENT RESPONSE AI CHATBOT",
+    "projectTitle": "INCIDENT RESPONSE AI CHATBOT",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "D. Sreekanth",
+    "guideFacultyId": "NEC-PER-0239",
+    "guide": {
+      "name": "D. Sreekanth",
+      "facultyId": "NEC-PER-0239",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4626",
+        "studentName": "MOGILI HARSHA VARDHAN",
+        "name": "MOGILI HARSHA VARDHAN",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4617",
+        "studentName": "Student 23471A4617",
+        "name": "Student 23471A4617",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4641",
+        "studentName": "Student 23471A4641",
+        "name": "Student 23471A4641",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 11
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_76",
+    "projectNumber": "MP-CSE(CS)-2023-076",
+    "teamNumber": "B4",
+    "title": "DATA LEAKAGE DETECTION SYSTEM MONITOR DATA EXFILTERATION ATTEMPTS",
+    "projectTitle": "DATA LEAKAGE DETECTION SYSTEM MONITOR DATA EXFILTERATION ATTEMPTS",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "N. Siva Ramakrishna",
+    "guideFacultyId": "NEC-PER-0238",
+    "guide": {
+      "name": "N. Siva Ramakrishna",
+      "facultyId": "NEC-PER-0238",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4650",
+        "studentName": "Student 23471A4650",
+        "name": "Student 23471A4650",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4623",
+        "studentName": "MATURU HANISH KUMAR",
+        "name": "MATURU HANISH KUMAR",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4604",
+        "studentName": "Bugatha.Hemanth Kumar",
+        "name": "Bugatha.Hemanth Kumar",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 14
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_77",
+    "projectNumber": "MP-CSE(CS)-2023-077",
+    "teamNumber": "B5",
+    "title": "FILE ENCRYPTION AND DECRYPTION  TOOL",
+    "projectTitle": "FILE ENCRYPTION AND DECRYPTION  TOOL",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "M. Sai Yaswanth",
+    "guideFacultyId": "NEC-PER-0206",
+    "guide": {
+      "name": "M. Sai Yaswanth",
+      "facultyId": "NEC-PER-0206",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4610",
+        "studentName": "Student 23471A4610",
+        "name": "Student 23471A4610",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "24475A4604",
+        "studentName": "JOSEPH JAYANTH VARDHAN CHIMALADINNE .",
+        "name": "JOSEPH JAYANTH VARDHAN CHIMALADINNE .",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4606",
+        "studentName": "Student 23471A4606",
+        "name": "Student 23471A4606",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 17
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_78",
+    "projectNumber": "MP-CSE(CS)-2023-078",
+    "teamNumber": "B6",
+    "title": "PASSWORD STRENGTH ANALYZER USING PYTHON AND FLASK",
+    "projectTitle": "PASSWORD STRENGTH ANALYZER USING PYTHON AND FLASK",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "M. Revathi",
+    "guideFacultyId": "NEC-PER-0244",
+    "guide": {
+      "name": "M. Revathi",
+      "facultyId": "NEC-PER-0244",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4618",
+        "studentName": "Konijeti Geetha Anantha Lakshmi",
+        "name": "Konijeti Geetha Anantha Lakshmi",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "24475A4602",
+        "studentName": "Student 24475A4602",
+        "name": "Student 24475A4602",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4630",
+        "studentName": "Student 23471A4630",
+        "name": "Student 23471A4630",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 20
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_79",
+    "projectNumber": "MP-CSE(CS)-2023-079",
+    "teamNumber": "B7",
+    "title": "PHISHING URL DETECTION USING MACHINE LEARNING",
+    "projectTitle": "PHISHING URL DETECTION USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "A. Veema Rao",
+    "guideFacultyId": "NEC-PER-0245",
+    "guide": {
+      "name": "A. Veema Rao",
+      "facultyId": "NEC-PER-0245",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4619",
+        "studentName": "Sai Amar Durgesh Kopparapu",
+        "name": "Sai Amar Durgesh Kopparapu",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4636",
+        "studentName": "Pathan Basheer khan",
+        "name": "Pathan Basheer khan",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4646",
+        "studentName": "Student 23471A4646",
+        "name": "Student 23471A4646",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 23
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_80",
+    "projectNumber": "MP-CSE(CS)-2023-080",
+    "teamNumber": "B8",
+    "title": "ANDROID MALWARE DETECTION - ANALYZE ANDROID APKS FOR MALICIOUS BEHAVIOUR",
+    "projectTitle": "ANDROID MALWARE DETECTION - ANALYZE ANDROID APKS FOR MALICIOUS BEHAVIOUR",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "Ch. Padma",
+    "guideFacultyId": "NEC-PER-0261",
+    "guide": {
+      "name": "Ch. Padma",
+      "facultyId": "NEC-PER-0261",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4658",
+        "studentName": "SHAIK FAHMIDA NAAZ . A",
+        "name": "SHAIK FAHMIDA NAAZ . A",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4625",
+        "studentName": "Student 23471A4625",
+        "name": "Student 23471A4625",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4629",
+        "studentName": "Student 23471A4629",
+        "name": "Student 23471A4629",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 26
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_81",
+    "projectNumber": "MP-CSE(CS)-2023-081",
+    "teamNumber": "B9",
+    "title": "SECURE AUTHENTICATION SYSTEM BASED ON MULTI- FACTOR AUTHENTICATION",
+    "projectTitle": "SECURE AUTHENTICATION SYSTEM BASED ON MULTI- FACTOR AUTHENTICATION",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P.V. SATEESH KUMAR",
+    "guideFacultyId": null,
+    "guide": {
+      "name": "P.V. SATEESH KUMAR",
+      "facultyId": null,
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4637",
+        "studentName": "Student 23471A4637",
+        "name": "Student 23471A4637",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4632",
+        "studentName": "Student 23471A4632",
+        "name": "Student 23471A4632",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4627",
+        "studentName": "Student 23471A4627",
+        "name": "Student 23471A4627",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 29
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_82",
+    "projectNumber": "MP-CSE(CS)-2023-082",
+    "teamNumber": "B10",
+    "title": "LLM - POWERED SECURITY OPERATIONS CENTER (SOC) ASSISTANCE",
+    "projectTitle": "LLM - POWERED SECURITY OPERATIONS CENTER (SOC) ASSISTANCE",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "D. Sreekanth",
+    "guideFacultyId": "NEC-PER-0239",
+    "guide": {
+      "name": "D. Sreekanth",
+      "facultyId": "NEC-PER-0239",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4647",
+        "studentName": "Student 23471A4647",
+        "name": "Student 23471A4647",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4655",
+        "studentName": "Vellala Naga Yaswanth Kumar",
+        "name": "Vellala Naga Yaswanth Kumar",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "24475A4601",
+        "studentName": "KINNERA JAKAB RAJU .",
+        "name": "KINNERA JAKAB RAJU .",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 32
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_83",
+    "projectNumber": "MP-CSE(CS)-2023-083",
+    "teamNumber": "B11",
+    "title": "PASSWORD STRENGTH ANALYZER",
+    "projectTitle": "PASSWORD STRENGTH ANALYZER",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. SARDAR KHAN",
+    "guideFacultyId": null,
+    "guide": {
+      "name": "P. SARDAR KHAN",
+      "facultyId": null,
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "24475A4605",
+        "studentName": "Student 24475A4605",
+        "name": "Student 24475A4605",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4615",
+        "studentName": "Student 23471A4615",
+        "name": "Student 23471A4615",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4622",
+        "studentName": "Madala.Harsha Vardhan",
+        "name": "Madala.Harsha Vardhan",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 35
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_84",
+    "projectNumber": "MP-CSE(CS)-2023-084",
+    "teamNumber": "B12",
+    "title": "STEGANOGRAPHY AND STEGAANALYSIS - TO HIDE THE DATA IN IMAGES/ AUDIO/VIDEO AND BUILD DETECTION TOOL",
+    "projectTitle": "STEGANOGRAPHY AND STEGAANALYSIS - TO HIDE THE DATA IN IMAGES/ AUDIO/VIDEO AND BUILD DETECTION TOOL",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P.SOLMON",
+    "guideFacultyId": "FAC_1789967027288_yhwq0",
+    "guide": {
+      "name": "P.SOLMON",
+      "facultyId": "FAC_1789967027288_yhwq0",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4628",
+        "studentName": "Student 23471A4628",
+        "name": "Student 23471A4628",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4657",
+        "studentName": "Lokesh reddy yerram",
+        "name": "Lokesh reddy yerram",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4624",
+        "studentName": "MEDAM VISHNU VARDHAN REDDY",
+        "name": "MEDAM VISHNU VARDHAN REDDY",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 38
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_85",
+    "projectNumber": "MP-CSE(CS)-2023-085",
+    "teamNumber": "B13",
+    "title": "INCIDENT RESPONSE  CHATBOT",
+    "projectTitle": "INCIDENT RESPONSE  CHATBOT",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Nageswara Rao",
+    "guideFacultyId": "NEC-PER-0240",
+    "guide": {
+      "name": "G. Nageswara Rao",
+      "facultyId": "NEC-PER-0240",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4656",
+        "studentName": "Student 23471A4656",
+        "name": "Student 23471A4656",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4643",
+        "studentName": "Student 23471A4643",
+        "name": "Student 23471A4643",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4613",
+        "studentName": "Student 23471A4613",
+        "name": "Student 23471A4613",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 41
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_86",
+    "projectNumber": "MP-CSE(CS)-2023-086",
+    "teamNumber": "B14",
+    "title": "PHISHING URL DETECTION - CLASSIFY URLS AS SAFE OR PHISHING USING ML",
+    "projectTitle": "PHISHING URL DETECTION - CLASSIFY URLS AS SAFE OR PHISHING USING ML",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "J. Syam Babu",
+    "guideFacultyId": "NEC-PER-0243",
+    "guide": {
+      "name": "J. Syam Babu",
+      "facultyId": "NEC-PER-0243",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4601",
+        "studentName": "Student 23471A4601",
+        "name": "Student 23471A4601",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4648",
+        "studentName": "Student 23471A4648",
+        "name": "Student 23471A4648",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4631",
+        "studentName": "Student 23471A4631",
+        "name": "Student 23471A4631",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 44
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_87",
+    "projectNumber": "MP-CSE(CS)-2023-087",
+    "teamNumber": "B15",
+    "title": "SCANSHIELD : PORT SCANNER & SECURITY ALERT",
+    "projectTitle": "SCANSHIELD : PORT SCANNER & SECURITY ALERT",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "A. Veema Rao",
+    "guideFacultyId": "NEC-PER-0245",
+    "guide": {
+      "name": "A. Veema Rao",
+      "facultyId": "NEC-PER-0245",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4620",
+        "studentName": "Student 23471A4620",
+        "name": "Student 23471A4620",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4652",
+        "studentName": "VADLAMUDI KUSUMA LATHA",
+        "name": "VADLAMUDI KUSUMA LATHA",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4612",
+        "studentName": "Student 23471A4612",
+        "name": "Student 23471A4612",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 47
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_88",
+    "projectNumber": "MP-CSE(CS)-2023-088",
+    "teamNumber": "B16",
+    "title": "PASSWORD STRENGTH ANLYZER",
+    "projectTitle": "PASSWORD STRENGTH ANLYZER",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Srinivasa Rao",
+    "guideFacultyId": "NEC-PER-0237",
+    "guide": {
+      "name": "P. Srinivasa Rao",
+      "facultyId": "NEC-PER-0237",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4635",
+        "studentName": "Student 23471A4635",
+        "name": "Student 23471A4635",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4651",
+        "studentName": "SRI TEJA SAI CHARAN REDDY",
+        "name": "SRI TEJA SAI CHARAN REDDY",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4659",
+        "studentName": "RAMISETTY POORNA MARUTI CHANDRA SEKHAR - A",
+        "name": "RAMISETTY POORNA MARUTI CHANDRA SEKHAR - A",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 50
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_89",
+    "projectNumber": "MP-CSE(CS)-2023-089",
+    "teamNumber": "B17",
+    "title": "STEGANOGRAPHY AND STEGAANALYSIS - TO HIDE THE DATA IN IMAGES/ AUDIO/VIDEO AND BUILD DETECTION TOOL",
+    "projectTitle": "STEGANOGRAPHY AND STEGAANALYSIS - TO HIDE THE DATA IN IMAGES/ AUDIO/VIDEO AND BUILD DETECTION TOOL",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Mahesh Babu",
+    "guideFacultyId": "NEC-PER-0241",
+    "guide": {
+      "name": "G. Mahesh Babu",
+      "facultyId": "NEC-PER-0241",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4645",
+        "studentName": "Student 23471A4645",
+        "name": "Student 23471A4645",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4605",
+        "studentName": "CHILAKALA VENKATESH",
+        "name": "CHILAKALA VENKATESH",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4640",
+        "studentName": "PULUKURI MALLIKARJUNA CHARI",
+        "name": "PULUKURI MALLIKARJUNA CHARI",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 53
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_90",
+    "projectNumber": "MP-CSE(CS)-2023-090",
+    "teamNumber": "B18",
+    "title": "CALORIES BURNT PREDICTION USING MACHINE LEARNING",
+    "projectTitle": "CALORIES BURNT PREDICTION USING MACHINE LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Jeevana Manikanta",
+    "guideFacultyId": "NEC-PER-0265",
+    "guide": {
+      "name": "G. Jeevana Manikanta",
+      "facultyId": "NEC-PER-0265",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4644",
+        "studentName": "Student 23471A4644",
+        "name": "Student 23471A4644",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4621",
+        "studentName": "Student 23471A4621",
+        "name": "Student 23471A4621",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4611",
+        "studentName": "GOPISETTY VIJAYA NAGARAJU KUMAR",
+        "name": "GOPISETTY VIJAYA NAGARAJU KUMAR",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 56
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_91",
+    "projectNumber": "MP-CSE(CS)-2023-091",
+    "teamNumber": "B19",
+    "title": "MULTI-FACTOR AUTHENTICATION SYSTEM COMBINE PASSWORD,OTP,BIOMETRIC VERIFICATION LAYER",
+    "projectTitle": "MULTI-FACTOR AUTHENTICATION SYSTEM COMBINE PASSWORD,OTP,BIOMETRIC VERIFICATION LAYER",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Jeevana Manikanta",
+    "guideFacultyId": "NEC-PER-0265",
+    "guide": {
+      "name": "G. Jeevana Manikanta",
+      "facultyId": "NEC-PER-0265",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4654",
+        "studentName": "Student 23471A4654",
+        "name": "Student 23471A4654",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4608",
+        "studentName": "Naga Harish Dhulipalla",
+        "name": "Naga Harish Dhulipalla",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4616",
+        "studentName": "Student 23471A4616",
+        "name": "Student 23471A4616",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 59
+    }
+  },
+  {
+    "id": "MINI_cse(cs)_2023_92",
+    "projectNumber": "MP-CSE(CS)-2023-092",
+    "teamNumber": "B20",
+    "title": "AN INTEGRATED STUDY OF STEGANOGRAPHY AND STEGA ANALYSIS",
+    "projectTitle": "AN INTEGRATED STUDY OF STEGANOGRAPHY AND STEGA ANALYSIS",
+    "projectType": "Mini Project",
+    "department": "CSE(CS)",
+    "departmentName": "Computer Science & Engineering (Cyber Security)",
+    "batch": "2023 Batch",
+    "academicYear": "2023-24",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G.V.Neelimadhavi",
+    "guideFacultyId": "NEC-PER-0223",
+    "guide": {
+      "name": "G.V.Neelimadhavi",
+      "facultyId": "NEC-PER-0223",
+      "department": "CSE(CS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "23471A4639",
+        "studentName": "Student 23471A4639",
+        "name": "Student 23471A4639",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "23471A4607",
+        "studentName": "DASARI SANTHOSH KUMAR",
+        "name": "DASARI SANTHOSH KUMAR",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23471A4653",
+        "studentName": "Student 23471A4653",
+        "name": "Student 23471A4653",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(CS)/Mini Projects/23 BATCH CSE (CS) MINI PROJECT TITLES.xlsx",
+      "sheetName": "CS",
+      "startRow": 62
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_93",
+    "projectNumber": "MP-CSE(DS)-2022-093",
+    "teamNumber": "B1",
+    "title": "EXTERNAL SEM REPORT",
+    "projectTitle": "EXTERNAL SEM REPORT",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "Dr. V. V. A. S. Lakshmi",
+    "guideFacultyId": "NEC-PER-0140",
+    "guide": {
+      "name": "Dr. V. V. A. S. Lakshmi",
+      "facultyId": "NEC-PER-0140",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4436",
+        "studentName": "Student 22471A4436",
+        "name": "Student 22471A4436",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4401",
+        "studentName": "Student 22471A4401",
+        "name": "Student 22471A4401",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4417",
+        "studentName": "Student 22471A4417",
+        "name": "Student 22471A4417",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4430",
+        "studentName": "Student 22471A4430",
+        "name": "Student 22471A4430",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4432",
+        "studentName": "MADDI CHIDANANDA DEDEEPYA",
+        "name": "MADDI CHIDANANDA DEDEEPYA",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 5
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_94",
+    "projectNumber": "MP-CSE(DS)-2022-094",
+    "teamNumber": "B2",
+    "title": "PARKINSON'S DISEASE PREDICTION USING MACHINE LEARNING IN PYTHON",
+    "projectTitle": "PARKINSON'S DISEASE PREDICTION USING MACHINE LEARNING IN PYTHON",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "M. Revathi",
+    "guideFacultyId": "NEC-PER-0244",
+    "guide": {
+      "name": "M. Revathi",
+      "facultyId": "NEC-PER-0244",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4408",
+        "studentName": "SWAPNA BOMMANABOINA",
+        "name": "SWAPNA BOMMANABOINA",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4404",
+        "studentName": "Student 22471A4404",
+        "name": "Student 22471A4404",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4411",
+        "studentName": "Student 22471A4411",
+        "name": "Student 22471A4411",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4451",
+        "studentName": "Student 22471A4451",
+        "name": "Student 22471A4451",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 10
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_95",
+    "projectNumber": "MP-CSE(DS)-2022-095",
+    "teamNumber": "B3",
+    "title": "AIRPORT AUTHORITY DATA ANLYSIS USING POWER BI",
+    "projectTitle": "AIRPORT AUTHORITY DATA ANLYSIS USING POWER BI",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Jeevana Manikanta",
+    "guideFacultyId": "NEC-PER-0265",
+    "guide": {
+      "name": "G. Jeevana Manikanta",
+      "facultyId": "NEC-PER-0265",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4427",
+        "studentName": "K. VENKATA SAI BHARATH",
+        "name": "K. VENKATA SAI BHARATH",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4442",
+        "studentName": "Student 22471A4442",
+        "name": "Student 22471A4442",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4444",
+        "studentName": "LA SAI GANESH CHOWDARY",
+        "name": "LA SAI GANESH CHOWDARY",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4441",
+        "studentName": "Student 22471A4441",
+        "name": "Student 22471A4441",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 14
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_96",
+    "projectNumber": "MP-CSE(DS)-2022-096",
+    "teamNumber": "B4",
+    "title": "SENTIMENTAL ANALYSIS",
+    "projectTitle": "SENTIMENTAL ANALYSIS",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Jeevana Manikanta",
+    "guideFacultyId": "NEC-PER-0265",
+    "guide": {
+      "name": "G. Jeevana Manikanta",
+      "facultyId": "NEC-PER-0265",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4458",
+        "studentName": "GUGGILAM SHANMUKHA SAMBASIVA RAO",
+        "name": "GUGGILAM SHANMUKHA SAMBASIVA RAO",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4414",
+        "studentName": "CHINTHA PREM CHANDU",
+        "name": "CHINTHA PREM CHANDU",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4437",
+        "studentName": "MUKKALA GUNA SEKHAR REDDY",
+        "name": "MUKKALA GUNA SEKHAR REDDY",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23475A4402",
+        "studentName": "Student 23475A4402",
+        "name": "Student 23475A4402",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 18
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_97",
+    "projectNumber": "MP-CSE(DS)-2022-097",
+    "teamNumber": "B5",
+    "title": "MOVIE SALES VISUALIZATION",
+    "projectTitle": "MOVIE SALES VISUALIZATION",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Srinivasa Rao",
+    "guideFacultyId": "NEC-PER-0237",
+    "guide": {
+      "name": "P. Srinivasa Rao",
+      "facultyId": "NEC-PER-0237",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4455",
+        "studentName": "Student 22471A4455",
+        "name": "Student 22471A4455",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4435",
+        "studentName": "MAREEDU VENKATA THIRUMALA RAO",
+        "name": "MAREEDU VENKATA THIRUMALA RAO",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4428",
+        "studentName": "Student 22471A4428",
+        "name": "Student 22471A4428",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4415",
+        "studentName": "CH. CHINNA MERY YESU",
+        "name": "CH. CHINNA MERY YESU",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 22
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_98",
+    "projectNumber": "MP-CSE(DS)-2022-098",
+    "teamNumber": "B6",
+    "title": "INTERALS RESULTS DASHBOARD",
+    "projectTitle": "INTERALS RESULTS DASHBOARD",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "A. Veema Rao",
+    "guideFacultyId": "NEC-PER-0245",
+    "guide": {
+      "name": "A. Veema Rao",
+      "facultyId": "NEC-PER-0245",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4425",
+        "studentName": "KAJA HARSHITHA NAGA KUTUMBAM",
+        "name": "KAJA HARSHITHA NAGA KUTUMBAM",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4403",
+        "studentName": "ATHINA PAVANA PRANATHI",
+        "name": "ATHINA PAVANA PRANATHI",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4418",
+        "studentName": "Student 22471A4418",
+        "name": "Student 22471A4418",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4419",
+        "studentName": "Student 22471A4419",
+        "name": "Student 22471A4419",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4457",
+        "studentName": "Student 22471A4457",
+        "name": "Student 22471A4457",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 26
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_99",
+    "projectNumber": "MP-CSE(DS)-2022-099",
+    "teamNumber": "B7",
+    "title": "ADIDAS SALES ANALYSIS",
+    "projectTitle": "ADIDAS SALES ANALYSIS",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Srinivasa Rao",
+    "guideFacultyId": "NEC-PER-0237",
+    "guide": {
+      "name": "P. Srinivasa Rao",
+      "facultyId": "NEC-PER-0237",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4450",
+        "studentName": "Student 22471A4450",
+        "name": "Student 22471A4450",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4412",
+        "studentName": "Student 22471A4412",
+        "name": "Student 22471A4412",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4447",
+        "studentName": "SHAIK NEEHA PARVEEN",
+        "name": "SHAIK NEEHA PARVEEN",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4449",
+        "studentName": "Student 22471A4449",
+        "name": "Student 22471A4449",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4452",
+        "studentName": "THOKA ASHA GAYATHRI",
+        "name": "THOKA ASHA GAYATHRI",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 31
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_100",
+    "projectNumber": "MP-CSE(DS)-2022-100",
+    "teamNumber": "B8",
+    "title": "IPL SCORE PREDICTION USING DEEP LEARNING",
+    "projectTitle": "IPL SCORE PREDICTION USING DEEP LEARNING",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "M. Revathi",
+    "guideFacultyId": "NEC-PER-0244",
+    "guide": {
+      "name": "M. Revathi",
+      "facultyId": "NEC-PER-0244",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4445",
+        "studentName": "Student 22471A4445",
+        "name": "Student 22471A4445",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4443",
+        "studentName": "Student 22471A4443",
+        "name": "Student 22471A4443",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4431",
+        "studentName": "LANKA SRINIVASA RAO",
+        "name": "LANKA SRINIVASA RAO",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4439",
+        "studentName": "Student 22471A4439",
+        "name": "Student 22471A4439",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 36
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_101",
+    "projectNumber": "MP-CSE(DS)-2022-101",
+    "teamNumber": "B9",
+    "title": "TWITTER DASHBOARD ANALYSIS",
+    "projectTitle": "TWITTER DASHBOARD ANALYSIS",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Jeevana Manikanta",
+    "guideFacultyId": "NEC-PER-0265",
+    "guide": {
+      "name": "G. Jeevana Manikanta",
+      "facultyId": "NEC-PER-0265",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4420",
+        "studentName": "Student 22471A4420",
+        "name": "Student 22471A4420",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4402",
+        "studentName": "Student 22471A4402",
+        "name": "Student 22471A4402",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4405",
+        "studentName": "BHAVANASI DINESH BABU",
+        "name": "BHAVANASI DINESH BABU",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4446",
+        "studentName": "Student 22471A4446",
+        "name": "Student 22471A4446",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 40
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_102",
+    "projectNumber": "MP-CSE(DS)-2022-102",
+    "teamNumber": "B10",
+    "title": "LOAN APPLICATION ANALYSIS USING POWER BI",
+    "projectTitle": "LOAN APPLICATION ANALYSIS USING POWER BI",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Srinivasa Rao",
+    "guideFacultyId": "NEC-PER-0237",
+    "guide": {
+      "name": "P. Srinivasa Rao",
+      "facultyId": "NEC-PER-0237",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4422",
+        "studentName": "Student 22471A4422",
+        "name": "Student 22471A4422",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4426",
+        "studentName": "KANDI SRINIVASA REDDY",
+        "name": "KANDI SRINIVASA REDDY",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4438",
+        "studentName": "PALLAPU SAI SRAVANTHI",
+        "name": "PALLAPU SAI SRAVANTHI",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4456",
+        "studentName": "Student 22471A4456",
+        "name": "Student 22471A4456",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 44
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_103",
+    "projectNumber": "MP-CSE(DS)-2022-103",
+    "teamNumber": "B11",
+    "title": "FUEL EFFICIENCY DETECTION",
+    "projectTitle": "FUEL EFFICIENCY DETECTION",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "A. Veema Rao",
+    "guideFacultyId": "NEC-PER-0245",
+    "guide": {
+      "name": "A. Veema Rao",
+      "facultyId": "NEC-PER-0245",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4409",
+        "studentName": "BONAM VENKATA SIVA REDDY",
+        "name": "BONAM VENKATA SIVA REDDY",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4407",
+        "studentName": "BODANAPU VENKATA PRASANTH REDDY",
+        "name": "BODANAPU VENKATA PRASANTH REDDY",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4406",
+        "studentName": "BOBBILI CHANDRA KIRAN KUMAR",
+        "name": "BOBBILI CHANDRA KIRAN KUMAR",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4453",
+        "studentName": "Student 22471A4453",
+        "name": "Student 22471A4453",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4423",
+        "studentName": "G. SAI VENKATA NARASIMHA",
+        "name": "G. SAI VENKATA NARASIMHA",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 48
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_104",
+    "projectNumber": "MP-CSE(DS)-2022-104",
+    "teamNumber": "B12",
+    "title": "COVID-19 INSIGHTS AND ANALYSIS",
+    "projectTitle": "COVID-19 INSIGHTS AND ANALYSIS",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "G. Jeevana Manikanta",
+    "guideFacultyId": "NEC-PER-0265",
+    "guide": {
+      "name": "G. Jeevana Manikanta",
+      "facultyId": "NEC-PER-0265",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4429",
+        "studentName": "Student 22471A4429",
+        "name": "Student 22471A4429",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4410",
+        "studentName": "Student 22471A4410",
+        "name": "Student 22471A4410",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4448",
+        "studentName": "Student 22471A4448",
+        "name": "Student 22471A4448",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "23475A4401",
+        "studentName": "Student 23475A4401",
+        "name": "Student 23475A4401",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 53
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_105",
+    "projectNumber": "MP-CSE(DS)-2022-105",
+    "teamNumber": "B13",
+    "title": "CREATING A USER INTERFACE FOR STUDENT TO ACCESS ALL PDF DOCUMENTS",
+    "projectTitle": "CREATING A USER INTERFACE FOR STUDENT TO ACCESS ALL PDF DOCUMENTS",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "P. Srinivasa Rao",
+    "guideFacultyId": "NEC-PER-0237",
+    "guide": {
+      "name": "P. Srinivasa Rao",
+      "facultyId": "NEC-PER-0237",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4434",
+        "studentName": "MARAM VENKATA YASWANTH",
+        "name": "MARAM VENKATA YASWANTH",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4440",
+        "studentName": "PATHAN HANEEF SHA KHAN",
+        "name": "PATHAN HANEEF SHA KHAN",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4416",
+        "studentName": "DAGGULA ADIKESAVA REDDY",
+        "name": "DAGGULA ADIKESAVA REDDY",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4454",
+        "studentName": "UBBATHOTI VENKATESWARLU",
+        "name": "UBBATHOTI VENKATESWARLU",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 57
+    }
+  },
+  {
+    "id": "MINI_cse(ds)_2022_106",
+    "projectNumber": "MP-CSE(DS)-2022-106",
+    "teamNumber": "B14",
+    "title": "HEALTHCARE SALES ANALYSIS USING POWER BI",
+    "projectTitle": "HEALTHCARE SALES ANALYSIS USING POWER BI",
+    "projectType": "Mini Project",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "batch": "2022 Batch",
+    "academicYear": "2022-23",
+    "domain": "Artificial Intelligence & Software Engineering",
+    "guideName": "A. Veema Rao",
+    "guideFacultyId": "NEC-PER-0245",
+    "guide": {
+      "name": "A. Veema Rao",
+      "facultyId": "NEC-PER-0245",
+      "department": "CSE(DS)"
+    },
+    "status": "Recorded",
+    "stage": "RECORDED",
+    "workflowStatus": "Approval Not Recorded",
+    "verificationStatus": "Recorded",
+    "teamMembers": [
+      {
+        "rollNumber": "22471A4413",
+        "studentName": "Student 22471A4413",
+        "name": "Student 22471A4413",
+        "isLeader": true
+      },
+      {
+        "rollNumber": "22471A4421",
+        "studentName": "GANAPATHI BALA KOTESWARA RAO",
+        "name": "GANAPATHI BALA KOTESWARA RAO",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4424",
+        "studentName": "Student 22471A4424",
+        "name": "Student 22471A4424",
+        "isLeader": false
+      },
+      {
+        "rollNumber": "22471A4433",
+        "studentName": "Student 22471A4433",
+        "name": "Student 22471A4433",
+        "isLeader": false
+      }
+    ],
+    "provenance": {
+      "sourceFile": "CSE(DS)/Mini Projects/22 BATCH CSE (DS) MINI PROJECTS TITLES.xlsx",
+      "sheetName": "CSE (DS)",
+      "startRow": 61
+    }
+  }
+]

@@ -6,6 +6,11 @@
 
 import { fetchCrossrefMetadata, normalizeDOI, isValidDOI } from './doiService.js';
 import { fetchOrcidData, isValidOrcid, normalizeOrcid } from './orcidService.js';
+import { 
+  fetchScopusAuthorProfile, 
+  fetchScopusAuthorPublications, 
+  checkScopusApiDiagnostic 
+} from './scopusService.js';
 import { getPublications } from '../../data/portalStore.js';
 
 /**
@@ -23,8 +28,8 @@ export function normalizeTitle(title) {
 }
 
 /**
- * Executes official ORCID publication discovery and deduplication pipeline
- * @param {object} identifiers { orcid }
+ * Executes unified ORCID + Elsevier Scopus publication discovery and deduplication pipeline
+ * @param {object} identifiers { orcid, scopusAuthorId }
  * @param {function} onProgress (statusObj) => void
  * @returns {Promise<{success: boolean, summary: object, candidates: Array, profiles: object, sourceStatuses: object, error?: string}>}
  */
@@ -33,21 +38,24 @@ export async function runResearchSyncJob(identifiers = {}, onProgress = null) {
     if (onProgress) onProgress({ stage, message, percent });
   };
 
-  const orcid = normalizeOrcid(identifiers.orcid);
+  const orcid = identifiers.orcid ? normalizeOrcid(identifiers.orcid) : null;
+  const scopusAuthorId = identifiers.scopusAuthorId ? String(identifiers.scopusAuthorId).trim() : null;
 
-  if (!orcid) {
+  if (!orcid && !scopusAuthorId) {
     return {
       success: false,
-      error: 'Please provide a valid 16-digit ORCID iD (e.g. 0000-0002-1825-0097) to start synchronization.'
+      error: 'Please provide an ORCID iD or a Scopus Author ID to start research synchronization.'
     };
   }
 
   const profiles = {
-    orcid: null
+    orcid: null,
+    scopus: null
   };
 
   const sourceStatuses = {
-    orcid: 'VERIFYING',
+    orcid: orcid ? 'VERIFYING' : 'IDLE',
+    scopus: scopusAuthorId ? 'VERIFYING' : 'IDLE',
     crossref: 'READY'
   };
 
@@ -55,27 +63,71 @@ export async function runResearchSyncJob(identifiers = {}, onProgress = null) {
 
   try {
     // ──────── STAGE 1: ORCID DISCOVERY ────────
-    emit('ORCID', `Connecting to official ORCID Public API v3.0 for ${orcid}...`, 20);
-    const orcidRes = await fetchOrcidData(orcid);
-    if (orcidRes.success) {
-      profiles.orcid = orcidRes.profile;
-      sourceStatuses.orcid = 'VERIFIED';
-      if (Array.isArray(orcidRes.works)) {
-        collectedWorks.push(...orcidRes.works);
+    if (orcid) {
+      emit('ORCID', `Connecting to official ORCID Public API v3.0 for ${orcid}...`, 15);
+      const orcidRes = await fetchOrcidData(orcid);
+      if (orcidRes.success) {
+        profiles.orcid = orcidRes.profile;
+        sourceStatuses.orcid = 'VERIFIED';
+        if (Array.isArray(orcidRes.works)) {
+          collectedWorks.push(...orcidRes.works);
+        }
+        emit('ORCID', `✓ Loaded ORCID profile and ${orcidRes.works?.length || 0} public works`, 35);
+      } else {
+        sourceStatuses.orcid = 'ERROR';
+        emit('ORCID', `⚠ ORCID Notice: ${orcidRes.error}`, 35);
+        if (!scopusAuthorId) {
+          return {
+            success: false,
+            error: orcidRes.error || 'Failed to fetch researcher record from ORCID Public API.',
+            sourceStatuses
+          };
+        }
       }
-      emit('ORCID', `✓ Loaded ORCID profile and ${orcidRes.works?.length || 0} public works`, 45);
-    } else {
-      sourceStatuses.orcid = 'ERROR';
-      emit('ORCID', `⚠ ORCID Notice: ${orcidRes.error}`, 45);
-      return {
-        success: false,
-        error: orcidRes.error || 'Failed to fetch researcher record from ORCID Public API.',
-        sourceStatuses
-      };
     }
 
-    // ──────── STAGE 2: CROSSREF DOI METADATA ENRICHMENT ────────
-    emit('CROSSREF', 'Cross-referencing verified DOIs with Crossref bibliographic metadata...', 65);
+    // ──────── STAGE 2: ELSEVIER SCOPUS DISCOVERY ────────
+    if (scopusAuthorId) {
+      emit('SCOPUS', `Connecting to official Elsevier Scopus API for Author ID: ${scopusAuthorId}...`, 45);
+      try {
+        const scopusProfileRes = await fetchScopusAuthorProfile(scopusAuthorId);
+        if (scopusProfileRes.success) {
+          profiles.scopus = scopusProfileRes.profile;
+          sourceStatuses.scopus = 'VERIFIED';
+        } else {
+          sourceStatuses.scopus = 'UNAVAILABLE';
+        }
+
+        const scopusPubsRes = await fetchScopusAuthorPublications(scopusAuthorId);
+        if (scopusPubsRes.success && Array.isArray(scopusPubsRes.publications)) {
+          const scopusWorks = scopusPubsRes.publications.map(p => ({
+            title: p.title,
+            doi: p.doi,
+            scopusEid: p.scopusEid,
+            journalName: p.venue,
+            venue: p.venue,
+            publicationYear: p.year,
+            publicationDate: p.publicationDate || (p.year ? `${p.year}-01-01` : null),
+            publicationType: p.type || 'Journal Article',
+            source: 'SCOPUS',
+            scopusIndexed: true,
+            verificationStatus: 'Verified in Scopus',
+            citationCount: p.citationCount,
+            url: p.scopusUrl
+          }));
+          collectedWorks.push(...scopusWorks);
+          emit('SCOPUS', `✓ Loaded Scopus profile & ${scopusWorks.length} indexed publications`, 60);
+        } else {
+          emit('SCOPUS', `⚠ Scopus Notice: ${scopusPubsRes.error || 'No indexed works found'}`, 60);
+        }
+      } catch (scopusErr) {
+        sourceStatuses.scopus = 'ERROR';
+        emit('SCOPUS', `⚠ Scopus API error: ${scopusErr.message}`, 60);
+      }
+    }
+
+    // ──────── STAGE 3: CROSSREF DOI METADATA ENRICHMENT ────────
+    emit('CROSSREF', 'Cross-referencing verified DOIs with Crossref bibliographic metadata...', 75);
     const enrichedMap = new Map();
 
     for (let i = 0; i < collectedWorks.length; i++) {

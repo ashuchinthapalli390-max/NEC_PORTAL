@@ -1,0 +1,546 @@
+[
+  {
+    "id": "PAT_202541127567",
+    "applicationNumber": "202541127567",
+    "applicationNo": "202541127567",
+    "title": "Reinforcement Learning-Driven Traffic Control System for Smart Cities",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "filingDate": "2025-12-16",
+    "publicationDate": "2026-02-01",
+    "academicYear": "2025-26",
+    "status": "Published",
+    "patentStatus": "Published",
+    "legalStatus": "Published",
+    "patentType": "Indian Utility Patent",
+    "applicantName": "Narasaraopeta Engineering College (Autonomous)",
+    "source": "Institutional Excel",
+    "workflowStatus": "Approved",
+    "verificationStatus": "Verified in Official Gazette",
+    "facultyName": "P. V Sateesh Kumar",
+    "inventors": [
+      {
+        "name": "P. V Sateesh Kumar",
+        "department": "CSE(AIML)",
+        "facultyId": null,
+        "role": "Principal Inventor"
+      },
+      {
+        "name": "G. Jeevana Manikanta",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0265",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "J. Syam Babu",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0243",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "P. Solmon",
+        "department": "CSE(AIML)",
+        "facultyId": "FAC_1789967027288_yhwq0",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "A. Veema Rao",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0245",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "D. Sreekanth",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0239",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "P. Srinivasa Rao",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0237",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "M. Revathi",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0244",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "N. Siva Rama Krishna",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0238",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "G. V Neelimadhavi",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0223",
+        "role": "Co-Inventor"
+      }
+    ],
+    "documents": [],
+    "documentStatus": "Document not available",
+    "provenance": [
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 5
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 6
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 7
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 8
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 9
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 10
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 11
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 12
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 13
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 14
+      }
+    ]
+  },
+  {
+    "id": "PAT_202541127569",
+    "applicationNumber": "202541127569",
+    "applicationNo": "202541127569",
+    "title": "Federated Learning-Based Secure Healthcare Diagnostic System",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "filingDate": "2025-12-16",
+    "publicationDate": "2026-02-01",
+    "academicYear": "2025-26",
+    "status": "Published",
+    "patentStatus": "Published",
+    "legalStatus": "Published",
+    "patentType": "Indian Utility Patent",
+    "applicantName": "Narasaraopeta Engineering College (Autonomous)",
+    "source": "Institutional Excel",
+    "workflowStatus": "Approved",
+    "verificationStatus": "Verified in Official Gazette",
+    "facultyName": "Dr. V V A S Lakshmi",
+    "inventors": [
+      {
+        "name": "Dr. V V A S Lakshmi",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0140",
+        "role": "Principal Inventor"
+      },
+      {
+        "name": "G. Mahesh Babu",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0241",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "N. Siva Rama Krishna",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0238",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "P. V Sateesh Kumar",
+        "department": "CSE(AIML)",
+        "facultyId": null,
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "M. Sai Yaswanth",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0206",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "D. Uma Sankar",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0359",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "G. Jeevana Manikanta",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0265",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "G. Nageswara Rao",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0240",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "P. Solmon",
+        "department": "CSE(AIML)",
+        "facultyId": "FAC_1789967027288_yhwq0",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "Ch. Padma",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0261",
+        "role": "Co-Inventor"
+      }
+    ],
+    "documents": [],
+    "documentStatus": "Document not available",
+    "provenance": [
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 15
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 16
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 17
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 18
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 19
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 20
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 21
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 22
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 23
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 24
+      }
+    ]
+  },
+  {
+    "id": "PAT_202541127568",
+    "applicationNumber": "202541127568",
+    "applicationNo": "202541127568",
+    "title": "Automated Academic Performance Prediction System Using Deep Ensemble Models",
+    "department": "CSE(AIML)",
+    "departmentName": "Computer Science & Engineering (Artificial Intelligence & Machine Learning)",
+    "filingDate": "2025-12-16",
+    "publicationDate": "2026-02-01",
+    "academicYear": "2025-26",
+    "status": "Published",
+    "patentStatus": "Published",
+    "legalStatus": "Published",
+    "patentType": "Indian Utility Patent",
+    "applicantName": "Narasaraopeta Engineering College (Autonomous)",
+    "source": "Institutional Excel",
+    "workflowStatus": "Approved",
+    "verificationStatus": "Verified in Official Gazette",
+    "facultyName": "J. Syam Babu",
+    "inventors": [
+      {
+        "name": "J. Syam Babu",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0243",
+        "role": "Principal Inventor"
+      },
+      {
+        "name": "G. Mahesh Babu",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0241",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "D. Sreekanth",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0239",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "D. Uma Sankar",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0359",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "A. Veema Rao",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0245",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "G. Nageswara Rao",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0240",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "P. Sardar Khan",
+        "department": "CSE(AIML)",
+        "facultyId": null,
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "G. V Neelimadhavi",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0223",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "M. Revathi",
+        "department": "CSE(AIML)",
+        "facultyId": "NEC-PER-0244",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "K. Mounika",
+        "department": "CSE(AIML)",
+        "facultyId": null,
+        "role": "Co-Inventor"
+      }
+    ],
+    "documents": [],
+    "documentStatus": "Document not available",
+    "provenance": [
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 25
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 26
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 27
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 28
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 29
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 30
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 31
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 32
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 33
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 34
+      }
+    ]
+  },
+  {
+    "id": "PAT_202541127565",
+    "applicationNumber": "202541127565",
+    "applicationNo": "202541127565",
+    "title": "AI-Powered Data Visualization Assistant for Insight Generation",
+    "department": "CSE(DS)",
+    "departmentName": "Computer Science & Engineering (Data Science)",
+    "filingDate": "2025-12-16",
+    "publicationDate": "2026-02-01",
+    "academicYear": "2025-26",
+    "status": "Published",
+    "patentStatus": "Published",
+    "legalStatus": "Published",
+    "patentType": "Indian Utility Patent",
+    "applicantName": "Narasaraopeta Engineering College (Autonomous)",
+    "source": "Institutional Excel",
+    "workflowStatus": "Approved",
+    "verificationStatus": "Verified in Official Gazette",
+    "facultyName": "Dr. V V A S Lakshmi",
+    "inventors": [
+      {
+        "name": "Dr. V V A S Lakshmi",
+        "department": "CSE(DS)",
+        "facultyId": "NEC-PER-0140",
+        "role": "Principal Inventor"
+      },
+      {
+        "name": "G. Mahesh Babu",
+        "department": "CSE(DS)",
+        "facultyId": "NEC-PER-0241",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "P. V Sateesh Kumar",
+        "department": "CSE(DS)",
+        "facultyId": null,
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "G. Jeevana Manikanta",
+        "department": "CSE(DS)",
+        "facultyId": "NEC-PER-0265",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "P. Srinivasa Rao",
+        "department": "CSE(DS)",
+        "facultyId": "NEC-PER-0237",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "P. Sardar Khan",
+        "department": "CSE(DS)",
+        "facultyId": null,
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "M. Sai Yaswanth",
+        "department": "CSE(DS)",
+        "facultyId": "NEC-PER-0206",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "N. Siva Rama Krishna",
+        "department": "CSE(DS)",
+        "facultyId": "NEC-PER-0238",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "J. Syam Babu",
+        "department": "CSE(DS)",
+        "facultyId": "NEC-PER-0243",
+        "role": "Co-Inventor"
+      },
+      {
+        "name": "K. Mounika",
+        "department": "CSE(DS)",
+        "facultyId": null,
+        "role": "Co-Inventor"
+      }
+    ],
+    "documents": [],
+    "documentStatus": "Document not available",
+    "provenance": [
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 35
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 36
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 37
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 38
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 39
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 40
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 41
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 42
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 43
+      },
+      {
+        "sourceFile": "Common/Patents filed by the faculty .xlsx",
+        "sheetName": "25-26",
+        "rowNum": 44
+      }
+    ]
+  }
+]

@@ -403,7 +403,7 @@ export default function CompaniesVisitedManager({ currentUser, onDataChange }) {
               disabled={currentUser?.role === 'HOD'}
               style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', background: '#FFFFFF', color: '#0F172A', fontWeight: 600 }}
             >
-              <option value="ALL">All ET Departments</option>
+              <option value="ALL">All</option>
               <option value="CYS">Cyber Security</option>
               <option value="DS">Data Science</option>
               <option value="AI">Artificial Intelligence</option>

@@ -1,0 +1,28 @@
+[
+  {
+    "id": "GB_MEETING_23",
+    "meetingNumber": "23rd Governing Body Meeting",
+    "meetingDate": "2025-12-01",
+    "academicYear": "2025-26",
+    "reportingPeriod": "04-03-2025 to 28-11-2025",
+    "status": "Conducted & Ratified",
+    "venue": "Board Room, Administrative Block, NEC Campus",
+    "chairperson": "Sri Mittapalli Venkata Koteswara Rao, Chairman",
+    "agendaItems": [
+      "Confirmation of minutes of 22nd Governing Body meeting",
+      "Review of institutional progress and NBA/NAAC accreditation statuses",
+      "Approval of R23/R26 regulations and curriculum recommendations of BoS & CAC",
+      "Review of staff recruitment, faculty cadre ratios, and Ph.D. registrations",
+      "Review of external research grants, consultancy projects, and AICTE IDEA Lab activities",
+      "Campus placement statistics and industry MoUs review"
+    ],
+    "resolutions": [
+      "Resolved to ratify the minutes and curricular changes approved by Academic Council",
+      "Approved infrastructure budget for AICTE IDEA Lab prototyping expansions",
+      "Commended faculty for Scopus/SCI journal publications and granted patent filings",
+      "Sanctioned institutional seed money for innovative student capstone and CSP projects"
+    ],
+    "sourceFile": "Formats/23rd GB format.docx",
+    "hasFullText": true
+  }
+]

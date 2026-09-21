@@ -76,6 +76,11 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
   const [deleteConfirmItem, setDeleteConfirmItem] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
 
+  const showToast = (msg) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 3000);
+  };
+
   // Filters State
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedQuickTab, setSelectedQuickTab] = useState('ALL');
@@ -84,6 +89,9 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
   const [selectedType, setSelectedType] = useState('ALL');
   const [selectedScopusFilter, setSelectedScopusFilter] = useState('ALL');
   const [selectedWorkflowStatus, setSelectedWorkflowStatus] = useState('ALL');
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
+  const [authorModalPub, setAuthorModalPub] = useState(null);
 
   const [publications, setPublications] = useState(() => getPublications());
 
@@ -92,12 +100,14 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
     if (onDataChange) onDataChange();
   };
 
-  // Aggregate Stats
+  // Aggregate Stats (strictly synchronized with canonical types)
   const stats = useMemo(() => {
     const total = publications.length;
-    const journal = publications.filter(p => p.publicationType === 'JOURNAL').length;
-    const conference = publications.filter(p => p.publicationType === 'CONFERENCE').length;
-    const scopus = publications.filter(p => p.isScopusIndexed === 'YES' || p.isScopusIndexed === true).length;
+    const isJournal = (p) => p.publicationType === 'Journal Article' || p.publicationType === 'JOURNAL';
+    const isConference = (p) => p.publicationType === 'Conference Paper' || p.publicationType === 'CONFERENCE';
+    const journal = publications.filter(isJournal).length;
+    const conference = publications.filter(isConference).length;
+    const scopus = publications.filter(p => p.isScopusIndexed === 'YES' || p.isScopusIndexed === true || p.indexingStatus === 'Scopus Indexed' || p.indexingStatus === 'Verified in Scopus').length;
     const wos = publications.filter(p => p.isWosIndexed === 'YES' || p.isWosIndexed === true).length;
     const pendingReview = publications.filter(p => p.workflowStatus === 'SUBMITTED' || p.workflowStatus === 'UNDER_REVIEW' || p.workflowStatus === 'IMPORTED_PENDING_REVIEW').length;
     const thisYear = publications.filter(p => p.academicYear === '2025-26' || p.academicYear === '2024-25').length;
@@ -119,21 +129,29 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
       const matchDept = selectedDept === 'ALL' || itemDept.toLowerCase().includes(selectedDept.toLowerCase());
       const matchAy = selectedAy === 'ALL' || item.academicYear === selectedAy;
       const matchType = selectedType === 'ALL' || item.publicationType === selectedType;
-      const matchScopus = selectedScopusFilter === 'ALL' || (selectedScopusFilter === 'SCOPUS' && (item.isScopusIndexed === 'YES' || item.isScopusIndexed === true));
+      const matchScopus = selectedScopusFilter === 'ALL' || (selectedScopusFilter === 'SCOPUS' && (item.isScopusIndexed === 'YES' || item.isScopusIndexed === true || item.indexingStatus === 'Scopus Indexed' || item.indexingStatus === 'Verified in Scopus'));
       const matchWorkflow = selectedWorkflowStatus === 'ALL' || item.workflowStatus === selectedWorkflowStatus;
+
+      // Date range matching
+      let matchDate = true;
+      const pubDate = item.publicationDate || item.date;
+      if (pubDate) {
+        if (fromDate && pubDate < fromDate) matchDate = false;
+        if (toDate && pubDate > toDate) matchDate = false;
+      }
 
       // Quick Tab Filter
       let matchTab = true;
-      if (selectedQuickTab === 'JOURNAL') matchTab = item.publicationType === 'JOURNAL';
-      else if (selectedQuickTab === 'CONFERENCE') matchTab = item.publicationType === 'CONFERENCE';
-      else if (selectedQuickTab === 'SCOPUS') matchTab = item.isScopusIndexed === 'YES' || item.isScopusIndexed === true;
+      if (selectedQuickTab === 'JOURNAL') matchTab = item.publicationType === 'Journal Article' || item.publicationType === 'JOURNAL';
+      else if (selectedQuickTab === 'CONFERENCE') matchTab = item.publicationType === 'Conference Paper' || item.publicationType === 'CONFERENCE';
+      else if (selectedQuickTab === 'SCOPUS') matchTab = item.isScopusIndexed === 'YES' || item.isScopusIndexed === true || item.indexingStatus === 'Scopus Indexed' || item.indexingStatus === 'Verified in Scopus';
       else if (selectedQuickTab === 'WOS') matchTab = item.isWosIndexed === 'YES' || item.isWosIndexed === true;
       else if (selectedQuickTab === 'PENDING') matchTab = item.workflowStatus === 'SUBMITTED' || item.workflowStatus === 'UNDER_REVIEW';
       else if (selectedQuickTab === 'IMPORTED') matchTab = item.workflowStatus === 'IMPORTED_PENDING_REVIEW';
 
-      return matchSearch && matchDept && matchAy && matchType && matchScopus && matchWorkflow && matchTab;
+      return matchSearch && matchDept && matchAy && matchType && matchScopus && matchWorkflow && matchTab && matchDate;
     });
-  }, [publications, searchQuery, selectedDept, selectedAy, selectedType, selectedScopusFilter, selectedWorkflowStatus, selectedQuickTab]);
+  }, [publications, searchQuery, selectedDept, selectedAy, selectedType, selectedScopusFilter, selectedWorkflowStatus, selectedQuickTab, fromDate, toDate]);
 
   // Permissions
   const canCreate = currentUser?.role === 'SUPER_ADMIN' || currentUser?.role === 'ADMIN' || currentUser?.role === 'HOD' || currentUser?.role === 'FACULTY';
@@ -164,52 +182,27 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
   };
 
   const handleExportCSV = () => {
-    const rows = filteredPublications.map(p => ({
-      'Publication Number': p.publicationNumber,
-      'Title': p.title,
-      'Department': p.department,
-      'Academic Year': p.academicYear || '—',
-      'Publication Type': p.publicationType,
-      'First Author': p.firstAuthor?.name || '—',
-      'Journal / Conference': p.journalName || p.conferenceName || '—',
-      'DOI': p.doi || '—',
-      'Scopus Indexed': p.isScopusIndexed ? 'Yes' : 'No',
-      'WoS Indexed': p.isWosIndexed ? 'Yes' : 'No',
-      'Workflow Status': p.workflowStatus || 'APPROVED'
-    }));
-    exportToCSV(rows, `ET_Publications_${selectedDept}`, currentUser);
-    showToast(`Exported ${rows.length} publication records to CSV.`);
+    exportToCSV(filteredPubs, `ET_Publications_${selectedDept}`, currentUser, { moduleKey: 'publications' });
+    showToast(`Exported ${filteredPubs.length} publication records to CSV.`);
   };
 
   const handleExportExcel = () => {
-    const rows = filteredPublications.map(p => ({
-      'Publication Number': p.publicationNumber,
-      'Title': p.title,
-      'Department': p.department,
-      'Academic Year': p.academicYear || '—',
-      'Publication Type': p.publicationType,
-      'First Author': p.firstAuthor?.name || '—',
-      'Journal / Conference': p.journalName || p.conferenceName || '—',
-      'DOI': p.doi || '—',
-      'Scopus Indexed': p.isScopusIndexed ? 'Yes' : 'No',
-      'WoS Indexed': p.isWosIndexed ? 'Yes' : 'No',
-      'Workflow Status': p.workflowStatus || 'APPROVED'
-    }));
-    exportToExcel(rows, `ET_Publications_${selectedDept}`, 'Publications', currentUser);
-    showToast(`Exported ${rows.length} publication records to Excel.`);
+    exportToExcel(filteredPubs, `ET_Publications_${selectedDept}`, 'Publications', currentUser, { moduleKey: 'publications' });
+    showToast(`Exported ${filteredPubs.length} publication records via official template to Excel.`);
   };
 
   const handleExportPDF = () => {
-    const rows = filteredPublications.map(p => ({
-      'Pub No': p.publicationNumber || '—',
+    const rows = filteredPubs.map((p, idx) => ({
+      'S.No': String(idx + 1),
       'Title': p.title,
       'Dept': p.department,
-      'Author': p.firstAuthor?.name || '—',
+      'Author(s)': Array.isArray(p.authors) ? p.authors.map(a => a.name).join(', ') : (p.firstAuthor?.name || '—'),
       'Venue': p.journalName || p.conferenceName || '—',
-      'Scopus': p.isScopusIndexed ? 'Yes' : 'No',
-      'Status': p.workflowStatus || 'APPROVED'
+      'Type': p.publicationType || '—',
+      'Year': p.year || p.academicYear || '—',
+      'Indexing': p.indexingStatus || (p.isScopusIndexed ? 'Scopus' : 'Non-Indexed')
     }));
-    exportToPDF('ET_Publications_Report', ['Pub No', 'Title', 'Dept', 'Author', 'Venue', 'Scopus', 'Status'], rows, 'Research Publications Repository');
+    exportToPDF('ET_Publications_Report', ['S.No', 'Title', 'Dept', 'Author(s)', 'Venue', 'Type', 'Year', 'Indexing'], rows, 'Research Publications Repository');
     showToast(`Exported publication records report to PDF.`);
   };
 
@@ -325,7 +318,7 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
               onChange={(e) => setSelectedDept(e.target.value)}
               style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', background: '#FFFFFF', color: '#0F172A', fontWeight: 600 }}
             >
-              <option value="ALL">All ET Departments</option>
+              <option value="ALL">All</option>
               {ET_DEPARTMENTS.map(d => <option key={d.code} value={d.code}>{d.name} ({d.code})</option>)}
             </select>
 
@@ -363,7 +356,7 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
               <option value="DRAFT">Draft</option>
             </select>
 
-            {(searchQuery || selectedQuickTab !== 'ALL' || selectedDept !== 'ALL' || selectedAy !== 'ALL' || selectedScopusFilter !== 'ALL' || selectedWorkflowStatus !== 'ALL') && (
+            {(searchQuery || selectedQuickTab !== 'ALL' || selectedDept !== 'ALL' || selectedAy !== 'ALL' || selectedScopusFilter !== 'ALL' || selectedWorkflowStatus !== 'ALL' || fromDate || toDate) && (
               <button
                 type="button"
                 onClick={() => {
@@ -373,6 +366,8 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
                   setSelectedAy('ALL');
                   setSelectedScopusFilter('ALL');
                   setSelectedWorkflowStatus('ALL');
+                  setFromDate('');
+                  setToDate('');
                 }}
                 style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', background: '#F8FAFC', color: '#64748B', fontSize: '0.76rem', fontWeight: 700, cursor: 'pointer' }}
               >
@@ -380,6 +375,38 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
               </button>
             )}
           </div>
+        </div>
+
+        {/* Date Filter Controls */}
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center', paddingTop: '0.45rem', borderTop: '1px dashed #E2E8F0', fontSize: '0.78rem' }}>
+          <span style={{ fontWeight: 700, color: '#475569' }}>Publication Date:</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+            <span style={{ color: '#64748B' }}>From Date</span>
+            <input
+              type="date"
+              value={fromDate}
+              onChange={(e) => setFromDate(e.target.value)}
+              style={{ padding: '0.35rem 0.6rem', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '0.78rem', color: '#0F172A' }}
+            />
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+            <span style={{ color: '#64748B' }}>To Date</span>
+            <input
+              type="date"
+              value={toDate}
+              onChange={(e) => setToDate(e.target.value)}
+              style={{ padding: '0.35rem 0.6rem', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '0.78rem', color: '#0F172A' }}
+            />
+          </div>
+          {(fromDate || toDate) && (
+            <button
+              type="button"
+              onClick={() => { setFromDate(''); setToDate(''); }}
+              style={{ padding: '0.35rem 0.75rem', borderRadius: '6px', border: '1px solid #CBD5E1', background: '#F8FAFC', color: '#475569', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer' }}
+            >
+              Clear Dates
+            </button>
+          )}
         </div>
       </div>
 
@@ -389,20 +416,23 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                <th style={{ padding: '0.85rem 1rem' }}>Publication ID & Title</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Type & Venue</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Authors</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Dept & AY</th>
-                <th style={{ padding: '0.85rem 1rem' }}>DOI & Indexing</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Source</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Approval</th>
-                <th style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>Actions</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '130px' }}>Publication ID</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '220px' }}>Publication Title</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '110px' }}>Type</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '160px' }}>Venue / Journal</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '140px' }}>Authors</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Department</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '110px' }}>DOI</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Indexing</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '85px' }}>Source</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Approval</th>
+                <th style={{ padding: '0.85rem 1rem', textAlign: 'right', minWidth: '85px' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
               {filteredPubs.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
+                  <td colSpan={11} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
                     No research publications found matching current filters.
                   </td>
                 </tr>
@@ -414,51 +444,80 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
 
                   return (
                     <tr key={item.id || idx} style={{ borderBottom: '1px solid #F1F5F9' }} className="hover:bg-slate-50">
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '280px' }}>
-                        <div style={{ fontSize: '0.7rem', color: '#D4AF37', fontWeight: 800 }}>
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <span className="record-code" style={{ color: '#0F172A', background: '#F8FAFC', padding: '0.2rem 0.45rem', borderRadius: '4px', border: '1px solid #E2E8F0' }}>
                           {item.publicationRecordNumber || item.id}
-                        </div>
-                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                        </span>
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top', maxWidth: '280px' }}>
+                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem', lineHeight: 1.35 }}>
                           {item.title}
                         </div>
-                        {item.doi && (
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#0369A1', background: '#E0F2FE', padding: '0.15rem 0.45rem', borderRadius: '4px', whiteSpace: 'nowrap' }}>
+                          {item.publicationType}
+                        </span>
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top', maxWidth: '180px' }}>
+                        <div style={{ fontSize: '0.76rem', color: '#334155', fontWeight: 600 }}>
+                          {item.journalName || item.conferenceName || 'Publisher Not Stated'}
+                        </div>
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top', maxWidth: '160px' }}>
+                        <div style={{ fontWeight: 600, color: '#0F172A', fontSize: '0.78rem' }}>
+                          {firstAuthor}
+                        </div>
+                        {item.authors?.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => setAuthorModalPub(item)}
+                            style={{
+                              background: 'none',
+                              border: 'none',
+                              padding: 0,
+                              fontSize: '0.7rem',
+                              color: '#0284C7',
+                              fontWeight: 700,
+                              cursor: 'pointer',
+                              textAlign: 'left',
+                              textDecoration: 'underline',
+                              display: 'block',
+                              marginTop: '0.15rem'
+                            }}
+                            title="Click to view all individual co-authors"
+                          >
+                            +{item.authors.length - 1} Co-Author(s)
+                          </button>
+                        )}
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem', background: '#F1F5F9', padding: '0.15rem 0.45rem', borderRadius: '4px' }}>
+                          {item.department}
+                        </span>
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        {item.doi ? (
                           <a
                             href={`https://doi.org/${item.doi}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            style={{ fontSize: '0.7rem', color: '#0284C7', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.2rem', marginTop: '0.15rem' }}
+                            style={{ fontSize: '0.72rem', color: '#0284C7', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.2rem', wordBreak: 'break-all' }}
                           >
-                            doi:{item.doi} <ExternalLink size={10} />
+                            doi:{item.doi} <ExternalLink size={10} style={{ flexShrink: 0 }} />
                           </a>
+                        ) : (
+                          <span style={{ fontSize: '0.72rem', color: '#94A3B8' }}>—</span>
                         )}
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '200px' }}>
-                        <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#0369A1', background: '#E0F2FE', padding: '0.15rem 0.45rem', borderRadius: '4px', whiteSpace: 'nowrap' }}>
-                          {item.publicationType}
-                        </span>
-                        <div style={{ fontSize: '0.74rem', color: '#334155', marginTop: '0.2rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                          {item.journalName || item.conferenceName || 'Publisher'}
-                        </div>
-                      </td>
-
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '180px' }}>
-                        <div style={{ fontWeight: 600, color: '#0F172A', fontSize: '0.78rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                          {firstAuthor}
-                        </div>
-                        {item.authors?.length > 1 && (
-                          <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
-                            +{item.authors.length - 1} Co-Author(s)
-                          </div>
-                        )}
-                      </td>
-
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem' }}>{item.department}</span>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>{item.academicYear}</div>
-                      </td>
-
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem' }}>
                           {item.isScopusIndexed && (
                             <span style={{ fontSize: '0.66rem', fontWeight: 800, color: '#065F46', background: '#ECFDF5', border: '1px solid #A7F3D0', padding: '0.1rem 0.35rem', borderRadius: '4px' }}>
@@ -478,14 +537,14 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
                         </div>
                         {item.scopusCitations?.count ? (
                           <div style={{ fontSize: '0.68rem', color: '#059669', fontWeight: 700, marginTop: '0.2rem' }}>
-                            Citations: {item.scopusCitations.count} (Scopus)
+                            Citations: {item.scopusCitations.count}
                           </div>
                         ) : null}
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
                         <span style={{ fontSize: '0.68rem', fontWeight: 700, background: '#F1F5F9', color: '#475569', padding: '0.15rem 0.45rem', borderRadius: '4px' }}>
-                          {item.sources?.[0] || 'MANUAL'}
+                          {item.sources?.[0] || 'IMPORT'}
                         </span>
                       </td>
 
@@ -782,6 +841,82 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
           </div>
         </div>
       )}
+      {/* Author Modal - View All Individual Co-Authors */}
+      {authorModalPub && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(7, 15, 30, 0.8)', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1250, padding: '1rem' }}>
+          <div style={{ background: '#FFFFFF', borderRadius: '16px', maxWidth: '650px', width: '100%', maxHeight: '85vh', overflowY: 'auto', border: '1px solid #D4AF37' }}>
+            <div style={{ background: 'linear-gradient(135deg, #070F1E 0%, #0B192C 100%)', padding: '1.2rem 1.5rem', color: '#FFFFFF', borderBottom: '2px solid #D4AF37', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <span style={{ fontSize: '0.72rem', color: '#D4AF37', fontWeight: 800, textTransform: 'uppercase' }}>
+                  {authorModalPub.publicationRecordNumber || authorModalPub.id} • Authors Registry
+                </span>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 800, margin: '0.2rem 0 0', color: '#FFFFFF', lineHeight: 1.3 }}>
+                  {authorModalPub.title}
+                </h3>
+              </div>
+              <button type="button" onClick={() => setAuthorModalPub(null)} style={{ background: 'transparent', border: 'none', color: '#94A3B8', cursor: 'pointer' }}>
+                <X size={18} />
+              </button>
+            </div>
+
+            <div style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div style={{ fontSize: '0.78rem', color: '#64748B', fontWeight: 600 }}>
+                Individual Author Records ({authorModalPub.authors?.length || 0} Authors):
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                {(authorModalPub.authors || []).map((author, i) => (
+                  <div key={i} style={{ padding: '0.75rem 1rem', background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                        <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#D4AF37', background: 'rgba(212, 175, 55, 0.15)', padding: '0.1rem 0.4rem', borderRadius: '4px' }}>
+                          #{i + 1}
+                        </span>
+                        <span style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.85rem' }}>
+                          {author.name || author.authorName || 'Author'}
+                        </span>
+                        {author.isFirstAuthor && (
+                          <span style={{ fontSize: '0.68rem', fontWeight: 800, color: '#047857', background: '#ECFDF5', padding: '0.1rem 0.4rem', borderRadius: '4px' }}>
+                            First Author
+                          </span>
+                        )}
+                        {author.isCorresponding && (
+                          <span style={{ fontSize: '0.68rem', fontWeight: 800, color: '#1D4ED8', background: '#EFF6FF', padding: '0.1rem 0.4rem', borderRadius: '4px' }}>
+                            Corresponding
+                          </span>
+                        )}
+                      </div>
+                      <div style={{ fontSize: '0.74rem', color: '#64748B', marginTop: '0.2rem' }}>
+                        {author.designation && `${author.designation} • `}
+                        {author.department || author.affiliation || 'Narasaraopeta Engineering College'}
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center' }}>
+                      {author.orcid && (
+                        <span style={{ fontSize: '0.7rem', color: '#059669', background: '#ECFDF5', padding: '0.15rem 0.4rem', borderRadius: '4px' }}>
+                          ORCID: {author.orcid}
+                        </span>
+                      )}
+                      {author.scopusAuthorId && (
+                        <span style={{ fontSize: '0.7rem', color: '#D97706', background: '#FEFCE8', padding: '0.15rem 0.4rem', borderRadius: '4px' }}>
+                          Scopus: {author.scopusAuthorId}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ padding: '0.85rem 1.25rem', background: '#F8FAFC', borderTop: '1px solid #E2E8F0', display: 'flex', justifyContent: 'flex-end' }}>
+              <button type="button" onClick={() => setAuthorModalPub(null)} style={{ padding: '0.45rem 1rem', borderRadius: '6px', border: '1px solid #CBD5E1', background: '#FFFFFF', fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer' }}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Confirm Delete Dialog */}
       <ConfirmDeleteDialog
         isOpen={Boolean(deleteConfirmItem)}

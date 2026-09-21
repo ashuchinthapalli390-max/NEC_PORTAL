@@ -127,7 +127,6 @@ export default function MousManager({ currentUser, onDataChange }) {
         item.title,
         item.focusArea,
         item.purpose,
-        item.primaryCoordinator,
         item.department,
         item.partnerContactPerson
       ].filter(Boolean).join(' ').toLowerCase();
@@ -202,13 +201,13 @@ export default function MousManager({ currentUser, onDataChange }) {
     const rows = filteredMoUs.map(m => ({
       'MoU Code': m.mouRecordNumber || m.mouCode,
       'Partner Organization': m.organization || m.partnerOrganization || m.collaboratingAgency || m.industryName,
-      'Department': m.department || 'All Departments',
+      'Department': m.department || 'Institution Level',
       'Partner Type': m.collaboratorType || m.partnerType || 'Industry',
-      'Coordinator': m.primaryCoordinator || '—',
-      'Signed Date': formatDateDDMMYYYY(m.signedDate || m.effectiveDate),
-      'Expiry Date': formatDateDDMMYYYY(m.expiryDate) || 'Ongoing',
-      'Status': m.mouStatus || m.status || 'ACTIVE',
-      'Workflow Status': m.workflowStatus || 'APPROVED'
+      'Duration / Validity': m.validityPeriod || 'Validity Not Recorded',
+      'StartDate': formatDateDDMMYYYY(m.startDate || m.signedDate) || '—',
+      'EndDate': formatDateDDMMYYYY(m.endDate || m.expiryDate) || '—',
+      'Purpose / Activity': m.purpose || m.title || 'Academic & Technical Collaboration',
+      'Status': m.status || 'Active'
     }));
     exportToCSV(rows, `ET_MoUs_${selectedDept}`, currentUser);
     showToast(`Exported ${rows.length} MoU records to CSV.`);
@@ -218,13 +217,13 @@ export default function MousManager({ currentUser, onDataChange }) {
     const rows = filteredMoUs.map(m => ({
       'MoU Code': m.mouRecordNumber || m.mouCode,
       'Partner Organization': m.organization || m.partnerOrganization || m.collaboratingAgency || m.industryName,
-      'Department': m.department || 'All Departments',
+      'Department': m.department || 'Institution Level',
       'Partner Type': m.collaboratorType || m.partnerType || 'Industry',
-      'Coordinator': m.primaryCoordinator || '—',
-      'Signed Date': formatDateDDMMYYYY(m.signedDate || m.effectiveDate),
-      'Expiry Date': formatDateDDMMYYYY(m.expiryDate) || 'Ongoing',
-      'Status': m.mouStatus || m.status || 'ACTIVE',
-      'Workflow Status': m.workflowStatus || 'APPROVED'
+      'Duration / Validity': m.validityPeriod || 'Validity Not Recorded',
+      'StartDate': formatDateDDMMYYYY(m.startDate || m.signedDate) || '—',
+      'EndDate': formatDateDDMMYYYY(m.endDate || m.expiryDate) || '—',
+      'Purpose / Activity': m.purpose || m.title || 'Academic & Technical Collaboration',
+      'Status': m.status || 'Active'
     }));
     exportToExcel(rows, `ET_MoUs_${selectedDept}`, 'MoUs', currentUser);
     showToast(`Exported ${rows.length} MoU records to Excel.`);
@@ -318,7 +317,7 @@ export default function MousManager({ currentUser, onDataChange }) {
             <Search size={15} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#94A3B8' }} />
             <input
               type="text"
-              placeholder="Search by partner organization, MoU number, title, coordinator..."
+              placeholder="Search by partner organization, MoU code, agreement purpose..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{ width: '100%', padding: '0.5rem 0.75rem 0.5rem 2.25rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.8rem', outline: 'none', color: '#0F172A', boxSizing: 'border-box' }}
@@ -345,8 +344,8 @@ export default function MousManager({ currentUser, onDataChange }) {
               onChange={(e) => setSelectedDept(e.target.value)}
               style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', background: '#FFFFFF', color: '#0F172A', fontWeight: 600 }}
             >
-              <option value="ALL">All ET Departments</option>
-              <option value="Institution">Institution-Level</option>
+              <option value="ALL">All</option>
+              <option value="Institution Level">Institution Level</option>
               {ET_DEPARTMENTS.map(d => <option key={d.code} value={d.code}>{d.name} ({d.code})</option>)}
             </select>
 
@@ -427,17 +426,20 @@ export default function MousManager({ currentUser, onDataChange }) {
       ) : (
         <MotionTable>
           <div style={{ width: '100%', overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.82rem', minWidth: '780px' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.82rem', minWidth: '980px' }}>
               <thead>
                 <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.74rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                  <th style={{ padding: '0.85rem 1rem' }}>MoU Code & Partner</th>
-                  <th style={{ padding: '0.85rem 1rem' }}>Department & Type</th>
-                  <th style={{ padding: '0.85rem 1rem' }}>Coordinators</th>
-                  <th style={{ padding: '0.85rem 1rem' }}>Validity & Signed</th>
-                  <th style={{ padding: '0.85rem 1rem' }}>Activities</th>
-                  <th style={{ padding: '0.85rem 1rem' }}>Status</th>
-                  <th style={{ padding: '0.85rem 1rem' }}>Approval</th>
-                  <th style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>Actions</th>
+                  <th style={{ padding: '0.85rem 1rem', minWidth: '130px' }}>MoU Code</th>
+                  <th style={{ padding: '0.85rem 1rem', minWidth: '180px' }}>Partner Organization</th>
+                  <th style={{ padding: '0.85rem 1rem', minWidth: '110px' }}>Partner Type</th>
+                  <th style={{ padding: '0.85rem 1rem', minWidth: '110px' }}>Department</th>
+                  <th style={{ padding: '0.85rem 1rem', minWidth: '180px' }}>Agreement Purpose</th>
+                  <th style={{ padding: '0.85rem 1rem', minWidth: '100px' }}>Signed Date</th>
+                  <th style={{ padding: '0.85rem 1rem', minWidth: '110px' }}>Expiry / Validity</th>
+                  <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Activities</th>
+                  <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Status</th>
+                  <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Approval</th>
+                  <th style={{ padding: '0.85rem 1rem', textAlign: 'right', minWidth: '85px' }}>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -452,50 +454,56 @@ export default function MousManager({ currentUser, onDataChange }) {
 
                   return (
                     <MotionTableRow key={item.id} index={idx} style={{ borderBottom: '1px solid #F1F5F9' }}>
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ fontWeight: 800, color: '#0F172A', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                          <span>{partnerName}</span>
-                        </div>
-                        <div style={{ fontSize: '0.72rem', color: '#D4AF37', fontWeight: 700 }}>
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <span className="record-code" style={{ color: '#0F172A', background: '#F8FAFC', padding: '0.2rem 0.45rem', borderRadius: '4px', border: '1px solid #E2E8F0' }}>
                           {mouCode}
+                        </span>
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <div style={{ fontWeight: 800, color: '#0F172A' }}>
+                          {partnerName}
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ fontWeight: 700, color: '#334155' }}>
-                          {item.department || 'All Departments'}
-                        </div>
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
                         <span style={{
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '0.25rem',
-                          fontSize: '0.68rem',
+                          fontSize: '0.74rem',
                           fontWeight: 600,
-                          color: '#64748B',
-                          marginTop: '0.2rem'
+                          color: '#475569',
+                          background: '#F1F5F9',
+                          padding: '0.15rem 0.5rem',
+                          borderRadius: '4px'
                         }}>
                           <PartnerIcon size={12} />
                           {item.collaboratorType || item.partnerType || 'Industry'}
                         </span>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#0F172A' }}>
-                          {item.primaryCoordinator || 'Assigned Coordinator'}
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <div style={{ fontWeight: 700, color: '#334155' }}>
+                          {item.department || 'Institution Level'}
                         </div>
-                        {item.partnerContactPerson && (
-                          <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
-                            Partner: {item.partnerContactPerson}
-                          </div>
-                        )}
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ fontSize: '0.78rem', color: '#0F172A', fontWeight: 700 }}>
-                          Until: {formatDateDDMMYYYY(item.expiryDate) || 'Ongoing'}
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <div style={{ fontSize: '0.78rem', fontWeight: 600, color: '#0F172A', maxWidth: '240px', lineHeight: 1.35 }} title={item.purpose || item.title || 'Technical Collaboration'}>
+                          {item.purpose || item.title || 'Academic & Technical Collaboration'}
                         </div>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
-                          Signed: {formatDateDDMMYYYY(item.signedDate || item.effectiveDate) || 'N/A'} ({item.validityType || '3 Years'})
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <div style={{ fontSize: '0.78rem', color: '#475569', fontWeight: 600 }}>
+                          {item.startDate || item.signedDate ? formatDateDDMMYYYY(item.startDate || item.signedDate) : '—'}
+                        </div>
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <div style={{ fontSize: '0.78rem', color: '#0F172A', fontWeight: 700 }}>
+                          {item.endDate || item.expiryDate ? formatDateDDMMYYYY(item.endDate || item.expiryDate) : (item.validityPeriod || 'Validity Not Recorded')}
                         </div>
                       </td>
 
@@ -696,8 +704,8 @@ export default function MousManager({ currentUser, onDataChange }) {
                       <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#0F172A' }}>{dossierModalItem.title || dossierModalItem.purpose || 'Institutional Bilateral Agreement'}</div>
                     </div>
                     <div>
-                      <div style={{ fontSize: '0.72rem', color: '#64748B' }}>Primary Coordinator</div>
-                      <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#059669' }}>{dossierModalItem.primaryCoordinator || 'Department Coordinator'}</div>
+                      <div style={{ fontSize: '0.72rem', color: '#64748B' }}>Duration / Validity</div>
+                      <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#0F172A' }}>{dossierModalItem.validityPeriod || 'Validity Not Recorded'}</div>
                     </div>
                     <div>
                       <div style={{ fontSize: '0.72rem', color: '#64748B' }}>Signed & Effective Date</div>
@@ -815,7 +823,7 @@ export default function MousManager({ currentUser, onDataChange }) {
 
             <div style={{ padding: '0.85rem 1.25rem', background: '#F8FAFC', borderTop: '1px solid #E2E8F0', display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' }}>
               <button type="button" onClick={() => setReviewModalItem(null)} style={{ padding: '0.45rem 0.85rem', borderRadius: '6px', border: '1px solid #CBD5E1', background: '#FFFFFF', fontSize: '0.78rem', cursor: 'pointer' }}>Cancel</button>
-              <button type="button" onClick={handleExecuteReview} style={{ padding: '0.45rem 1.15rem', borderRadius: '6px', border: 'none', background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', color: '#FFFFFF', fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer' }}>Submit Decision</button>
+              <button type="button" onClick={handleReviewSubmit} style={{ padding: '0.45rem 1.15rem', borderRadius: '6px', border: 'none', background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', color: '#FFFFFF', fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer' }}>Submit Decision</button>
             </div>
           </div>
         </div>
