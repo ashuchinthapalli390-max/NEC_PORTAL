@@ -228,8 +228,9 @@ export default function CircularsManager({ currentUser }) {
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.82rem' }}>
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', textTransform: 'uppercase' }}>
-                <th style={{ padding: '0.75rem 1rem' }}>Reference ID & Date</th>
-                <th style={{ padding: '0.75rem 1rem' }}>Subject / Circular Title</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Reference ID</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Issue Date</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Circular Title</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Category</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Issuing Authority</th>
                 <th style={{ padding: '0.75rem 1rem', textAlign: 'right' }}>Actions</th>
@@ -238,10 +239,17 @@ export default function CircularsManager({ currentUser }) {
             <tbody>
               {filtered.map(c => (
                 <tr key={c.id} style={{ borderBottom: '1px solid #F1F5F9' }}>
-                  <td style={{ padding: '0.85rem 1rem' }}>
+                  {/* Reference ID */}
+                  <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                     <div style={{ fontWeight: 800, color: '#0F172A' }}>{c.referenceNumber || c.id}</div>
-                    <div style={{ fontSize: '0.7rem', color: '#64748B' }}>{formatDateDDMMYYYY(c.date)}</div>
                   </td>
+
+                  {/* Issue Date */}
+                  <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                    <div style={{ fontSize: '0.78rem', color: '#475569' }}>{formatDateDDMMYYYY(c.date) || '—'}</div>
+                  </td>
+
+                  {/* Circular Title */}
                   <td style={{ padding: '0.85rem 1rem', maxWidth: '380px' }}>
                     <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.84rem' }}>{c.title}</div>
                     {c.department && <div style={{ fontSize: '0.72rem', color: '#64748B' }}>Dept: {c.department}</div>}

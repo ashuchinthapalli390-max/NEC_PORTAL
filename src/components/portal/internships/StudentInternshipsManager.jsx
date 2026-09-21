@@ -336,10 +336,12 @@ export default function StudentInternshipsManager({ currentUser, onDataChange })
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                <th style={{ padding: '0.85rem 1rem' }}>Roll No & Student</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Branch & AY</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Organization & Domain</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Role / Title</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Roll Number</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Student Name</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Department</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Organization</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Domain</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Internship Role</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Duration</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Stipend</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Status</th>
@@ -349,7 +351,7 @@ export default function StudentInternshipsManager({ currentUser, onDataChange })
             <tbody>
               {paginatedInternships.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
+                  <td colSpan={10} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
                     No student internship records found.
                   </td>
                 </tr>
@@ -361,37 +363,44 @@ export default function StudentInternshipsManager({ currentUser, onDataChange })
 
                   return (
                     <tr key={item.id || idx} style={{ borderBottom: '1px solid #F1F5F9' }} className="hover:bg-slate-50">
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.82rem' }}>{item.rollNumber}</div>
-                        <div style={{ fontSize: '0.78rem', color: '#64748B' }}>{item.studentName}</div>
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.82rem' }}>{item.rollNumber || '—'}</div>
                       </td>
 
                       <td style={{ padding: '0.85rem 1rem' }}>
-                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem' }}>{item.department || item.branch}</span>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>{item.academicYear} • {item.year || 'IV Year'}</div>
+                        <div style={{ fontSize: '0.82rem', fontWeight: 600, color: '#1E293B' }}>{item.studentName || '—'}</div>
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem' }}>{item.department || item.branch || '—'}</span>
                       </td>
 
                       <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem' }}>{item.organization}</div>
-                        <div style={{ fontSize: '0.72rem', color: '#0284C7', fontWeight: 600 }}>{item.domain} ({item.mode})</div>
+                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem' }}>{item.organization || '—'}</div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '240px' }}>
-                        <div style={{ fontWeight: 600, color: '#0F172A', fontSize: '0.8rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                          {item.internshipTitle}
+                      <td style={{ padding: '0.85rem 1rem' }}>
+                        <div style={{ fontSize: '0.75rem', color: '#0284C7', fontWeight: 600 }}>{item.domain || '—'} {item.mode ? `(${item.mode})` : ''}</div>
+                      </td>
+
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '220px' }}>
+                        <div style={{ fontWeight: 600, color: '#0F172A', fontSize: '0.8rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }} title={item.internshipTitle}>
+                          {item.internshipTitle || '—'}
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <div style={{ fontSize: '0.76rem', color: '#0F172A', fontWeight: 700 }}>
-                          {item.weeks || item.durationWeeks || 8} Weeks
+                          {item.weeks || item.durationWeeks ? `${item.weeks || item.durationWeeks} Weeks` : '—'}
                         </div>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
-                          {item.startDate} to {item.endDate}
-                        </div>
+                        {item.startDate && item.endDate && (
+                          <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
+                            {item.startDate} to {item.endDate}
+                          </div>
+                        )}
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         {(item.hasStipend === 'Yes' || item.stipend === 'Yes') ? (
                           <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#059669' }}>
                             ₹{Number(item.stipendAmount || 0).toLocaleString('en-IN')}/mo

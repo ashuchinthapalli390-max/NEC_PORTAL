@@ -413,11 +413,15 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                <th style={{ padding: '0.85rem 1rem' }}>Learner / Candidate</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Learner Name</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Roll / Employee No</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Department</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Category</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Platform & Course</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Platform</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Course Title</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Duration</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Score & Badge</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Score (%)</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Grade / Badge</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Credits</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Certificate</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Approval</th>
@@ -427,7 +431,7 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
             <tbody>
               {filteredCertifications.length === 0 ? (
                 <tr>
-                  <td colSpan={9} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
+                  <td colSpan={13} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
                     No NPTEL/MOOC certification records found matching current filters.
                   </td>
                 </tr>
@@ -442,16 +446,29 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
 
                   return (
                     <tr key={item.id || idx} style={{ borderBottom: '1px solid #F1F5F9' }} className="hover:bg-slate-50">
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '240px' }}>
+                      {/* Learner Name */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.84rem' }}>
                           {candidateName || 'Learner'}
                         </div>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
-                          {candidateSubtitle} • Dept: {item.department}
+                      </td>
+
+                      {/* Roll / Employee No */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#334155' }}>
+                          {candidateSubtitle || '—'}
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Department */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem' }}>
+                          {item.department || '—'}
+                        </span>
+                      </td>
+
+                      {/* Category */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <span style={{
                           display: 'inline-flex',
                           alignItems: 'center',
@@ -468,25 +485,44 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
                         </span>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '260px' }}>
-                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                          {item.courseName}
-                        </div>
-                        <div style={{ fontSize: '0.7rem', color: '#D4AF37', fontWeight: 700 }}>
-                          {item.platform} • {item.offeredBy}
-                        </div>
+                      {/* Platform */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#B45309' }}>
+                          {item.platform || 'NPTEL'}
+                        </span>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Course Title */}
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '240px' }}>
+                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={item.courseName}>
+                          {item.courseName || '—'}
+                        </div>
+                        {item.offeredBy && (
+                          <div style={{ fontSize: '0.68rem', color: '#64748B' }}>{item.offeredBy}</div>
+                        )}
+                      </td>
+
+                      {/* Duration */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#0F172A' }}>
-                          {item.duration}
+                          {item.duration || '—'}
                         </div>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
-                          Exam: {item.examDate}
-                        </div>
+                        {item.examDate && (
+                          <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
+                            Exam: {item.examDate}
+                          </div>
+                        )}
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Score (%) */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#0F172A' }}>
+                          {item.scores?.finalScore != null ? `${item.scores.finalScore}%` : '—'}
+                        </span>
+                      </td>
+
+                      {/* Grade / Badge */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <span style={{
                           fontSize: '0.68rem',
                           fontWeight: 800,
@@ -497,7 +533,7 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
                           borderRadius: '9999px',
                           whiteSpace: 'nowrap'
                         }}>
-                          {resBadge.label} ({item.scores?.finalScore}%)
+                          {resBadge.label}
                         </span>
                       </td>
 

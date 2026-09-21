@@ -23,7 +23,7 @@ import {
   RefreshCw,
   X
 } from 'lucide-react';
-import { ET_DEPARTMENTS } from '../../../data/masterData.js';
+import { ET_DEPARTMENTS, normalizeDepartment } from '../../../data/masterData.js';
 import { formatDateDDMMYYYY, isDateInRange } from '../../../lib/ui/dateUtils.js';
 import { 
   getStudentAchievements, 
@@ -103,8 +103,8 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
         (item.awardTitle && item.awardTitle.toLowerCase().includes(q)) ||
         (item.organizingInstitute && item.organizingInstitute.toLowerCase().includes(q));
 
-      const itemDept = item.department || item.branch || '';
-      const matchDept = selectedDept === 'ALL' || itemDept === selectedDept;
+      const itemDeptNorm = normalizeDepartment(item.department || item.departmentCode || item.branch || '').canonicalCode;
+      const matchDept = selectedDept === 'ALL' || itemDeptNorm === selectedDept;
       const matchAy = selectedAy === 'ALL' || item.academicYear === selectedAy;
       const matchCategory = selectedCategory === 'ALL' || item.category === selectedCategory || item.achievementType === selectedCategory;
       const matchLevel = selectedLevel === 'ALL' || item.level === selectedLevel;
@@ -294,10 +294,9 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
               style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', background: '#FFFFFF', color: '#0F172A', fontWeight: 600 }}
             >
               <option value="ALL">All</option>
-              <option value="CYS">Cyber Security</option>
-              <option value="DS">Data Science</option>
-              <option value="AI">Artificial Intelligence</option>
-              <option value="AIML">AI & ML</option>
+              {ET_DEPARTMENTS.map(d => (
+                <option key={d.code} value={d.code}>{d.code}</option>
+              ))}
             </select>
 
             {/* Academic Year */}
@@ -427,11 +426,14 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                <th style={{ padding: '0.85rem 1rem' }}>Roll No & Student</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Department & AY</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Achievement & Event</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Category & Level</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Prize / Award</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Roll Number</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Student Name</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Department</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Achievement Title</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Organizing Event</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Category</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Level</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Award / Prize</th>
                 <th style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>Date</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Status</th>
                 <th style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>Actions</th>
@@ -440,7 +442,7 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
             <tbody>
               {paginatedAchievements.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
+                  <td colSpan={11} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
                     No student achievement records found matching current criteria.
                   </td>
                 </tr>
@@ -456,44 +458,53 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
                       style={{ borderBottom: '1px solid #F1F5F9', transition: 'background 0.15s ease' }}
                       className="hover:bg-slate-50"
                     >
-                      {/* Roll No & Student */}
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Roll Number */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.82rem' }}>
-                          {item.rollNumber || 'N/A'}
-                        </div>
-                        <div style={{ fontSize: '0.78rem', color: '#64748B' }}>
-                          {item.studentName}
+                          {item.rollNumber || '—'}
                         </div>
                       </td>
 
-                      {/* Department & AY */}
+                      {/* Student Name */}
                       <td style={{ padding: '0.85rem 1rem' }}>
+                        <div style={{ fontSize: '0.82rem', fontWeight: 600, color: '#1E293B' }}>
+                          {item.studentName || '—'}
+                        </div>
+                      </td>
+
+                      {/* Department */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem' }}>
                           {item.department || item.departmentCode || item.branch || '—'}
                         </span>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>
-                          {item.academicYear || '—'} {item.year ? `• ${item.year}` : ''}
+                      </td>
+
+                      {/* Achievement Title */}
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '240px' }}>
+                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }} title={item.title || item.eventName}>
+                          {item.title || item.eventName || '—'}
                         </div>
                       </td>
 
-                      {/* Achievement & Event */}
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '280px' }}>
-                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                          {item.title || item.eventName || '—'}
-                        </div>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                      {/* Organizing Event */}
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '220px' }}>
+                        <div style={{ fontSize: '0.78rem', color: '#475569', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }} title={item.organizingInstitute || item.organizer || item.eventDetails}>
                           {item.organizingInstitute || item.organizer || item.eventDetails || '—'}
                         </div>
                       </td>
 
-                      {/* Category & Level */}
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Category */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#0369A1', background: '#E0F2FE', padding: '0.15rem 0.45rem', borderRadius: '4px' }}>
                           {item.category || item.achievementType || 'Academic'}
                         </span>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B', marginTop: '0.2rem' }}>
+                      </td>
+
+                      {/* Level */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontSize: '0.75rem', color: '#475569' }}>
                           {item.level ? `${item.level} Level` : '—'}
-                        </div>
+                        </span>
                       </td>
 
                       {/* Prize / Award */}

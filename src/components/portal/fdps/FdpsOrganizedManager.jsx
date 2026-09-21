@@ -582,11 +582,12 @@ export default function FdpsOrganizedManager({ currentUser, onDataChange }) {
               <thead>
                 <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                   <th style={{ padding: '0.85rem 1rem' }}>Faculty Member</th>
-                  <th style={{ padding: '0.85rem 1rem' }}>Department & AY</th>
-                  <th style={{ padding: '0.85rem 1rem' }}>Program / Course Title</th>
-                  <th style={{ padding: '0.85rem 1rem' }}>Organizing Institution / Venue</th>
-                  <th style={{ padding: '0.85rem 1rem' }}>Dates / Duration</th>
-                  <th style={{ padding: '0.85rem 1rem' }}>Score / Result</th>
+                  <th style={{ padding: '0.85rem 1rem' }}>Department</th>
+                  <th style={{ padding: '0.85rem 1rem' }}>Program Title</th>
+                  <th style={{ padding: '0.85rem 1rem' }}>Organizer / Venue</th>
+                  <th style={{ padding: '0.85rem 1rem' }}>Event Dates</th>
+                  <th style={{ padding: '0.85rem 1rem' }}>Duration</th>
+                  <th style={{ padding: '0.85rem 1rem' }}>Score (%)</th>
                   <th style={{ padding: '0.85rem 1rem' }}>Status</th>
                   <th style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>Actions</th>
                 </tr>
@@ -594,49 +595,62 @@ export default function FdpsOrganizedManager({ currentUser, onDataChange }) {
               <tbody>
                 {filteredAttended.length === 0 ? (
                   <tr>
-                    <td colSpan={8} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
+                    <td colSpan={9} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
                       No attended workshop records match the active criteria.
                     </td>
                   </tr>
                 ) : (
                   filteredAttended.slice(0, 100).map((item, idx) => (
                     <tr key={item.id || idx} style={{ borderBottom: '1px solid #F1F5F9' }}>
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Faculty Member */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.82rem' }}>
                           {item.facultyName || item.name || '—'}
                         </div>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
-                          {item.facultyId || 'Faculty Participant'}
+                        {item.facultyId && (
+                          <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
+                            {item.facultyId}
+                          </div>
+                        )}
+                      </td>
+
+                      {/* Department */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem' }}>
+                          {item.department === 'Common' ? 'Institution Level' : (item.department || 'Institution Level')}
+                        </span>
+                      </td>
+
+                      {/* Program Title */}
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '260px' }}>
+                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={item.title || item.programTitle}>
+                          {item.title || item.programTitle || 'Needs Review'}
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem' }}>{item.department || 'Institution Level'}</span>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>{item.academicYear || '—'}</div>
-                      </td>
-
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '280px' }}>
-                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem' }}>
-                          {item.title || item.programTitle || '—'}
-                        </div>
-                      </td>
-
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '220px' }}>
-                        <div style={{ fontSize: '0.78rem', color: '#334155' }}>
+                      {/* Organizer / Venue */}
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '200px' }}>
+                        <div style={{ fontSize: '0.78rem', color: '#334155', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={item.organizer || item.venue}>
                           {item.organizer || item.venue || '—'}
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Event Dates */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <div style={{ fontSize: '0.76rem', color: '#0F172A', fontWeight: 600 }}>
                           {item.date || item.startDate || '—'}
                         </div>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
+                      </td>
+
+                      {/* Duration */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '0.76rem', color: '#475569' }}>
                           {item.duration || '—'}
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Score (%) */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         {item.nptelScore ? (
                           <span style={{ fontWeight: 800, color: '#2563EB', fontSize: '0.8rem', background: '#EFF6FF', padding: '0.2rem 0.5rem', borderRadius: '6px' }}>
                             {item.nptelScore}%

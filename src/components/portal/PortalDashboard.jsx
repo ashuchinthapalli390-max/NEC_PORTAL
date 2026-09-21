@@ -146,6 +146,7 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
   const [isMobileDrawer, setIsMobileDrawer] = useState(false);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
   const [syncModalOpen, setSyncModalOpen] = useState(false);
+  const [syncModalProvider, setSyncModalProvider] = useState('ORCID');
   const [userModalOpen, setUserModalOpen] = useState(false);
   const [bulkImportModalOpen, setBulkImportModalOpen] = useState(false);
   const [dataVersion, setDataVersion] = useState(0);
@@ -442,16 +443,15 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
           {dashboardToast}
         </div>
       )}
-      {/* 1. Production Top Header */}
+      {/* 1. Integrated Global Header */}
       <TopHeader
         currentUser={currentUser}
-        sidebarExpanded={sidebarExpanded}
-        onToggleSidebar={() => {
-          if (isMobile) {
-            setIsMobileDrawer(!isMobileDrawer);
-          } else {
-            setSidebarExpanded(!sidebarExpanded);
-          }
+        isHod={isHod}
+        hodDept={hodDept}
+        onToggleMobileDrawer={() => setIsMobileDrawer(!isMobileDrawer)}
+        onSelectModule={(mod) => {
+          setActiveModule(mod);
+          setIsMobileDrawer(false);
         }}
         activeModule={activeModule}
         activeCategoryLabel={categoryLabel}
@@ -462,7 +462,7 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
         onLogout={onLogout || onExitPortal}
         onOpenSettings={() => setActiveModule('iam-settings')}
         onOpenNotifications={() => setActiveModule('alerts')}
-        unreadAlertsCount={3}
+        unreadAlertsCount={activeAlertsCount}
       />
 
       {/* 2. Main Workspace Layout (Floating Sidebar + Content Canvas with Shared Breathing Gap) */}
@@ -488,7 +488,7 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
           isMobile={isMobile}
           isMobileDrawer={isMobileDrawer}
           onCloseMobileDrawer={() => setIsMobileDrawer(false)}
-          unreadAlertsCount={3}
+          unreadAlertsCount={activeAlertsCount}
         />
 
         {/* Dynamic Content Canvas */}
@@ -500,12 +500,6 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
           display: 'flex',
           flexDirection: 'column'
         }}>
-          {/* Actionable Notifications Banner */}
-          {activeModule !== 'overview' && (
-            <div style={{ marginBottom: '1.25rem' }}>
-              <NotificationAlerts onSelectModule={(mod) => setActiveModule(mod)} />
-            </div>
-          )}
 
           <AnimatePresence mode="wait">
             <motion.div
@@ -542,7 +536,7 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
                     uniqueNptelCount={activeUniqueNptel}
                     onNavigate={(mod) => setActiveModule(mod)}
                     onOpenQuickAction={() => setActiveModule('events')}
-                    onOpenSync={() => setSyncModalOpen(true)}
+                    onOpenSync={() => { setSyncModalProvider('ORCID'); setSyncModalOpen(true); }}
                   />
                 )}
 
@@ -709,7 +703,10 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
             <PublicationsManager
               currentUser={currentUser}
               onDataChange={refreshData}
-              onOpenSyncModal={() => setActiveModule('research-discovery')}
+              onOpenSyncModal={(provider) => {
+                setSyncModalProvider(provider || 'ORCID');
+                setSyncModalOpen(true);
+              }}
             />
           )}
 
@@ -1187,6 +1184,7 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
       {syncModalOpen && (
         <FacultyResearchSyncModal
           isOpen={syncModalOpen}
+          initialProvider={syncModalProvider}
           currentUser={currentUser}
           onSyncComplete={refreshData}
           onClose={() => setSyncModalOpen(false)}

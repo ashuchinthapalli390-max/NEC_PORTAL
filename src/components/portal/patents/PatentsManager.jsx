@@ -344,7 +344,7 @@ export default function PatentsManager({ currentUser, onDataChange }) {
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '130px' }}>Patent ID</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '220px' }}>Patent Title</th>
-                <th style={{ padding: '0.85rem 1rem', minWidth: '140px' }}>Application / Grant No.</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '140px' }}>Application Number</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Department</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '150px' }}>Inventors</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Filing Date</th>
@@ -368,6 +368,7 @@ export default function PatentsManager({ currentUser, onDataChange }) {
                   const lgBadge = getLegalStatusBadge(item.legalStatus);
                   const WfIcon = wfBadge.icon;
                   const leadInventor = item.inventors?.find(i => i.isLead)?.name || item.inventors?.[0]?.name || 'Assigned Inventor';
+                  const inventorCount = item.inventors?.length || 1;
 
                   return (
                     <tr key={item.id || idx} style={{ borderBottom: '1px solid #F1F5F9' }} className="hover:bg-slate-50">
@@ -386,15 +387,11 @@ export default function PatentsManager({ currentUser, onDataChange }) {
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
-                        <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#0F172A' }}>
-                          {item.applicationNumber || 'Pending App No'}
+                      {/* Application Number */}
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#0F172A', fontFamily: 'monospace' }}>
+                          {item.applicationNumber || '—'}
                         </div>
-                        {item.grantNumber && (
-                          <div style={{ fontSize: '0.7rem', color: '#059669', fontWeight: 700 }}>
-                            Grant: {item.grantNumber}
-                          </div>
-                        )}
                       </td>
 
                       <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
@@ -403,30 +400,32 @@ export default function PatentsManager({ currentUser, onDataChange }) {
                         </span>
                       </td>
 
+                      {/* Inventors */}
                       <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top', maxWidth: '180px' }}>
-                        <div style={{ fontWeight: 600, color: '#0F172A', fontSize: '0.78rem' }}>
+                        <button
+                          type="button"
+                          onClick={() => setInventorsModalPatent(item)}
+                          style={{
+                            background: '#EFF6FF',
+                            border: '1px solid #BFDBFE',
+                            padding: '0.2rem 0.55rem',
+                            borderRadius: '6px',
+                            fontSize: '0.75rem',
+                            color: '#1D4ED8',
+                            fontWeight: 700,
+                            cursor: 'pointer',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.35rem'
+                          }}
+                          title="Click to view all inventors"
+                        >
+                          <Users size={12} />
+                          {inventorCount} Inventor{inventorCount !== 1 ? 's' : ''}
+                        </button>
+                        <div style={{ fontSize: '0.72rem', color: '#64748B', marginTop: '0.25rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                           {leadInventor}
                         </div>
-                        {item.inventors?.length > 1 && (
-                          <button
-                            type="button"
-                            onClick={() => setInventorsModalPatent(item)}
-                            style={{
-                              background: 'none',
-                              border: 'none',
-                              padding: 0,
-                              fontSize: '0.7rem',
-                              color: '#2563EB',
-                              fontWeight: 600,
-                              cursor: 'pointer',
-                              textDecoration: 'underline',
-                              display: 'block',
-                              marginTop: '0.15rem'
-                            }}
-                          >
-                            +{item.inventors.length - 1} Co-Inventor(s)
-                          </button>
-                        )}
                       </td>
 
                       <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>

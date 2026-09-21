@@ -531,11 +531,15 @@ export default function BoSMeetingManager({ currentUser, onDataChange }) {
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.82rem' }}>
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.74rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                <th style={{ padding: '0.75rem 1rem' }}>BoS Number & Title</th>
-                <th style={{ padding: '0.75rem 1rem' }}>Dept / Year</th>
+                <th style={{ padding: '0.75rem 1rem' }}>BoS Number</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Meeting Title</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Department</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Academic Year</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Regulations</th>
-                <th style={{ padding: '0.75rem 1rem' }}>Meeting Date & Mode</th>
-                <th style={{ padding: '0.75rem 1rem' }}>Chairman / Nominee</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Meeting Date</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Mode</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Chairman</th>
+                <th style={{ padding: '0.75rem 1rem' }}>University Nominee</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Status</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Documents</th>
                 <th style={{ padding: '0.75rem 1rem', textAlign: 'right' }}>Actions</th>
@@ -544,7 +548,7 @@ export default function BoSMeetingManager({ currentUser, onDataChange }) {
             <tbody>
               {filteredMeetings.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#64748B' }}>
+                  <td colSpan={12} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#64748B' }}>
                     <BookOpen size={36} style={{ color: '#CBD5E1', margin: '0 auto 0.5rem auto' }} />
                     <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#334155' }}>No Board of Studies meetings found</div>
                     <div style={{ fontSize: '0.76rem', marginTop: '0.2rem' }}>
@@ -564,20 +568,31 @@ export default function BoSMeetingManager({ currentUser, onDataChange }) {
                       style={{ borderBottom: '1px solid #F1F5F9' }}
                       className="hover:bg-slate-50 transition-colors"
                     >
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* BoS Number */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <div style={{ fontWeight: 800, color: '#0F172A', fontFamily: 'monospace', letterSpacing: '0.5px' }}>
-                          {meeting.bosNumber}
+                          {meeting.bosNumber || '—'}
                         </div>
-                        <div style={{ fontSize: '0.74rem', color: '#475569', marginTop: '0.15rem' }}>
+                      </td>
+
+                      {/* Meeting Title */}
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '240px' }}>
+                        <div style={{ fontSize: '0.8rem', color: '#1E293B', fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={meeting.title || `${meeting.department} BoS Meeting`}>
                           {meeting.title || `${meeting.department} BoS Meeting`}
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ fontWeight: 700, color: '#0F172A' }}>{meeting.department}</div>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>{meeting.academicYear}</div>
+                      {/* Department */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontWeight: 700, color: '#0F172A' }}>{meeting.department || '—'}</div>
                       </td>
 
+                      {/* Academic Year */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '0.78rem', color: '#64748B' }}>{meeting.academicYear || '—'}</div>
+                      </td>
+
+                      {/* Regulations */}
                       <td style={{ padding: '0.85rem 1rem' }}>
                         <div style={{ display: 'flex', gap: '0.25rem', flexWrap: 'wrap' }}>
                           {meeting.regulations?.map(r => (
@@ -599,22 +614,32 @@ export default function BoSMeetingManager({ currentUser, onDataChange }) {
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ fontWeight: 600, color: '#0F172A' }}>{meeting.bosDate}</div>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      {/* Meeting Date */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontWeight: 600, color: '#0F172A' }}>{meeting.bosDate || '—'}</div>
+                      </td>
+
+                      {/* Mode */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '0.75rem', color: '#64748B', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                           {meeting.meetingMode === 'Online' && <Video size={11} />}
                           {meeting.meetingMode === 'Hybrid' && <Globe size={11} />}
                           {meeting.meetingMode === 'Offline' && <MapPin size={11} />}
-                          {meeting.meetingMode}
+                          {meeting.meetingMode || '—'}
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '220px' }}>
-                        <div style={{ fontWeight: 600, color: '#0F172A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                          {meeting.chairmanName || meeting.chairman?.split('(')[0]}
+                      {/* Chairman */}
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '180px' }}>
+                        <div style={{ fontWeight: 600, color: '#0F172A', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={meeting.chairmanName || meeting.chairman}>
+                          {meeting.chairmanName || (meeting.chairman ? meeting.chairman.split('(')[0] : '—')}
                         </div>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                          🎓 Nominee: {meeting.universityNominee?.name || 'Assigned'}
+                      </td>
+
+                      {/* University Nominee */}
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '180px' }}>
+                        <div style={{ fontSize: '0.78rem', color: '#475569', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={meeting.universityNominee?.name}>
+                          {meeting.universityNominee?.name || '—'}
                         </div>
                       </td>
 

@@ -94,7 +94,8 @@ export function PermissionsMatrixManager({ currentUser }) {
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.82rem' }}>
           <thead>
             <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', textTransform: 'uppercase' }}>
-              <th style={{ padding: '0.75rem 1rem' }}>Module & Capability</th>
+              <th style={{ padding: '0.75rem 1rem' }}>Module</th>
+              <th style={{ padding: '0.75rem 1rem' }}>Capability / Privilege</th>
               {roles.map(r => (
                 <th key={r} style={{ padding: '0.75rem 0.5rem', textAlign: 'center' }}>
                   {r.replace('_', ' ')}
@@ -105,9 +106,14 @@ export function PermissionsMatrixManager({ currentUser }) {
           <tbody>
             {ALL_PERMISSIONS.map(p => (
               <tr key={p.key} style={{ borderBottom: '1px solid #F1F5F9' }}>
+                <td style={{ padding: '0.75rem 1rem', whiteSpace: 'nowrap' }}>
+                  <span style={{ fontWeight: 700, color: '#0F172A', background: '#F1F5F9', padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.75rem' }}>
+                    {p.module}
+                  </span>
+                </td>
                 <td style={{ padding: '0.75rem 1rem' }}>
                   <div style={{ fontWeight: 700, color: '#0F172A' }}>{p.label}</div>
-                  <div style={{ fontSize: '0.7rem', color: '#64748B' }}>{p.module} • <code>{p.key}</code></div>
+                  <div style={{ fontSize: '0.68rem', color: '#64748B' }}><code>{p.key}</code></div>
                 </td>
                 {roles.map(r => {
                   const isChecked = matrix[r]?.includes(p.key) || r === 'SUPER_ADMIN';
@@ -232,9 +238,10 @@ export function IamSessionsManager({ currentUser }) {
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.82rem' }}>
           <thead>
             <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', textTransform: 'uppercase' }}>
-              <th style={{ padding: '0.75rem 1rem' }}>User & Email</th>
+              <th style={{ padding: '0.75rem 1rem' }}>User Name</th>
+              <th style={{ padding: '0.75rem 1rem' }}>Email Address</th>
               <th style={{ padding: '0.75rem 1rem' }}>Role</th>
-              <th style={{ padding: '0.75rem 1rem' }}>Device & Browser</th>
+              <th style={{ padding: '0.75rem 1rem' }}>Device / Client</th>
               <th style={{ padding: '0.75rem 1rem' }}>IP Address</th>
               <th style={{ padding: '0.75rem 1rem' }}>Started At</th>
               <th style={{ padding: '0.75rem 1rem', textAlign: 'right' }}>Actions</th>
@@ -243,7 +250,7 @@ export function IamSessionsManager({ currentUser }) {
           <tbody>
             {displaySessions.length === 0 ? (
               <tr>
-                <td colSpan={6} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.84rem' }}>
+                <td colSpan={7} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.84rem' }}>
                   <ShieldCheck size={28} style={{ color: '#10B981', marginBottom: '0.4rem' }} />
                   <div>No active sessions found.</div>
                 </td>
@@ -251,7 +258,8 @@ export function IamSessionsManager({ currentUser }) {
             ) : (
               displaySessions.map(s => (
                 <tr key={s.id} style={{ borderBottom: '1px solid #F1F5F9' }}>
-                  <td style={{ padding: '0.85rem 1rem' }}>
+                  {/* User Name */}
+                  <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                       <span style={{ fontWeight: 800, color: '#0F172A' }}>{s.userName || s.name || 'User'}</span>
                       {s.isCurrent && (
@@ -260,8 +268,13 @@ export function IamSessionsManager({ currentUser }) {
                         </span>
                       )}
                     </div>
-                    <div style={{ fontSize: '0.7rem', color: '#64748B' }}>{s.email}</div>
                   </td>
+
+                  {/* Email */}
+                  <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                    <div style={{ fontSize: '0.78rem', color: '#475569' }}>{s.email}</div>
+                  </td>
+
                   <td style={{ padding: '0.85rem 1rem' }}>
                     <span style={{ padding: '0.15rem 0.5rem', borderRadius: '4px', background: '#EFF6FF', color: '#1D4ED8', fontSize: '0.7rem', fontWeight: 700 }}>
                       {s.role}

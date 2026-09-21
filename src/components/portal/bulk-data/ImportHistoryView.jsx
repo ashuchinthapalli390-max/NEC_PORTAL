@@ -129,7 +129,8 @@ export default function ImportHistoryView({ currentUser, onRefreshNeeded }) {
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', textTransform: 'uppercase' }}>
                 <th style={{ padding: '0.75rem 1rem' }}>Job Number</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Module</th>
-                <th style={{ padding: '0.75rem 1rem' }}>File & Hash</th>
+                <th style={{ padding: '0.75rem 1rem' }}>File Name</th>
+                <th style={{ padding: '0.75rem 1rem' }}>SHA-256 Hash</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Uploader</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Date</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Rows</th>
@@ -149,8 +150,10 @@ export default function ImportHistoryView({ currentUser, onRefreshNeeded }) {
                     </span>
                   </td>
                   <td style={{ padding: '0.85rem 1rem' }}>
-                    <div style={{ fontWeight: 600, color: '#334155' }}>{job.originalFilename}</div>
-                    <div style={{ fontSize: '0.68rem', fontFamily: 'monospace', color: '#94A3B8' }}>
+                    <div style={{ fontWeight: 600, color: '#334155' }}>{job.originalFilename || '—'}</div>
+                  </td>
+                  <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                    <div style={{ fontSize: '0.72rem', fontFamily: 'monospace', color: '#64748B' }}>
                       {job.fileSha256 ? job.fileSha256.substring(0, 16) + '...' : '—'}
                     </div>
                   </td>

@@ -1729,7 +1729,8 @@ export default function ResearchDataSourcesView({ currentUser }) {
               <thead>
                 <tr style={{ background: '#F8FAFC', borderBottom: '2px solid #E2E8F0' }}>
                   <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Record #</th>
-                  <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Title & Journal</th>
+                  <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Publication Title</th>
+                  <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Journal / Venue</th>
                   <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Authors</th>
                   <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Identifiers</th>
                   <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Sources</th>
@@ -1743,12 +1744,14 @@ export default function ResearchDataSourcesView({ currentUser }) {
                     <td style={{ padding: '0.85rem 1rem', fontWeight: 700, color: '#0B192C', whiteSpace: 'nowrap' }}>
                       {p.publicationRecordNumber}
                     </td>
-                    <td style={{ padding: '0.85rem 1rem', maxWidth: '380px' }}>
-                      <div style={{ fontWeight: 800, color: '#0F172A', lineHeight: 1.3, marginBottom: '0.2rem' }}>
+                    <td style={{ padding: '0.85rem 1rem', maxWidth: '320px' }}>
+                      <div style={{ fontWeight: 800, color: '#0F172A', lineHeight: 1.3 }}>
                         {p.title}
                       </div>
-                      <div style={{ fontSize: '0.74rem', color: '#64748B', fontStyle: 'italic' }}>
-                        {p.journalName || p.conferenceName || 'Journal Article'} ({p.publicationYear})
+                    </td>
+                    <td style={{ padding: '0.85rem 1rem', maxWidth: '200px' }}>
+                      <div style={{ fontSize: '0.76rem', color: '#475569' }}>
+                        {p.journalName || p.conferenceName || 'Journal Article'} {p.publicationYear ? `(${p.publicationYear})` : ''}
                       </div>
                     </td>
                     <td style={{ padding: '0.85rem 1rem' }}>

@@ -444,7 +444,7 @@ export default function WorkshopsEventsView({ onAddEvent }) {
                 background: '#FFFFFF'
               }}
             >
-              <option value="ALL">All Departments</option>
+              <option value="ALL">All</option>
               {DEPARTMENTS.map(d => <option key={d.code} value={d.code}>{d.name} ({d.code})</option>)}
             </select>
           </div>
@@ -549,10 +549,13 @@ export default function WorkshopsEventsView({ onAddEvent }) {
                     checked={selectedEventIds.length === filteredEvents.length && filteredEvents.length > 0}
                   />
                 </th>
-                <th style={{ padding: '0.75rem 1rem' }}>Event Title & Details</th>
-                <th style={{ padding: '0.75rem 1rem' }}>Type</th>
-                <th style={{ padding: '0.75rem 1rem' }}>Dept / Year</th>
-                <th style={{ padding: '0.75rem 1rem' }}>Dates & Venue</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Event Title</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Speaker / Expert</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Event Type</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Department</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Academic Year</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Event Date</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Venue</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Status</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Coordinator</th>
                 <th style={{ padding: '0.75rem 1rem', textAlign: 'right' }}>Actions</th>
@@ -561,7 +564,7 @@ export default function WorkshopsEventsView({ onAddEvent }) {
             <tbody>
               {filteredEvents.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#64748B' }}>
+                  <td colSpan={11} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#64748B' }}>
                     <Calendar size={32} style={{ color: '#CBD5E1', margin: '0 auto 0.5rem auto' }} />
                     <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#334155' }}>No matching events found</div>
                     <div style={{ fontSize: '0.76rem' }}>Try adjusting your search query or filter parameters.</div>
@@ -595,16 +598,22 @@ export default function WorkshopsEventsView({ onAddEvent }) {
                         />
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '280px' }}>
-                        <div style={{ fontWeight: 700, color: '#0F172A', lineHeight: 1.3, marginBottom: '0.2rem' }}>
+                      {/* Event Title */}
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '240px' }}>
+                        <div style={{ fontWeight: 700, color: '#0F172A', lineHeight: 1.3 }}>
                           {ev.title}
-                        </div>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>
-                          🎤 {ev.speaker}
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Speaker / Expert */}
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '180px' }}>
+                        <div style={{ fontSize: '0.78rem', color: '#475569' }}>
+                          {ev.speaker || '—'}
+                        </div>
+                      </td>
+
+                      {/* Event Type */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <span style={{
                           background: '#F1F5F9',
                           color: '#334155',
@@ -618,15 +627,25 @@ export default function WorkshopsEventsView({ onAddEvent }) {
                         </span>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Department */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <div style={{ fontWeight: 700, color: '#0F172A' }}>{ev.dept}</div>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>{ev.academicYear}</div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ fontWeight: 600, color: '#0F172A' }}>{ev.startDate}</div>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-                          <MapPin size={11} /> {ev.venue}
+                      {/* Academic Year */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '0.74rem', color: '#64748B' }}>{ev.academicYear || '—'}</div>
+                      </td>
+
+                      {/* Event Date */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontWeight: 600, color: '#0F172A' }}>{ev.startDate || '—'}</div>
+                      </td>
+
+                      {/* Venue */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '0.76rem', color: '#475569', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+                          <MapPin size={11} /> {ev.venue || 'Campus'}
                         </div>
                       </td>
 

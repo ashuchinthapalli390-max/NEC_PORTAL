@@ -227,25 +227,48 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
         onExportExcel={handleExportExcel}
         onExportPDF={handleExportPDF}
         customActions={onOpenSyncModal ? (
-          <button
-            type="button"
-            onClick={onOpenSyncModal}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.35rem',
-              padding: '0.5rem 0.95rem',
-              background: '#070F1E',
-              color: '#F1C40F',
-              border: '1px solid #D4AF37',
-              borderRadius: '8px',
-              fontSize: '0.78rem',
-              fontWeight: 800,
-              cursor: 'pointer'
-            }}
-          >
-            <RefreshCw size={14} /> Auto-Sync (ORCID)
-          </button>
+          <div style={{ display: 'flex', gap: '0.45rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              onClick={() => onOpenSyncModal('ORCID')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                padding: '0.5rem 0.85rem',
+                background: '#070F1E',
+                color: '#A6CE39',
+                border: '1px solid #A6CE39',
+                borderRadius: '8px',
+                fontSize: '0.78rem',
+                fontWeight: 800,
+                cursor: 'pointer'
+              }}
+              title="Synchronize publications via official ORCID API"
+            >
+              <RefreshCw size={14} /> Sync ORCID
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpenSyncModal('SCOPUS')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                padding: '0.5rem 0.85rem',
+                background: '#070F1E',
+                color: '#F1C40F',
+                border: '1px solid #D4AF37',
+                borderRadius: '8px',
+                fontSize: '0.78rem',
+                fontWeight: 800,
+                cursor: 'pointer'
+              }}
+              title="Synchronize publications via official Elsevier Scopus API"
+            >
+              <Award size={14} /> Sync Scopus
+            </button>
+          </div>
         ) : null}
         primaryAction={canCreate ? {
           label: 'Record Paper',
@@ -468,31 +491,38 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top', maxWidth: '160px' }}>
-                        <div style={{ fontWeight: 600, color: '#0F172A', fontSize: '0.78rem' }}>
-                          {firstAuthor}
-                        </div>
-                        {item.authors?.length > 1 && (
-                          <button
-                            type="button"
-                            onClick={() => setAuthorModalPub(item)}
-                            style={{
-                              background: 'none',
-                              border: 'none',
-                              padding: 0,
-                              fontSize: '0.7rem',
-                              color: '#0284C7',
-                              fontWeight: 700,
-                              cursor: 'pointer',
-                              textAlign: 'left',
-                              textDecoration: 'underline',
-                              display: 'block',
-                              marginTop: '0.15rem'
-                            }}
-                            title="Click to view all individual co-authors"
-                          >
-                            +{item.authors.length - 1} Co-Author(s)
-                          </button>
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top', maxWidth: '170px' }}>
+                        {Array.isArray(item.authors) && item.authors.length > 0 ? (
+                          <>
+                            <button
+                              type="button"
+                              onClick={() => setAuthorModalPub(item)}
+                              style={{
+                                background: '#EFF6FF',
+                                border: '1px solid #BFDBFE',
+                                padding: '0.2rem 0.55rem',
+                                borderRadius: '6px',
+                                fontSize: '0.75rem',
+                                color: '#1D4ED8',
+                                fontWeight: 700,
+                                cursor: 'pointer',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '0.35rem'
+                              }}
+                              title="Click to view all author details"
+                            >
+                              <Users size={12} />
+                              {item.authors.length} Author{item.authors.length !== 1 ? 's' : ''}
+                            </button>
+                            <div style={{ fontSize: '0.72rem', color: '#64748B', marginTop: '0.25rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                              {firstAuthor}
+                            </div>
+                          </>
+                        ) : (
+                          <div style={{ fontWeight: 600, color: '#0F172A', fontSize: '0.78rem' }}>
+                            {firstAuthor || '—'}
+                          </div>
                         )}
                       </td>
 

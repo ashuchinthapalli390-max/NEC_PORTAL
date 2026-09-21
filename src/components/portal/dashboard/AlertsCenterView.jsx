@@ -32,14 +32,18 @@ export default function AlertsCenterView({ currentUser, onNavigate }) {
 
   const now = new Date();
 
-  // Expiring MoUs
+  // Expiring MoUs with calculated days remaining and stable IDs
   const expiringMous = useMemo(() => {
-    return mous.filter(m => {
-      if (!m.expiryDate) return false;
+    return (mous || []).map(m => {
+      if (!m.expiryDate) return null;
       const exp = new Date(m.expiryDate);
       const diffDays = Math.ceil((exp - now) / (1000 * 60 * 60 * 24));
-      return diffDays <= 60;
-    });
+      return {
+        ...m,
+        alertId: `MOU_EXPIRY_${m.mouNumber || m.id}`,
+        daysRemaining: diffDays
+      };
+    }).filter(m => m && m.daysRemaining <= 60);
   }, [mous]);
 
   // Pending Publications
@@ -94,19 +98,31 @@ export default function AlertsCenterView({ currentUser, onNavigate }) {
               <CheckCircle2 size={16} /> All active institutional MoUs are within compliant validity windows.
             </div>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               {expiringMous.map(m => (
-                <div key={m.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem 1rem', background: '#FFFBEB', borderRadius: '8px', border: '1px solid #FDE68A' }}>
+                <div key={m.alertId} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.85rem 1.1rem', background: '#FFFBEB', borderRadius: '10px', border: '1px solid #FDE68A' }}>
                   <div>
-                    <div style={{ fontWeight: 800, color: '#92400E', fontSize: '0.84rem' }}>{m.organization}</div>
-                    <div style={{ fontSize: '0.72rem', color: '#B45309' }}>Department: {m.department} • Expiry: {m.expiryDate}</div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ fontSize: '0.68rem', fontWeight: 800, color: '#92400E', background: '#FEF3C7', padding: '0.1rem 0.4rem', borderRadius: '4px', border: '1px solid #FCD34D' }}>
+                        MoU Expiration Notice
+                      </span>
+                      <span style={{ fontSize: '0.72rem', color: '#B45309', fontWeight: 700 }}>
+                        {m.daysRemaining > 0 ? `${m.daysRemaining} Days Remaining` : 'Expired'}
+                      </span>
+                    </div>
+                    <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.88rem', marginTop: '0.25rem' }}>
+                      {m.organization || m.partnerOrganization}
+                    </div>
+                    <div style={{ fontSize: '0.74rem', color: '#64748B', marginTop: '0.15rem' }}>
+                      Department: <strong>{m.department || 'Institution Level'}</strong> • Expiry Date: <strong>{m.expiryDate}</strong>
+                    </div>
                   </div>
                   <button
                     type="button"
                     onClick={() => onNavigate && onNavigate('mous-collaborations')}
-                    style={{ padding: '0.35rem 0.75rem', background: '#D97706', color: '#FFFFFF', borderRadius: '6px', border: 'none', fontSize: '0.74rem', fontWeight: 700, cursor: 'pointer' }}
+                    style={{ padding: '0.45rem 0.9rem', background: '#D97706', color: '#FFFFFF', borderRadius: '8px', border: 'none', fontSize: '0.76rem', fontWeight: 800, cursor: 'pointer', whiteSpace: 'nowrap' }}
                   >
-                    Renew Agreement
+                    Review MoU
                   </button>
                 </div>
               ))}

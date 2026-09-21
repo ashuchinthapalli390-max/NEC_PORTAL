@@ -404,10 +404,9 @@ export default function CompaniesVisitedManager({ currentUser, onDataChange }) {
               style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', background: '#FFFFFF', color: '#0F172A', fontWeight: 600 }}
             >
               <option value="ALL">All</option>
-              <option value="CYS">Cyber Security</option>
-              <option value="DS">Data Science</option>
-              <option value="AI">Artificial Intelligence</option>
-              <option value="AIML">AI & ML</option>
+              {ET_DEPARTMENTS.map(d => (
+                <option key={d.code} value={d.code}>{d.code}</option>
+              ))}
             </select>
 
             {/* Drive Type */}
@@ -466,9 +465,11 @@ export default function CompaniesVisitedManager({ currentUser, onDataChange }) {
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                <th style={{ padding: '0.85rem 1rem' }}>Company & Sector</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Drive Info</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Eligible ET Branches</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Company Name</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Sector / Type</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Drive Date</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Drive Mode</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Eligible Departments</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Roles Offered</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Selection Results</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Status</th>
@@ -478,7 +479,7 @@ export default function CompaniesVisitedManager({ currentUser, onDataChange }) {
             <tbody>
               {filteredVisits.length === 0 ? (
                 <tr>
-                  <td colSpan={7} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
+                  <td colSpan={9} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
                     No companies visited records found matching current criteria.
                   </td>
                 </tr>
@@ -489,23 +490,31 @@ export default function CompaniesVisitedManager({ currentUser, onDataChange }) {
                     style={{ borderBottom: '1px solid #F1F5F9', transition: 'background 0.15s ease' }}
                     className="hover:bg-slate-50"
                   >
-                    {/* Company */}
-                    <td style={{ padding: '0.85rem 1rem' }}>
+                    {/* Company Name */}
+                    <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                       <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.82rem' }}>
                         {visit.companyName}
                       </div>
+                    </td>
+
+                    {/* Sector / Type */}
+                    <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                       <div style={{ fontSize: '0.75rem', color: '#64748B' }}>
-                        {visit.sector} {visit.companyType ? `• ${visit.companyType}` : ''}
+                        {visit.sector || '—'} {visit.companyType ? `• ${visit.companyType}` : ''}
                       </div>
                     </td>
 
-                    {/* Drive Info */}
-                    <td style={{ padding: '0.85rem 1rem' }}>
+                    {/* Drive Date */}
+                    <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                       <div style={{ fontSize: '0.8rem', color: '#0F172A', fontWeight: 600 }}>
                         {visit.visitDate || 'Date TBD'}
                       </div>
-                      <div style={{ fontSize: '0.72rem', color: '#64748B' }}>
-                        {visit.driveType} ({visit.mode || 'In-Person'})
+                    </td>
+
+                    {/* Drive Mode */}
+                    <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                      <div style={{ fontSize: '0.75rem', color: '#475569' }}>
+                        {visit.driveType || '—'} {visit.mode ? `(${visit.mode})` : ''}
                       </div>
                     </td>
 

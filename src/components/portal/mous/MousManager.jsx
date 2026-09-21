@@ -270,35 +270,6 @@ export default function MousManager({ currentUser, onDataChange }) {
         } : null}
       />
 
-      {/* 2. Expiry Warning Banner if Any Expiring Soon */}
-      {stats.expiringSoon > 0 && (
-        <div style={{
-          padding: '0.85rem 1.25rem',
-          background: '#FEF3C7',
-          border: '1px solid #FDE68A',
-          borderRadius: '12px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          color: '#92400E'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <AlertTriangle size={18} style={{ color: '#D97706' }} />
-            <div>
-              <strong style={{ fontSize: '0.84rem' }}>{stats.expiringSoon} MoU Agreement(s) expiring within 60 days.</strong>
-              <div style={{ fontSize: '0.74rem' }}>Initiate bilateral renewal extensions or archive concluded partnerships for NAAC audit compliance.</div>
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={() => setSelectedStatus('EXPIRING_SOON')}
-            style={{ padding: '0.35rem 0.75rem', background: '#D97706', color: '#FFFFFF', border: 'none', borderRadius: '6px', fontSize: '0.74rem', fontWeight: 800, cursor: 'pointer' }}
-          >
-            Filter Expiring
-          </button>
-        </div>
-      )}
-
       {/* 3. Staggered Animated KPI Summary Cards */}
       <AnimatedKpiGrid minWidth="140px">
         <MotionKpiCard label="Total MoUs" value={stats.total} icon={Handshake} color="#0F172A" bg="#F8FAFC" />

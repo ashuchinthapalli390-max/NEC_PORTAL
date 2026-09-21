@@ -33,7 +33,7 @@ import {
   MotionButton,
   MotionModal
 } from '../../motion/index.js';
-import { ET_DEPARTMENTS } from '../../../data/masterData.js';
+import { ET_DEPARTMENTS, normalizeDepartment } from '../../../data/masterData.js';
 import { getCampusPlacements, saveCampusPlacement, deleteCampusPlacement, getStudents, exportToCSV, exportToPDF } from '../../../data/portalStore.js';
 import { formatDateDDMMYYYY, isDateInRange } from '../../../lib/ui/dateUtils.js';
 import ConfirmDeleteDialog from '../common/ConfirmDeleteDialog.jsx';
@@ -82,8 +82,8 @@ export default function CampusPlacementsManager({ currentUser, onDataChange }) {
       );
 
       const matchesAy = selectedAy === 'ALL' || p.academicYear === selectedAy;
-      const itemDept = p.department || p.departmentCode || '';
-      const matchesDept = selectedDept === 'ALL' || itemDept === selectedDept || itemDept.includes(selectedDept);
+      const itemDeptNorm = normalizeDepartment(p.department || p.departmentCode || '').canonicalCode;
+      const matchesDept = selectedDept === 'ALL' || itemDeptNorm === selectedDept;
       const matchesOfferType = selectedOfferType === 'ALL' || p.offerType === selectedOfferType || p.campusType === selectedOfferType;
       const matchesStatus = selectedStatus === 'ALL' || p.status === selectedStatus;
       const matchesDate = isDateInRange(p.placementDate || p.driveDate || p.offerDate, fromDate, toDate);
@@ -407,10 +407,9 @@ export default function CampusPlacementsManager({ currentUser, onDataChange }) {
               style={{ padding: '0.5rem 0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.78rem', background: '#FFFFFF', color: '#0F172A', fontWeight: 600 }}
             >
               <option value="ALL">All</option>
-              <option value="CYS">Cyber Security</option>
-              <option value="DS">Data Science</option>
-              <option value="AI">Artificial Intelligence</option>
-              <option value="AIML">AI & ML</option>
+              {ET_DEPARTMENTS.map(d => (
+                <option key={d.code} value={d.code}>{d.code}</option>
+              ))}
             </select>
 
             {/* Academic Year */}
@@ -506,19 +505,21 @@ export default function CampusPlacementsManager({ currentUser, onDataChange }) {
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                <th style={{ padding: '0.85rem 1rem' }}>Roll No & Student</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Department & AY</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Company & Role</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Roll Number</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Student Name</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Department</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Company</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Role</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Package (CTC)</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Campus Type</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Review / Status</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Placement Type</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Status</th>
                 <th style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
               {filteredPlacements.length === 0 ? (
                 <tr>
-                  <td colSpan={7} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
+                  <td colSpan={9} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
                     No campus placement records found matching current criteria.
                   </td>
                 </tr>
@@ -533,38 +534,43 @@ export default function CampusPlacementsManager({ currentUser, onDataChange }) {
                       style={{ borderBottom: '1px solid #F1F5F9', transition: 'background 0.15s ease' }}
                       className="hover:bg-slate-50"
                     >
-                      {/* Roll No & Student */}
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Roll Number */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.82rem' }}>
-                          {placement.studentRoll || 'N/A'}
+                          {placement.studentRoll || '—'}
                         </div>
-                        <div style={{ fontSize: '0.78rem', color: '#64748B' }}>
+                      </td>
+
+                      {/* Student Name */}
+                      <td style={{ padding: '0.85rem 1rem' }}>
+                        <div style={{ fontSize: '0.82rem', fontWeight: 600, color: '#1E293B' }}>
                           {placement.studentName || '—'}
                         </div>
                       </td>
 
-                      {/* Department & AY */}
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Department */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem' }}>
                           {placement.department || placement.departmentCode || '—'}
                         </span>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>
-                          {placement.academicYear || '—'}
+                      </td>
+
+                      {/* Company */}
+                      <td style={{ padding: '0.85rem 1rem' }}>
+                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem' }}>
+                          {placement.companyName || '—'}
                         </div>
                       </td>
 
-                      {/* Company & Role */}
+                      {/* Role */}
                       <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem' }}>
-                          {placement.companyName}
-                        </div>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>
+                        <div style={{ fontSize: '0.78rem', color: '#475569' }}>
                           {placement.role || '—'}
                         </div>
                       </td>
 
                       {/* Package */}
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         {placement.packageLpa != null ? (
                           <span style={{ fontWeight: 800, color: '#059669', fontSize: '0.82rem', background: '#ECFDF5', padding: '0.2rem 0.5rem', borderRadius: '4px', border: '1px solid #A7F3D0' }}>
                             ₹{placement.packageLpa} LPA
@@ -576,8 +582,8 @@ export default function CampusPlacementsManager({ currentUser, onDataChange }) {
                         )}
                       </td>
 
-                      {/* Campus Type */}
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Placement Type */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#475569' }}>
                           {placement.campusType || placement.offerType || 'On Campus'}
                         </span>

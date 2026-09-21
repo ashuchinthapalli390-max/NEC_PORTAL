@@ -11,6 +11,14 @@
  * Common -> Emerging Technologies / Institutional Common records
  */
 
+export const ET_DEPARTMENTS = [
+  { code: 'AIML', name: 'AIML', numberCode: '61' },
+  { code: 'CSE(AI)', name: 'CSE(AI)', numberCode: '43' },
+  { code: 'CSE(AIML)', name: 'CSE(AIML)', numberCode: '42' },
+  { code: 'CSE(CS)', name: 'CSE(CS)', numberCode: '46' },
+  { code: 'CSE(DS)', name: 'CSE(DS)', numberCode: '44' }
+];
+
 export const CANONICAL_DEPARTMENTS = {
   'CSE(AIML)': {
     code: 'CSE(AIML)',

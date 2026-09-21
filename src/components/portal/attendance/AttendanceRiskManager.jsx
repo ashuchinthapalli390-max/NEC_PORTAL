@@ -615,8 +615,10 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.82rem' }}>
               <thead>
                 <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.73rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                  <th style={{ padding: '0.75rem 1rem' }}>Student &amp; Roll No</th>
-                  <th style={{ padding: '0.75rem 1rem' }}>Cohort &amp; Dept</th>
+                  <th style={{ padding: '0.75rem 1rem' }}>Roll Number</th>
+                  <th style={{ padding: '0.75rem 1rem' }}>Student Name</th>
+                  <th style={{ padding: '0.75rem 1rem' }}>Department</th>
+                  <th style={{ padding: '0.75rem 1rem' }}>Cohort</th>
                   <th style={{ padding: '0.75rem 1rem' }}>Attendance %</th>
                   <th style={{ padding: '0.75rem 1rem' }}>Risk Level</th>
                   <th style={{ padding: '0.75rem 1rem' }}>Parent / Guardian</th>
@@ -627,7 +629,7 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
               <tbody>
                 {alertsList.length === 0 ? (
                   <tr>
-                    <td colSpan={7} style={{ padding: '3rem 1.5rem', textAlign: 'center', color: '#64748B' }}>
+                    <td colSpan={9} style={{ padding: '3rem 1.5rem', textAlign: 'center', color: '#64748B' }}>
                       {!hasAttendanceData ? (
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.4rem' }}>
                           <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '48px', height: '48px', borderRadius: '12px', background: '#F1F5F9', color: '#64748B', marginBottom: '0.4rem' }}>
@@ -674,36 +676,28 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
                   alertsList.map((alert) => (
                     <tr key={alert.id} style={{ borderBottom: '1px solid #F1F5F9' }} className="hover:bg-slate-50">
                       
-                      {/* Student Info */}
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                          <div style={{
-                            width: '34px',
-                            height: '34px',
-                            borderRadius: '8px',
-                            background: alert.riskSeverity === 'CRITICAL' ? '#FEE2E2' : (alert.riskSeverity === 'HIGH_RISK' ? '#FEF3C7' : '#EFF6FF'),
-                            color: alert.riskSeverity === 'CRITICAL' ? '#DC2626' : (alert.riskSeverity === 'HIGH_RISK' ? '#D97706' : '#2563EB'),
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontWeight: 800,
-                            fontSize: '0.76rem'
-                          }}>
-                            {alert.rollNumber.slice(-3)}
-                          </div>
-                          <div>
-                            <div style={{ fontWeight: 800, color: '#0F172A' }}>{alert.studentName}</div>
-                            <div style={{ fontSize: '0.72rem', color: '#64748B' }}>
-                              <span style={{ fontFamily: 'monospace', fontWeight: 700, color: '#D4AF37' }}>{alert.rollNumber}</span> • Reg: {alert.registrationNumber}
-                            </div>
-                          </div>
+                      {/* Roll Number */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontFamily: 'monospace', fontWeight: 800, color: '#0F172A', fontSize: '0.84rem' }}>
+                          {alert.rollNumber}
                         </div>
                       </td>
 
+                      {/* Student Name */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.84rem' }}>{alert.studentName}</div>
+                      </td>
+
+                      {/* Department */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontWeight: 700, color: '#334155' }}>{alert.department}</div>
+                      </td>
+
                       {/* Cohort */}
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ fontWeight: 700, color: '#334155' }}>{alert.department} • Year {alert.year}</div>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>Sem {alert.semester} | Sec {alert.section}</div>
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '0.76rem', color: '#475569' }}>
+                          Year {alert.year} | Sem {alert.semester} | Sec {alert.section}
+                        </div>
                       </td>
 
                       {/* Attendance % */}
@@ -1137,38 +1131,41 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.8rem' }}>
               <thead>
                 <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', textTransform: 'uppercase' }}>
-                  <th style={{ padding: '0.7rem 0.9rem' }}>Date &amp; Time</th>
-                  <th style={{ padding: '0.7rem 0.9rem' }}>Student &amp; Roll No</th>
+                  <th style={{ padding: '0.7rem 0.9rem' }}>Contact Date</th>
+                  <th style={{ padding: '0.7rem 0.9rem' }}>Roll Number</th>
                   <th style={{ padding: '0.7rem 0.9rem' }}>Guardian Contacted</th>
-                  <th style={{ padding: '0.7rem 0.9rem' }}>Method &amp; Outcome</th>
-                  <th style={{ padding: '0.7rem 0.9rem' }}>Discussion Notes &amp; Follow-up</th>
-                  <th style={{ padding: '0.7rem 0.9rem' }}>Staff / Mentor</th>
+                  <th style={{ padding: '0.7rem 0.9rem' }}>Contact Method</th>
+                  <th style={{ padding: '0.7rem 0.9rem' }}>Contact Outcome</th>
+                  <th style={{ padding: '0.7rem 0.9rem' }}>Discussion Notes</th>
+                  <th style={{ padding: '0.7rem 0.9rem' }}>Staff Counselor</th>
                 </tr>
               </thead>
               <tbody>
                 {contactsLedger.length === 0 ? (
                   <tr>
-                    <td colSpan={6} style={{ padding: '2rem', textAlign: 'center', color: '#64748B' }}>
+                    <td colSpan={7} style={{ padding: '2rem', textAlign: 'center', color: '#64748B' }}>
                       No parent contact logs recorded yet.
                     </td>
                   </tr>
                 ) : (
                   contactsLedger.map((log) => (
                     <tr key={log.id} style={{ borderBottom: '1px solid #F1F5F9' }}>
-                      <td style={{ padding: '0.75rem 0.9rem', color: '#64748B' }}>
+                      <td style={{ padding: '0.75rem 0.9rem', color: '#64748B', whiteSpace: 'nowrap' }}>
                         {formatDateDDMMYYYY(log.contactedAt)}
                       </td>
-                      <td style={{ padding: '0.75rem 0.9rem', fontWeight: 700, color: '#0F172A' }}>
+                      <td style={{ padding: '0.75rem 0.9rem', fontWeight: 700, color: '#0F172A', whiteSpace: 'nowrap' }}>
                         <span style={{ fontFamily: 'monospace', color: '#D4AF37' }}>{log.rollNumber}</span>
                       </td>
                       <td style={{ padding: '0.75rem 0.9rem' }}>
                         <div style={{ fontWeight: 700, color: '#0F172A' }}>{log.guardianName}</div>
                         <div style={{ fontSize: '0.72rem', color: '#64748B' }}>{maskPhoneNumber(log.phoneContacted)}</div>
                       </td>
-                      <td style={{ padding: '0.75rem 0.9rem' }}>
-                        <span style={{ background: '#EFF6FF', color: '#2563EB', padding: '0.15rem 0.45rem', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 700, marginRight: '0.3rem' }}>
+                      <td style={{ padding: '0.75rem 0.9rem', whiteSpace: 'nowrap' }}>
+                        <span style={{ background: '#EFF6FF', color: '#2563EB', padding: '0.15rem 0.45rem', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 700 }}>
                           {log.contactMethod}
                         </span>
+                      </td>
+                      <td style={{ padding: '0.75rem 0.9rem', whiteSpace: 'nowrap' }}>
                         {getStatusBadge(log.contactStatus)}
                       </td>
                       <td style={{ padding: '0.75rem 0.9rem', maxWidth: '280px', color: '#334155' }}>
@@ -1212,7 +1209,8 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
                   <th style={{ padding: '0.7rem 0.9rem' }}>Roll Number</th>
                   <th style={{ padding: '0.7rem 0.9rem' }}>Registration No</th>
                   <th style={{ padding: '0.7rem 0.9rem' }}>Full Name</th>
-                  <th style={{ padding: '0.7rem 0.9rem' }}>Dept / Year / Sec</th>
+                  <th style={{ padding: '0.7rem 0.9rem' }}>Department</th>
+                  <th style={{ padding: '0.7rem 0.9rem' }}>Cohort (Year / Sec)</th>
                   <th style={{ padding: '0.7rem 0.9rem' }}>Faculty Mentor</th>
                   <th style={{ padding: '0.7rem 0.9rem' }}>Status</th>
                 </tr>
@@ -1229,8 +1227,11 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
                     <td style={{ padding: '0.75rem 0.9rem', fontWeight: 700, color: '#0F172A' }}>
                       {st.fullName}
                     </td>
-                    <td style={{ padding: '0.75rem 0.9rem', color: '#334155' }}>
-                      {st.departmentCode} • {st.year} Year ({st.semester}) Sec {st.section}
+                    <td style={{ padding: '0.75rem 0.9rem', color: '#334155', fontWeight: 600 }}>
+                      {st.departmentCode}
+                    </td>
+                    <td style={{ padding: '0.75rem 0.9rem', color: '#64748B' }}>
+                      {st.year} Year ({st.semester}) Sec {st.section}
                     </td>
                     <td style={{ padding: '0.75rem 0.9rem', color: '#047857', fontWeight: 600 }}>
                       {st.mentorName || 'Unassigned'}

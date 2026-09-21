@@ -666,11 +666,13 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                <th style={{ padding: '0.85rem 1rem' }}>Event No. & Title</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Type</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Event Number</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Event Title</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Event Type</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Department</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Section</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Dates & Mode</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Event Date</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Delivery Mode</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Coordinator(s)</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Key Speaker / Expert</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Attendees</th>
@@ -682,7 +684,7 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
             <tbody>
               {filteredOfferings.length === 0 ? (
                 <tr>
-                  <td colSpan={11} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
+                  <td colSpan={13} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
                     No academic event offerings recorded matching current filters.
                   </td>
                 </tr>
@@ -695,63 +697,34 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
 
                   return (
                     <tr key={item.offeringId || item.id || idx} style={{ borderBottom: '1px solid #F1F5F9' }} className="hover:bg-slate-50">
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '280px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                          {(item.coverImageUrl || item.posterUrl) && (
-                            <div
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                const allImgs = [
-                                  ...(item.poster ? [{ src: item.poster.src, alt: item.poster.alt || item.title, caption: 'Official Poster' }] : []),
-                                  ...(item.gallery || []).map(g => ({ src: g.src, alt: g.alt || item.title, caption: g.caption }))
-                                ];
-                                if (allImgs.length > 0) openLightbox(allImgs, 0);
-                              }}
-                              title="Click to view verified event poster / media"
-                              style={{
-                                width: '38px',
-                                height: '38px',
-                                borderRadius: '6px',
-                                overflow: 'hidden',
-                                border: '1px solid #E2E8F0',
-                                flexShrink: 0,
-                                cursor: 'pointer',
-                                background: '#F8FAFC'
-                              }}
-                            >
-                              <NECImage
-                                src={item.coverImageUrl || item.posterUrl}
-                                alt={item.title}
-                                width={38}
-                                height={38}
-                                objectFit="cover"
-                                style={{ width: '100%', height: '100%' }}
-                              />
-                            </div>
-                          )}
-                          <div style={{ minWidth: 0, flex: 1 }}>
-                            <div style={{ fontSize: '0.7rem', color: '#D4AF37', fontWeight: 800 }}>
-                              {item.eventNumber || item.id}
-                            </div>
-                            <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                              {item.title || item.name}
-                            </div>
-                          </div>
+                      {/* Event Number */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '0.75rem', color: '#D4AF37', fontWeight: 800 }}>
+                          {item.eventNumber || item.id || '—'}
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#0369A1', background: '#E0F2FE', padding: '0.15rem 0.45rem', borderRadius: '4px', whiteSpace: 'nowrap' }}>
-                          {item.eventType}
+                      {/* Event Title */}
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '240px' }}>
+                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }} title={item.title || item.name}>
+                          {item.title || item.name || '—'}
+                        </div>
+                      </td>
+
+                      {/* Event Type */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#0369A1', background: '#E0F2FE', padding: '0.15rem 0.45rem', borderRadius: '4px' }}>
+                          {item.eventType || 'Workshop'}
                         </span>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem' }}>{item.departmentName}</span>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>Code: <strong>{item.department}</strong> • {item.academicYear}</div>
+                      {/* Department */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem' }}>{item.departmentName || item.department}</span>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Section */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <span style={{
                           padding: '0.2rem 0.55rem',
                           borderRadius: '6px',
@@ -759,8 +732,7 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
                           color: '#0F172A',
                           fontSize: '0.74rem',
                           fontWeight: 800,
-                          border: '1px solid #CBD5E1',
-                          whiteSpace: 'nowrap'
+                          border: '1px solid #CBD5E1'
                         }}>
                           Section {item.section}
                         </span>
@@ -771,12 +743,17 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
                         )}
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Event Date */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <div style={{ fontSize: '0.76rem', color: '#0F172A', fontWeight: 700 }}>
                           {formatDateDDMMYYYY(item.startDate)}
                         </div>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
-                          {item.mode} • {item.venue || 'Online'}
+                      </td>
+
+                      {/* Delivery Mode */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '0.74rem', color: '#475569' }}>
+                          {item.mode || 'Offline'} {item.venue ? `• ${item.venue}` : ''}
                         </div>
                       </td>
 

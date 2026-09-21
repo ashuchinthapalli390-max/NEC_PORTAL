@@ -297,11 +297,13 @@ export default function FacultyAchievementsManager({ currentUser, onDataChange }
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 <th style={{ padding: '0.85rem 1rem' }}>Faculty Member</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Department & AY</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Activity Type & Role</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Programme / Award Title</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Department</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Activity Type</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Participation Role</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Achievement Title</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Organized By</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Dates & Duration</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Dates</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Duration</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Status</th>
                 <th style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>Actions</th>
               </tr>
@@ -309,7 +311,7 @@ export default function FacultyAchievementsManager({ currentUser, onDataChange }
             <tbody>
               {filteredAchievements.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
+                  <td colSpan={10} style={{ padding: '3rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
                     No faculty achievement records found.
                   </td>
                 </tr>
@@ -321,42 +323,59 @@ export default function FacultyAchievementsManager({ currentUser, onDataChange }
 
                   return (
                     <tr key={item.id || idx} style={{ borderBottom: '1px solid #F1F5F9' }} className="hover:bg-slate-50">
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.82rem' }}>{item.facultyName}</div>
-                        <div style={{ fontSize: '0.74rem', color: '#64748B' }}>{item.designation || item.facultyId}</div>
+                      {/* Faculty Member */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontWeight: 800, color: '#0F172A', fontSize: '0.82rem' }}>{item.facultyName || '—'}</div>
+                        {item.designation && <div style={{ fontSize: '0.74rem', color: '#64748B' }}>{item.designation}</div>}
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem' }}>{item.department}</span>
-                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>{item.academicYear}</div>
+                      {/* Department */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem' }}>{item.department || '—'}</span>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Activity Type */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#0369A1', background: '#E0F2FE', padding: '0.15rem 0.45rem', borderRadius: '4px' }}>
                           {item.type || 'FDP'}
                         </span>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B', marginTop: '0.2rem' }}>
-                          Role: <strong>{item.participationRole || 'Participant'}</strong>
+                      </td>
+
+                      {/* Participation Role */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#334155' }}>
+                          {item.participationRole || 'Participant'}
+                        </span>
+                      </td>
+
+                      {/* Achievement Title */}
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '240px' }}>
+                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }} title={item.title}>
+                          {item.title || '—'}
                         </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem', maxWidth: '260px' }}>
-                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                          {item.title}
+                      {/* Organized By */}
+                      <td style={{ padding: '0.85rem 1rem', maxWidth: '200px' }}>
+                        <div style={{ fontSize: '0.78rem', color: '#0F172A', fontWeight: 600, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }} title={item.organizedBy}>
+                          {item.organizedBy || '—'}
                         </div>
+                        {item.venue && (
+                          <div style={{ fontSize: '0.7rem', color: '#64748B' }}>{item.venue}</div>
+                        )}
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem' }}>
-                        <div style={{ fontSize: '0.78rem', color: '#0F172A', fontWeight: 600 }}>{item.organizedBy}</div>
-                        <div style={{ fontSize: '0.7rem', color: '#64748B' }}>{item.venue || item.mode}</div>
-                      </td>
-
-                      <td style={{ padding: '0.85rem 1rem' }}>
+                      {/* Dates */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
                         <div style={{ fontSize: '0.76rem', color: '#0F172A', fontWeight: 700 }}>
-                          {item.startDate} to {item.endDate}
+                          {item.startDate ? `${item.startDate} to ${item.endDate || item.startDate}` : '—'}
                         </div>
-                        <div style={{ fontSize: '0.7rem', color: '#0284C7', fontWeight: 600 }}>
-                          {item.durationDays || 5} Days ({item.mode || 'Online'})
+                      </td>
+
+                      {/* Duration */}
+                      <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '0.75rem', color: '#475569' }}>
+                          {item.durationDays ? `${item.durationDays} Days` : (item.duration || '—')} {item.mode ? `(${item.mode})` : ''}
                         </div>
                       </td>
 

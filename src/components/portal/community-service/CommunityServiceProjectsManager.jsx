@@ -378,7 +378,7 @@ export default function CommunityServiceProjectsManager({ currentUser, onDataCha
                 <th style={{ padding: '0.85rem 1rem', minWidth: '220px' }}>Project Title</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '90px' }}>Department</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '85px' }}>Batch</th>
-                <th style={{ padding: '0.85rem 1rem', minWidth: '130px' }}>Location / Village</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '130px' }}>Location</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '150px' }}>Team Members</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '130px' }}>Faculty Guide</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '110px' }}>Evidence</th>
