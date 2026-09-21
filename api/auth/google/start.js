@@ -2,7 +2,8 @@ import https from 'https';
 import crypto from 'crypto';
 
 const USERS_SEED = [
-  { id: 'usr_superadmin', email: 'ashuchinthapalli3900@gmail.com', name: 'Ashu Chinthapalli', role: 'SUPER_ADMIN', status: 'Active', allowGoogle: true },
+  { id: 'usr_superadmin', email: 'ashuchinthapalli3900@gmail.com', secondaryEmails: ['varunparlapalli2008@gmail.com'], name: 'Ashu Chinthapalli', role: 'SUPER_ADMIN', status: 'Active', allowGoogle: true },
+  { id: 'usr_superadmin_varun', email: 'varunparlapalli2008@gmail.com', name: 'Varun Parlapalli', role: 'SUPER_ADMIN', status: 'Active', allowGoogle: true },
   { id: 'usr_principal', email: 'principal@nrtec.in', name: 'Dr. S. Venkateswarlu', role: 'ADMIN', status: 'Active', allowGoogle: true },
   { id: 'usr_hod_cse', email: 'hodcse@nrtec.in', name: 'Dr. S. N. Tirumala Rao', role: 'HOD', status: 'Active', allowGoogle: true },
   { id: 'usr_faculty_cse', email: 'faculty@nrtec.in', name: 'Dr. B. Jhansi Vazram', role: 'FACULTY', status: 'Active', allowGoogle: true },
@@ -88,7 +89,10 @@ export default async function handler(req, res) {
     }
 
     const cleanEmail = email.trim().toLowerCase();
-    const user = USERS_SEED.find(u => u.email.toLowerCase() === cleanEmail);
+    const user = USERS_SEED.find(u => 
+      u.email.toLowerCase() === cleanEmail ||
+      (Array.isArray(u.secondaryEmails) && u.secondaryEmails.some(e => e.toLowerCase() === cleanEmail))
+    );
 
     if (!user || user.status !== 'Active') {
       return res.status(401).json({

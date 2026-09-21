@@ -1,7 +1,8 @@
 import crypto from 'crypto';
 
 const USERS_SEED = [
-  { id: 'usr_superadmin', email: 'ashuchinthapalli3900@gmail.com', name: 'Ashu Chinthapalli', role: 'SUPER_ADMIN', label: 'Super Admin', dept: 'Management & Governance', status: 'Active' },
+  { id: 'usr_superadmin', email: 'ashuchinthapalli3900@gmail.com', secondaryEmails: ['varunparlapalli2008@gmail.com'], name: 'Ashu Chinthapalli', role: 'SUPER_ADMIN', label: 'Super Admin', dept: 'Management & Governance', status: 'Active' },
+  { id: 'usr_superadmin_varun', email: 'varunparlapalli2008@gmail.com', name: 'Varun Parlapalli', role: 'SUPER_ADMIN', label: 'Super Admin', dept: 'Management & Governance', status: 'Active' },
   { id: 'usr_principal', email: 'principal@nrtec.in', name: 'Dr. S. Venkateswarlu', role: 'ADMIN', label: 'College Admin', dept: 'Administration', status: 'Active' },
   { id: 'usr_hod_cse', email: 'hodcse@nrtec.in', name: 'Dr. S. N. Tirumala Rao', role: 'HOD', label: 'Head of Department', dept: 'CSE', status: 'Active' },
   { id: 'usr_faculty_cse', email: 'faculty@nrtec.in', name: 'Dr. B. Jhansi Vazram', role: 'FACULTY', label: 'Faculty Member', dept: 'CSE', status: 'Active' },

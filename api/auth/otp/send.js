@@ -2,7 +2,8 @@ import https from 'https';
 import crypto from 'crypto';
 
 const USERS_SEED = [
-  { id: 'usr_superadmin', email: 'ashuchinthapalli3900@gmail.com', name: 'Ashu Chinthapalli', role: 'SUPER_ADMIN', status: 'Active' },
+  { id: 'usr_superadmin', email: 'ashuchinthapalli3900@gmail.com', secondaryEmails: ['varunparlapalli2008@gmail.com'], name: 'Ashu Chinthapalli', role: 'SUPER_ADMIN', status: 'Active' },
+  { id: 'usr_superadmin_varun', email: 'varunparlapalli2008@gmail.com', name: 'Varun Parlapalli', role: 'SUPER_ADMIN', status: 'Active' },
   { id: 'usr_principal', email: 'principal@nrtec.in', name: 'Dr. S. Venkateswarlu', role: 'ADMIN', status: 'Active' },
   { id: 'usr_hod_cse', email: 'hodcse@nrtec.in', name: 'Dr. S. N. Tirumala Rao', role: 'HOD', status: 'Active' },
   { id: 'usr_faculty_cse', email: 'faculty@nrtec.in', name: 'Dr. B. Jhansi Vazram', role: 'FACULTY', status: 'Active' },
@@ -113,7 +114,11 @@ export default async function handler(req, res) {
 
     // Resolve user from pre-auth cookie or validated request
     if (reqEmail) {
-      targetUser = USERS_SEED.find(u => u.email.toLowerCase() === reqEmail.toLowerCase().trim());
+      const cleanReq = reqEmail.toLowerCase().trim();
+      targetUser = USERS_SEED.find(u => 
+        u.email.toLowerCase() === cleanReq ||
+        (Array.isArray(u.secondaryEmails) && u.secondaryEmails.some(e => e.toLowerCase() === cleanReq))
+      );
     } else if (cookies['nec_preauth']) {
       try {
         const [encoded, hmac] = cookies['nec_preauth'].split('.');

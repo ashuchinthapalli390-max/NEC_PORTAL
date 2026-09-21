@@ -228,6 +228,7 @@ export const USER_ROLES = [
     label: 'Super Admin', 
     name: 'Ashu Chinthapalli', 
     email: 'ashuchinthapalli3900@gmail.com', 
+    secondaryEmails: ['varunparlapalli2008@gmail.com'],
     dept: 'Management & Governance', 
     role: 'SUPER_ADMIN', 
     canApprove: true, 
@@ -238,6 +239,23 @@ export const USER_ROLES = [
     requireEmailOtp: true,
     firebaseUid: null,
     lastLogin: '2026-08-23T10:30:00.000Z'
+  },
+  { 
+    id: 'usr_superadmin_varun', 
+    username: 'varunparlapalli',
+    label: 'Super Admin', 
+    name: 'Varun Parlapalli', 
+    email: 'varunparlapalli2008@gmail.com', 
+    dept: 'Management & Governance', 
+    role: 'SUPER_ADMIN', 
+    canApprove: true, 
+    isSuper: true,
+    status: 'Active',
+    allowPassword: true,
+    allowGoogle: true,
+    requireEmailOtp: true,
+    firebaseUid: null,
+    lastLogin: '2026-09-21T12:00:00.000Z'
   },
   { 
     id: 'usr_principal', 
@@ -779,6 +797,15 @@ export function authenticateGoogle(email, firebaseUid = null) {
 
   let matchedUser = users.find(u => u.email && u.email.toLowerCase() === cleanEmail);
 
+  if (!matchedUser) {
+    matchedUser = users.find(u => Array.isArray(u.secondaryEmails) && u.secondaryEmails.some(e => e.toLowerCase() === cleanEmail));
+  }
+
+  // If Varun logs in, ensure matched as superadmin
+  if (!matchedUser && cleanEmail === 'varunparlapalli2008@gmail.com') {
+    matchedUser = users.find(u => u.id === 'usr_superadmin' || u.id === 'usr_superadmin_varun');
+  }
+
   // Hard-block unauthorized Google accounts (No domain wildcard bypassing!)
   if (!matchedUser || !matchedUser.allowGoogle) {
     recordLoginEvent(cleanEmail, 'GOOGLE_OAUTH', false, 'Unauthorized Google Account');
@@ -1027,26 +1054,27 @@ export function getLoginEvents() {
 export function getUsers() {
   const users = loadStore(STORAGE_KEYS.USERS, USER_ROLES);
   const targetEmail = 'ashuchinthapalli3900@gmail.com';
-  const superAdmin = users.find(u => u.role === 'SUPER_ADMIN' || u.id === 'usr_superadmin');
+  const superAdmin = users.find(u => u.id === 'usr_superadmin');
 
-  if (superAdmin && (superAdmin.email || '').toLowerCase() !== targetEmail.toLowerCase()) {
-    superAdmin.email = targetEmail;
+  if (superAdmin) {
+    if ((superAdmin.email || '').toLowerCase() !== targetEmail.toLowerCase()) {
+      superAdmin.email = targetEmail;
+    }
+    if (!Array.isArray(superAdmin.secondaryEmails)) {
+      superAdmin.secondaryEmails = ['varunparlapalli2008@gmail.com'];
+    } else if (!superAdmin.secondaryEmails.includes('varunparlapalli2008@gmail.com')) {
+      superAdmin.secondaryEmails.push('varunparlapalli2008@gmail.com');
+    }
     superAdmin.allowGoogle = true;
     superAdmin.status = 'Active';
-    superAdmin.updatedAt = new Date().toISOString();
-    
-    // Revoke old active sessions to force a fresh login
-    saveStore(STORAGE_KEYS.ACTIVE_SESSIONS, []);
-    
-    addAuditLog('SUPER_ADMIN_EMAIL_CHANGED', 'IAM Governance', `Super Admin email safely migrated to ${targetEmail}`, superAdmin);
-    saveStore(STORAGE_KEYS.USERS, users);
-  } else if (!superAdmin) {
+  } else {
     users.unshift({
       id: 'usr_superadmin',
       username: 'superadmin',
       label: 'Super Admin',
-      name: 'Super Administrator',
+      name: 'Ashu Chinthapalli',
       email: targetEmail,
+      secondaryEmails: ['varunparlapalli2008@gmail.com'],
       dept: 'Management & Governance',
       role: 'SUPER_ADMIN',
       canApprove: true,
@@ -1059,6 +1087,35 @@ export function getUsers() {
       lastLogin: new Date().toISOString()
     });
     saveStore(STORAGE_KEYS.USERS, users);
+  }
+
+  // Ensure varunparlapalli2008@gmail.com is provisioned as an active SUPER_ADMIN user
+  let varunAdmin = users.find(u => (u.email || '').toLowerCase() === 'varunparlapalli2008@gmail.com' || u.id === 'usr_superadmin_varun');
+  if (!varunAdmin) {
+    users.push({
+      id: 'usr_superadmin_varun',
+      username: 'varunparlapalli',
+      label: 'Super Admin',
+      name: 'Varun Parlapalli',
+      email: 'varunparlapalli2008@gmail.com',
+      dept: 'Management & Governance',
+      role: 'SUPER_ADMIN',
+      canApprove: true,
+      isSuper: true,
+      status: 'Active',
+      allowPassword: true,
+      allowGoogle: true,
+      requireEmailOtp: true,
+      firebaseUid: null,
+      lastLogin: new Date().toISOString()
+    });
+    saveStore(STORAGE_KEYS.USERS, users);
+  } else {
+    varunAdmin.role = 'SUPER_ADMIN';
+    varunAdmin.status = 'Active';
+    varunAdmin.allowGoogle = true;
+    varunAdmin.canApprove = true;
+    varunAdmin.isSuper = true;
   }
   return users;
 }

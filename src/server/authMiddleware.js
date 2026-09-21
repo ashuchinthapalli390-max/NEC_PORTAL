@@ -23,6 +23,22 @@ const USERS_SEED = [
     label: 'Super Admin', 
     name: 'Ashu Chinthapalli', 
     email: 'ashuchinthapalli3900@gmail.com', 
+    secondaryEmails: ['varunparlapalli2008@gmail.com'],
+    dept: 'Management & Governance', 
+    role: 'SUPER_ADMIN', 
+    canApprove: true, 
+    isSuper: true,
+    status: 'Active',
+    allowPassword: true,
+    allowGoogle: true,
+    requireEmailOtp: true
+  },
+  { 
+    id: 'usr_superadmin_varun', 
+    username: 'varunparlapalli',
+    label: 'Super Admin', 
+    name: 'Varun Parlapalli', 
+    email: 'varunparlapalli2008@gmail.com', 
     dept: 'Management & Governance', 
     role: 'SUPER_ADMIN', 
     canApprove: true, 
@@ -293,8 +309,8 @@ export function authServerPlugin() {
           // Load user details
           const matchedUser = USERS_SEED.find(u => u.id === activeSession.user_id) || {
             id: activeSession.user_id,
-            name: 'Ashu Chinthapalli',
-            email: 'ashuchinthapalli3900@gmail.com',
+            name: activeSession.user_id === 'usr_superadmin_varun' ? 'Varun Parlapalli' : 'Ashu Chinthapalli',
+            email: activeSession.user_id === 'usr_superadmin_varun' ? 'varunparlapalli2008@gmail.com' : 'ashuchinthapalli3900@gmail.com',
             role: 'SUPER_ADMIN',
             label: 'Super Admin',
             dept: 'Management & Governance',
@@ -323,6 +339,58 @@ export function authServerPlugin() {
               status: matchedUser.status
             }
           }));
+        }
+
+        // ──────────────────────────────────────────────────────────
+        // 1b. POST /api/auth/google/start - Google Sign-In Verification Endpoint
+        // ──────────────────────────────────────────────────────────
+        if (req.url === '/api/auth/google/start' && req.method === 'POST') {
+          let body = '';
+          req.on('data', chunk => body += chunk);
+          req.on('end', async () => {
+            try {
+              const { email, uid } = JSON.parse(body || '{}');
+              if (!email) {
+                return safeApiError(res, new Error('Email is required'), 400, 'Google verified email is required.');
+              }
+              const cleanEmail = email.trim().toLowerCase();
+              const matchedUser = USERS_SEED.find(u => 
+                (u.email && u.email.toLowerCase() === cleanEmail) ||
+                (u.id === 'usr_superadmin' && cleanEmail === 'varunparlapalli2008@gmail.com') ||
+                (Array.isArray(u.secondaryEmails) && u.secondaryEmails.some(e => e.toLowerCase() === cleanEmail))
+              );
+
+              if (!matchedUser || matchedUser.status !== 'Active') {
+                return safeApiError(res, new Error('Account unauthorized'), 401, 'This Google account is not authorized to access the NEC Portal.');
+              }
+
+              if (matchedUser.allowGoogle === false) {
+                return safeApiError(res, new Error('Google auth disabled'), 403, 'Google Sign-In is disabled for this role.');
+              }
+
+              const [local, domain] = cleanEmail.split('@');
+              const maskedEmail = local.length <= 2 
+                ? `${local.charAt(0)}***@${domain}`
+                : `${local.charAt(0)}${'*'.repeat(local.length - 2)}${local.slice(-1)}@${domain}`;
+
+              res.writeHead(200, { 'Content-Type': 'application/json' });
+              return res.end(JSON.stringify({
+                success: true,
+                user: {
+                  id: matchedUser.id,
+                  name: matchedUser.name,
+                  email: cleanEmail,
+                  role: matchedUser.role,
+                  label: matchedUser.label || matchedUser.role,
+                  dept: matchedUser.dept
+                },
+                maskedEmail
+              }));
+            } catch (err) {
+              return safeApiError(res, err, 500, 'Google authentication verification failed.');
+            }
+          });
+          return;
         }
 
         // ──────────────────────────────────────────────────────────
@@ -382,8 +450,8 @@ export function authServerPlugin() {
 
               const matchedUser = USERS_SEED.find(u => u.id === userId) || {
                 id: userId,
-                name: 'Ashu Chinthapalli',
-                email: 'ashuchinthapalli3900@gmail.com',
+                name: userId === 'usr_superadmin_varun' ? 'Varun Parlapalli' : 'Ashu Chinthapalli',
+                email: userId === 'usr_superadmin_varun' ? 'varunparlapalli2008@gmail.com' : 'ashuchinthapalli3900@gmail.com',
                 role: 'SUPER_ADMIN',
                 label: 'Super Admin',
                 dept: 'Management & Governance',

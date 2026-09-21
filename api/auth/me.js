@@ -5,6 +5,16 @@ const USERS_SEED = [
     id: 'usr_superadmin', 
     name: 'Ashu Chinthapalli', 
     email: 'ashuchinthapalli3900@gmail.com', 
+    secondaryEmails: ['varunparlapalli2008@gmail.com'],
+    dept: 'Management & Governance', 
+    role: 'SUPER_ADMIN', 
+    label: 'Super Admin',
+    status: 'Active'
+  },
+  { 
+    id: 'usr_superadmin_varun', 
+    name: 'Varun Parlapalli', 
+    email: 'varunparlapalli2008@gmail.com', 
     dept: 'Management & Governance', 
     role: 'SUPER_ADMIN', 
     label: 'Super Admin',

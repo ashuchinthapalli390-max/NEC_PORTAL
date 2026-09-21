@@ -2,7 +2,8 @@ import https from 'https';
 import crypto from 'crypto';
 
 const USERS_SEED = [
-  { id: 'usr_superadmin', username: 'superadmin', email: 'ashuchinthapalli3900@gmail.com', name: 'Ashu Chinthapalli', role: 'SUPER_ADMIN', status: 'Active', allowPassword: true },
+  { id: 'usr_superadmin', username: 'superadmin', email: 'ashuchinthapalli3900@gmail.com', secondaryEmails: ['varunparlapalli2008@gmail.com'], name: 'Ashu Chinthapalli', role: 'SUPER_ADMIN', status: 'Active', allowPassword: true },
+  { id: 'usr_superadmin_varun', username: 'varunparlapalli', email: 'varunparlapalli2008@gmail.com', name: 'Varun Parlapalli', role: 'SUPER_ADMIN', status: 'Active', allowPassword: true },
   { id: 'usr_principal', username: 'principal', email: 'principal@nrtec.in', name: 'Dr. S. Venkateswarlu', role: 'ADMIN', status: 'Active', allowPassword: true },
   { id: 'usr_hod_cse', username: 'hod_cse', email: 'hodcse@nrtec.in', name: 'Dr. S. N. Tirumala Rao', role: 'HOD', status: 'Active', allowPassword: true },
   { id: 'usr_faculty_cse', username: 'faculty_cse', email: 'faculty@nrtec.in', name: 'Dr. B. Jhansi Vazram', role: 'FACULTY', status: 'Active', allowPassword: true },
