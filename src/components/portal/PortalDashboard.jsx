@@ -82,7 +82,8 @@ import {
   getCommunityProjects,
   getStudentProjects,
   getNPTEL,
-  getStudents
+  getStudents,
+  getMemberships
 } from '../../data/portalStore.js';
 import { DEPARTMENTS, BRANDING_LOGOS } from '../../data/masterData.js';
 import MadamModulesCRUD from './MadamModulesCRUD.jsx';
@@ -206,33 +207,38 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
 
   // Centralized active alerts calculation for the top notification badge
   const activeAlertsCount = useMemo(() => {
-    const mous = getMoUs() || [];
-    const pubs = getPublications() || [];
-    const memberships = getMemberships() || [];
-    const now = new Date();
+    try {
+      const mous = (typeof getMoUs === 'function' ? getMoUs() : []) || [];
+      const pubs = (typeof getPublications === 'function' ? getPublications() : []) || [];
+      const memberships = (typeof getMemberships === 'function' ? getMemberships() : []) || [];
+      const now = new Date();
 
-    const expiringMous = mous.filter(m => {
-      if (!m.expiryDate) return false;
-      const exp = new Date(m.expiryDate);
-      const diffDays = Math.ceil((exp - now) / (1000 * 60 * 60 * 24));
-      return diffDays <= 60;
-    }).length;
+      const expiringMous = mous.filter(m => {
+        if (!m.expiryDate) return false;
+        const exp = new Date(m.expiryDate);
+        const diffDays = Math.ceil((exp - now) / (1000 * 60 * 60 * 24));
+        return diffDays <= 60;
+      }).length;
 
-    const pendingPubs = pubs.filter(p => 
-      p.verificationStatus === 'Pending Review' || 
-      p.verificationStatus === 'Submitted' || 
-      p.workflowStatus === 'SUBMITTED' || 
-      p.workflowStatus === 'UNDER_REVIEW'
-    ).length;
+      const pendingPubs = pubs.filter(p => 
+        p.verificationStatus === 'Pending Review' || 
+        p.verificationStatus === 'Submitted' || 
+        p.workflowStatus === 'SUBMITTED' || 
+        p.workflowStatus === 'UNDER_REVIEW'
+      ).length;
 
-    const expiringMemberships = memberships.filter(m => {
-      if (m.membershipType === 'Life' || !m.validTill) return false;
-      const exp = new Date(m.validTill);
-      const diffDays = Math.ceil((exp - now) / (1000 * 60 * 60 * 24));
-      return diffDays <= 90;
-    }).length;
+      const expiringMemberships = memberships.filter(m => {
+        if (m.membershipType === 'Life' || !m.validTill) return false;
+        const exp = new Date(m.validTill);
+        const diffDays = Math.ceil((exp - now) / (1000 * 60 * 60 * 24));
+        return diffDays <= 90;
+      }).length;
 
-    return expiringMous + pendingPubs + expiringMemberships;
+      return expiringMous + pendingPubs + expiringMemberships;
+    } catch (err) {
+      console.warn('Error calculating active alerts count:', err);
+      return 0;
+    }
   }, [dataVersion]);
 
   // Live Data Stores
