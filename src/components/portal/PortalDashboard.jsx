@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { routeVariants } from '../../lib/motion/variants.js';
 import { formatDateDDMMYYYY } from '../../lib/ui/dateUtils.js';
