@@ -553,7 +553,7 @@ export default function UniversalImportWizard({ initialModuleKey, currentUser, o
                   <th style={{ padding: '0.65rem 0.75rem' }}>Primary Record</th>
                   <th style={{ padding: '0.65rem 0.75rem' }}>Department</th>
                   <th style={{ padding: '0.65rem 0.75rem' }}>Validation Status</th>
-                  <th style={{ padding: '0.65rem 0.75rem' }}>Issues / Warnings</th>
+                  <th style={{ padding: '0.65rem 0.75rem' }}>Issues</th>
                   <th style={{ padding: '0.65rem 0.75rem', textAlign: 'right' }}>Actions</th>
                 </tr>
               </thead>

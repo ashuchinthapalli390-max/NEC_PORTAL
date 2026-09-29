@@ -550,7 +550,7 @@ export default function WorkshopsEventsView({ onAddEvent }) {
                   />
                 </th>
                 <th style={{ padding: '0.75rem 1rem' }}>Event Title</th>
-                <th style={{ padding: '0.75rem 1rem' }}>Speaker / Expert</th>
+                <th style={{ padding: '0.75rem 1rem' }}>Speaker</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Event Type</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Department</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Academic Year</th>

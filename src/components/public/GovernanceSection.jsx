@@ -223,8 +223,9 @@ export default function GovernanceSection() {
                   <tr style={{ background: '#0B192C', color: '#FFFFFF' }}>
                     <th style={{ padding: '1rem', fontWeight: 700 }}>#</th>
                     <th style={{ padding: '1rem', fontWeight: 700 }}>Council Member</th>
-                    <th style={{ padding: '1rem', fontWeight: 700 }}>Official Designation & Institution</th>
-                    <th style={{ padding: '1rem', fontWeight: 700 }}>Affiliation / Domain</th>
+                    <th style={{ padding: '1rem', fontWeight: 700 }}>Official Designation</th>
+                    <th style={{ padding: '1rem', fontWeight: 700 }}>Institution</th>
+                    <th style={{ padding: '1rem', fontWeight: 700 }}>Domain</th>
                     <th style={{ padding: '1rem', fontWeight: 700 }}>Council Role</th>
                   </tr>
                 </thead>
@@ -233,10 +234,8 @@ export default function GovernanceSection() {
                     <tr key={member.id} style={{ borderBottom: '1px solid #E2E8F0', background: idx % 2 === 0 ? '#FFFFFF' : '#F8FAFC' }}>
                       <td style={{ padding: '1rem', fontWeight: 600, color: '#64748B' }}>{idx + 1}</td>
                       <td style={{ padding: '1rem', fontWeight: 700, color: '#0B192C' }}>{member.name}</td>
-                      <td style={{ padding: '1rem', color: '#475569' }}>
-                        <div>{member.designation}</div>
-                        <div style={{ fontSize: '0.78rem', color: '#94A3B8' }}>{member.organization}</div>
-                      </td>
+                      <td style={{ padding: '1rem', color: '#475569' }}>{member.designation}</td>
+                      <td style={{ padding: '1rem', color: '#64748B' }}>{member.organization}</td>
                       <td style={{ padding: '1rem' }}>
                         <span className="badge badge-navy">{member.department}</span>
                       </td>

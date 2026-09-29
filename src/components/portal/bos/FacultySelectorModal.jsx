@@ -127,7 +127,7 @@ export default function FacultySelectorModal({
               background: '#FFFFFF'
             }}
           >
-            <option value="ALL">All Departments</option>
+            <option value="ALL">All</option>
             {DEPARTMENTS.map(d => <option key={d.code} value={d.code}>{d.name} ({d.code})</option>)}
           </select>
         </div>

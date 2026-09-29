@@ -442,7 +442,7 @@ export default function PublicationsManager({ currentUser, onDataChange, onOpenS
                 <th style={{ padding: '0.85rem 1rem', minWidth: '130px' }}>Publication ID</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '220px' }}>Publication Title</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '110px' }}>Type</th>
-                <th style={{ padding: '0.85rem 1rem', minWidth: '160px' }}>Venue / Journal</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '160px' }}>Venue</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '140px' }}>Authors</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Department</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '110px' }}>DOI</th>

@@ -414,14 +414,14 @@ export default function NptelCertificationsManager({ currentUser, onDataChange }
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 <th style={{ padding: '0.85rem 1rem' }}>Learner Name</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Roll / Employee No</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Roll Number</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Department</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Category</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Platform</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Course Title</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Duration</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Score (%)</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Grade / Badge</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Certificate Grade</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Credits</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Certificate</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Approval</th>

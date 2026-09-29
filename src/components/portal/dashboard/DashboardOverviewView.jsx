@@ -247,8 +247,8 @@ export default function DashboardOverviewView({
       },
       {
         title: 'Unique Students',
-        value: uniqueStudentsCount || 1090,
-        subtext: `${uniqueStudentsCount || 1090} active student roster`,
+        value: uniqueStudentsCount,
+        subtext: uniqueStudentsCount > 0 ? `${uniqueStudentsCount} active student roster` : 'No students imported yet',
         icon: GraduationCap,
         color: '#0EA5E9',
         bg: 'rgba(14, 165, 233, 0.1)',
@@ -297,8 +297,8 @@ export default function DashboardOverviewView({
       },
       {
         title: 'NPTEL Certified Students',
-        value: uniqueNptelCount || nptelCount || 605,
-        subtext: `${uniqueNptelCount || nptelCount || 605} certified candidates`,
+        value: uniqueNptelCount || nptelCount,
+        subtext: (uniqueNptelCount || nptelCount) > 0 ? `${uniqueNptelCount || nptelCount} certified candidates` : 'No certifications imported yet',
         icon: Award,
         color: '#EC4899',
         bg: 'rgba(236, 72, 153, 0.1)',

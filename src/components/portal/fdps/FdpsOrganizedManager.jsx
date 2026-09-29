@@ -584,7 +584,7 @@ export default function FdpsOrganizedManager({ currentUser, onDataChange }) {
                   <th style={{ padding: '0.85rem 1rem' }}>Faculty Member</th>
                   <th style={{ padding: '0.85rem 1rem' }}>Department</th>
                   <th style={{ padding: '0.85rem 1rem' }}>Program Title</th>
-                  <th style={{ padding: '0.85rem 1rem' }}>Organizer / Venue</th>
+                  <th style={{ padding: '0.85rem 1rem' }}>Organizer</th>
                   <th style={{ padding: '0.85rem 1rem' }}>Event Dates</th>
                   <th style={{ padding: '0.85rem 1rem' }}>Duration</th>
                   <th style={{ padding: '0.85rem 1rem' }}>Score (%)</th>

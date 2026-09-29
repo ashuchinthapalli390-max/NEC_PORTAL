@@ -81,7 +81,7 @@ export function RecycleBin({ currentUser, onRestoreSuccess }) {
             <tr style={{ background: '#0B192C', color: '#FFFFFF' }}>
               <th style={{ padding: '0.8rem' }}>Original ID</th>
               <th style={{ padding: '0.8rem' }}>Module</th>
-              <th style={{ padding: '0.8rem' }}>Record Title / Detail</th>
+              <th style={{ padding: '0.8rem' }}>Record Title</th>
               <th style={{ padding: '0.8rem' }}>Deleted By</th>
               <th style={{ padding: '0.8rem' }}>Deleted At</th>
               <th style={{ padding: '0.8rem', textAlign: 'right' }}>Restore</th>
@@ -169,10 +169,10 @@ export function AuditLogViewer() {
           <thead>
             <tr style={{ background: '#0B192C', color: '#FFFFFF' }}>
               <th style={{ padding: '0.8rem' }}>Timestamp</th>
-              <th style={{ padding: '0.8rem' }}>User / Role</th>
+              <th style={{ padding: '0.8rem' }}>User</th>
               <th style={{ padding: '0.8rem' }}>Action Type</th>
               <th style={{ padding: '0.8rem' }}>Module</th>
-              <th style={{ padding: '0.8rem' }}>Action Summary / Changes</th>
+              <th style={{ padding: '0.8rem' }}>Summary</th>
             </tr>
           </thead>
           <tbody>

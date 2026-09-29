@@ -78,6 +78,20 @@ export function createStudentRegistry() {
     return studentsMap.get(normalizeRollNumber(roll)) || null;
   }
 
+  function matchStudentByName(name, dept = null) {
+    if (!name || typeof name !== 'string') return null;
+    const clean = name.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (clean.length < 3) return null;
+    for (const student of studentsMap.values()) {
+      if (dept && student.department && student.department !== dept) continue;
+      const sName = (student.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (sName === clean || (sName.length > 5 && (sName.includes(clean) || clean.includes(sName)))) {
+        return student;
+      }
+    }
+    return null;
+  }
+
   function getAllStudents() {
     return Array.from(studentsMap.values()).map(s => ({
       ...s,
@@ -88,6 +102,7 @@ export function createStudentRegistry() {
   return {
     reconcileStudent,
     getStudent,
+    matchStudentByName,
     getAllStudents,
     count: () => studentsMap.size
   };

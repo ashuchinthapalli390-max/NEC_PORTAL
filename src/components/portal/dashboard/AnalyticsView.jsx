@@ -103,7 +103,7 @@ export default function AnalyticsView({ currentUser, onNavigate }) {
           { label: 'Governance' },
           { label: 'Executive Analytics' }
         ]}
-        title="Institutional Velocity & Performance Analytics"
+        title="Institutional Performance Analytics"
         subtitle="Cross-departmental research indexing, unique patent applications, MoUs, faculty achievements, and accreditation indices."
         onExportCSV={() => exportToCSV('analytics_overview')}
         onExportExcel={() => exportToExcel('analytics_overview')}
@@ -178,7 +178,7 @@ export default function AnalyticsView({ currentUser, onNavigate }) {
         />
       </AnimatedKpiGrid>
 
-      {/* 3. Departmental Velocity Leaderboard across 5 ET Departments */}
+      {/* 3. Departmental Activity Leaderboard across 5 ET Departments */}
       <div style={{ background: '#FFFFFF', borderRadius: '16px', border: '1px solid #E2E8F0', padding: '1.25rem', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem', flexWrap: 'wrap', gap: '0.5rem' }}>
           <div>
@@ -202,7 +202,7 @@ export default function AnalyticsView({ currentUser, onNavigate }) {
                 <th style={{ padding: '0.75rem 1rem' }}>Publications</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Patents</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Memberships</th>
-                <th style={{ padding: '0.75rem 1rem' }}>NPTEL / MOOC</th>
+                <th style={{ padding: '0.75rem 1rem' }}>NPTEL MOOCs</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Internships</th>
                 <th style={{ padding: '0.75rem 1rem', textAlign: 'right' }}>Total Verified Records</th>
               </tr>

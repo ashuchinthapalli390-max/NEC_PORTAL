@@ -169,7 +169,7 @@ export default function StaffProfilesManager({ currentUser }) {
           onChange={(e) => setDeptFilter(e.target.value)}
           style={{ padding: '0.55rem 0.8rem', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '0.82rem', background: '#FFFFFF' }}
         >
-          <option value="ALL">All Departments</option>
+          <option value="ALL">All</option>
           {DEPARTMENTS.map(d => <option key={d.code} value={d.code}>{d.name} ({d.code})</option>)}
           <option value="Administration">Central Administration</option>
           <option value="Examinations">Exam Cell</option>

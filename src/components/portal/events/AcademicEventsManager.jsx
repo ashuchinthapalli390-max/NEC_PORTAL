@@ -674,7 +674,7 @@ export default function AcademicEventsManager({ currentUser, onDataChange, initi
                 <th style={{ padding: '0.85rem 1rem' }}>Event Date</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Delivery Mode</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Coordinator(s)</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Key Speaker / Expert</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Speaker</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Attendees</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Event Status</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Approval</th>

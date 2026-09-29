@@ -433,7 +433,7 @@ export default function StudentAchievementsManager({ currentUser, onDataChange }
                 <th style={{ padding: '0.85rem 1rem' }}>Organizing Event</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Category</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Level</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Award / Prize</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Award</th>
                 <th style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>Date</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Status</th>
                 <th style={{ padding: '0.85rem 1rem', textAlign: 'right' }}>Actions</th>

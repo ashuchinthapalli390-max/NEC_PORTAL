@@ -514,7 +514,7 @@ export default function MouWizardModal({
               </motion.div>
             )}
 
-            {/* ──────── STEP 3: SCOPE & COORDINATORS ──────── */}
+            {/* ──────── STEP 3: SCOPE & DELIVERABLES ──────── */}
             {currentStep === 3 && (
               <motion.div key="step3" initial={{ opacity: 0, x: 15 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -15 }} style={{ display: 'flex', flexDirection: 'column', gap: '1.15rem' }}>
                 <div>

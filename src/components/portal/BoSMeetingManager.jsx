@@ -1010,9 +1010,9 @@ export default function BoSMeetingManager({ currentUser, onDataChange }) {
                           <tr style={{ background: '#0F172A', color: '#FFFFFF', textAlign: 'left' }}>
                             <th style={{ padding: '0.6rem 0.75rem', width: '35px', textAlign: 'center' }}>#</th>
                             <th style={{ padding: '0.6rem 0.75rem' }}>Member Name</th>
-                            <th style={{ padding: '0.6rem 0.75rem' }}>Role / Category</th>
+                            <th style={{ padding: '0.6rem 0.75rem' }}>Role</th>
                             <th style={{ padding: '0.6rem 0.75rem' }}>Designation</th>
-                            <th style={{ padding: '0.6rem 0.75rem' }}>Institution / Organization</th>
+                            <th style={{ padding: '0.6rem 0.75rem' }}>Organization</th>
                           </tr>
                         </thead>
                         <tbody>

@@ -79,7 +79,7 @@ export function importCspProjects(cspWorkbooks, pdfCatalog, studentRegistry, fac
         batchYear = String(batchYear);
 
         // Titles and guides - NO fabricated generic strings
-        const title = (currentDomain && currentDomain.length > 2) ? currentDomain : 'Community Service Project';
+        const title = (currentDomain && currentDomain.length > 2) ? currentDomain : 'Title not recorded';
         const location = (currentLocation && currentLocation.length > 2) ? currentLocation : 'Not recorded';
 
         // Reconcile faculty guide
@@ -116,7 +116,7 @@ export function importCspProjects(cspWorkbooks, pdfCatalog, studentRegistry, fac
         let groupKey = null;
         if (currentBatchNo) {
           groupKey = `BATCH_${deptMeta.canonicalCode}_${batchYear}_${path.basename(filePath)}_${sheetName}_${currentBatchNo}`;
-        } else if (title !== 'Community Service Project' && title.length > 5) {
+        } else if (title !== 'Title not recorded' && title.length > 5) {
           groupKey = `TITLE_${deptMeta.canonicalCode}_${batchYear}_${title.toLowerCase().replace(/[^a-z0-9]/g, '')}`;
         }
 
@@ -145,7 +145,7 @@ export function importCspProjects(cspWorkbooks, pdfCatalog, studentRegistry, fac
         // If student was already seen in another file, update their record with more specific metadata
         if (studentToProject.has(normRoll)) {
           const existing = studentToProject.get(normRoll);
-          if (title !== 'Community Service Project' && existing.title === 'Community Service Project') {
+          if (title !== 'Title not recorded' && existing.title === 'Title not recorded') {
             existing.title = title;
           }
           if (facultyGuideName !== 'Not recorded' && existing.facultyGuideName === 'Not recorded') {

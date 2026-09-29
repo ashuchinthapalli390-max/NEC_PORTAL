@@ -1866,29 +1866,29 @@ export function getDatasetVersions() {
 
     if (v.source === 'OPENALEX') {
       const matchedPubs = publications.filter(p => p.sources?.includes('OPENALEX') || !!p.openalexWorkId);
-      relevantCount = matchedPubs.length;
-      verifiedCount = matchedPubs.filter(p => p.workflowStatus === 'APPROVED' && p.matchStatus === 'VERIFIED_NEC_MATCH').length;
+      relevantCount = matchedPubs.length > 0 ? matchedPubs.length : (v.relevantRecordCount || 0);
+      verifiedCount = matchedPubs.filter(p => p.workflowStatus === 'APPROVED' && p.matchStatus === 'VERIFIED_NEC_MATCH').length || (v.relevantWorksCount || 0);
       possibleMatchCount = matchedPubs.filter(p => p.matchStatus === 'POSSIBLE_NEC_MATCH').length;
       unresolvedCount = matchedPubs.filter(p => p.authors?.some(a => a.matchStatus === 'UNRESOLVED')).length;
     } else if (v.source === 'CROSSREF') {
       const matchedPubs = publications.filter(p => p.sources?.includes('CROSSREF') || !!p.doi);
-      relevantCount = matchedPubs.length;
-      verifiedCount = matchedPubs.filter(p => p.workflowStatus === 'APPROVED').length;
+      relevantCount = matchedPubs.length > 0 ? matchedPubs.length : (v.relevantRecordCount || 0);
+      verifiedCount = matchedPubs.filter(p => p.workflowStatus === 'APPROVED').length || (v.relevantWorksCount || 0);
       possibleMatchCount = matchedPubs.filter(p => p.workflowStatus !== 'APPROVED').length;
     } else if (v.source === 'ORCID') {
       const orcidFaculty = profiles.filter(p => !!p.orcid && p.orcidVerified);
-      relevantCount = orcidFaculty.length;
-      verifiedCount = orcidFaculty.length;
+      relevantCount = orcidFaculty.length > 0 ? orcidFaculty.length : (v.relevantRecordCount || 0);
+      verifiedCount = orcidFaculty.length > 0 ? orcidFaculty.length : (v.relevantWorksCount || 0);
       possibleMatchCount = profiles.filter(p => !!p.orcid && !p.orcidVerified).length;
     } else if (v.source === 'SCOPUS_IMPORT' || v.source === 'SCOPUS') {
       const scopusPubs = publications.filter(p => p.sources?.includes('SCOPUS_IMPORT') || p.isScopusIndexed || !!p.scopusEid);
-      relevantCount = scopusPubs.length;
-      verifiedCount = scopusPubs.filter(p => p.workflowStatus === 'APPROVED').length;
+      relevantCount = scopusPubs.length > 0 ? scopusPubs.length : (v.relevantRecordCount || 0);
+      verifiedCount = scopusPubs.filter(p => p.workflowStatus === 'APPROVED').length || (v.relevantWorksCount || 0);
       possibleMatchCount = scopusPubs.filter(p => p.workflowStatus === 'IMPORTED_PENDING_REVIEW').length;
     } else if (v.source === 'WOS_IMPORT' || v.source === 'WOS') {
       const wosPubs = publications.filter(p => p.sources?.includes('WOS_IMPORT') || p.isWosIndexed || !!p.wosUid);
-      relevantCount = wosPubs.length;
-      verifiedCount = wosPubs.filter(p => p.workflowStatus === 'APPROVED').length;
+      relevantCount = wosPubs.length > 0 ? wosPubs.length : (v.relevantRecordCount || 0);
+      verifiedCount = wosPubs.filter(p => p.workflowStatus === 'APPROVED').length || (v.relevantWorksCount || 0);
       possibleMatchCount = wosPubs.filter(p => p.workflowStatus === 'IMPORTED_PENDING_REVIEW').length;
     }
 

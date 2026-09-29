@@ -406,7 +406,7 @@ export default function MousManager({ currentUser, onDataChange }) {
                   <th style={{ padding: '0.85rem 1rem', minWidth: '110px' }}>Department</th>
                   <th style={{ padding: '0.85rem 1rem', minWidth: '180px' }}>Agreement Purpose</th>
                   <th style={{ padding: '0.85rem 1rem', minWidth: '100px' }}>Signed Date</th>
-                  <th style={{ padding: '0.85rem 1rem', minWidth: '110px' }}>Expiry / Validity</th>
+                  <th style={{ padding: '0.85rem 1rem', minWidth: '110px' }}>Validity</th>
                   <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Activities</th>
                   <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Status</th>
                   <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Approval</th>

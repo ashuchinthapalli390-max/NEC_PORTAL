@@ -621,7 +621,7 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
                   <th style={{ padding: '0.75rem 1rem' }}>Cohort</th>
                   <th style={{ padding: '0.75rem 1rem' }}>Attendance %</th>
                   <th style={{ padding: '0.75rem 1rem' }}>Risk Level</th>
-                  <th style={{ padding: '0.75rem 1rem' }}>Parent / Guardian</th>
+                  <th style={{ padding: '0.75rem 1rem' }}>Parent Contact</th>
                   <th style={{ padding: '0.75rem 1rem' }}>Contact Status</th>
                   <th style={{ padding: '0.75rem 1rem', textAlign: 'right' }}>Actions</th>
                 </tr>
@@ -1063,7 +1063,7 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
                     <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', textTransform: 'uppercase' }}>
                       <th style={{ padding: '0.65rem 0.85rem' }}>Roll Number</th>
                       <th style={{ padding: '0.65rem 0.85rem' }}>Student Master Match</th>
-                      <th style={{ padding: '0.65rem 0.85rem' }}>Conducted / Attended</th>
+                      <th style={{ padding: '0.65rem 0.85rem' }}>Attended vs Conducted</th>
                       <th style={{ padding: '0.65rem 0.85rem' }}>Calculated %</th>
                       <th style={{ padding: '0.65rem 0.85rem' }}>Risk Severity</th>
                       <th style={{ padding: '0.65rem 0.85rem' }}>Guardian Linkage</th>
@@ -1210,7 +1210,7 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
                   <th style={{ padding: '0.7rem 0.9rem' }}>Registration No</th>
                   <th style={{ padding: '0.7rem 0.9rem' }}>Full Name</th>
                   <th style={{ padding: '0.7rem 0.9rem' }}>Department</th>
-                  <th style={{ padding: '0.7rem 0.9rem' }}>Cohort (Year / Sec)</th>
+                  <th style={{ padding: '0.7rem 0.9rem' }}>Cohort</th>
                   <th style={{ padding: '0.7rem 0.9rem' }}>Faculty Mentor</th>
                   <th style={{ padding: '0.7rem 0.9rem' }}>Status</th>
                 </tr>
@@ -1420,7 +1420,7 @@ export default function AttendanceRiskManager({ currentUser, onDataChange }) {
                   <thead>
                     <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569' }}>
                       <th style={{ padding: '0.55rem 0.75rem' }}>Subject Name</th>
-                      <th style={{ padding: '0.55rem 0.75rem' }}>Attended / Total</th>
+                      <th style={{ padding: '0.55rem 0.75rem' }}>Attended Total</th>
                       <th style={{ padding: '0.55rem 0.75rem', textAlign: 'right' }}>Attendance %</th>
                     </tr>
                   </thead>

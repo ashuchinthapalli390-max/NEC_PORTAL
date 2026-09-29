@@ -124,7 +124,7 @@ export default function AliasMappingsView({ currentUser }) {
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem', textAlign: 'left' }}>
           <thead>
             <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', textTransform: 'uppercase' }}>
-              <th style={{ padding: '0.75rem 1rem' }}>Source Alias / Raw Notation</th>
+              <th style={{ padding: '0.75rem 1rem' }}>Source Notation</th>
               <th style={{ padding: '0.75rem 1rem' }}>Target Official Entity</th>
               <th style={{ padding: '0.75rem 1rem' }}>Module Scope</th>
               <th style={{ padding: '0.75rem 1rem' }}>Status</th>

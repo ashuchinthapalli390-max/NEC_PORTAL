@@ -342,14 +342,13 @@ export default function PatentsManager({ currentUser, onDataChange }) {
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '1050px' }}>
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                <th style={{ padding: '0.85rem 1rem', minWidth: '130px' }}>Patent ID</th>
-                <th style={{ padding: '0.85rem 1rem', minWidth: '220px' }}>Patent Title</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '140px' }}>Application Number</th>
-                <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Department</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '240px' }}>Patent Title</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '150px' }}>Inventors</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Department</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Filing Date</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '105px' }}>Publication Date</th>
-                <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Legal Status</th>
+                <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Status</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Documents</th>
                 <th style={{ padding: '0.85rem 1rem', minWidth: '95px' }}>Approval</th>
                 <th style={{ padding: '0.85rem 1rem', textAlign: 'right', minWidth: '85px' }}>Actions</th>
@@ -358,7 +357,7 @@ export default function PatentsManager({ currentUser, onDataChange }) {
             <tbody>
               {filteredPatents.length === 0 ? (
                 <tr>
-                  <td colSpan={11} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
+                  <td colSpan={10} style={{ padding: '3.5rem 1rem', textAlign: 'center', color: '#94A3B8', fontSize: '0.85rem' }}>
                     No patent records found matching current filters.
                   </td>
                 </tr>
@@ -372,32 +371,21 @@ export default function PatentsManager({ currentUser, onDataChange }) {
 
                   return (
                     <tr key={item.id || idx} style={{ borderBottom: '1px solid #F1F5F9' }} className="hover:bg-slate-50">
-                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
-                        <span className="record-code" style={{ color: '#0F172A', background: '#F8FAFC', padding: '0.2rem 0.45rem', borderRadius: '4px', border: '1px solid #E2E8F0' }}>
-                          {item.patentRecordNumber || item.id}
-                        </span>
-                        <div style={{ fontSize: '0.68rem', color: '#64748B', marginTop: '0.15rem' }}>
-                          {item.patentType}
-                        </div>
-                      </td>
-
-                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top', maxWidth: '280px' }}>
-                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem', lineHeight: 1.35 }}>
-                          {item.title}
-                        </div>
-                      </td>
-
                       {/* Application Number */}
                       <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top', whiteSpace: 'nowrap' }}>
                         <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#0F172A', fontFamily: 'monospace' }}>
                           {item.applicationNumber || '—'}
                         </div>
+                        <div style={{ fontSize: '0.68rem', color: '#64748B', marginTop: '0.15rem' }}>
+                          {item.patentType}
+                        </div>
                       </td>
 
-                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
-                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem', background: '#F1F5F9', padding: '0.15rem 0.45rem', borderRadius: '4px' }}>
-                          {item.department}
-                        </span>
+                      {/* Patent Title */}
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top', maxWidth: '280px' }}>
+                        <div style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.82rem', lineHeight: 1.35 }}>
+                          {item.title}
+                        </div>
                       </td>
 
                       {/* Inventors */}
@@ -428,18 +416,28 @@ export default function PatentsManager({ currentUser, onDataChange }) {
                         </div>
                       </td>
 
+                      {/* Department */}
+                      <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
+                        <span style={{ fontWeight: 700, color: '#0F172A', fontSize: '0.8rem', background: '#F1F5F9', padding: '0.15rem 0.45rem', borderRadius: '4px' }}>
+                          {item.department}
+                        </span>
+                      </td>
+
+                      {/* Filing Date */}
                       <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
                         <div style={{ fontSize: '0.78rem', color: '#475569', fontWeight: 600 }}>
                           {item.filingDate || '—'}
                         </div>
                       </td>
 
+                      {/* Publication Date */}
                       <td style={{ padding: '0.85rem 1rem', verticalAlign: 'top' }}>
                         <div style={{ fontSize: '0.78rem', color: '#0F172A', fontWeight: 600 }}>
                           {item.publicationDate || '—'}
                         </div>
                       </td>
 
+                      {/* Status */}
                       <td style={{ padding: '0.85rem 1rem' }}>
                         <span style={{
                           fontSize: '0.68rem',

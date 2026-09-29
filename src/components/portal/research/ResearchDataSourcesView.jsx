@@ -1271,7 +1271,7 @@ export default function ResearchDataSourcesView({ currentUser }) {
                 onChange={(e) => setExplorerDeptFilter(e.target.value)}
                 style={{ padding: '0.4rem 0.7rem', borderRadius: '6px', border: '1px solid #CBD5E1', fontSize: '0.76rem', background: '#FFFFFF', color: '#334155', fontWeight: 600 }}
               >
-                <option value="ALL">Department: All Departments</option>
+                <option value="ALL">All</option>
                 {DEPARTMENTS.map(d => (
                   <option key={d.code} value={d.code}>{d.name} ({d.code})</option>
                 ))}
@@ -1730,7 +1730,7 @@ export default function ResearchDataSourcesView({ currentUser }) {
                 <tr style={{ background: '#F8FAFC', borderBottom: '2px solid #E2E8F0' }}>
                   <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Record #</th>
                   <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Publication Title</th>
-                  <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Journal / Venue</th>
+                  <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Venue</th>
                   <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Authors</th>
                   <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Identifiers</th>
                   <th style={{ padding: '0.75rem 1rem', color: '#475569', fontWeight: 700 }}>Sources</th>
@@ -2237,7 +2237,7 @@ export default function ResearchDataSourcesView({ currentUser }) {
                         <th style={{ padding: '0.5rem', textAlign: 'left' }}>#</th>
                         <th style={{ padding: '0.5rem', textAlign: 'left' }}>Title</th>
                         <th style={{ padding: '0.5rem', textAlign: 'left' }}>Authors Extracted</th>
-                        <th style={{ padding: '0.5rem', textAlign: 'left' }}>DOI / Identifier</th>
+                        <th style={{ padding: '0.5rem', textAlign: 'left' }}>DOI</th>
                         <th style={{ padding: '0.5rem', textAlign: 'left' }}>Year</th>
                       </tr>
                     </thead>

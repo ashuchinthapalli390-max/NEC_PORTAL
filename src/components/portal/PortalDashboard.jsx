@@ -52,8 +52,6 @@ import {
   toggleUserStatus,
   forcePasswordReset,
   getFacultyList,
-  updateFacultyPhoto,
-  removeFacultyPhoto,
   saveFacultyMember,
   getPublications, 
   getPatents, 
@@ -204,16 +202,38 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
   // Email Template Previewer State
   const [selectedTemplateId, setSelectedTemplateId] = useState('login_otp');
 
-  // Faculty Photo Management Modal State
-  const [photoModalOpen, setPhotoModalOpen] = useState(false);
-  const [selectedFacultyForPhoto, setSelectedFacultyForPhoto] = useState(null);
-  const [newPhotoPreview, setNewPhotoPreview] = useState(null);
-  const [photoUploadError, setPhotoUploadError] = useState('');
-  const [facultySearch, setFacultySearch] = useState('');
-  const [facultyDeptFilter, setFacultyDeptFilter] = useState('ALL');
-  const [facultyPhotoStatusFilter, setFacultyPhotoStatusFilter] = useState('ALL');
-
   const refreshData = () => setDataVersion(v => v + 1);
+
+  // Centralized active alerts calculation for the top notification badge
+  const activeAlertsCount = useMemo(() => {
+    const mous = getMoUs() || [];
+    const pubs = getPublications() || [];
+    const memberships = getMemberships() || [];
+    const now = new Date();
+
+    const expiringMous = mous.filter(m => {
+      if (!m.expiryDate) return false;
+      const exp = new Date(m.expiryDate);
+      const diffDays = Math.ceil((exp - now) / (1000 * 60 * 60 * 24));
+      return diffDays <= 60;
+    }).length;
+
+    const pendingPubs = pubs.filter(p => 
+      p.verificationStatus === 'Pending Review' || 
+      p.verificationStatus === 'Submitted' || 
+      p.workflowStatus === 'SUBMITTED' || 
+      p.workflowStatus === 'UNDER_REVIEW'
+    ).length;
+
+    const expiringMemberships = memberships.filter(m => {
+      if (m.membershipType === 'Life' || !m.validTill) return false;
+      const exp = new Date(m.validTill);
+      const diffDays = Math.ceil((exp - now) / (1000 * 60 * 60 * 24));
+      return diffDays <= 90;
+    }).length;
+
+    return expiringMous + pendingPubs + expiringMemberships;
+  }, [dataVersion]);
 
   // Live Data Stores
   const usersList = getUsers();
@@ -351,54 +371,6 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
     refreshData();
   };
 
-  // Faculty Photo Management Handlers
-  const handleOpenPhotoModal = (faculty) => {
-    setSelectedFacultyForPhoto(faculty);
-    setNewPhotoPreview(faculty.photo || null);
-    setPhotoUploadError('');
-    setPhotoModalOpen(true);
-  };
-
-  const handlePhotoFileChange = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    if (!file.type.startsWith('image/')) {
-      setPhotoUploadError('Please select a valid image file (JPG, PNG, WebP).');
-      return;
-    }
-
-    if (file.size > 5 * 1024 * 1024) {
-      setPhotoUploadError('File size exceeds 5MB limit.');
-      return;
-    }
-
-    setPhotoUploadError('');
-    const reader = new FileReader();
-    reader.onload = (evt) => {
-      setNewPhotoPreview(evt.target.result);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleSavePhoto = () => {
-    if (!selectedFacultyForPhoto || !newPhotoPreview) return;
-    updateFacultyPhoto(selectedFacultyForPhoto.id, newPhotoPreview, currentUser);
-    showDashboardToast(`Verified photo updated for ${selectedFacultyForPhoto.name}.`);
-    setPhotoModalOpen(false);
-    setNewPhotoPreview(null);
-    refreshData();
-  };
-
-  const handleRemovePhoto = () => {
-    if (!selectedFacultyForPhoto) return;
-    removeFacultyPhoto(selectedFacultyForPhoto.id, currentUser);
-    showDashboardToast(`Photo removed for ${selectedFacultyForPhoto.name}. Profile reverted to neutral placeholder.`);
-    setPhotoModalOpen(false);
-    setNewPhotoPreview(null);
-    refreshData();
-  };
-
   // Filtered Users List
   const filteredUsers = usersList.filter(u => {
     const q = userSearch.toLowerCase();
@@ -406,21 +378,6 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
     const matchesRole = userFilterRole === 'ALL' || u.role === userFilterRole;
     const matchesDept = userFilterDept === 'ALL' || u.dept === userFilterDept;
     return matchesQuery && matchesRole && matchesDept;
-  });
-
-  // Filtered Faculty List for Photo Management
-  const filteredFacultyList = facultyList.filter(f => {
-    const q = facultySearch.toLowerCase().trim();
-    const matchesQuery = !q || 
-      (f.name && f.name.toLowerCase().includes(q)) || 
-      (f.id && f.id.toLowerCase().includes(q)) || 
-      (f.department && f.department.toLowerCase().includes(q)) || 
-      (f.designation && f.designation.toLowerCase().includes(q));
-    const matchesDept = facultyDeptFilter === 'ALL' || (f.department || '').toLowerCase().includes(facultyDeptFilter.toLowerCase());
-    const matchesPhoto = facultyPhotoStatusFilter === 'ALL' 
-      ? true 
-      : (facultyPhotoStatusFilter === 'WITH_PHOTO' ? !!f.photo : !f.photo);
-    return matchesQuery && matchesDept && matchesPhoto;
   });
 
   return (
@@ -606,7 +563,7 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
                 <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.82rem' }}>
                   <thead>
                     <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.74rem', textTransform: 'uppercase' }}>
-                      <th style={{ padding: '0.75rem 1rem' }}>User / Identity</th>
+                      <th style={{ padding: '0.75rem 1rem' }}>User</th>
                       <th style={{ padding: '0.75rem 1rem' }}>Role</th>
                       <th style={{ padding: '0.75rem 1rem' }}>Department</th>
                       <th style={{ padding: '0.75rem 1rem' }}>Status</th>
@@ -1102,77 +1059,6 @@ export default function PortalDashboard({ currentUser, onNavigatePublic, onLogou
                   style={{ padding: '0.5rem 1.25rem', borderRadius: '8px', border: 'none', background: 'linear-gradient(135deg, #F1C40F 0%, #D4AF37 100%)', color: '#070F1E', fontSize: '0.8rem', fontWeight: 800, cursor: 'pointer' }}
                 >
                   Execute Import ({csvParsedResult?.validRows?.length || 0})
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Faculty Photo Upload Modal */}
-      {photoModalOpen && selectedFacultyForPhoto && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(7, 15, 30, 0.75)', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', zIndex: 1100 }}>
-          <div style={{ background: '#FFFFFF', borderRadius: '16px', padding: '1.5rem', maxWidth: '480px', width: '100%', boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)' }}>
-            <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0F172A', margin: '0 0 0.5rem 0' }}>
-              Update Faculty Photograph
-            </h2>
-            <p style={{ fontSize: '0.8rem', color: '#64748B', marginBottom: '1rem' }}>
-              {selectedFacultyForPhoto.name} ({selectedFacultyForPhoto.department})
-            </p>
-
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}>
-              {newPhotoPreview ? (
-                <img
-                  src={newPhotoPreview}
-                  alt="Preview"
-                  style={{ width: '110px', height: '110px', borderRadius: '50%', objectFit: 'cover', border: '3px solid #D4AF37', boxShadow: '0 4px 14px rgba(0,0,0,0.15)' }}
-                />
-              ) : (
-                <div style={{ width: '110px', height: '110px', borderRadius: '50%', background: '#F1F5F9', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94A3B8', border: '2px dashed #CBD5E1' }}>
-                  No Photo
-                </div>
-              )}
-            </div>
-
-            {photoUploadError && (
-              <div style={{ background: '#FEF2F2', border: '1px solid #FCA5A5', color: '#DC2626', padding: '0.5rem', borderRadius: '6px', fontSize: '0.78rem', marginBottom: '0.85rem' }}>
-                {photoUploadError}
-              </div>
-            )}
-
-            <input
-              type="file"
-              accept=".jpg,.jpeg,.png,.webp"
-              onChange={handlePhotoFileChange}
-              style={{ width: '100%', padding: '0.5rem', border: '1px solid #CBD5E1', borderRadius: '8px', fontSize: '0.8rem', marginBottom: '1.25rem', boxSizing: 'border-box' }}
-            />
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              {selectedFacultyForPhoto.photo ? (
-                <button
-                  type="button"
-                  onClick={handleRemovePhoto}
-                  style={{ background: '#FEE2E2', color: '#DC2626', border: '1px solid #FECACA', padding: '0.45rem 0.85rem', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer' }}
-                >
-                  Remove Photo
-                </button>
-              ) : <div />}
-
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
-                <button
-                  type="button"
-                  onClick={() => { setPhotoModalOpen(false); setNewPhotoPreview(null); }}
-                  style={{ padding: '0.45rem 0.85rem', borderRadius: '6px', border: '1px solid #CBD5E1', background: '#FFFFFF', fontSize: '0.78rem', cursor: 'pointer' }}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  disabled={!newPhotoPreview}
-                  onClick={handleSavePhoto}
-                  style={{ padding: '0.45rem 1.1rem', borderRadius: '6px', border: 'none', background: 'linear-gradient(135deg, #F1C40F 0%, #D4AF37 100%)', color: '#070F1E', fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer' }}
-                >
-                  Save Photo
                 </button>
               </div>
             </div>

@@ -466,7 +466,7 @@ export default function CompaniesVisitedManager({ currentUser, onDataChange }) {
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#475569', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                 <th style={{ padding: '0.85rem 1rem' }}>Company Name</th>
-                <th style={{ padding: '0.85rem 1rem' }}>Sector / Type</th>
+                <th style={{ padding: '0.85rem 1rem' }}>Sector</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Drive Date</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Drive Mode</th>
                 <th style={{ padding: '0.85rem 1rem' }}>Eligible Departments</th>

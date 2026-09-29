@@ -308,7 +308,7 @@ export default function MadamModulesCRUD({ activeModule, currentUser, onDataChan
             className="form-control"
             style={{ width: 'auto', padding: '0.5rem 0.8rem', fontSize: '0.85rem' }}
           >
-            <option value="All">All Departments</option>
+            <option value="All">All</option>
             {DEPARTMENTS.map(d => (
               <option key={d.id} value={d.code}>{d.code} - {d.name}</option>
             ))}
@@ -351,10 +351,10 @@ export default function MadamModulesCRUD({ activeModule, currentUser, onDataChan
           <thead>
             <tr style={{ background: '#0B192C', color: '#FFFFFF' }}>
               <th style={{ padding: '0.8rem' }}>#</th>
-              <th style={{ padding: '0.8rem' }}>Primary Title / Name</th>
-              <th style={{ padding: '0.8rem' }}>Department / Branch</th>
+              <th style={{ padding: '0.8rem' }}>Title</th>
+              <th style={{ padding: '0.8rem' }}>Department</th>
               <th style={{ padding: '0.8rem' }}>Academic Session</th>
-              <th style={{ padding: '0.8rem' }}>Key Detail / Status</th>
+              <th style={{ padding: '0.8rem' }}>Status</th>
               <th style={{ padding: '0.8rem', textAlign: 'right' }}>Actions</th>
             </tr>
           </thead>
