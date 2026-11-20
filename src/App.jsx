@@ -8,26 +8,14 @@ import { signOut } from 'firebase/auth';
 import { BRANDING_LOGOS } from './data/masterData.js';
 import { safeAuthFetch } from './lib/auth/authFetch.js';
 
-// Public Website Components
-import Header from './components/public/Header.jsx';
-import Hero from './components/public/Hero.jsx';
-import StatsCounter from './components/public/StatsCounter.jsx';
-import LeadershipSection from './components/public/LeadershipSection.jsx';
-import GovernanceSection from './components/public/GovernanceSection.jsx';
-import DepartmentsHub from './components/public/DepartmentsHub.jsx';
-import FacultyDirectory from './components/public/FacultyDirectory.jsx';
-import VirtualTour from './components/public/VirtualTour.jsx';
-import MadamShowcase from './components/public/MadamShowcase.jsx';
-import ExamCellAndContact from './components/public/ExamCellAndContact.jsx';
+// Public Website — immersive 3D scroll experience
+import PublicExperience from './components/experience/PublicExperience.jsx';
 
 // Portal Components
 import PortalAuth from './components/portal/PortalAuth.jsx';
 import PortalDashboard from './components/portal/PortalDashboard.jsx';
 
 // Global Search Palette & Error Boundaries
-import GlobalSearchModal from './components/common/GlobalSearchModal.jsx';
-import PublicSectionErrorBoundary from './components/common/PublicSectionErrorBoundary.jsx';
-import ModuleErrorBoundary from './components/common/ModuleErrorBoundary.jsx';
 
 /**
  * Root Fatal Error Boundary
@@ -308,14 +296,6 @@ function MainApp() {
   const [viewMode, setViewMode] = useState('public'); // 'public' | 'portal'
   const [authModalOpen, setAuthModalOpen] = useState(false);
 
-  // Navigation State
-  const [activeTab, setActiveTab] = useState('home');
-  const [selectedDepartment, setSelectedDepartment] = useState(null);
-  const [selectedFaculty, setSelectedFaculty] = useState(null);
-
-  // Global Search
-  const [searchModalOpen, setSearchModalOpen] = useState(false);
-
   // 1. Authoritative Server Session Check on Page Load / Refresh
   useEffect(() => {
     let isMounted = true;
@@ -339,51 +319,15 @@ function MainApp() {
         console.warn('Session verification fallback to public:', err);
       }
 
+      // No client-side login shortcuts: the portal opens only for a session the server verified above.
+      // Strip any legacy ?portal=… / ?role=… params so old bookmarked links land cleanly on the public site.
       if (typeof window !== 'undefined') {
         const params = new URLSearchParams(window.location.search);
-        if (params.get('portal') === 'true') {
-          if (isMounted) {
-            const requestedRole = (params.get('role') || 'ADMIN').toUpperCase();
-            let fallbackUser = {
-              id: 'usr_principal',
-              name: 'Dr. S. Venkateswarlu',
-              email: 'principal@nrtec.in',
-              role: 'ADMIN',
-              permissions: ['*'],
-              facultyId: 'NEC-PER-0001',
-              department: 'ECE',
-              dept: 'Administration'
-            };
-
-            if (requestedRole === 'SUPER_ADMIN' || requestedRole === 'SUPERADMIN') {
-              fallbackUser = {
-                id: 'usr_vice_chairman',
-                name: 'Sri Mittapalli Ramesh Babu',
-                email: 'vicechairman@nrtec.in',
-                role: 'SUPER_ADMIN',
-                permissions: ['*'],
-                facultyId: 'NEC-PER-0000',
-                department: 'Management',
-                dept: 'Governing Body'
-              };
-            } else if (requestedRole === 'HOD') {
-              fallbackUser = {
-                id: 'usr_hod_cse',
-                name: 'Dr. S. V. N. Srinivasu',
-                email: 'hodcse@nrtec.in',
-                role: 'HOD',
-                permissions: ['*'],
-                facultyId: 'NEC-PER-0002',
-                department: 'CSE',
-                dept: 'CSE'
-              };
-            }
-
-            setCurrentUser(fallbackUser);
-            setViewMode('portal');
-            setAuthState('authenticated');
-            return;
-          }
+        if (params.has('portal') || params.has('role')) {
+          params.delete('portal');
+          params.delete('role');
+          const qs = params.toString();
+          window.history.replaceState(null, '', `${window.location.pathname}${qs ? `?${qs}` : ''}${window.location.hash}`);
         }
       }
 
@@ -399,10 +343,10 @@ function MainApp() {
     };
   }, []);
 
-  // Smooth scroll to top on tab change
+  // Reset scroll position when switching between public site and portal
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [activeTab, viewMode]);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [viewMode]);
 
   const handleOpenPortal = async () => {
     if (authState === 'authenticated' && currentUser) {
@@ -429,7 +373,6 @@ function MainApp() {
   // Pure navigation to Public Website (Preserves active verified session!)
   const handleGoToPublicWebsite = () => {
     setViewMode('public');
-    setActiveTab('home');
   };
 
   // Explicit User Logout (Revokes server session cookie)
@@ -448,7 +391,6 @@ function MainApp() {
     } catch (err) {}
 
     setViewMode('public');
-    setActiveTab('home');
     setAuthState('unauthenticated');
     setCurrentUser(null);
   };
@@ -458,18 +400,6 @@ function MainApp() {
     setAuthModalOpen(false);
     setViewMode('portal');
     setAuthState('authenticated');
-  };
-
-  const handleSelectDepartment = (dept) => {
-    setSelectedDepartment(dept);
-    setActiveTab('departments');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleSelectFaculty = (fac) => {
-    setSelectedFaculty(fac);
-    setActiveTab('faculty');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // 2. Loading State During Session Hydration (Prevents Privilege/Role Flash)
@@ -529,108 +459,16 @@ function MainApp() {
     );
   }
 
-  // 4. Public Institutional Website (Accessible to both Guest and Authenticated visitors)
+  // 4. Public Institutional Website — single continuous 3D scroll experience
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#FFFFFF' }}>
-      {/* Dynamic Header with Session-Aware Portal Indicator */}
-      <Header
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
+    <>
+      {/* Public site has its own search over public content only (see PublicSearch.jsx) */}
+      <PublicExperience
         onOpenPortal={handleOpenPortal}
-        onSelectDepartment={handleSelectDepartment}
-        onOpenGlobalSearch={() => setSearchModalOpen(true)}
         isAuthenticated={authState === 'authenticated'}
         currentUser={currentUser}
+        overlayOpen={authModalOpen}
       />
-
-      {/* Main Public Body Switching by activeTab */}
-      <main style={{ flex: 1 }}>
-        {activeTab === 'home' && (
-          <>
-            <PublicSectionErrorBoundary sectionName="Hero">
-              <Hero onExploreCampus={() => setActiveTab('campus')} onOpenPortal={handleOpenPortal} />
-            </PublicSectionErrorBoundary>
-
-            <PublicSectionErrorBoundary sectionName="StatsCounter">
-              <StatsCounter />
-            </PublicSectionErrorBoundary>
-
-            <PublicSectionErrorBoundary sectionName="LeadershipSection">
-              <LeadershipSection />
-            </PublicSectionErrorBoundary>
-
-            <PublicSectionErrorBoundary sectionName="DepartmentsHub">
-              <DepartmentsHub 
-                selectedDepartment={selectedDepartment} 
-                onSelectDepartment={handleSelectDepartment}
-                onSelectFaculty={handleSelectFaculty}
-              />
-            </PublicSectionErrorBoundary>
-
-            <PublicSectionErrorBoundary sectionName="VirtualTour">
-              <VirtualTour />
-            </PublicSectionErrorBoundary>
-
-            <PublicSectionErrorBoundary sectionName="ExamCellAndContact">
-              <ExamCellAndContact />
-            </PublicSectionErrorBoundary>
-          </>
-        )}
-
-        {activeTab === 'about' && (
-          <>
-            <PublicSectionErrorBoundary sectionName="LeadershipSection">
-              <LeadershipSection />
-            </PublicSectionErrorBoundary>
-            <PublicSectionErrorBoundary sectionName="GovernanceSection">
-              <GovernanceSection />
-            </PublicSectionErrorBoundary>
-          </>
-        )}
-
-        {activeTab === 'departments' && (
-          <PublicSectionErrorBoundary sectionName="DepartmentsHub">
-            <DepartmentsHub 
-              selectedDepartment={selectedDepartment} 
-              onSelectDepartment={handleSelectDepartment}
-              onSelectFaculty={handleSelectFaculty}
-            />
-          </PublicSectionErrorBoundary>
-        )}
-
-        {activeTab === 'faculty' && (
-          <PublicSectionErrorBoundary sectionName="FacultyDirectory">
-            <FacultyDirectory 
-              selectedFacultyFromParent={selectedFaculty}
-              onClearSelectedFaculty={() => setSelectedFaculty(null)}
-            />
-          </PublicSectionErrorBoundary>
-        )}
-
-        {activeTab === 'campus' && (
-          <PublicSectionErrorBoundary sectionName="VirtualTour">
-            <VirtualTour />
-          </PublicSectionErrorBoundary>
-        )}
-
-        {activeTab === 'governance' && (
-          <PublicSectionErrorBoundary sectionName="GovernanceSection">
-            <GovernanceSection />
-          </PublicSectionErrorBoundary>
-        )}
-
-        {['madam', 'student-life', 'placements', 'bos'].includes(activeTab) && (
-          <PublicSectionErrorBoundary sectionName="MadamShowcase">
-            <MadamShowcase onSelectFaculty={handleSelectFaculty} />
-          </PublicSectionErrorBoundary>
-        )}
-
-        {activeTab === 'contact' && (
-          <PublicSectionErrorBoundary sectionName="ExamCellAndContact">
-            <ExamCellAndContact />
-          </PublicSectionErrorBoundary>
-        )}
-      </main>
 
       {/* Authentication Modal with 2-Step OTP Verification */}
       {authModalOpen && (
@@ -641,21 +479,6 @@ function MainApp() {
           />
         </AuthErrorBoundary>
       )}
-
-      {/* Global Instant Search Palette (Ctrl + K) */}
-      <GlobalSearchModal
-        isOpen={searchModalOpen}
-        onClose={() => setSearchModalOpen(false)}
-        onSelectFaculty={(fac) => {
-          setSelectedFaculty(fac);
-          setActiveTab('faculty');
-        }}
-        onSelectDepartment={(dept) => {
-          setSelectedDepartment(dept);
-          setActiveTab('departments');
-        }}
-        onNavigateTab={(tab) => setActiveTab(tab)}
-      />
-    </div>
+    </>
   );
 }
